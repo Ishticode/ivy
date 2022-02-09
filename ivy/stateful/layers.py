@@ -731,3 +731,43 @@ class LSTM(Module):
         if not self._return_state:
             return h_t
         return h_t, (h_n_list, c_n_list)
+
+
+# UniformEmbedding #
+# -----#
+
+class UniformEmbedding(Module):
+
+    def __init__(self, vocabulary_size, output_dim):
+
+        """
+        Embedding layer with uniform initialisation. It stores word embedding of particular dimensions
+        :param vocabulary_size: Number of different words for the input text which will be a vector.
+                                This will be used to generate the initial embedding matrix
+        :type vocabulary_size: int
+        :param output_dim: the size of each embedding vector i.e. row length in the final embedding
+        :type output_dims: int
+        """
+
+        self.embedding_initial = ivy.random_uniform(shape = (vocabulary_size, output_dim))
+        super().__init__()
+
+    # Overridden
+
+    def _create_variables(self, dev):
+        """
+        Create internal variables for the layer
+        """
+
+        self.embedding_matrix = ivy.variable(self.embedding_initial)
+        return {'embedding_matrix':self.embedding_matrix}
+
+    def _forward(self,x):
+        """
+        Perform forward pass of the UniformEmbedding layer.
+        :param x: vector input use for indexing the embedding matrix
+        :type x: array
+        :return: uniform embedding for the given vector
+        """
+
+        return ivy.embedding(x, self.embedding_matrix)

@@ -56,3 +56,7 @@ def conv3d(*_):
 
 def conv3d_transpose(*_):
     raise Exception('Convolutions not yet implemented for numpy library')
+
+
+def embedding(*_):
+    raise Exception('Embedding not yet implemented for numpy library')

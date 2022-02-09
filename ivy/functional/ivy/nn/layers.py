@@ -409,3 +409,20 @@ def lstm_update(x, init_h, init_c, kernel, recurrent_kernel, bias=None, recurren
         hts_list.append(ivy.expand_dims(ht, -2))
 
     return ivy.concatenate(hts_list, -2), ct
+
+
+# embedding #
+# -----#
+
+def embedding(x, initial_matrix, f=None):
+    '''
+    Looks up embeddings using x vector in a given matrix
+    :param x: a vector with lookup indexes
+    :type x: array
+    :param initial_matrix: an array of values from which the embeddings will be looked up
+    :type initial_matrix: array
+    :param f: Machine learning library. Inferred from Inputs if None.
+    :type f: ml_framework, optional
+    :return: arrays at the particual concatenated as one tensor
+    '''
+    return _cur_framework(x, f=f).embedding(x, initial_matrix)
