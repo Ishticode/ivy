@@ -159,5 +159,6 @@ def conv3d_transpose(x, filters, strides, padding, _=None, data_format='NDHWC', 
         return res
 
 
-def embedding(*_):
-    raise Exception('Embedding not yet implemented for mxnet backend')
+def embedding(v,matrix):
+  v,matrix = _mx.nd.array(v).squeeze(), _mx.nd.array(matrix).squeeze()
+  return _mx.nd.Embedding(v,matrix, matrix.shape[0], matrix.shape[1])
