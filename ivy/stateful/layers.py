@@ -736,12 +736,12 @@ class LSTM(Module):
 # UniformEmbedding #
 # -----#
 
-class UniformEmbedding(Module):
+class Embedding(Module):
 
     def __init__(self, vocabulary_size, output_dim):
 
         """
-        Embedding layer with uniform initialisation. It stores word embedding of particular dimensions
+        Embedding layer with uniform initialisation by default. It stores word embedding of particular dimensions
         :param vocabulary_size: Number of different words for the input text which will be a vector.
                                 This will be used to generate the initial embedding matrix
         :type vocabulary_size: int
