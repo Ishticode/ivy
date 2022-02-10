@@ -1416,6 +1416,34 @@ def test_isnan(x_n_res, dtype, tensor_fn, dev, call):
         helpers.assert_compilable(ivy.isnan)
 
 
+# isfinite
+@pytest.mark.parametrize(
+    "x_n_res", [([True], [True]),
+                ([[0., float('inf')], [float('nan'), 3.]],
+                 [[True, False], [False, True]])])
+@pytest.mark.parametrize(
+    "dtype", ['float32'])
+@pytest.mark.parametrize(
+    "tensor_fn", [ivy.array, helpers.var_fn])
+def test_isfinite(x_n_res, dtype, tensor_fn, dev, call):
+    x, res = x_n_res
+    # smoke test
+    if isinstance(x, Number) and tensor_fn == helpers.var_fn and call is helpers.mx_call:
+        # mxnet does not support 0-dimensional variables
+        pytest.skip()
+    x = tensor_fn(x, dtype, dev)
+    ret = ivy.isfinite(x)
+    # type test
+    assert ivy.is_array(ret)
+    # cardinality test
+    assert ret.shape == x.shape
+    # value test
+    assert np.allclose(call(ivy.isfinite, x), res)
+    # compilation test
+    if not ivy.array_mode():
+        helpers.assert_compilable(ivy.isfinite)
+
+
 # reshape
 @pytest.mark.parametrize(
     "x_n_shp", [(1., (1, 1)), (1., 1), (1., []), ([[1.]], []), ([[0., 1.], [2., 3.]], (1, 4, 1))])
@@ -1606,6 +1634,33 @@ def test_ones_like(x, dtype, tensor_fn, dev, call):
         return
     if not ivy.array_mode():
         helpers.assert_compilable(ivy.ones_like)
+
+
+# full
+@pytest.mark.parametrize(
+    "shape", [(), (1, 2, 3), tuple([1]*10)])
+@pytest.mark.parametrize(
+    "fill_val", [2., -7.])
+@pytest.mark.parametrize(
+    "dtype", ['float32'])
+@pytest.mark.parametrize(
+    "tensor_fn", [ivy.array, helpers.var_fn])
+def test_full(shape, fill_val, dtype, tensor_fn, dev, call):
+    # smoke test
+    ret = ivy.full(shape, fill_val, dtype, dev)
+    # type test
+    assert ivy.is_array(ret)
+    # cardinality test
+    assert ret.shape == tuple(shape)
+    # value test
+    assert np.allclose(call(ivy.full, shape, fill_val, dtype, dev),
+                       np.asarray(ivy.functional.backends.numpy.full(shape, fill_val, dtype)))
+    # compilation test
+    if call in [helpers.torch_call]:
+        # pytorch scripting cannot assign a torch.device value with a string
+        return
+    if not ivy.array_mode():
+        helpers.assert_compilable(ivy.ones)
 
 
 # one_hot

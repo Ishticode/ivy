@@ -353,6 +353,10 @@ def isnan(x):
     return _torch.isnan(x)
 
 
+def isfinite(x):
+    return _torch.isfinite(x)
+
+
 def reshape(x, newshape: List[int]):
     if isinstance(newshape, int):
         newshape = [newshape]
@@ -410,6 +414,10 @@ def zeros_like(x, dtype: Optional[str] = None, dev: Optional[str] = None):
             'bool': _torch.bool}
         return _torch.zeros_like(x, dtype=type_dict[dtype], device=dev_from_str(dev))
     return _torch.zeros_like(x, device=dev_from_str(dev))
+
+
+def full(shape, fill_value, dtype, device=None):
+    return _torch.full(shape, fill_value, dtype=dtype_from_str(dtype), device=default_device(device))
 
 
 # noinspection PyShadowingNames

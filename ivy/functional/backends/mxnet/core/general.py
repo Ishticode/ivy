@@ -380,6 +380,12 @@ def indices_where(x):
 
 
 isnan = _mx.nd.contrib.isnan
+
+
+def isfinite(x):
+    return _mx.nd.contrib.isfinite(x)
+
+
 reshape = lambda x, new_shape: x.reshape(new_shape)
 
 
@@ -418,6 +424,13 @@ def zeros_like(x, dtype=None, dev=None):
         return _mx.nd.array(0., ctx=_mxnet_init_context(default_device(dev)))
     mx_zeros = _mx.nd.zeros_like(x, ctx=_mxnet_init_context(default_device(dev)))
     return mx_zeros if not dtype else mx_zeros.astype(dtype)
+
+
+def full(shape, fill_value, dtype, device=None):
+    cont = _mxnet_init_context(default_device(device))
+    if len(shape) == 0:
+        return _1_dim_array_to_flat_array(_mx.nd.full((1,), fill_value, cont, dtype_from_str(dtype)))
+    return _mx.nd.full(shape, fill_value, cont, dtype_from_str(dtype))
 
 
 # noinspection PyShadowingNames

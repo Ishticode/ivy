@@ -244,6 +244,12 @@ def indices_where(x):
 
 
 isnan = _jnp.isnan
+
+
+def isfinite(x):
+    return _jnp.isfinite(x)
+
+
 reshape = _jnp.reshape
 broadcast_to = _jnp.broadcast_to
 
@@ -269,6 +275,10 @@ def zeros_like(x, dtype=None, dev=None):
     else:
         dtype = x.dtype
     return to_dev(_jnp.zeros_like(x, dtype=dtype), default_device(dev))
+
+
+def full(shape, fill_value, dtype, device=None):
+    return to_dev(_jnp.full(shape, fill_value, dtype_from_str(dtype)), default_device(device))
 
 
 # noinspection PyShadowingNames

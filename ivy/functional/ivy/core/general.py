@@ -7,9 +7,10 @@ import gc
 import math
 import einops
 import inspect
+import importlib
 import numpy as np
 from numbers import Number
-from typing import Callable, Any, Union, List, Tuple, Dict, Iterable
+from typing import Callable, Any, Union, List, Tuple, Dict, Iterable, Optional
 
 # local
 import ivy
@@ -881,6 +882,22 @@ def isnan(x: Union[ivy.Array, ivy.NativeArray], f: ivy.Framework = None)\
     return _cur_framework(x, f=f).isnan(x)
 
 
+def isfinite(x: Union[ivy.Array, ivy.NativeArray], f: ivy.Framework = None)\
+        -> Union[ivy.Array, ivy.NativeArray]:
+    """
+    Tests each element x_i of the input array x to determine if finite (i.e., not NaN and not equal to positive
+    or negative infinity).
+
+    :param x: Input array.
+    :type x: array
+    :param f: Machine learning framework. Inferred from inputs if None.
+    :type f: ml_framework, optional
+    :return: an array containing test results. An element out_i is True if x_i is finite and False otherwise.
+             The returned array must have a data type of bool.
+    """
+    return _cur_framework(x, f=f).isfinite(x)
+
+
 def value_is_nan(x: Union[ivy.Array, ivy.NativeArray, Number], include_infs: bool = True)\
         -> bool:
     """
@@ -1042,6 +1059,21 @@ def ones_like(x: Union[ivy.Array, ivy.NativeArray], dtype: ivy.Dtype = None, dev
     :return: Tensor of zeros with the same shape and type as a, unless dtype provided which overrides.
     """
     return _cur_framework(x, f=f).ones_like(x, dtype, dev)
+
+
+# noinspection PyShadowingNames
+def full(shape: Union[int, Tuple[int]], fill_value: Union[int, float], dtype: Optional[ivy.Dtype] = None,
+         device: Optional[ivy.Device] = None, f: ivy.Framework = None):
+    """
+    Returns a new array having a specified shape and filled with fill_value.
+
+    :param shape: output array shape.
+    :param fill_value: fill value.
+    :param dtype: output array data type.
+    :param device: device on which to place the created array. Default: None.
+    :param f: Machine learning framework. Inferred from inputs if None.
+    """
+    return _cur_framework(f=f).full(shape, fill_value, dtype, device)
 
 
 # noinspection PyShadowingNames
@@ -1383,6 +1415,23 @@ def dtype(x: Union[ivy.Array, ivy.NativeArray], as_str: bool = False, f: ivy.Fra
     :return: Data type of the array
     """
     return _cur_framework(x, f=f).dtype(x, as_str)
+
+
+def convert_dtype(dtype_in: Union[ivy.Dtype, str], backend: str):
+    """
+    Converts a data type from one backend framework representation to another.
+
+    :param dtype_in: The data-type to convert, in the specified backend representation
+    :type dtype_in: data type
+    :param backend: The backend framework the dtype_in is represented in.
+    :type backend: str
+    :return: The data-type in the current ivy backend format
+    """
+    valid_backends = ['numpy', 'jax', 'tensorflow', 'torch', 'mxnet']
+    if backend not in valid_backends:
+        raise Exception('Invalid backend passed, must be one of {}'.format(valid_backends))
+    ivy_backend = importlib.import_module('ivy.functional.backends.{}'.format(backend))
+    return ivy.dtype_from_str(ivy_backend.dtype_to_str(dtype_in))
 
 
 def dtype_to_str(dtype_in: Union[ivy.Dtype, str], f: ivy.Framework = None)\
