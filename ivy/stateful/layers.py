@@ -759,8 +759,7 @@ class Embedding(Module):
         Create internal variables for the layer
         """
 
-        self.embedding_matrix = ivy.variable(self.embedding_initial)
-        return {'embedding_matrix':self.embedding_matrix}
+        return {'w':self.embedding_initial}
 
     def _forward(self,x):
         """
@@ -770,4 +769,4 @@ class Embedding(Module):
         :return: uniform embedding for the given vector
         """
 
-        return ivy.embedding(x, self.embedding_matrix)
+        return ivy.embedding(x, self.v.w)
