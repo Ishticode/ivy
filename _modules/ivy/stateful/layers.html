@@ -927,6 +927,45 @@
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_return_state</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">h_t</span>
         <span class="k">return</span> <span class="n">h_t</span><span class="p">,</span> <span class="p">(</span><span class="n">h_n_list</span><span class="p">,</span> <span class="n">c_n_list</span><span class="p">)</span></div>
+
+
+<span class="c1"># UniformEmbedding #</span>
+<span class="c1"># -----#</span>
+
+<div class="viewcode-block" id="Embedding"><a class="viewcode-back" href="../../../stateful/layers/Embedding.html#ivy.stateful.layers.Embedding">[docs]</a><span class="k">class</span> <span class="nc">Embedding</span><span class="p">(</span><span class="n">Module</span><span class="p">):</span>
+
+<div class="viewcode-block" id="Embedding.__init__"><a class="viewcode-back" href="../../../stateful/layers/Embedding.html#ivy.stateful.layers.Embedding.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vocabulary_size</span><span class="p">,</span> <span class="n">output_dim</span><span class="p">):</span>
+
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Embedding layer with uniform initialisation by default. It stores word embedding of particular dimensions</span>
+<span class="sd">        :param vocabulary_size: Number of different words for the input text which will be a vector.</span>
+<span class="sd">                                This will be used to generate the initial embedding matrix</span>
+<span class="sd">        :type vocabulary_size: int</span>
+<span class="sd">        :param output_dim: the size of each embedding vector i.e. row length in the final embedding</span>
+<span class="sd">        :type output_dims: int</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">embedding_initial</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">random_uniform</span><span class="p">(</span><span class="n">shape</span> <span class="o">=</span> <span class="p">(</span><span class="n">vocabulary_size</span><span class="p">,</span> <span class="n">output_dim</span><span class="p">))</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span></div>
+
+    <span class="c1"># Overridden</span>
+
+    <span class="k">def</span> <span class="nf">_create_variables</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dev</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Create internal variables for the layer</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;w&#39;</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">embedding_initial</span><span class="p">}</span>
+
+    <span class="k">def</span> <span class="nf">_forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">x</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Perform forward pass of the UniformEmbedding layer.</span>
+<span class="sd">        :param x: vector input use for indexing the embedding matrix</span>
+<span class="sd">        :type x: array</span>
+<span class="sd">        :return: uniform embedding for the given vector</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="n">ivy</span><span class="o">.</span><span class="n">embedding</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">v</span><span class="o">.</span><span class="n">w</span><span class="p">)</span></div>
 </pre></div>
 
            </div>
