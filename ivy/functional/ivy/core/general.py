@@ -882,6 +882,20 @@ def isnan(x: Union[ivy.Array, ivy.NativeArray], f: ivy.Framework = None)\
     return _cur_framework(x, f=f).isnan(x)
 
 
+def isinf(x: Union[ivy.Array, ivy.NativeArray], f: ivy.Framework = None)\
+        -> Union[ivy.Array, ivy.NativeArray]:
+    """
+    Returns boolean map at locations where the input is +/- infinity (inf).
+
+    :param x: Input array.
+    :type x: array
+    :param f: Machine learning framework. Inferred from inputs if None.
+    :type f: ml_framework, optional
+    :return: Boolean values for where the values of the array are inf.
+    """
+    return _cur_framework(x, f=f).isinf(x)
+
+
 def isfinite(x: Union[ivy.Array, ivy.NativeArray], f: ivy.Framework = None)\
         -> Union[ivy.Array, ivy.NativeArray]:
     """
@@ -1415,6 +1429,46 @@ def dtype(x: Union[ivy.Array, ivy.NativeArray], as_str: bool = False, f: ivy.Fra
     :return: Data type of the array
     """
     return _cur_framework(x, f=f).dtype(x, as_str)
+
+
+def is_int_dtype(dtype_in: Union[ivy.Dtype, str]):
+    """
+    Determine whether the input data type is an int data-type.
+
+    :param dtype_in: Datatype to test
+    :return: Whether or not the data type is an integer data type
+    """
+    return 'int' in dtype_to_str(dtype_in)
+
+
+def is_float_dtype(dtype_in: Union[ivy.Dtype, str]):
+    """
+    Determine whether the input data type is an float data-type.
+
+    :param dtype_in: Datatype to test
+    :return: Whether or not the data type is a floating point data type
+    """
+    return 'float' in dtype_to_str(dtype_in)
+
+
+def valid_dtype(dtype_in: Union[ivy.Dtype, str]):
+    """
+    Determines whether the provided data type is support by the current framework.
+
+    :param dtype_in: The data type for which to check for backend support
+    :return: Boolean, whether or not the data-type string is supported.
+    """
+    return ivy.dtype_to_str(dtype_in) in ivy.valid_dtype_strs
+
+
+def invalid_dtype(dtype_in: Union[ivy.Dtype, str]):
+    """
+    Determines whether the provided data type is not support by the current framework.
+
+    :param dtype_in: The data type for which to check for backend non-support
+    :return: Boolean, whether the data-type string is un-supported.
+    """
+    return ivy.dtype_to_str(dtype_in) in ivy.invalid_dtype_strs
 
 
 def convert_dtype(dtype_in: Union[ivy.Dtype, str], backend: str):
