@@ -13,31 +13,31 @@
 #
 # """
 #
-# import pytest
-# from hypothesis import assume, given
-# from hypothesis.strategies import (booleans, composite, none, tuples, integers,
-#                                    shared, sampled_from, data, just)
-# from ndindex import iter_indices
-#
-# from .array_helpers import assert_exactly_equal, asarray
-# from .hypothesis_helpers import (xps, dtypes, shapes, kwargs, matrix_shapes,
-#                                  square_matrix_shapes, symmetric_matrices,
-#                                  positive_definite_matrices, MAX_ARRAY_SIZE,
-#                                  invertible_matrices, two_mutual_arrays,
-#                                  mutually_promotable_dtypes, one_d_shapes,
-#                                  two_mutually_broadcastable_shapes,
-#                                  SQRT_MAX_ARRAY_SIZE, finite_matrices)
-# from . import dtype_helpers as dh
-# from . import pytest_helpers as ph
-# from . import shape_helpers as sh
-#
-# from .algos import broadcast_shapes
-#
-# from . import _array_module
-# from . import _array_module as xp
-# from ._array_module import linalg
-#
-# pytestmark = pytest.mark.ci
+import pytest
+from hypothesis import assume, given
+from hypothesis.strategies import (booleans, composite, none, tuples, integers,
+                                   shared, sampled_from, data, just)
+from ndindex import iter_indices
+
+from .array_helpers import assert_exactly_equal, asarray
+from .hypothesis_helpers import (xps, dtypes, shapes, kwargs, matrix_shapes,
+                                 square_matrix_shapes, symmetric_matrices,
+                                 positive_definite_matrices, MAX_ARRAY_SIZE,
+                                 invertible_matrices, two_mutual_arrays,
+                                 mutually_promotable_dtypes, one_d_shapes,
+                                 two_mutually_broadcastable_shapes,
+                                 SQRT_MAX_ARRAY_SIZE, finite_matrices)
+from . import dtype_helpers as dh
+from . import pytest_helpers as ph
+from . import shape_helpers as sh
+
+from .algos import broadcast_shapes
+
+from . import _array_module
+from . import _array_module as xp
+from ._array_module import linalg
+
+pytestmark = pytest.mark.ci
 #
 #
 #
@@ -281,38 +281,38 @@
 #
 #     # TODO: Test that the result is actually the inverse
 #
-# @given(
-#     *two_mutual_arrays(dh.numeric_dtypes)
-# )
-# def test_matmul(x1, x2):
-#     # TODO: Make this also test the @ operator
-#     if (x1.shape == () or x2.shape == ()
-#         or len(x1.shape) == len(x2.shape) == 1 and x1.shape != x2.shape
-#         or len(x1.shape) == 1 and len(x2.shape) >= 2 and x1.shape[0] != x2.shape[-2]
-#         or len(x2.shape) == 1 and len(x1.shape) >= 2 and x2.shape[0] != x1.shape[-1]
-#         or len(x1.shape) >= 2 and len(x2.shape) >= 2 and x1.shape[-1] != x2.shape[-2]):
-#         # The spec doesn't specify what kind of exception is used here. Most
-#         # libraries will use a custom exception class.
-#         ph.raises(Exception, lambda: _array_module.matmul(x1, x2),
-#                "matmul did not raise an exception for invalid shapes")
-#         return
-#     else:
-#         res = _array_module.matmul(x1, x2)
-#
-#     ph.assert_dtype("matmul", (x1.dtype, x2.dtype), res.dtype)
-#
-#     if len(x1.shape) == len(x2.shape) == 1:
-#         assert res.shape == ()
-#     elif len(x1.shape) == 1:
-#         assert res.shape == x2.shape[:-2] + x2.shape[-1:]
-#         _test_stacks(_array_module.matmul, x1, x2, res=res, dims=1)
-#     elif len(x2.shape) == 1:
-#         assert res.shape == x1.shape[:-1]
-#         _test_stacks(_array_module.matmul, x1, x2, res=res, dims=1)
-#     else:
-#         stack_shape = broadcast_shapes(x1.shape[:-2], x2.shape[:-2])
-#         assert res.shape == stack_shape + (x1.shape[-2], x2.shape[-1])
-#         _test_stacks(_array_module.matmul, x1, x2, res=res)
+@given(
+    *two_mutual_arrays(dh.numeric_dtypes)
+)
+def test_matmul(x1, x2):
+    # TODO: Make this also test the @ operator
+    if (x1.shape == () or x2.shape == ()
+        or len(x1.shape) == len(x2.shape) == 1 and x1.shape != x2.shape
+        or len(x1.shape) == 1 and len(x2.shape) >= 2 and x1.shape[0] != x2.shape[-2]
+        or len(x2.shape) == 1 and len(x1.shape) >= 2 and x2.shape[0] != x1.shape[-1]
+        or len(x1.shape) >= 2 and len(x2.shape) >= 2 and x1.shape[-1] != x2.shape[-2]):
+        # The spec doesn't specify what kind of exception is used here. Most
+        # libraries will use a custom exception class.
+        ph.raises(Exception, lambda: _array_module.matmul(x1, x2),
+               "matmul did not raise an exception for invalid shapes")
+        return
+    else:
+        res = _array_module.matmul(x1, x2)
+
+    ph.assert_dtype("matmul", (x1.dtype, x2.dtype), res.dtype)
+
+    if len(x1.shape) == len(x2.shape) == 1:
+        assert res.shape == ()
+    elif len(x1.shape) == 1:
+        assert res.shape == x2.shape[:-2] + x2.shape[-1:]
+        _test_stacks(_array_module.matmul, x1, x2, res=res, dims=1)
+    elif len(x2.shape) == 1:
+        assert res.shape == x1.shape[:-1]
+        _test_stacks(_array_module.matmul, x1, x2, res=res, dims=1)
+    else:
+        stack_shape = broadcast_shapes(x1.shape[:-2], x2.shape[:-2])
+        assert res.shape == stack_shape + (x1.shape[-2], x2.shape[-1])
+        _test_stacks(_array_module.matmul, x1, x2, res=res)
 #
 # @pytest.mark.xp_extension('linalg')
 # @given(
