@@ -661,21 +661,27 @@ pytestmark = pytest.mark.ci
 #     )
 #     integers = ah.isintegral(x)
 #     ah.assert_exactly_equal(out[integers], x[integers])
-#
-#
-# @given(xps.arrays(dtype=xps.floating_dtypes(), shape=hh.shapes()))
-# def test_cos(x):
-#     out = xp.cos(x)
-#     ph.assert_dtype("cos", x.dtype, out.dtype)
-#     ph.assert_shape("cos", out.shape, x.shape)
-#     ONE = ah.one(x.shape, x.dtype)
-#     INFINITY = ah.infinity(x.shape, x.dtype)
-#     domain = ah.inrange(x, -INFINITY, INFINITY, open=True)
-#     codomain = ah.inrange(out, -ONE, ONE)
-#     # cos maps (-inf, inf) to [-1, 1]. Values outside this domain are mapped
-#     # to nan, which is already tested in the special cases.
-#     ah.assert_exactly_equal(domain, codomain)
-#
+
+@pytest.mark.parametrize("dtype", ivy.all_dtype_strs)
+@pytest.mark.parametrize("shape", ivy_tests.test_shapes)
+def test_cos(dtype, shape):
+    #as input elements should be valid float
+    if ivy.invalid_dtype(dtype) or 'int' in dtype:
+        pytest.skip()
+    x = ivy.cast(ivy.random_uniform(-10,10, shape),dtype)
+    out = ivy.cos(x)
+    #the output should be some float
+    assert 'float' in ivy.dtype(out, as_str=True)
+    ph.assert_shape("cos", out.shape, x.shape)
+    #checking domain and codomain when the input shape in non-empty.
+    if shape != ():
+        ONE = ivy.cast(ivy.broadcast_to(ivy.array([1.]), out.shape), dtype)
+        INFINITY = ivy.cast(ivy.broadcast_to(ivy.array(float('inf')), x.shape), dtype)
+        assert ivy.all(ivy.logical_and((out <= ONE), (out >= -ONE)))
+        assert ivy.all(ivy.logical_and((x < INFINITY), (x>-INFINITY)))
+
+    #cos maps (-inf, inf) to [-1, 1]. Values outside this domain are mapped
+    #to nan, which is already tested in the special cases.
 #
 # @given(xps.arrays(dtype=xps.floating_dtypes(), shape=hh.shapes()))
 # def test_cosh(x):
