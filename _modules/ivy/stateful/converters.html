@@ -84,10 +84,10 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../why_ivy.html">Why Ivy?</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../using_ivy.html">Using Ivy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../training_a_network.html">Training a Network</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributing.html">Contributing to Ivy</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Array</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../array/array_mode_handler.html">Array mode handler</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../array/conversions.html">Conversions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../array/device.html">Device</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../array/general.html">General</a></li>
@@ -99,6 +99,11 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../array/meta.html">Meta</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../array/random.html">Random</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../array/reductions.html">Reductions</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Functional</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../functional/backends.html">Backends</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../functional/ivy.html">Ivy</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Graph compiler</span></p>
 <ul>
@@ -203,7 +208,7 @@
 
 
 <div class="viewcode-block" id="to_ivy_module"><a class="viewcode-back" href="../../../stateful/converters/to_ivy_module.html#ivy.stateful.converters.to_ivy_module">[docs]</a><span class="k">def</span> <span class="nf">to_ivy_module</span><span class="p">(</span><span class="n">native_module</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">native_module_class</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dev</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">devs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-                  <span class="n">inplace_update</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">f</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+                  <span class="n">inplace_update</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Convert an instance of a trainable module from a native framework into a trainable ivy.Module instance.</span>
 
@@ -223,12 +228,9 @@
 <span class="sd">    :param inplace_update: For backends with dedicated variable classes, whether to update these inplace.</span>
 <span class="sd">                           Default is False.</span>
 <span class="sd">    :type inplace_update: bool, optional</span>
-<span class="sd">    :param f: Machine learning library. Inferred from Inputs if None.</span>
-<span class="sd">    :type f: ml_framework, optional</span>
 <span class="sd">    :return: The new trainable ivy.Module instance.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="n">_cur_framework</span><span class="p">(</span><span class="n">f</span><span class="o">=</span><span class="n">f</span><span class="p">)</span><span class="o">.</span><span class="n">to_ivy_module</span><span class="p">(</span><span class="n">native_module</span><span class="p">,</span> <span class="n">native_module_class</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">,</span> <span class="n">dev</span><span class="p">,</span> <span class="n">devs</span><span class="p">,</span>
-                                             <span class="n">inplace_update</span><span class="p">)</span></div>
+    <span class="k">return</span> <span class="n">_cur_framework</span><span class="p">()</span><span class="o">.</span><span class="n">to_ivy_module</span><span class="p">(</span><span class="n">native_module</span><span class="p">,</span> <span class="n">native_module_class</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">,</span> <span class="n">dev</span><span class="p">,</span> <span class="n">devs</span><span class="p">,</span> <span class="n">inplace_update</span><span class="p">)</span></div>
 </pre></div>
 
            </div>
