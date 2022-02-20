@@ -36,7 +36,7 @@
   <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Conversions" href="array/conversions.html" />
+    <link rel="next" title="Array api" href="array/array_api.html" />
     <link rel="prev" title="Training a Network" href="training_a_network.html" /> 
 </head>
 
@@ -87,13 +87,16 @@
 <li class="toctree-l1"><a class="reference internal" href="using_ivy.html">Using Ivy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="training_a_network.html">Training a Network</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Contributing to Ivy</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#submodule-design">Submodule Design</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#ivy-api">Ivy API</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#backend-api">Backend API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#array-operators">Array Operators</a></li>
 </ul>
 </li>
 </ul>
 <p class="caption"><span class="caption-text">Array</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="array/array_api.html">Array api</a></li>
 <li class="toctree-l1"><a class="reference internal" href="array/conversions.html">Conversions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="array/device.html">Device</a></li>
 <li class="toctree-l1"><a class="reference internal" href="array/general.html">General</a></li>
@@ -208,6 +211,26 @@
             
   <div class="section" id="contributing-to-ivy">
 <h1>Contributing to Ivy<a class="headerlink" href="#contributing-to-ivy" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodule-design">
+<h2>Submodule Design<a class="headerlink" href="#submodule-design" title="Permalink to this headline">¶</a></h2>
+<p>Many already-implemented methods will need to be moved into new locations during various stages of refactoring.
+The package is designed so all methods are called directly from the <code class="code docutils literal notranslate"><span class="pre">ivy</span></code> namespace, such as <code class="code docutils literal notranslate"><span class="pre">ivy.matmul</span></code>,
+and not <code class="code docutils literal notranslate"><span class="pre">ivy.some_namespace.matmul</span></code>. Therefore, inside any of the folders <code class="code docutils literal notranslate"><span class="pre">ivy.functional.ivy</span></code>,
+<code class="code docutils literal notranslate"><span class="pre">ivy.functional.backends.some_backend</span></code>, <code class="code docutils literal notranslate"><span class="pre">ivy.functional.backends.another_backend</span></code> the functions can be moved
+to different files or folders without breaking anything. This makes it very simple to continually refactor and re-organize
+the code structure in an ongoing manner.</p>
+<p>Currently, we are in the process of refactoring things to more closely follow the Array API standard. Many methods will
+need to be moved to new locations. Again, this is not a problem, provided the <code class="code docutils literal notranslate"><span class="pre">__init__</span></code> files have the correct
+imports. Generally, these files look like the following, so that both the submodule namespace is imported but also
+all methods.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">dtype</span>
+<span class="kn">from</span> <span class="nn">.dtype</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">general</span>
+<span class="kn">from</span> <span class="nn">.general</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="c1"># etc.</span>
+</pre></div>
+</div>
+</div>
 <div class="section" id="ivy-api">
 <h2>Ivy API<a class="headerlink" href="#ivy-api" title="Permalink to this headline">¶</a></h2>
 <p>All function signatures for the Ivy API are defined in the <code class="code docutils literal notranslate"><span class="pre">ivy.functional.ivy</span></code> submodule. Functions written here
@@ -248,6 +271,56 @@ framework-specific types.</p>
 <code class="code docutils literal notranslate"><span class="pre">ivy.functional.backends.torch.array_api</span></code>, and should also be placed in the correct file in alignment with the
 categories used in the standard.</p>
 </div>
+<div class="section" id="array-operators">
+<h2>Array Operators<a class="headerlink" href="#array-operators" title="Permalink to this headline">¶</a></h2>
+<p>Array operators are defined in the <code class="code docutils literal notranslate"><span class="pre">ivy.array</span></code> submodule. Operators written here should adhere to the following format:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@_native_wrapper</span>
+<span class="k">def</span> <span class="fm">__pow__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">power</span><span class="p">):</span>
+    <span class="n">power</span> <span class="o">=</span> <span class="n">to_native</span><span class="p">(</span><span class="n">power</span><span class="p">)</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">builtin_pow</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">,</span> <span class="n">power</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">res</span> <span class="ow">is</span> <span class="bp">NotImplemented</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">res</span>
+    <span class="k">return</span> <span class="n">to_ivy</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>There is no need to write docstrings for these methods, as they should always defer to a method such as
+<code class="code docutils literal notranslate"><span class="pre">ivy.builtin_some_op</span></code>, which will itself have a docstring. The remaining code is essentially simple wrapper code
+around this builtin ivy method.</p>
+<p>The associated ivy backend methods should be placed in the same file as the operators. For example, <code class="code docutils literal notranslate"><span class="pre">__pow__</span></code> is
+an arithmetic operator, and so this operator should be placed in the submodule <code class="code docutils literal notranslate"><span class="pre">ivy.array.array_api.arithmetic_operators</span></code>.
+The method <code class="code docutils literal notranslate"><span class="pre">ivy.builtin_pow</span></code> should also be placed in <code class="code docutils literal notranslate"><span class="pre">ivy.array.array_api.arithmetic_operators</span></code>.</p>
+<p>For most methods and backends these are very simple to implement, such as <code class="code docutils literal notranslate"><span class="pre">ivy.builtin_pow</span></code> below:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># noinspection PyShadowingBuiltins</span>
+<span class="k">def</span> <span class="nf">builtin_pow</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">],</span>
+                <span class="n">other</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">])</span> \
+        <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">]:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Calculates an implementation-dependent approximation of exponentiation by raising each element (the base) of an</span>
+<span class="sd">    array instance to the power of other_i (the exponent), where other_i is the corresponding element of the array other.</span>
+
+<span class="sd">    :param self: array instance whose elements correspond to the exponentiation base. Should have a numeric data type.</span>
+<span class="sd">    :param other: other array whose elements correspond to the exponentiation exponent. Must be compatible with x</span>
+<span class="sd">                    (see Broadcasting). Should have a numeric data type.</span>
+<span class="sd">    :return: an array containing the element-wise results. The returned array must have a data type determined by</span>
+<span class="sd">              Type Promotion Rules.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="fm">__pow__</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>However, for some backends this does not work. For example, MXNet does not support reshaping arrays to 0-dim arrays,
+but this is required by the standard. Therefore, we’ve written custom methods for handling 0-dim arrays. For backends
+such as this where more customization is needed, then we must simply redefine these methods, such as <code class="code docutils literal notranslate"><span class="pre">ivy.builtin_pow</span></code>,
+in the associated backend submodule, in this case <code class="code docutils literal notranslate"><span class="pre">ivy.functional.backends.mxnet.array_builtins.array_api.arithmetic_operators</span></code>.</p>
+<p>The custom MXNet code is as follows, with the addition of an MXNet-specific function decorator to properly handle flat arrays:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@_handle_flat_arrays_in_out</span>
+<span class="k">def</span> <span class="nf">builtin_pow</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="fm">__pow__</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Again, a docstring is not needed given that this is the same as the one provided in <code class="code docutils literal notranslate"><span class="pre">ivy.array.array_api.arithmetic_operators</span></code>.
+For other backends, we do not need to specify a custom <code class="code docutils literal notranslate"><span class="pre">builtin_pow</span></code> method. These will default to the version implemented in
+<code class="code docutils literal notranslate"><span class="pre">ivy.array.array_api.arithmetic_operators</span></code> if no custom implementation is provided.</p>
+</div>
 </div>
 
 
@@ -258,7 +331,7 @@ categories used in the standard.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="array/conversions.html" class="btn btn-neutral float-right" title="Conversions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="array/array_api.html" class="btn btn-neutral float-right" title="Array api" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="training_a_network.html" class="btn btn-neutral float-left" title="Training a Network" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
