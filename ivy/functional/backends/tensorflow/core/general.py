@@ -333,11 +333,16 @@ cross = _tf.linalg.cross
 
 def matmul(x1, x2):
     # ToDo: add support for other input corner cases, like those explained in torch.matmul() docs
+
+
+
+    x1 = _tf.constant(x1, dtype=_tf.experimental.numpy.promote_types(x1.dtype, x2.dtype))
+    x2 = _tf.constant(x2, dtype=_tf.experimental.numpy.promote_types(x1.dtype, x2.dtype))
     x1_padded = False
     if len(x1.shape) == 1:
         x1 = _tf.expand_dims(x1, 0)
         x1_padded = True
-    ret = _tf.matmul(x1, x2)
+    ret = _tf.experimental.numpy.matmul(x1, x2)
     if x1_padded:
         return ret[0]
     return ret

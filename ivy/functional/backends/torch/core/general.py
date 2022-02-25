@@ -12,6 +12,7 @@ from operator import mul
 from torch.types import Number
 from functools import reduce as _reduce
 from typing import List, Dict, Optional, Union
+import numpy.array_api as npa
 
 # local
 from ivy.functional.ivy.core import default_device, default_dtype
@@ -19,7 +20,6 @@ from ivy.functional.backends.torch.core.device import dev_from_str, _callable_de
 
 # API #
 # ----#
-
 
 # noinspection PyShadowingNames
 def array(object_in, dtype: Optional[str] = None, dev: Optional[str] = None):
@@ -463,6 +463,8 @@ def cross(x1, x2):
 
 
 def matmul(x1, x2):
+    x1 = _torch.tensor(x1, dtype=_torch.promote_types(x1.dtype, x2.dtype))
+    x2 = _torch.tensor(x2, dtype=_torch.promote_types(x1.dtype, x2.dtype))
     return _torch.matmul(x1, x2)
 
 
