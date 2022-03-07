@@ -218,18 +218,22 @@
 <div class="viewcode-block" id="iinfo"><a class="viewcode-back" href="../../../../../functional/ivy/array_api/data_type_functions/iinfo.html#ivy.functional.ivy.array_api.data_type_functions.iinfo">[docs]</a><span class="k">def</span> <span class="nf">iinfo</span><span class="p">(</span><span class="nb">type</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Dtype</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">])</span>\
         <span class="o">-&gt;</span> <span class="n">Iinfo</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Machine limits for integer data types.</span>
-
-<span class="sd">    :param type: the kind of integer data-type about which to get information.</span>
-<span class="sd">    :return: iinfo object.</span>
-<span class="sd">        a class with that encapsules the following attributes:</span>
-<span class="sd">        - **bits**: *int*</span>
-<span class="sd">          number of bits occupied by the type.</span>
-<span class="sd">        - **max**: *int*</span>
-<span class="sd">          largest representable number.</span>
-<span class="sd">        - **min**: *int*</span>
-<span class="sd">          smallest representable number.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">        Machine limits for integer data types.</span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        type: Union[dtype, array]</span>
+<span class="sd">            the kind of integer data-type about which to get information.</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        out: iinfo object</span>
+<span class="sd">            a class with that encapsules the following attributes:</span>
+<span class="sd">            - **bits**: *int*</span>
+<span class="sd">              number of bits occupied by the type.</span>
+<span class="sd">            - **max**: *int*</span>
+<span class="sd">              largest representable number.</span>
+<span class="sd">            - **min**: *int*</span>
+<span class="sd">              smallest representable number.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">_cur_framework</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span><span class="o">.</span><span class="n">iinfo</span><span class="p">(</span><span class="nb">type</span><span class="p">)</span></div>
 
 
@@ -237,22 +241,26 @@
 <div class="viewcode-block" id="finfo"><a class="viewcode-back" href="../../../../../functional/ivy/array_api/data_type_functions/finfo.html#ivy.functional.ivy.array_api.data_type_functions.finfo">[docs]</a><span class="k">def</span> <span class="nf">finfo</span><span class="p">(</span><span class="nb">type</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Dtype</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">])</span>\
         <span class="o">-&gt;</span> <span class="n">Finfo</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Machine limits for floating-point data types.</span>
-
-<span class="sd">    :param type: the kind of floating-point data-type about which to get information.</span>
-<span class="sd">    :return: finfo object.</span>
-<span class="sd">        an object having the followng attributes:</span>
-<span class="sd">        - **bits**: *int*</span>
-<span class="sd">          number of bits occupied by the floating-point data type.</span>
-<span class="sd">        - **eps**: *float*</span>
-<span class="sd">          difference between 1.0 and the next smallest representable floating-point number larger than 1.0 according to the IEEE-754 standard.</span>
-<span class="sd">        - **max**: *float*</span>
-<span class="sd">          largest representable number.</span>
-<span class="sd">        - **min**: *float*</span>
-<span class="sd">          smallest representable number.</span>
-<span class="sd">        - **smallest_normal**: *float*</span>
-<span class="sd">          smallest positive floating-point number with full precision.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">        Machine limits for floating-point data types.</span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        type: Union[dtype, array]</span>
+<span class="sd">            the kind of floating-point data-type about which to get information.</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        out: finfo object</span>
+<span class="sd">            an object having the followng attributes:</span>
+<span class="sd">            - **bits**: *int*</span>
+<span class="sd">              number of bits occupied by the floating-point data type.</span>
+<span class="sd">            - **eps**: *float*</span>
+<span class="sd">              difference between 1.0 and the next smallest representable floating-point number larger than 1.0 according to the IEEE-754 standard.</span>
+<span class="sd">            - **max**: *float*</span>
+<span class="sd">              largest representable number.</span>
+<span class="sd">            - **min**: *float*</span>
+<span class="sd">              smallest representable number.</span>
+<span class="sd">            - **smallest_normal**: *float*</span>
+<span class="sd">              smallest positive floating-point number with full precision.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">_cur_framework</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span><span class="o">.</span><span class="n">finfo</span><span class="p">(</span><span class="nb">type</span><span class="p">)</span></div>
 </pre></div>
 
