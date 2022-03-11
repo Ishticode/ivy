@@ -106,15 +106,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../../../functional/backends.html">Backends</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../../functional/ivy.html">Ivy</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Graph compiler</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../../../graph_compiler/compiler.html">Compiler</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../../graph_compiler/globals.html">Globals</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../../graph_compiler/graph.html">Graph</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../../graph_compiler/helpers.html">Helpers</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../../graph_compiler/op_logging.html">Op logging</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../../graph_compiler/param.html">Param</a></li>
-</ul>
 <p class="caption"><span class="caption-text">Stateful</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../../../stateful/activations.html">Activations</a></li>
@@ -207,30 +198,6 @@
 <span class="c1"># local</span>
 <span class="kn">import</span> <span class="nn">ivy</span>
 <span class="kn">from</span> <span class="nn">ivy.framework_handler</span> <span class="kn">import</span> <span class="n">current_framework</span> <span class="k">as</span> <span class="n">_cur_framework</span>
-
-
-<div class="viewcode-block" id="svd"><a class="viewcode-back" href="../../../../../functional/ivy/core/linalg/svd.html#ivy.functional.ivy.core.linalg.svd">[docs]</a><span class="k">def</span> <span class="nf">svd</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Singular Value Decomposition.</span>
-<span class="sd">    When x is a 2D array, it is factorized as u @ numpy.diag(s) @ vh = (u * s) @ vh, where u and vh are 2D unitary</span>
-<span class="sd">    arrays and s is a 1D array of a’s singular values. When x is higher-dimensional, SVD is applied in batched mode.</span>
-
-<span class="sd">    :param x: Input array with number of dimensions &gt;= 2.</span>
-<span class="sd">    :type x: array</span>
-<span class="sd">    :return:</span>
-<span class="sd">        u -&gt; { (…, M, M), (…, M, K) } array \n</span>
-<span class="sd">        Unitary array(s). The first (number of dims - 2) dimensions have the same size as those of the input a.</span>
-<span class="sd">        The size of the last two dimensions depends on the value of full_matrices.</span>
-
-<span class="sd">        s -&gt; (…, K) array \n</span>
-<span class="sd">        Vector(s) with the singular values, within each vector sorted in descending ord.</span>
-<span class="sd">        The first (number of dims - 2) dimensions have the same size as those of the input a.</span>
-
-<span class="sd">        vh -&gt; { (…, N, N), (…, K, N) } array \n</span>
-<span class="sd">        Unitary array(s). The first (number of dims - 2) dimensions have the same size as those of the input a.</span>
-<span class="sd">        The size of the last two dimensions depends on the value of full_matrices.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="n">_cur_framework</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">.</span><span class="n">svd</span><span class="p">(</span><span class="n">x</span><span class="p">)</span></div>
 
 
 
