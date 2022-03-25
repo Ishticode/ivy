@@ -24,6 +24,7 @@
         <script src="../../../../_static/jquery.js"></script>
         <script src="../../../../_static/underscore.js"></script>
         <script src="../../../../_static/doctools.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
 
@@ -78,12 +79,13 @@
               
             
             
-              <p class="caption"><span class="caption-text">Guides</span></p>
+              <p class="caption"><span class="caption-text">Overview</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../../why_ivy.html">Why Ivy?</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../using_ivy.html">Using Ivy</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../training_a_network.html">Training a Network</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../contributing.html">Contributing to Ivy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../background.html">Background</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../design.html">Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../extensions.html">Extensions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../roadmap.html">Roadmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../contributing.html">Contributing</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Functional</span></p>
 <ul>
@@ -94,6 +96,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../../functional/ivy/data_type.html">Data type</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../functional/ivy/device.html">Device</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../functional/ivy/elementwise.html">Elementwise</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../functional/ivy/general.html">General</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../functional/ivy/gradients.html">Gradients</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../functional/ivy/image.html">Image</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../functional/ivy/layers.html">Layers</a></li>
@@ -103,6 +106,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../../functional/ivy/meta.html">Meta</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../functional/ivy/nest.html">Nest</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../functional/ivy/norms.html">Norms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../functional/ivy/random.html">Random</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../functional/ivy/searching.html">Searching</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../functional/ivy/set.html">Set</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../functional/ivy/sorting.html">Sorting</a></li>
@@ -205,6 +209,32 @@
 <span class="c1"># Array API Standard #</span>
 <span class="c1"># -------------------#</span>
 
+<div class="viewcode-block" id="asarray"><a class="viewcode-back" href="../../../../functional/ivy/creation/asarray.html#ivy.functional.ivy.creation.asarray">[docs]</a><span class="k">def</span> <span class="nf">asarray</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">],</span>
+             <span class="n">dtype</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Dtype</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+             <span class="n">dev</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Device</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+             <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">:</span>
+     <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">     Converts the input to an array.</span>
+
+<span class="sd">     Parameters</span>
+<span class="sd">     ----------</span>
+<span class="sd">     x:</span>
+<span class="sd">         input data, in any form that can be converted to an array.</span>
+<span class="sd">         This includes lists, lists of tuples, tuples, tuples of tuples, tuples of lists and ndarrays.</span>
+
+<span class="sd">     dtype:</span>
+<span class="sd">         datatype, optional. Datatype is inferred from the input data.</span>
+
+<span class="sd">     dev:</span>
+<span class="sd">         device on which to place the created array. Default: None.</span>
+
+<span class="sd">     Returns</span>
+<span class="sd">     --------</span>
+<span class="sd">     An array interpretation of x.</span>
+<span class="sd">     &quot;&quot;&quot;</span>
+     <span class="k">return</span> <span class="n">_cur_framework</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">dtype</span><span class="p">,</span> <span class="n">dev</span><span class="p">)</span></div>
+
+
 <div class="viewcode-block" id="zeros"><a class="viewcode-back" href="../../../../functional/ivy/creation/zeros.html#ivy.functional.ivy.creation.zeros">[docs]</a><span class="k">def</span> <span class="nf">zeros</span><span class="p">(</span><span class="n">shape</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]],</span>
           <span class="n">dtype</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Dtype</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
           <span class="n">device</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Device</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span>\
@@ -254,6 +284,32 @@
     <span class="k">return</span> <span class="n">_cur_framework</span><span class="p">()</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">shape</span><span class="p">,</span> <span class="n">dtype</span><span class="p">,</span> <span class="n">device</span><span class="p">)</span></div>
 
 
+<div class="viewcode-block" id="full_like"><a class="viewcode-back" href="../../../../functional/ivy/creation/full_like.html#ivy.functional.ivy.creation.full_like">[docs]</a><span class="k">def</span> <span class="nf">full_like</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">],</span>
+              <span class="n">fill_value</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span> <span class="o">*</span><span class="p">,</span>
+              <span class="n">dtype</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Dtype</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+              <span class="n">device</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Device</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+              <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Returns a new array filled with fill_value and having the same shape as an input array x.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    x:input array from which to derive the output array shape.</span>
+
+<span class="sd">    fill_value: Scalar fill value</span>
+
+<span class="sd">    dtype:output array data type.</span>
+<span class="sd">    If dtype is None, the output array data type must be inferred from x.</span>
+<span class="sd">    Default: None.</span>
+
+<span class="sd">    device:device on which to place the created array.</span>
+<span class="sd">    If device is None,the output array device must be inferred from x.</span>
+<span class="sd">    Default: None.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    out:an array having the same shape as x and where every element is equal to fill_value.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">_cur_framework</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">.</span><span class="n">full_like</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">fill_value</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span></div>
+
 <div class="viewcode-block" id="ones_like"><a class="viewcode-back" href="../../../../functional/ivy/creation/ones_like.html#ivy.functional.ivy.creation.ones_like">[docs]</a><span class="k">def</span> <span class="nf">ones_like</span><span class="p">(</span> <span class="n">x</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">],</span>
               <span class="n">dtype</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Dtype</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
               <span class="n">dev</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Device</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -273,7 +329,7 @@
 
 <div class="viewcode-block" id="tril"><a class="viewcode-back" href="../../../../functional/ivy/creation/tril.html#ivy.functional.ivy.creation.tril">[docs]</a><span class="k">def</span> <span class="nf">tril</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">],</span>
          <span class="n">k</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span> \
-         <span class="o">-&gt;</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">:</span>
+        <span class="o">-&gt;</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Returns the lower triangular part of a matrix (or a stack of matrices) x.</span>
 
@@ -334,8 +390,115 @@
     <span class="k">return</span> <span class="n">_cur_framework</span><span class="p">()</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="n">shape</span><span class="p">,</span> <span class="n">dtype</span><span class="p">,</span> <span class="n">device</span><span class="p">)</span></div>
 
 
+<div class="viewcode-block" id="empty_like"><a class="viewcode-back" href="../../../../functional/ivy/creation/empty_like.html#ivy.functional.ivy.creation.empty_like">[docs]</a><span class="k">def</span> <span class="nf">empty_like</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">],</span>
+               <span class="n">dtype</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Dtype</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+               <span class="n">dev</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Device</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span>\
+        <span class="o">-&gt;</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Returns an uninitialized array with the same shape as an input array x.</span>
+
+<span class="sd">    :param x:  input array from which to derive the output array shape.</span>
+<span class="sd">    :param dtype: output array data type. If dtype is None, the output array data type must be inferred from x. Default: None.</span>
+<span class="sd">    :param dev: device on which to place the created array. If device is None, the output array device must be inferred from x. Default: None.</span>
+<span class="sd">    :return: an array having the same shape as x and containing uninitialized data.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">_cur_framework</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">.</span><span class="n">empty_like</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">dtype</span><span class="p">,</span> <span class="n">dev</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="eye"><a class="viewcode-back" href="../../../../functional/ivy/creation/eye.html#ivy.functional.ivy.creation.eye">[docs]</a><span class="k">def</span> <span class="nf">eye</span><span class="p">(</span><span class="n">n_rows</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">n_cols</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">k</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="n">dtype</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Dtype</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">device</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Device</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> \
+        <span class="o">-&gt;</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Returns a two-dimensional array with ones on the k h diagonal and zeros elsewhere.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    :param n_rows: number of rows in the output array.</span>
+<span class="sd">    :param n_cols: number of columns in the output array. If None, the default number of columns in the output array is</span>
+<span class="sd">                   equal to n_rows. Default: None.</span>
+<span class="sd">    :param k: index of the diagonal. A positive value refers to an upper diagonal, a negative value to a lower diagonal,</span>
+<span class="sd">              and 0 to the main diagonal. Default: 0.</span>
+<span class="sd">    :param dtype: output array data type. If dtype is None, the output array data type must be the default floating-</span>
+<span class="sd">                  point data type. Default: None.</span>
+<span class="sd">    :return: device on which to place the created array. Default: None.</span>
+<span class="sd">    :return: an array where all elements are equal to zero, except for the k h diagonal, whose values are equal to one.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">_cur_framework</span><span class="p">()</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">n_rows</span><span class="p">,</span> <span class="n">n_cols</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">dtype</span><span class="p">,</span> <span class="n">device</span><span class="p">)</span></div>
+
+<span class="c1"># noinspection PyShadowingNames</span>
+<div class="viewcode-block" id="linspace"><a class="viewcode-back" href="../../../../functional/ivy/creation/linspace.html#ivy.functional.ivy.creation.linspace">[docs]</a><span class="k">def</span> <span class="nf">linspace</span><span class="p">(</span><span class="n">start</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">,</span> <span class="nb">int</span><span class="p">],</span> <span class="n">stop</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">,</span> <span class="nb">int</span><span class="p">],</span>
+             <span class="n">num</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">axis</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">dev</span><span class="p">:</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Device</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span>\
+        <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">]:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Generates a certain number of evenly-spaced values in an interval along a given axis.</span>
+
+<span class="sd">    See :math:`arange` that allows to specify the step size of evenly spaced values in an interval.</span>
+
+<span class="sd">    :param start: First entry in the range.</span>
+<span class="sd">    :type start: array</span>
+<span class="sd">    :param stop: Final entry in the range.</span>
+<span class="sd">    :type stop: array</span>
+<span class="sd">    :param num: Number of values to generate.</span>
+<span class="sd">    :type num: int</span>
+<span class="sd">    :param axis: Axis along which the operation is performed.</span>
+<span class="sd">    :type axis: int</span>
+<span class="sd">    :param dev: device on which to create the array &#39;cuda:0&#39;, &#39;cuda:1&#39;, &#39;cpu&#39; etc.</span>
+<span class="sd">    :type dev: ivy.Device</span>
+<span class="sd">    :return: Tensor of evenly-spaced values.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">_cur_framework</span><span class="p">(</span><span class="n">start</span><span class="p">)</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">stop</span><span class="p">,</span> <span class="n">num</span><span class="p">,</span> <span class="n">axis</span><span class="p">,</span> <span class="n">dev</span><span class="p">)</span></div>
+
+
 <span class="c1"># Extra #</span>
 <span class="c1"># ------#</span>
+<span class="c1"># noinspection PyShadowingNames</span>
+<div class="viewcode-block" id="array"><a class="viewcode-back" href="../../../../functional/ivy/creation/array.html#ivy.functional.ivy.creation.array">[docs]</a><span class="k">def</span> <span class="nf">array</span><span class="p">(</span><span class="n">object_in</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">List</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">],</span> <span class="n">dtype</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Dtype</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+          <span class="n">dev</span><span class="p">:</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Device</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">]:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Creates an array.</span>
+
+<span class="sd">    :param object_in: An array_like object, which exposes the array interface,</span>
+<span class="sd">            an object whose __array__ method returns an array, or any (nested) sequence.</span>
+<span class="sd">    :type object_in: array</span>
+<span class="sd">    :param dtype: The desired data-type for the array in string format, i.e. &#39;float32&#39; or &#39;int64&#39;.</span>
+<span class="sd">        If not given, then the type will be determined as the minimum type required to hold the objects in the</span>
+<span class="sd">        sequence.</span>
+<span class="sd">    :type dtype: data-type string, optional</span>
+<span class="sd">    :param dev: device string on which to create the array &#39;cuda:0&#39;, &#39;cuda:1&#39;, &#39;cpu&#39; etc..</span>
+<span class="sd">    :type dev: ivy.Device</span>
+<span class="sd">    :return: An array object satisfying the specified requirements, in the form of the selected framework.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">_cur_framework</span><span class="p">(</span><span class="n">object_in</span><span class="p">)</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">object_in</span><span class="p">,</span> <span class="n">dtype</span><span class="p">,</span> <span class="n">dev</span><span class="p">)</span></div>
+
+
+<span class="c1"># noinspection PyShadowingNames</span>
+<div class="viewcode-block" id="logspace"><a class="viewcode-back" href="../../../../functional/ivy/creation/logspace.html#ivy.functional.ivy.creation.logspace">[docs]</a><span class="k">def</span> <span class="nf">logspace</span><span class="p">(</span><span class="n">start</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">,</span> <span class="nb">int</span><span class="p">],</span> <span class="n">stop</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">,</span> <span class="nb">int</span><span class="p">],</span>
+             <span class="n">num</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">base</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">10.</span><span class="p">,</span> <span class="n">axis</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">dev</span><span class="p">:</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Device</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span>\
+        <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">]:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Generates a certain number of evenly-spaced values in log space, in an interval along a given axis.</span>
+
+<span class="sd">    See :math:`arange` that allows to specify the step size of evenly spaced values in an interval.</span>
+
+<span class="sd">    :param start: First entry in the range.</span>
+<span class="sd">    :type start: array</span>
+<span class="sd">    :param stop: Final entry in the range.</span>
+<span class="sd">    :type stop: array</span>
+<span class="sd">    :param num: Number of values to generate.</span>
+<span class="sd">    :type num: int</span>
+<span class="sd">    :param base: The base of the log space. Default is 10.0</span>
+<span class="sd">    :type base: float, optional</span>
+<span class="sd">    :param axis: Axis along which the operation is performed.</span>
+<span class="sd">    :type axis: int</span>
+<span class="sd">    :param dev: device on which to create the array &#39;cuda:0&#39;, &#39;cuda:1&#39;, &#39;cpu&#39; etc.</span>
+<span class="sd">    :type dev: ivy.Device</span>
+<span class="sd">    :return: Tensor of evenly-spaced values.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">_cur_framework</span><span class="p">(</span><span class="n">start</span><span class="p">)</span><span class="o">.</span><span class="n">logspace</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">stop</span><span class="p">,</span> <span class="n">num</span><span class="p">,</span> <span class="n">base</span><span class="p">,</span> <span class="n">axis</span><span class="p">,</span> <span class="n">dev</span><span class="p">)</span></div>
+
+
 </pre></div>
 
            </div>

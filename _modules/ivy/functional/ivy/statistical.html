@@ -24,6 +24,7 @@
         <script src="../../../../_static/jquery.js"></script>
         <script src="../../../../_static/underscore.js"></script>
         <script src="../../../../_static/doctools.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
 
@@ -78,12 +79,13 @@
               
             
             
-              <p class="caption"><span class="caption-text">Guides</span></p>
+              <p class="caption"><span class="caption-text">Overview</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../../why_ivy.html">Why Ivy?</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../using_ivy.html">Using Ivy</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../training_a_network.html">Training a Network</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../contributing.html">Contributing to Ivy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../background.html">Background</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../design.html">Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../extensions.html">Extensions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../roadmap.html">Roadmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../contributing.html">Contributing</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Functional</span></p>
 <ul>
@@ -94,6 +96,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../../functional/ivy/data_type.html">Data type</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../functional/ivy/device.html">Device</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../functional/ivy/elementwise.html">Elementwise</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../functional/ivy/general.html">General</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../functional/ivy/gradients.html">Gradients</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../functional/ivy/image.html">Image</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../functional/ivy/layers.html">Layers</a></li>
@@ -103,6 +106,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../../functional/ivy/meta.html">Meta</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../functional/ivy/nest.html">Nest</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../functional/ivy/norms.html">Norms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../functional/ivy/random.html">Random</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../functional/ivy/searching.html">Searching</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../functional/ivy/set.html">Set</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../functional/ivy/sorting.html">Sorting</a></li>
@@ -195,7 +199,7 @@
             
   <h1>Source code for ivy.functional.ivy.statistical</h1><div class="highlight"><pre>
 <span></span><span class="c1"># global</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Union</span><span class="p">,</span> <span class="n">Tuple</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Union</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Optional</span>
 
 <span class="c1"># local</span>
 <span class="kn">import</span> <span class="nn">ivy</span>
@@ -252,8 +256,147 @@
     <span class="k">return</span> <span class="n">_cur_framework</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">axis</span><span class="p">,</span> <span class="n">keepdims</span><span class="p">)</span></div>
 
 
+
+<div class="viewcode-block" id="var"><a class="viewcode-back" href="../../../../functional/ivy/statistical/var.html#ivy.functional.ivy.statistical.var">[docs]</a><span class="k">def</span> <span class="nf">var</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">],</span>
+        <span class="n">axis</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">correction</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span>
+        <span class="n">keepdims</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> \
+        <span class="o">-&gt;</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Calculates the variance of the input array x.</span>
+<span class="sd">    :param x: input array</span>
+<span class="sd">    :param axis: axis or axes along which variances must be computed. By default, the variance must be computed over the entire array</span>
+<span class="sd">    :param correction: degrees of freedom adjustment</span>
+<span class="sd">    :param keepdims: Default: False</span>
+<span class="sd">    :return: The returned array must have the same data type as x.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">_cur_framework</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">axis</span><span class="p">,</span> <span class="n">correction</span><span class="p">,</span> <span class="n">keepdims</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="mean"><a class="viewcode-back" href="../../../../functional/ivy/statistical/mean.html#ivy.functional.ivy.statistical.mean">[docs]</a><span class="k">def</span> <span class="nf">mean</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Computes the arithmetic mean along a given axis.</span>
+<span class="sd">    Returns the average of the array elements. The average is taken over the flattened array by default, otherwise over</span>
+<span class="sd">    the specified axis.</span>
+
+<span class="sd">    :param x: Array containing numbers whose mean is desired.</span>
+<span class="sd">    :type x: array</span>
+<span class="sd">    :param axis: Axis or axes along which the means are computed. The default is to compute the mean of the flattened</span>
+<span class="sd">                    array. If this is a tuple of ints, a mean is performed over multiple axes, instead of a single axis</span>
+<span class="sd">                    or all the axes as before.</span>
+<span class="sd">    :type axis: int or sequence of ints</span>
+<span class="sd">    :param keepdims: If this is set to True, the axes which are reduced are left in the result as dimensions with size</span>
+<span class="sd">                        one. With this option, the result will broadcast correctly against the input array.</span>
+<span class="sd">    :type keepdims: bool, optional</span>
+<span class="sd">    :return: The array with means computed.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">_cur_framework</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">axis</span><span class="p">,</span> <span class="n">keepdims</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="prod"><a class="viewcode-back" href="../../../../functional/ivy/statistical/prod.html#ivy.functional.ivy.statistical.prod">[docs]</a><span class="k">def</span> <span class="nf">prod</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">],</span>
+         <span class="n">axis</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+         <span class="n">dtype</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Dtype</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+         <span class="n">keepdims</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>\
+        <span class="o">-&gt;</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Calculates the product of input array x elements.</span>
+
+<span class="sd">    :param x: input array. Should have a numeric data type.</span>
+<span class="sd">    :type x: array</span>
+<span class="sd">    :param axis: axis or axes along which products must be computed. By default, the product must be</span>
+<span class="sd">     computed over the entire array. If a tuple of integers, products must be computed over multiple axes. Default: None.</span>
+<span class="sd">    :type axis: Union[int, Tuple[int, ...]</span>
+<span class="sd">    :param dtype: data type of the returned array. If None,</span>
+<span class="sd">        if the default data type corresponding to the data type “kind” (integer or floating-point) of x has a smaller </span>
+<span class="sd">         range of values than the data type of x (e.g., x has data type int64 and the default data type is int32,</span>
+<span class="sd">         or x has data type uint64 and the default data type is int64), the returned array must have the same data type as x.</span>
+<span class="sd">        if x has a floating-point data type, the returned array must have the default floating-point data type.</span>
+<span class="sd">        if x has a signed integer data type (e.g., int16), the returned array must have the default integer data type.</span>
+<span class="sd">        if x has an unsigned integer data type (e.g., uint16), the returned array must have an unsigned integer data type</span>
+<span class="sd">         having the same number of bits as the default integer data type (e.g., if the default integer data type is int32, </span>
+<span class="sd">         the returned array must have a uint32 data type).</span>
+<span class="sd">        If the data type (either specified or resolved) differs from the data type of x, the input array should be cast </span>
+<span class="sd">        to the specified data type before computing the product. Default: None.</span>
+<span class="sd">    :type dtype: dtype</span>
+<span class="sd">    :param keepdims: if True, the reduced axes (dimensions) must be included in the result as singleton dimensions, and, </span>
+<span class="sd">    accordingly, the result must be compatible with the input array (see Broadcasting). Otherwise, if False, the reduced axes </span>
+<span class="sd">    (dimensions) must not be included in the result. Default: False.</span>
+<span class="sd">    :type keepdims: bool</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    :return out: if the product was computed over the entire array, a zero-dimensional array containing the product; otherwise, </span>
+<span class="sd">    a non-zero-dimensional array containing the products. The returned array must have a data type as described by the dtype </span>
+<span class="sd">    parameter above.</span>
+<span class="sd">    :type out: array</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">_cur_framework</span><span class="o">.</span><span class="n">prod</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">axis</span><span class="p">,</span> <span class="n">dtype</span><span class="p">,</span> <span class="n">keepdims</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="sum"><a class="viewcode-back" href="../../../../functional/ivy/statistical/sum.html#ivy.functional.ivy.statistical.sum">[docs]</a><span class="k">def</span> <span class="nf">sum</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Calculates the sum of the input array x.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    x:</span>
+<span class="sd">        input array. Should have a numeric data type.</span>
+<span class="sd">    axis:</span>
+<span class="sd">        axis or axes along which sums must be computed. By default, the sum must be computed over the entire array. If a tuple of integers, sums must be computed over multiple axes. Default: None.</span>
+<span class="sd">    dtype:</span>
+<span class="sd">        data type of the returned array. If None,</span>
+
+<span class="sd">    if the default data type corresponding to the data type “kind” (integer or floating-point) of x has a smaller range of values than the data type of x (e.g., x has data type int64 and the default data type is int32, or x has data type uint64 and the default data type is int64), the returned array must have the same data type as x.</span>
+
+<span class="sd">    if x has a floating-point data type, the returned array must have the default floating-point data type.</span>
+
+<span class="sd">    if x has a signed integer data type (e.g., int16), the returned array must have the default integer data type.</span>
+
+<span class="sd">    if x has an unsigned integer data type (e.g., uint16), the returned array must have an unsigned integer data type having the same number of bits as the default integer data type (e.g., if the default integer data type is int32, the returned array must have a uint32 data type).</span>
+
+<span class="sd">    If the data type (either specified or resolved) differs from the data type of x, the input array should be cast to the specified data type before computing the sum. Default: None.    :return: The array with sums computed.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    out:</span>
+<span class="sd">        if the sum was computed over the entire array, a zero-dimensional array containing the sum;</span>
+<span class="sd">        otherwise, an array containing the sums. The returned array must have a data type as described</span>
+<span class="sd">        by the dtype parameter above</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">_cur_framework</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">axis</span><span class="p">,</span> <span class="n">keepdims</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="std"><a class="viewcode-back" href="../../../../functional/ivy/statistical/std.html#ivy.functional.ivy.statistical.std">[docs]</a><span class="k">def</span> <span class="nf">std</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Computes the arithmetic standard deviation along a given axis. The standard deviation is taken over</span>
+<span class="sd">    the flattened array by default, otherwise over the specified axis.</span>
+
+<span class="sd">    :param x: Array containing numbers whose standard deviation is desired.</span>
+<span class="sd">    :type x: array</span>
+<span class="sd">    :param axis: Axis or axes along which the means are computed. The default is to compute the mean of the flattened</span>
+<span class="sd">                    array. If this is a tuple of ints, a mean is performed over multiple axes, instead of a single axis</span>
+<span class="sd">                    or all the axes as before.</span>
+<span class="sd">    :type axis: int or sequence of ints</span>
+<span class="sd">    :param keepdims: If this is set to True, the axes which are reduced are left in the result as dimensions with size</span>
+<span class="sd">                        one. With this option, the result will broadcast correctly against the input array.</span>
+<span class="sd">    :type keepdims: bool, optional</span>
+<span class="sd">    :return: The array with standard deviations computed.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">ivy</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">axis</span><span class="p">,</span> <span class="n">keepdims</span><span class="p">)</span> <span class="o">**</span> <span class="mf">0.5</span><span class="p">)</span></div>
+
+
 <span class="c1"># Extra #</span>
 <span class="c1"># ------#</span>
+
+<div class="viewcode-block" id="einsum"><a class="viewcode-back" href="../../../../functional/ivy/statistical/einsum.html#ivy.functional.ivy.statistical.einsum">[docs]</a><span class="k">def</span> <span class="nf">einsum</span><span class="p">(</span><span class="n">equation</span><span class="p">,</span> <span class="o">*</span><span class="n">operands</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Sums the product of the elements of the input operands along dimensions specified using a notation based on the</span>
+<span class="sd">    Einstein summation convention.</span>
+
+<span class="sd">    :param equation: A str describing the contraction, in the same format as numpy.einsum.</span>
+<span class="sd">    :type equation: str</span>
+<span class="sd">    :param operands: the inputs to contract (each one an ivy.Array), whose shapes should be consistent with equation.</span>
+<span class="sd">    :type operands: seq of arrays</span>
+<span class="sd">    :return: The array with sums computed.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">_cur_framework</span><span class="p">(</span><span class="n">operands</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="n">equation</span><span class="p">,</span> <span class="o">*</span><span class="n">operands</span><span class="p">)</span></div>
 </pre></div>
 
            </div>

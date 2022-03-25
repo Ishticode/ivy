@@ -24,6 +24,7 @@
         <script src="../../_static/jquery.js"></script>
         <script src="../../_static/underscore.js"></script>
         <script src="../../_static/doctools.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="../../_static/js/theme.js"></script>
 
@@ -36,7 +37,7 @@
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="argsort" href="sorting/argsort.html" />
-    <link rel="prev" title="Set" href="set.html" /> 
+    <link rel="prev" title="unique_values" href="set/unique_values.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -80,12 +81,13 @@
               
             
             
-              <p class="caption"><span class="caption-text">Guides</span></p>
+              <p class="caption"><span class="caption-text">Overview</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../why_ivy.html">Why Ivy?</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../using_ivy.html">Using Ivy</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../training_a_network.html">Training a Network</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../contributing.html">Contributing to Ivy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../background.html">Background</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../design.html">Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../extensions.html">Extensions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../roadmap.html">Roadmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing.html">Contributing</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Functional</span></p>
 <ul class="current">
@@ -96,6 +98,7 @@
 <li class="toctree-l1"><a class="reference internal" href="data_type.html">Data type</a></li>
 <li class="toctree-l1"><a class="reference internal" href="device.html">Device</a></li>
 <li class="toctree-l1"><a class="reference internal" href="elementwise.html">Elementwise</a></li>
+<li class="toctree-l1"><a class="reference internal" href="general.html">General</a></li>
 <li class="toctree-l1"><a class="reference internal" href="gradients.html">Gradients</a></li>
 <li class="toctree-l1"><a class="reference internal" href="image.html">Image</a></li>
 <li class="toctree-l1"><a class="reference internal" href="layers.html">Layers</a></li>
@@ -105,10 +108,12 @@
 <li class="toctree-l1"><a class="reference internal" href="meta.html">Meta</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nest.html">Nest</a></li>
 <li class="toctree-l1"><a class="reference internal" href="norms.html">Norms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="random.html">Random</a></li>
 <li class="toctree-l1"><a class="reference internal" href="searching.html">Searching</a></li>
 <li class="toctree-l1"><a class="reference internal" href="set.html">Set</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Sorting</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="sorting/argsort.html">argsort</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sorting/sort.html">sort</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="statistical.html">Statistical</a></li>
@@ -224,11 +229,33 @@
 </dl>
 </dd></dl>
 
+<dl class="py function">
+<dt id="ivy.functional.ivy.sorting.sort">
+<code class="sig-prename descclassname">ivy.</code><code class="sig-name descname">sort</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">x</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>ivy.array.Array<span class="p">, </span>ivy.NativeArray<span class="p">]</span></span></em>, <em class="sig-param"><span class="n">axis</span><span class="p">:</span> <span class="n">int</span> <span class="o">=</span> <span class="default_value">- 1</span></em>, <em class="sig-param"><span class="n">descending</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">False</span></em>, <em class="sig-param"><span class="n">stable</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">True</span></em><span class="sig-paren">)</span> &#x2192; ivy.array.Array<a class="reference internal" href="../../_modules/ivy/functional/ivy/sorting.html#sort"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ivy.functional.ivy.sorting.sort" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a sorted copy of an array</p>
+<blockquote>
+<div><dl class="simple">
+<dt>x:</dt><dd><p>input array</p>
+</dd>
+<dt>axis:</dt><dd><p>axis along which to sort. If set to <code class="docutils literal notranslate"><span class="pre">-1</span></code>, the function must sort along the last axis. Default: <code class="docutils literal notranslate"><span class="pre">-1</span></code>.</p>
+</dd>
+<dt>descending:</dt><dd><p>direction: The direction in which to sort the values</p>
+</dd>
+<dt>stable:</dt><dd><p>sort stability. If <code class="docutils literal notranslate"><span class="pre">True</span></code>,
+the returned indices must maintain the relative order of <code class="docutils literal notranslate"><span class="pre">x</span></code> values which compare as equal.
+If <code class="docutils literal notranslate"><span class="pre">False</span></code>, the returned indices may or may not maintain the relative order of <code class="docutils literal notranslate"><span class="pre">x</span></code> values which compare as equal (i.e., the relative order of <code class="docutils literal notranslate"><span class="pre">x</span></code> values which compare as equal is implementation-dependent). Default: <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p>
+</dd>
+</dl>
+</div></blockquote>
+<blockquote>
+<div><dl class="simple">
+<dt>An array with the same dtype and shape as <cite>values</cite>, with the elements</dt><dd><p>sorted along the given <cite>axis</cite>.</p>
+</dd>
+</dl>
+</div></blockquote>
+</dd></dl>
+
 <div class="toctree-wrapper compound">
-<p class="caption"><span class="caption-text">Sorting</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="sorting/argsort.html">argsort</a></li>
-</ul>
 </div>
 </div>
 
@@ -243,7 +270,7 @@
         <a href="sorting/argsort.html" class="btn btn-neutral float-right" title="argsort" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="set.html" class="btn btn-neutral float-left" title="Set" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="set/unique_values.html" class="btn btn-neutral float-left" title="unique_values" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

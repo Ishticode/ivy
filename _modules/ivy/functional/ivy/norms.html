@@ -24,6 +24,7 @@
         <script src="../../../../_static/jquery.js"></script>
         <script src="../../../../_static/underscore.js"></script>
         <script src="../../../../_static/doctools.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
 
@@ -78,12 +79,13 @@
               
             
             
-              <p class="caption"><span class="caption-text">Guides</span></p>
+              <p class="caption"><span class="caption-text">Overview</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../../why_ivy.html">Why Ivy?</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../using_ivy.html">Using Ivy</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../training_a_network.html">Training a Network</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../contributing.html">Contributing to Ivy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../background.html">Background</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../design.html">Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../extensions.html">Extensions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../roadmap.html">Roadmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../contributing.html">Contributing</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Functional</span></p>
 <ul>
@@ -94,6 +96,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../../functional/ivy/data_type.html">Data type</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../functional/ivy/device.html">Device</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../functional/ivy/elementwise.html">Elementwise</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../functional/ivy/general.html">General</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../functional/ivy/gradients.html">Gradients</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../functional/ivy/image.html">Image</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../functional/ivy/layers.html">Layers</a></li>
@@ -103,6 +106,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../../functional/ivy/meta.html">Meta</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../functional/ivy/nest.html">Nest</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../functional/ivy/norms.html">Norms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../functional/ivy/random.html">Random</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../functional/ivy/searching.html">Searching</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../functional/ivy/set.html">Set</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../functional/ivy/sorting.html">Sorting</a></li>
@@ -224,8 +228,8 @@
 <span class="sd">    :type new_std: float, optional</span>
 <span class="sd">    :return: The layer after applying layer normalization.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">mean</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">reduce_mean</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">normalized_idxs</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="n">var</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">reduce_var</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">normalized_idxs</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">mean</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">normalized_idxs</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">var</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">normalized_idxs</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="n">x</span> <span class="o">=</span> <span class="p">((</span><span class="o">-</span><span class="n">mean</span> <span class="o">+</span> <span class="n">x</span><span class="p">)</span> <span class="o">/</span> <span class="n">ivy</span><span class="o">.</span><span class="n">stable_pow</span><span class="p">(</span><span class="n">var</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">))</span>
     <span class="k">if</span> <span class="n">new_std</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">*</span> <span class="n">new_std</span>
