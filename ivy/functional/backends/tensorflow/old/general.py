@@ -68,8 +68,8 @@ def dtype_bits(dtype_in):
 
 
 
-minimum = tf.minimum
-maximum = tf.maximum
+min = tf.minimum
+max = tf.maximum
 
 
 
