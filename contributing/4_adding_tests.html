@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Setting up the Remote python interpreter &mdash; Ivy 1.0 documentation</title>
+  <title>Adding Tests &mdash; Ivy 1.0 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
@@ -19,8 +19,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="The Basics" href="1_the_basics.html" />
-    <link rel="prev" title="Contributing" href="../contributing.html" /> 
+    <link rel="next" title="Type Hints" href="5_type_hints.html" />
+    <link rel="prev" title="Adding Functions" href="3_adding_functions.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -45,14 +45,15 @@
 <li class="toctree-l1"><a class="reference internal" href="../extensions.html">Extensions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../roadmap.html">Roadmap</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../contributing.html">Contributing</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Setting up the Remote python interpreter</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#windows">Windows</a></li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="0_setting_up.html">Setting up the Remote python interpreter</a></li>
 <li class="toctree-l2"><a class="reference internal" href="1_the_basics.html">The Basics</a></li>
 <li class="toctree-l2"><a class="reference internal" href="2_navigating_the_code.html">Navigating the Code</a></li>
 <li class="toctree-l2"><a class="reference internal" href="3_adding_functions.html">Adding Functions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="4_adding_tests.html">Adding Tests</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Adding Tests</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#array-api-test-suite">Array API Test Suite</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ivy-tests">Ivy Tests</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="5_type_hints.html">Type Hints</a></li>
 <li class="toctree-l2"><a class="reference internal" href="6_docstrings.html">Docstrings</a></li>
 <li class="toctree-l2"><a class="reference internal" href="7_docstring_examples.html">Docstring Examples</a></li>
@@ -125,9 +126,9 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
           <li><a href="../contributing.html">Contributing</a> &raquo;</li>
-      <li>Setting up the Remote python interpreter</li>
+      <li>Adding Tests</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/contributing/0_setting_up.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/contributing/4_adding_tests.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -135,43 +136,28 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="setting-up-the-remote-python-interpreter">
-<h1>Setting up the Remote python interpreter<a class="headerlink" href="#setting-up-the-remote-python-interpreter" title="Permalink to this headline"></a></h1>
-<p>Using the same remote python interpreter provided as a docker container helps the community to share the same packages
-and mitigate any version conflicts. In addition, it also becomes possible to use modules not yet provided for an operating system, such as jaxlib for windows.
-Below are the instructions required to setup the docker container for:</p>
-<section id="windows">
-<h2>Windows<a class="headerlink" href="#windows" title="Permalink to this headline"></a></h2>
+  <section id="adding-tests">
+<h1>Adding Tests<a class="headerlink" href="#adding-tests" title="Permalink to this headline"></a></h1>
+<section id="array-api-test-suite">
+<h2>Array API Test Suite<a class="headerlink" href="#array-api-test-suite" title="Permalink to this headline"></a></h2>
+<p>All functions which are present in the <a class="reference external" href="https://data-apis.org/array-api/latest/">Array API Standard</a> have a corresponding unit test in the
+<a class="reference external" href="https://github.com/data-apis/array-api-tests">test suite</a> for the standard.</p>
+<p>The test suite is included in the ivy repository as a submodule in the folder <a class="reference external" href="https://github.com/unifyai/ivy/tree/20d07d7887766bb0d1707afdabe6e88df55f27a5/ivy_tests">test_array_api</a>,
+which we keep updated with the upstream test suite.</p>
+<p>The entire test suite is run independently <a class="reference external" href="https://github.com/unifyai/ivy/tree/20d07d7887766bb0d1707afdabe6e88df55f27a5/.github/workflows">for each backend</a> on every push to the repo.
+Therefore, every method which exists in the standard is thoroughly tested for adherence standard on a continuous basis.</p>
+</section>
+<section id="ivy-tests">
+<h2>Ivy Tests<a class="headerlink" href="#ivy-tests" title="Permalink to this headline"></a></h2>
+<p>On top of the tests which we have taken directly from the test suite for the Array API Standard,
+we also add our own tests.</p>
+<p>This is for two reasons:</p>
 <ol class="arabic simple">
-<li><p>Install <a class="reference external" href="https://www.docker.com/products/docker-desktop">Docker Desktop</a></p></li>
-<li><p>Install <a class="reference external" href="https://docs.microsoft.com/en-us/windows/wsl/install">WSL 2</a>. For most people, it only requires running the command <cite>wsl –install</cite> in powershell admin mode. Visit the link if it doesn’t.</p></li>
-<li><p>Get the latest Docker Image for Ivy by:</p></li>
+<li><p>Many functions in Ivy are not present in the standard, and they need to be tested somewhere</p></li>
+<li><p>The standard only mandates a subset of required behaviour. Almost all Ivy functions which are in the standard have additional required behaviour, which must also be tested</p></li>
 </ol>
-<blockquote>
-<div><ul class="simple">
-<li><p>Running Docker desktop.</p></li>
-<li><p>Opening cmd, and running the command: <cite>docker run -it –rm unifyai/ivy:latest python3</cite></p></li>
-</ul>
-</div></blockquote>
-<ol class="arabic simple" start="4">
-<li><p>Install <a class="reference external" href="https://www.jetbrains.com/pycharm/">Pycharm Professional Version</a></p></li>
-<li><p>Open pycharm with your cloned Ivy repository. Add the remote python interpreter by:</p></li>
-</ol>
-<ul class="simple">
-<li><p>Going to settings&gt;project:…&gt;Python Interpreter)</p></li>
-<li><p>Choose add interpreter (currently by clicking the setting logo on the side) (Fig. 1 Below)</p></li>
-<li><p>Choose Docker from left panel, make sure it says python3 (with the number) in python interpreter path and click ok. (Fig 2 Below)</p></li>
-</ul>
-<figure class="align-center">
-<a class="reference internal image-reference" href="https://user-images.githubusercontent.com/53497039/156894436-d09fcddf-aff1-4514-9536-50f77badff4e.png"><img alt="alternate text" src="https://user-images.githubusercontent.com/53497039/156894436-d09fcddf-aff1-4514-9536-50f77badff4e.png" style="width: 520px; height: 164px;" /></a>
-</figure>
-<p>Fig. 1.</p>
-<figure class="align-center">
-<a class="reference internal image-reference" href="https://user-images.githubusercontent.com/53497039/156894484-d02f055d-d7eb-4588-8f8e-8d7ffc60bec.png"><img alt="alternate text" src="https://user-images.githubusercontent.com/53497039/156894484-d02f055d-d7eb-4588-8f8e-8d7ffc60bec.png" style="width: 520px; height: 387px;" /></a>
-</figure>
-<p>Fig. 2.</p>
-<p>DONE. You’re set.</p>
-<p>If Docker’s latest version causes error, try using an earlier version by visiting <a class="reference external" href="https://docs.docker.com/desktop/windows/release-notes/">Docker release note</a></p>
+<p>As is the case for the <a class="reference external" href="https://github.com/data-apis/array-api-tests">test suite</a>, we also make use of <a class="reference external" href="https://hypothesis.readthedocs.io/en/latest/">hypothesis</a> for performing property based testing.</p>
+<p># ToDo: complete this section</p>
 </section>
 </section>
 
@@ -179,8 +165,8 @@ Below are the instructions required to setup the docker container for:</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../contributing.html" class="btn btn-neutral float-left" title="Contributing" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="1_the_basics.html" class="btn btn-neutral float-right" title="The Basics" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="3_adding_functions.html" class="btn btn-neutral float-left" title="Adding Functions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="5_type_hints.html" class="btn btn-neutral float-right" title="Type Hints" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
