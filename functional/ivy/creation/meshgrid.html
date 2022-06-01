@@ -15,6 +15,7 @@
         <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
         <script src="../../../_static/jquery.js"></script>
         <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../../_static/doctools.js"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
@@ -47,7 +48,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../contributing.html">Contributing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../faq.html">FAQ</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">Functional</span></p>
+<p class="caption" role="heading"><span class="caption-text">Functions</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../activations.html">Activations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../compilation.html">Compilation</a></li>
@@ -93,7 +94,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../statistical.html">Statistical</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../utility.html">Utility</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">Stateful</span></p>
+<p class="caption" role="heading"><span class="caption-text">Classes</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../stateful/activations.html">Activations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../stateful/converters.html">Converters</a></li>
@@ -131,8 +132,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../../ivy.html">&lt;no title&gt;</a> &raquo;</li>
-          <li><a href="../creation.html">Creation</a> &raquo;</li>
+                    <li><a href="../creation.html">Creation</a> &raquo;</li>
       <li>meshgrid</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../../_sources/functional/ivy/creation/meshgrid.rst.txt" rel="nofollow"> View page source</a>
@@ -144,10 +144,10 @@
            <div itemprop="articleBody">
              
   <section id="meshgrid">
-<h1>meshgrid<a class="headerlink" href="#meshgrid" title="Permalink to this headline"></a></h1>
+<h1>meshgrid<a class="headerlink" href="#meshgrid" title="Permalink to this heading"></a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="ivy.functional.ivy.creation.meshgrid">
-<span class="sig-prename descclassname"><span class="pre">ivy.functional.ivy.creation.</span></span><span class="sig-name descname"><span class="pre">meshgrid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">arrays</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">indexing</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'xy'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/ivy/functional/ivy/creation.html#meshgrid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ivy.functional.ivy.creation.meshgrid" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname">ivy.</span></span><span class="sig-name descname"><span class="pre">meshgrid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">arrays</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">indexing</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'xy'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/ivy/functional/ivy/creation.html#meshgrid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ivy.functional.ivy.creation.meshgrid" title="Permalink to this definition"></a></dt>
 <dd><p>Returns coordinate matrices from coordinate vectors.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -164,8 +164,8 @@ Default: <code class="docutils literal notranslate"><span class="pre">'xy'</span
 <dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Array</span></code>]</p>
 </dd>
 <dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p><p><em>ret</em> – list of N arrays, where <code class="docutils literal notranslate"><span class="pre">N</span></code> is the number of provided one-dimensional input
-arrays. Each returned array must have rank <code class="docutils literal notranslate"><span class="pre">N</span></code>. For <code class="docutils literal notranslate"><span class="pre">N</span></code> one-dimensional
+<dd class="field-odd"><p><dl>
+<dt><em>ret</em> – list of N arrays, where <code class="docutils literal notranslate"><span class="pre">N</span></code> is the number of provided one-dimensional input</dt><dd><p>arrays. Each returned array must have rank <code class="docutils literal notranslate"><span class="pre">N</span></code>. For <code class="docutils literal notranslate"><span class="pre">N</span></code> one-dimensional
 arrays having lengths <code class="docutils literal notranslate"><span class="pre">Ni</span> <span class="pre">=</span> <span class="pre">len(xi)</span></code>,</p>
 <ul class="simple">
 <li><p>if matrix indexing <code class="docutils literal notranslate"><span class="pre">ij</span></code>, then each returned array must have the shape
@@ -182,6 +182,50 @@ length <code class="docutils literal notranslate"><span class="pre">M</span></co
 array must have shape <code class="docutils literal notranslate"><span class="pre">(M,</span> <span class="pre">N,</span> <span class="pre">P)</span></code>, and, if Cartesian indexing <code class="docutils literal notranslate"><span class="pre">xy</span></code>, then
 each returned array must have shape <code class="docutils literal notranslate"><span class="pre">(N,</span> <span class="pre">M,</span> <span class="pre">P)</span></code>.</p>
 <p>Each returned array should have the same data type as the input arrays.</p>
+</dd>
+</dl>
+<p>This method conforms to the <a class="reference external" href="https://data-apis.org/array-api/latest/">Array API Standard</a>. This docstring is an extension of
+the <a class="reference external" href="https://data-apis.org/array-api/latest/API_specification/generated/signatures.creation_functions.meshgrid.htm">docstring</a>  
+in the standard. The descriptions above assume an array input for simplicity,
+but the method also accepts <code class="code docutils literal notranslate"><span class="pre">ivy.Array</span></code> or <code class="code docutils literal notranslate"><span class="pre">ivy.NativeArray</span></code>
+instances, as shown in the type hints and also the examples below.</p>
+<p>With <code class="code docutils literal notranslate"><span class="pre">ivy.Array</span></code> input:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">xv</span><span class="p">,</span> <span class="n">yv</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">xv</span><span class="p">)</span>
+<span class="go">ivy.array([[1, 2],</span>
+<span class="go">           [1, 2]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">yv</span><span class="p">)</span>
+<span class="go">ivy.array([[3, 3],</span>
+<span class="go">           [4, 4]])</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">xv</span><span class="p">,</span> <span class="n">yv</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">indexing</span><span class="o">=</span><span class="s1">&#39;ij&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">xv</span><span class="p">)</span>
+<span class="go">ivy.array([[1, 1],</span>
+<span class="go">           [2, 2],</span>
+<span class="go">           [5, 5]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">yv</span><span class="p">)</span>
+<span class="go">ivy.array([[4, 1],</span>
+<span class="go">           [4, 1],</span>
+<span class="go">           [4, 1]])</span>
+</pre></div>
+</div>
+<p>With <code class="code docutils literal notranslate"><span class="pre">ivy.NativeArray</span></code> input:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">native_array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">native_array</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">xv</span><span class="p">,</span> <span class="n">yv</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">xv</span><span class="p">)</span>
+<span class="go">ivy.array([[1, 2],</span>
+<span class="go">           [1, 2]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">yv</span><span class="p">)</span>
+<span class="go">ivy.array([[3, 3],</span>
+<span class="go">           [4, 4]])</span>
+</pre></div>
+</div>
 </p>
 </dd>
 </dl>
@@ -191,7 +235,7 @@ each returned array must have shape <code class="docutils literal notranslate"><
 <div class="line"><br /></div>
 <div class="line"><strong>Supported Frameworks:</strong></div>
 </div>
-<p><a class="reference internal" href="../../../_images/empty.png"><img alt="empty" src="../../../_images/empty.png" style="width: 4%;" /></a> <a class="reference external" href="https://jax.readthedocs.io"><img alt="jax_logo" src="../../../_images/jax_logo.png" style="width: 14%;" /></a> <a class="reference internal" href="../../../_images/empty.png"><img alt="empty" src="../../../_images/empty.png" style="width: 4%;" /></a> <a class="reference external" href="https://www.tensorflow.org"><img alt="tf_logo" src="../../../_images/tensorflow_logo.png" style="width: 14%;" /></a> <a class="reference internal" href="../../../_images/empty.png"><img alt="empty" src="../../../_images/empty.png" style="width: 4%;" /></a> <a class="reference external" href="https://pytorch.org"><img alt="pytorch_logo" src="../../../_images/pytorch_logo.png" style="width: 14%;" /></a> <a class="reference internal" href="../../../_images/empty.png"><img alt="empty" src="../../../_images/empty.png" style="width: 4%;" /></a> <a class="reference external" href="https://mxnet.apache.org"><img alt="mxnet_logo" src="../../../_images/mxnet_logo.png" style="width: 14%;" /></a> <a class="reference internal" href="../../../_images/empty.png"><img alt="empty" src="../../../_images/empty.png" style="width: 4%;" /></a> <a class="reference external" href="https://numpy.org"><img alt="numpy_logo" src="../../../_images/numpy_logo.png" style="width: 14%;" /></a> <a class="reference internal" href="../../../_images/empty.png"><img alt="empty" src="../../../_images/empty.png" style="width: 4%;" /></a></p>
+<p class=supported_frameworks><a class="reference external logo" href="https://jax.readthedocs.io"><img alt="jax_logo" src="../../../_images/jax_logo.png" /></a> <a class="reference external logo" href="https://www.tensorflow.org"><img alt="tf_logo" src="../../../_images/tensorflow_logo.png" /></a> <a class="reference external logo" href="https://pytorch.org"><img alt="pytorch_logo" src="../../../_images/pytorch_logo.png" /></a> <a class="reference external logo" href="https://mxnet.apache.org"><img alt="mxnet_logo" src="../../../_images/mxnet_logo.png" /></a> <a class="reference external logo" href="https://numpy.org"><img alt="numpy_logo" src="../../../_images/numpy_logo.png" /></a></p>
 </section>
 
 

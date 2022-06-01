@@ -15,6 +15,7 @@
         <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/jquery.js"></script>
         <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../_static/doctools.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -47,7 +48,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../contributing.html">Contributing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../faq.html">FAQ</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">Functional</span></p>
+<p class="caption" role="heading"><span class="caption-text">Functions</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="activations.html">Activations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="compilation.html">Compilation</a></li>
@@ -83,7 +84,7 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="utility.html">Utility</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">Stateful</span></p>
+<p class="caption" role="heading"><span class="caption-text">Classes</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../stateful/activations.html">Activations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../stateful/converters.html">Converters</a></li>
@@ -121,8 +122,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../ivy.html">&lt;no title&gt;</a> &raquo;</li>
-      <li>Statistical</li>
+                <li>Statistical</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../_sources/functional/ivy/statistical.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -133,10 +133,10 @@
            <div itemprop="articleBody">
              
   <section id="module-ivy.functional.ivy.statistical">
-<span id="statistical"></span><h1>Statistical<a class="headerlink" href="#module-ivy.functional.ivy.statistical" title="Permalink to this headline"></a></h1>
+<span id="statistical"></span><h1>Statistical<a class="headerlink" href="#module-ivy.functional.ivy.statistical" title="Permalink to this heading"></a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="ivy.functional.ivy.statistical.einsum">
-<span class="sig-prename descclassname"><span class="pre">ivy.functional.ivy.statistical.</span></span><span class="sig-name descname"><span class="pre">einsum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">equation</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">operands</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ivy/functional/ivy/statistical.html#einsum"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ivy.functional.ivy.statistical.einsum" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname">ivy.</span></span><span class="sig-name descname"><span class="pre">einsum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">equation</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">operands</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ivy/functional/ivy/statistical.html#einsum"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ivy.functional.ivy.statistical.einsum" title="Permalink to this definition"></a></dt>
 <dd><p>Sums the product of the elements of the input operands along dimensions specified
 using a notation based on the Einstein summation convention.</p>
 <dl class="field-list simple">
@@ -169,20 +169,72 @@ should be consistent with equation.</p></li>
 <span class="go">ivy.array([9, 12, 15])</span>
 </pre></div>
 </div>
+<p>Imagine that we have two multi-dimensional arrays, A and B.
+Now let’s suppose we want to…
+- multiply A with B in a particular way to create new array
+of products; and then maybe
+- sum this new array along particular axes; and then maybe
+- transpose the axes of the new array in a particular order.</p>
+<p>There’s a good chance that einsum will help us do this faster
+and more memory-efficiently than combinations of the NumPy
+functions like multiply, sum and transpose will allow.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">A</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">B</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">1</span><span class="p">,</span>  <span class="mi">2</span><span class="p">,</span>  <span class="mi">3</span><span class="p">],</span>    <span class="o">...</span>               <span class="p">[</span> <span class="mi">4</span><span class="p">,</span>  <span class="mi">5</span><span class="p">,</span>  <span class="mi">6</span><span class="p">,</span>  <span class="mi">7</span><span class="p">],</span>    <span class="o">...</span>               <span class="p">[</span> <span class="mi">8</span><span class="p">,</span>  <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">11</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ivy</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s1">&#39;i,ij-&gt;i&#39;</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">)</span>
+<span class="go">ivy.array([ 0, 22, 76])</span>
+</pre></div>
+</div>
+<p>Now lets see a slightly bigger example:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">A</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>    <span class="o">...</span>                <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>    <span class="o">...</span>                <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">B</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>    <span class="o">...</span>                <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>    <span class="o">...</span>                <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ivy</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s1">&#39;ij,jk-&gt;ik&#39;</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">)</span>
+<span class="go">ivy.array([[ 2,  3,  1],</span>
+<span class="go">            [ 4,  6,  2],</span>
+<span class="go">            [10, 15,  5]])</span>
+</pre></div>
+</div>
+<p>Let A and B be two 1D arrays with the same length. For example,</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">A</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">B</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">15</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The sum of A can be written:
+&gt;&gt;&gt; ivy.einsum(‘i-&gt;’, A)
+ivy.array(45, dtype=int32)</p>
+<p>Element-wise multiplication, A * B, can be written:
+&gt;&gt;&gt; ivy.einsum(‘i,i-&gt;i’, A, B)
+ivy.array([  0,   6,  14,  24,  36,  50,  66,  84, 104, 126], dtype=int32)</p>
+<p>The inner product or dot product can be written:
+&gt;&gt;&gt; ivy.einsum(‘i,i-&gt;’, A, B) # or just use ‘i,i’
+ivy.array(510, dtype=int32)</p>
+<p>The outer product can be written:
+&gt;&gt;&gt; ivy.einsum(‘i,j-&gt;ij’, A, B)
+ivy.array([[  0,   0,   0,   0,   0,   0,   0,   0,   0,   0],</p>
+<blockquote>
+<div><p>[  5,   6,   7,   8,   9,  10,  11,  12,  13,  14],
+[ 10,  12,  14,  16,  18,  20,  22,  24,  26,  28],
+[ 15,  18,  21,  24,  27,  30,  33,  36,  39,  42],
+[ 20,  24,  28,  32,  36,  40,  44,  48,  52,  56],
+[ 25,  30,  35,  40,  45,  50,  55,  60,  65,  70],
+[ 30,  36,  42,  48,  54,  60,  66,  72,  78,  84],
+[ 35,  42,  49,  56,  63,  70,  77,  84,  91,  98],
+[ 40,  48,  56,  64,  72,  80,  88,  96, 104, 112],
+[ 45,  54,  63,  72,  81,  90,  99, 108, 117, 126]], dtype=int32)</p>
+</div></blockquote>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="ivy.functional.ivy.statistical.max">
-<span class="sig-prename descclassname"><span class="pre">ivy.functional.ivy.statistical.</span></span><span class="sig-name descname"><span class="pre">max</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keepdims</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ivy/functional/ivy/statistical.html#max"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ivy.functional.ivy.statistical.max" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname">ivy.</span></span><span class="sig-name descname"><span class="pre">max</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keepdims</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ivy/functional/ivy/statistical.html#max"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ivy.functional.ivy.statistical.max" title="Permalink to this definition"></a></dt>
 <dd><p>Calculates the maximum value of the input array <code class="docutils literal notranslate"><span class="pre">x</span></code>.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>When the number of elements over which to compute the maximum value is zero, the
 maximum value is implementation-defined. Specification-compliant libraries may
 choose to raise an error, return a sentinel value (e.g., if <code class="docutils literal notranslate"><span class="pre">x</span></code> is a
-floating-point input array, return <code class="docutils literal notranslate"><span class="pre">NaN</span></code>), or return the minimum possible value
-for the input array <code class="docutils literal notranslate"><span class="pre">x</span></code> data type (e.g., if <code class="docutils literal notranslate"><span class="pre">x</span></code> is a floating-point array,
-return <code class="docutils literal notranslate"><span class="pre">-infinity</span></code>).</p>
+floating-point input array, return <code class="docutils literal notranslate"><span class="pre">NaN</span></code>), or return the minimum possible
+value for the input array <code class="docutils literal notranslate"><span class="pre">x</span></code> data type (e.g., if <code class="docutils literal notranslate"><span class="pre">x</span></code> is a floating-point
+array, return <code class="docutils literal notranslate"><span class="pre">-infinity</span></code>).</p>
 </div>
 <p><strong>Special Cases</strong></p>
 <p>For floating-point operands,</p>
@@ -218,7 +270,7 @@ as <code class="docutils literal notranslate"><span class="pre">x</span></code>.
 
 <dl class="py function">
 <dt class="sig sig-object py" id="ivy.functional.ivy.statistical.mean">
-<span class="sig-prename descclassname"><span class="pre">ivy.functional.ivy.statistical.</span></span><span class="sig-name descname"><span class="pre">mean</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keepdims</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ivy/functional/ivy/statistical.html#mean"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ivy.functional.ivy.statistical.mean" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname">ivy.</span></span><span class="sig-name descname"><span class="pre">mean</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keepdims</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ivy/functional/ivy/statistical.html#mean"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ivy.functional.ivy.statistical.mean" title="Permalink to this definition"></a></dt>
 <dd><p>Calculates the arithmetic mean of the input array <code class="docutils literal notranslate"><span class="pre">x</span></code>.</p>
 <p><strong>Special Cases</strong></p>
 <p>Let <code class="docutils literal notranslate"><span class="pre">N</span></code> equal the number of elements over which to compute the arithmetic mean.
@@ -253,9 +305,9 @@ must have the same data type as <code class="docutils literal notranslate"><span
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>While this specification recommends that this function only accept input
 arrays having a floating-point data type, specification-compliant array
 libraries may choose to accept input arrays having an integer data type.
-While mixed data type promotion is implementation-defined, if the input array
-``x`` has an integer data type, the returned array must have the default
-floating-point data type.
+While mixed data type promotion is implementation-defined, if the input
+array ``x`` has an integer data type, the returned array must have the
+default floating-point data type.
 </pre></div>
 </div>
 </p>
@@ -265,7 +317,7 @@ floating-point data type.
 
 <dl class="py function">
 <dt class="sig sig-object py" id="ivy.functional.ivy.statistical.min">
-<span class="sig-prename descclassname"><span class="pre">ivy.functional.ivy.statistical.</span></span><span class="sig-name descname"><span class="pre">min</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keepdims</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ivy/functional/ivy/statistical.html#min"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ivy.functional.ivy.statistical.min" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname">ivy.</span></span><span class="sig-name descname"><span class="pre">min</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keepdims</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ivy/functional/ivy/statistical.html#min"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ivy.functional.ivy.statistical.min" title="Permalink to this definition"></a></dt>
 <dd><p>Calculates the minimum value of the input array x.</p>
 <p>When the number of elements over which to compute the minimum value is zero, the
 minimum value is implementation-defined. Specification-compliant libraries may
@@ -303,7 +355,7 @@ as x.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="ivy.functional.ivy.statistical.prod">
-<span class="sig-prename descclassname"><span class="pre">ivy.functional.ivy.statistical.</span></span><span class="sig-name descname"><span class="pre">prod</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keepdims</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ivy/functional/ivy/statistical.html#prod"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ivy.functional.ivy.statistical.prod" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname">ivy.</span></span><span class="sig-name descname"><span class="pre">prod</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keepdims</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ivy/functional/ivy/statistical.html#prod"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ivy.functional.ivy.statistical.prod" title="Permalink to this definition"></a></dt>
 <dd><p>Calculates the product of input array x elements.</p>
 <dl class="simple">
 <dt>x</dt><dd><p>input array. Should have a numeric data type.</p>
@@ -311,6 +363,11 @@ as x.</p>
 <dt>axis</dt><dd><p>axis or axes along which products must be computed. By default, the product must
 be computed over the entire array. If a tuple of integers, products must be
 computed over multiple axes. Default: None.</p>
+</dd>
+<dt>keepdims</dt><dd><p>bool, if True, the reduced axes (dimensions) must be included in the result as
+singleton dimensions, and, accordingly, the result must be compatible with the
+input array (see Broadcasting). Otherwise, if False, the reduced axes
+(dimensions) must not be included in the result. Default: False.</p>
 </dd>
 <dt>dtype</dt><dd><p>data type of the returned array. If None,
 if the default data type corresponding to the data type “kind” (integer or
@@ -326,11 +383,6 @@ integer data type (e.g., if the default integer data type is int32, the returned
 array must have a uint32 data type). If the data type (either specified or
 resolved) differs from the data type of x, the input array should be cast to the
 specified data type before computing the product. Default: None.</p>
-</dd>
-<dt>keepdims</dt><dd><p>bool, if True, the reduced axes (dimensions) must be included in the result as
-singleton dimensions, and, accordingly, the result must be compatible with the
-input array (see Broadcasting). Otherwise, if False, the reduced axes
-(dimensions) must not be included in the result. Default: False.</p>
 </dd>
 <dt>out</dt><dd><p>optional output array, for writing the result to.</p>
 </dd>
@@ -350,7 +402,7 @@ parameter above.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="ivy.functional.ivy.statistical.std">
-<span class="sig-prename descclassname"><span class="pre">ivy.functional.ivy.statistical.</span></span><span class="sig-name descname"><span class="pre">std</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">correction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keepdims</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ivy/functional/ivy/statistical.html#std"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ivy.functional.ivy.statistical.std" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname">ivy.</span></span><span class="sig-name descname"><span class="pre">std</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">correction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keepdims</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ivy/functional/ivy/statistical.html#std"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ivy.functional.ivy.statistical.std" title="Permalink to this definition"></a></dt>
 <dd><p>Calculates the standard deviation of the input array <code class="docutils literal notranslate"><span class="pre">x</span></code>.</p>
 <p><strong>Special Cases</strong></p>
 <p>Let <code class="docutils literal notranslate"><span class="pre">N</span></code> equal the number of elements over which to compute the standard deviation.</p>
@@ -407,7 +459,7 @@ deviations. The returned array must have a data type as described by the
 
 <dl class="py function">
 <dt class="sig sig-object py" id="ivy.functional.ivy.statistical.sum">
-<span class="sig-prename descclassname"><span class="pre">ivy.functional.ivy.statistical.</span></span><span class="sig-name descname"><span class="pre">sum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keepdims</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ivy/functional/ivy/statistical.html#sum"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ivy.functional.ivy.statistical.sum" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname">ivy.</span></span><span class="sig-name descname"><span class="pre">sum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keepdims</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ivy/functional/ivy/statistical.html#sum"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ivy.functional.ivy.statistical.sum" title="Permalink to this definition"></a></dt>
 <dd><p>Calculates the sum of the input array <code class="docutils literal notranslate"><span class="pre">x</span></code>.</p>
 <p><strong>Special Cases</strong></p>
 <p>Let <code class="docutils literal notranslate"><span class="pre">N</span></code> equal the number of elements over which to compute the sum.
@@ -421,7 +473,7 @@ deviations. The returned array must have a data type as described by the
 <li><p><strong>axis</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>, <code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>, <code class="xref py py-data docutils literal notranslate"><span class="pre">...</span></code>]]]) – Axis or axes along which sums must be computed. By default, the sum must be (default: <code class="docutils literal notranslate"><span class="pre">None</span></code>)
 computed over the entire array. If a tuple of integers, sums must be computed
 over multiple axes. Default: <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p></li>
-<li><p><strong>dtype</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Dtype</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]]) – <p>Data type of the returned array. If <code class="docutils literal notranslate"><span class="pre">None</span></code>, (default: <code class="docutils literal notranslate"><span class="pre">None</span></code>)
+<li><p><strong>dtype</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Dtype</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">NativeDtype</span></code>]]) – <p>Data type of the returned array. If <code class="docutils literal notranslate"><span class="pre">None</span></code>, (default: <code class="docutils literal notranslate"><span class="pre">None</span></code>)
 -   If the default data type corresponding to the data type “kind” (integer or</p>
 <blockquote>
 <div><p>floating-point) of <code class="docutils literal notranslate"><span class="pre">x</span></code> has a smaller range of values than the data type of
@@ -474,7 +526,7 @@ must have a data type as described by the <code class="docutils literal notransl
 
 <dl class="py function">
 <dt class="sig sig-object py" id="ivy.functional.ivy.statistical.var">
-<span class="sig-prename descclassname"><span class="pre">ivy.functional.ivy.statistical.</span></span><span class="sig-name descname"><span class="pre">var</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">correction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keepdims</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ivy/functional/ivy/statistical.html#var"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ivy.functional.ivy.statistical.var" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname">ivy.</span></span><span class="sig-name descname"><span class="pre">var</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">correction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keepdims</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ivy/functional/ivy/statistical.html#var"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ivy.functional.ivy.statistical.var" title="Permalink to this definition"></a></dt>
 <dd><p>Calculates the variance of the input array x.</p>
 <p><strong>Special Cases</strong></p>
 <p>Let N equal the number of elements over which to compute the variance.</p>
