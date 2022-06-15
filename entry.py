@@ -17,4 +17,4 @@ def vmap_batched_apply_matrix(v_batched):
 
 
 print('Auto-vectorized with vmap')
-print(type(vmap_batched_apply_matrix(batched_x)))
+print((vmap_batched_apply_matrix(batched_x)))
