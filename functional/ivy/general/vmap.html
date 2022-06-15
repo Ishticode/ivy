@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>inplace_increment &mdash; Ivy 1.0 documentation</title>
+  <title>vmap &mdash; Ivy 1.0 documentation</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
@@ -20,8 +20,8 @@
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="cumsum" href="cumsum.html" />
-    <link rel="prev" title="inplace_decrement" href="inplace_decrement.html" /> 
+    <link rel="next" title="Gradients" href="../gradients.html" />
+    <link rel="prev" title="get_num_dims" href="get_num_dims.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -109,7 +109,7 @@
 <li class="toctree-l2"><a class="reference internal" href="assert_supports_inplace.html">assert_supports_inplace</a></li>
 <li class="toctree-l2"><a class="reference internal" href="inplace_update.html">inplace_update</a></li>
 <li class="toctree-l2"><a class="reference internal" href="inplace_decrement.html">inplace_decrement</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">inplace_increment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="inplace_increment.html">inplace_increment</a></li>
 <li class="toctree-l2"><a class="reference internal" href="cumsum.html">cumsum</a></li>
 <li class="toctree-l2"><a class="reference internal" href="cumprod.html">cumprod</a></li>
 <li class="toctree-l2"><a class="reference internal" href="scatter_flat.html">scatter_flat</a></li>
@@ -121,7 +121,7 @@
 <li class="toctree-l2"><a class="reference internal" href="one_hot.html">one_hot</a></li>
 <li class="toctree-l2"><a class="reference internal" href="shape.html">shape</a></li>
 <li class="toctree-l2"><a class="reference internal" href="get_num_dims.html">get_num_dims</a></li>
-<li class="toctree-l2"><a class="reference internal" href="vmap.html">vmap</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">vmap</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../gradients.html">Gradients</a></li>
@@ -179,9 +179,9 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
                     <li><a href="../general.html">General</a> &raquo;</li>
-      <li>inplace_increment</li>
+      <li>vmap</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../../../_sources/functional/ivy/general/inplace_increment.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../../../_sources/functional/ivy/general/vmap.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -189,24 +189,12 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="inplace-increment">
-<h1>inplace_increment<a class="headerlink" href="#inplace-increment" title="Permalink to this heading"></a></h1>
+  <section id="vmap">
+<h1>vmap<a class="headerlink" href="#vmap" title="Permalink to this heading"></a></h1>
 <dl class="py function">
-<dt class="sig sig-object py" id="ivy.functional.ivy.general.inplace_increment">
-<span class="sig-prename descclassname">ivy.</span></span><span class="sig-name descname"><span class="pre">inplace_increment</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">val</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/ivy/functional/ivy/general.html#inplace_increment"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ivy.functional.ivy.general.inplace_increment" title="Permalink to this definition"></a></dt>
-<dd><p>Perform in-place increment for the input array.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>x</strong> – The array to increment.</p></li>
-<li><p><strong>val</strong> – The array to increment the variable with.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p><em>ret</em> – The array following the in-place increment.</p>
-</dd>
-</dl>
-</dd></dl>
+<dt class="sig sig-object py" id="ivy.functional.ivy.general.vmap">
+<span class="sig-prename descclassname">ivy.</span></span><span class="sig-name descname"><span class="pre">vmap</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fun</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">in_axes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_axes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/ivy/functional/ivy/general.html#vmap"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ivy.functional.ivy.general.vmap" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
 
 <div class="line-block">
 <div class="line"><br /></div>
@@ -219,8 +207,8 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="inplace_decrement.html" class="btn btn-neutral float-left" title="inplace_decrement" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="cumsum.html" class="btn btn-neutral float-right" title="cumsum" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="get_num_dims.html" class="btn btn-neutral float-left" title="get_num_dims" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../gradients.html" class="btn btn-neutral float-right" title="Gradients" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
