@@ -315,3 +315,14 @@ def inplace_increment(x, val):
 
 current_backend_str = lambda: "jax"
 current_backend_str.__name__ = "current_backend_str"
+
+def vmap(fun,
+         in_axes=0,
+         out_axes=0,
+         axis_name=None,
+         axis_size=None):
+    return jax.vmap(fun,
+                    in_axes=in_axes,
+                    out_axes=out_axes,
+                    axis_name=axis_name,
+                    axis_size=axis_size)
