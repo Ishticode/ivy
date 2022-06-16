@@ -268,5 +268,9 @@ def indices_where(x):
     return res
 
 
+def vmap():
+    return
+
+
 current_backend_str = lambda: "mxnet"
 current_backend_str.__name__ = "current_backend_str"

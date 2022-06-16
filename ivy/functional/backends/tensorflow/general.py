@@ -354,3 +354,6 @@ get_num_dims = (
     if as_tensor
     else int(tf.shape(tf.shape(x)))
 )
+
+def vmap(fun):
+    return tf.vectorized_map(fun)

@@ -274,3 +274,7 @@ get_num_dims = (
 
 current_backend_str = lambda: "numpy"
 current_backend_str.__name__ = "current_backend_str"
+
+
+def vmap():
+    return

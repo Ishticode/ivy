@@ -1410,3 +1410,7 @@ def test_inplace_increment(x_n_inc, tensor_fn, device, call):
 # set_tmp_dir
 # supports_inplace
 # assert_supports_inplace
+
+def test_vmap():
+    return
+

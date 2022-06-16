@@ -413,3 +413,6 @@ def get_num_dims(x, as_tensor=False) -> Union[torch.Tensor, int]:
 
 def current_backend_str():
     return "torch"
+
+def vmap():
+    return
