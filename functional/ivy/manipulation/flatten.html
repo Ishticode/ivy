@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>set_default_dtype &mdash; Ivy 1.0 documentation</title>
+  <title>flatten &mdash; Ivy 1.0 documentation</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
@@ -20,8 +20,8 @@
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="unset_default_dtype" href="unset_default_dtype.html" />
-    <link rel="prev" title="default_dtype" href="default_dtype.html" /> 
+    <link rel="next" title="Meta" href="../meta.html" />
+    <link rel="prev" title="clip" href="clip.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -55,35 +55,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../compilation.html">Compilation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../constants.html">Constants</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../creation.html">Creation</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="../data_type.html">Data type</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="can_cast.html">can_cast</a></li>
-<li class="toctree-l2"><a class="reference internal" href="iinfo.html">iinfo</a></li>
-<li class="toctree-l2"><a class="reference internal" href="finfo.html">finfo</a></li>
-<li class="toctree-l2"><a class="reference internal" href="broadcast_to.html">broadcast_to</a></li>
-<li class="toctree-l2"><a class="reference internal" href="broadcast_arrays.html">broadcast_arrays</a></li>
-<li class="toctree-l2"><a class="reference internal" href="dtype.html">dtype</a></li>
-<li class="toctree-l2"><a class="reference internal" href="astype.html">astype</a></li>
-<li class="toctree-l2"><a class="reference internal" href="dtype_bits.html">dtype_bits</a></li>
-<li class="toctree-l2"><a class="reference internal" href="as_ivy_dtype.html">as_ivy_dtype</a></li>
-<li class="toctree-l2"><a class="reference internal" href="as_native_dtype.html">as_native_dtype</a></li>
-<li class="toctree-l2"><a class="reference internal" href="default_int_dtype.html">default_int_dtype</a></li>
-<li class="toctree-l2"><a class="reference internal" href="default_float_dtype.html">default_float_dtype</a></li>
-<li class="toctree-l2"><a class="reference internal" href="default_dtype.html">default_dtype</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">set_default_dtype</a></li>
-<li class="toctree-l2"><a class="reference internal" href="unset_default_dtype.html">unset_default_dtype</a></li>
-<li class="toctree-l2"><a class="reference internal" href="set_default_int_dtype.html">set_default_int_dtype</a></li>
-<li class="toctree-l2"><a class="reference internal" href="unset_default_int_dtype.html">unset_default_int_dtype</a></li>
-<li class="toctree-l2"><a class="reference internal" href="set_default_float_dtype.html">set_default_float_dtype</a></li>
-<li class="toctree-l2"><a class="reference internal" href="unset_default_float_dtype.html">unset_default_float_dtype</a></li>
-<li class="toctree-l2"><a class="reference internal" href="closest_valid_dtype.html">closest_valid_dtype</a></li>
-<li class="toctree-l2"><a class="reference internal" href="is_int_dtype.html">is_int_dtype</a></li>
-<li class="toctree-l2"><a class="reference internal" href="is_float_dtype.html">is_float_dtype</a></li>
-<li class="toctree-l2"><a class="reference internal" href="result_type.html">result_type</a></li>
-<li class="toctree-l2"><a class="reference internal" href="valid_dtype.html">valid_dtype</a></li>
-<li class="toctree-l2"><a class="reference internal" href="invalid_dtype.html">invalid_dtype</a></li>
-<li class="toctree-l2"><a class="reference internal" href="convert_dtype.html">convert_dtype</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="../data_type.html">Data type</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../device.html">Device</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../elementwise.html">Elementwise</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../general.html">General</a></li>
@@ -92,7 +64,25 @@
 <li class="toctree-l1"><a class="reference internal" href="../layers.html">Layers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../linear_algebra.html">Linear algebra</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../losses.html">Losses</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../manipulation.html">Manipulation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../manipulation.html">Manipulation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="roll.html">roll</a></li>
+<li class="toctree-l2"><a class="reference internal" href="squeeze.html">squeeze</a></li>
+<li class="toctree-l2"><a class="reference internal" href="flip.html">flip</a></li>
+<li class="toctree-l2"><a class="reference internal" href="expand_dims.html">expand_dims</a></li>
+<li class="toctree-l2"><a class="reference internal" href="permute_dims.html">permute_dims</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stack.html">stack</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reshape.html">reshape</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concat.html">concat</a></li>
+<li class="toctree-l2"><a class="reference internal" href="split.html">split</a></li>
+<li class="toctree-l2"><a class="reference internal" href="repeat.html">repeat</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tile.html">tile</a></li>
+<li class="toctree-l2"><a class="reference internal" href="constant_pad.html">constant_pad</a></li>
+<li class="toctree-l2"><a class="reference internal" href="zero_pad.html">zero_pad</a></li>
+<li class="toctree-l2"><a class="reference internal" href="swapaxes.html">swapaxes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clip.html">clip</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">flatten</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../meta.html">Meta</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../nest.html">Nest</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../norms.html">Norms</a></li>
@@ -141,10 +131,10 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
-                    <li><a href="../data_type.html">Data type</a> &raquo;</li>
-      <li>set_default_dtype</li>
+                    <li><a href="../manipulation.html">Manipulation</a> &raquo;</li>
+      <li>flatten</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../../../_sources/functional/ivy/data_type/set_default_dtype.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../../../_sources/functional/ivy/manipulation/flatten.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -152,18 +142,12 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="set-default-dtype">
-<h1>set_default_dtype<a class="headerlink" href="#set-default-dtype" title="Permalink to this heading"></a></h1>
+  <section id="flatten">
+<h1>flatten<a class="headerlink" href="#flatten" title="Permalink to this heading"></a></h1>
 <dl class="py function">
-<dt class="sig sig-object py" id="ivy.functional.ivy.data_type.set_default_dtype">
-<span class="sig-prename descclassname">ivy.</span></span><span class="sig-name descname"><span class="pre">set_default_dtype</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dtype</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/ivy/functional/ivy/data_type.html#set_default_dtype"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ivy.functional.ivy.data_type.set_default_dtype" title="Permalink to this definition"></a></dt>
-<dd><p>Summary.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>dtype</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Dtype</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]) – </p>
-</dd>
-</dl>
-</dd></dl>
+<dt class="sig sig-object py" id="ivy.functional.ivy.manipulation.flatten">
+<span class="sig-prename descclassname">ivy.</span></span><span class="sig-name descname"><span class="pre">flatten</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/ivy/functional/ivy/manipulation.html#flatten"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ivy.functional.ivy.manipulation.flatten" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
 
 <div class="line-block">
 <div class="line"><br /></div>
@@ -176,8 +160,8 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="default_dtype.html" class="btn btn-neutral float-left" title="default_dtype" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="unset_default_dtype.html" class="btn btn-neutral float-right" title="unset_default_dtype" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="clip.html" class="btn btn-neutral float-left" title="clip" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../meta.html" class="btn btn-neutral float-right" title="Meta" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
