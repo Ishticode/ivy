@@ -231,3 +231,4 @@ def clip(
     else:
         ret = tf.clip_by_value(x, x_min, x_max)
     return ret
+

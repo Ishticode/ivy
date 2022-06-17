@@ -355,5 +355,12 @@ get_num_dims = (
     else int(tf.shape(tf.shape(x)))
 )
 
+
 def vmap(fun):
-    return tf.vectorized_map(fun)
+    @ivy.to_native_arrays_and_back
+    def _vmap(batch):
+        ret = (
+            tf.map_fn(fun, batch)
+        )
+        return ret
+    return _vmap
