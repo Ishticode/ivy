@@ -13,11 +13,24 @@ batch1 = tf.random.normal((5, 1, 6))
 
 
 def vv(x):
+    # try:
     return ivy.matmul(mat1, x)
+    # except:
+    #     print("failed matmul")
+    #     print("shapes: ", mat1.shape, x.shape)
+
+#print(ivy.vmap(vv, 1, 1)(batch1).shape)
+
 
 #print(vv(batch1).shape)
 print('Auto-vectorized with vmap')
-print(ivy.vmap(vv, 2)(batch1).shape)
+for i in range(3):
+    for j in range(3):
+        try:
+            print(ivy.vmap(vv, i, j)(batch1).shape)
+        except:
+            print("ignored")
+
 
 
 # def vmap_batched_apply_matrix(v_batched):
