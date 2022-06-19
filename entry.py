@@ -3,19 +3,22 @@ from jax import vmap
 from jax import random
 import tensorflow as tf
 import ivy
+ivy.set_array_significant_figures(4)
 ivy.set_backend("tensorflow")
-key = random.PRNGKey(0)
-mat = tf.random.uniform(shape=(10, 5))
-batched_x = tf.random.uniform(shape=(2, 5))
+mat = ivy.reshape(ivy.arange(50), (10, 5))
+batch = ivy.reshape(ivy.arange(10), (2, 5))
+
+mat1 = tf.random.normal((3, 5))
+batch1 = tf.random.normal((5, 1, 6))
 
 
-def apply_matrix(v):
-    return ivy.vecdot(mat, v)
+def vv(x):
+    return ivy.matmul(mat1, x)
 
-
-def vmap_batched_apply_matrix(v_batched):
-    return ivy.vmap(apply_matrix)(v_batched)
-
-
+#print(vv(batch1).shape)
 print('Auto-vectorized with vmap')
-print((vmap_batched_apply_matrix(batched_x)))
+print(ivy.vmap(vv, 2)(batch1).shape)
+
+
+# def vmap_batched_apply_matrix(v_batched):
+#     return ivy.vmap(vv)(v_batched)

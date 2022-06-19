@@ -356,9 +356,16 @@ get_num_dims = (
 )
 
 
-def vmap(fun):
+def vmap(fun, in_axis=0):
     @ivy.to_native_arrays_and_back
     def _vmap(batch):
+        # put in_axis at 0 as tf.map_fn unstacks the batch along axis 0.
+        if in_axis:
+            shift_by = len(batch.shape) - in_axis
+            b_shape = tf.roll(batch.shape, shift_by, 0)
+            batch = tf.reshape(batch, b_shape)
+
+        # apply vectorisation
         ret = (
             tf.map_fn(fun, batch)
         )
