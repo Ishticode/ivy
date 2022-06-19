@@ -22,7 +22,6 @@ def vv(x):
 #print(ivy.vmap(vv, 1, 1)(batch1).shape)
 
 
-#print(vv(batch1).shape)
 print('Auto-vectorized with vmap')
 for i in range(3):
     for j in range(3):

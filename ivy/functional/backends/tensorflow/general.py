@@ -361,11 +361,7 @@ def vmap(fun, in_axis=0, out_axis=0):
     def _vmap(batch):
         # put in_axis at 0 as tf.map_fn unstacks the batch along axis 0.
         if in_axis:
-            # shift_by = len(batch.shape) - in_axis
-            # b_shape = tf.roll(batch.shape, shift_by, 0)
-            # batch = tf.reshape(batch, b_shape)
             batch = tf.experimental.numpy.moveaxis(batch, in_axis, 0)
-
 
         # apply vectorisation
         ret = (
@@ -373,14 +369,6 @@ def vmap(fun, in_axis=0, out_axis=0):
         )
 
         if out_axis:
-        #
-        #     # shift_by = len(ret.shape) - in_axis
-        #     # r_shape = tf.roll(ret.shape, shift_by, 0)
-        #     # ret = tf.reshape(ret, r_shape)
-        #
-        #     # for a in range(out_axis + 1):
-        #     #
-            #print(ret.shape)
             ret = tf.experimental.numpy.moveaxis(ret, 0, out_axis)
 
         return ret
