@@ -281,9 +281,9 @@ def np_map_fn(fn, elems, axis=0):
 
 
 def vmap(func, in_axis=0, out_axis=0):
+    @ivy.to_native_arrays_and_back
     def new_fn(batch):
-        # ret = np_map_fn(func, batch, in_axis)
-        ret = np.stack([func(arr) for arr in unstack(batch, in_axis)])
+        ret = np_map_fn(func, batch, in_axis)
         if out_axis:
             ret = np.moveaxis(ret, 0, out_axis)
         return ret

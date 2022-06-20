@@ -6,7 +6,7 @@ arr = ivy.random_normal(0, 1, (3, 4, 5))
 
 
 mat1 = np.random.randint(2, 4, size=(3, 5))
-batched_x1 = np.random.randint(2, 3, size=(5, 5, 2))
+batched_x1 = np.random.randint(2, 3, size=(5, 3, 2))
 
 
 # batched_x1 = jnp.expand_dims(batched_x1, 0)
@@ -19,7 +19,7 @@ def vdot(batch):
 
 for i in range(3):
     for j in range(3):
-        # try:
-        print(ivy.vmap(vdot, i, j)(batched_x1).shape)
-        # except:
-        #   print("ignored")
+        try:
+            print(ivy.vmap(vdot, i, j)(batched_x1).shape)
+        except:
+            print("ignored")
