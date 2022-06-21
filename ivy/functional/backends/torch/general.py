@@ -8,6 +8,7 @@ from operator import mul
 from functools import reduce as _reduce
 from typing import List, Optional, Union
 from numbers import Number
+import functorch
 
 # local
 from ivy.functional.backends.torch.device import as_native_dev, _callable_dev
@@ -414,5 +415,8 @@ def get_num_dims(x, as_tensor=False) -> Union[torch.Tensor, int]:
 def current_backend_str():
     return "torch"
 
-def vmap():
-    return
+
+def vmap(func, in_axis, out_axis):
+    new_func = functorch.vmap(func, in_axis, out_axis)
+    new_func = ivy.to_native_arrays_and_back(new_func)
+    return new_func
