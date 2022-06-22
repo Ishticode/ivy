@@ -358,15 +358,33 @@ get_num_dims = (
 
 def vmap(fun, in_axis=0, out_axis=0):
     @ivy.to_native_arrays_and_back
-    def _vmap(batch):
+    def _vmap(*args):
         # put in_axis at 0 as tf.map_fn unstacks the batch along axis 0.
-        if in_axis:
-            batch = tf.experimental.numpy.moveaxis(batch, in_axis, 0)
+
+        # require mutability in the arg container.
+        args = list(args)
+
+        if isinstance(in_axis, (list, tuple)):
+            try:
+                assert (len(args)) == len(in_axis)
+            except:
+                raise Exception('''The in_axis should have length equivalent to the 
+                number of positional arguments to the function being vectorized
+                or it shold be an intger.''')
+
+
+        # if in_axis:
+        #     batch = args[0]
+        #     batch = tf.experimental.numpy.moveaxis(batch, in_axis, 0)
 
         # apply vectorisation
-        ret = (
-            tf.map_fn(fun, batch)
-        )
+        for i in range(len(args)):
+            if in_axis:
+                batch = tf.experimental.numpy.moveaxis(args[i], in_axis[i], 0)
+
+            ret = (
+                tf.map_fn(fun, batch)
+            )
 
         if out_axis:
             ret = tf.experimental.numpy.moveaxis(ret, 0, out_axis)

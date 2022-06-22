@@ -281,9 +281,17 @@ def np_map_fn(fn, elems, axis=0):
 
 
 def vmap(func, in_axis=0, out_axis=0):
+
+    if isinstance(in_axis, list):
+        in_axis = tuple(in_axis)
+
     @ivy.to_native_arrays_and_back
     def new_fn(batch):
-        ret = np_map_fn(func, batch, in_axis)
+        if isinstance(in_axis, tuple):
+            for nth_axis in in_axis:
+                ret = np_map_fn(func, batch, nth_axis)
+        elif isinstance(in_axis, int):
+            ret = np_map_fn(func, batch, in_axis)
         if out_axis:
             ret = np.moveaxis(ret, 0, out_axis)
         return ret
