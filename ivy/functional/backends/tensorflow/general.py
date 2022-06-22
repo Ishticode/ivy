@@ -375,7 +375,7 @@ def vmap(fun, in_axis=0, out_axis=0):
             except AssertionError:
                 raise Exception('''The in_axis should have length equivalent to the 
                 number of positional arguments to the function being vectorized
-                or it shold be an intger.''')
+                or it should be an intger.''')
 
         # set up the axis to be mapped
         if isinstance(in_axis, (tuple, list)):
@@ -395,4 +395,5 @@ def vmap(fun, in_axis=0, out_axis=0):
             ret = tf.experimental.numpy.moveaxis(ret, 0, out_axis)
 
         return ret
+
     return _vmap
