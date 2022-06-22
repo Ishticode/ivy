@@ -7,8 +7,8 @@ ivy.set_backend("tensorflow")
 # batch = ivy.reshape(ivy.arange(10), (2, 5))
 
 
-mat1 = tf.constant(np.random.randint(2, 4, size=(3, 5)))
-batched_x1 = tf.constant(np.random.randint(2, 3, size=(5, 3, 2)))
+mat1 = tf.constant(np.random.randint(2, 4, size=(3, 5, 3, 2)))
+batched_x1 = tf.constant(np.random.randint(2, 3, size=(5, 3, 2, 5)))
 
 def vv(mat, x):
     # try:
@@ -25,10 +25,10 @@ print('Auto-vectorized with vmap')
 for i in range(3):
     for j in range(3):
         try:
-            print(ivy.vmap(vv, i, j)(mat1, batched_x1).shape)
+            print(ivy.vmap(vv, (i, j), 0)(mat1, batched_x1).shape)
         except:
             print("ignored")
-        #print(ivy.vmap(vv, i, j)(mat1, batched_x1).shape)
+        #print(ivy.vmap(vv, (i, j), 0)(mat1, batched_x1).shape)
 
 # def vmap_batched_apply_matrix(v_batched):
 #     return ivy.vmap(vv)(v_batched)

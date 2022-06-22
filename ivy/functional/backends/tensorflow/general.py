@@ -10,7 +10,7 @@ import numpy as _np
 import tensorflow as tf
 import multiprocessing as _multiprocessing
 from numbers import Number
-from functools import reduce
+from functools import reduce, partial
 # local
 import ivy
 from ivy.functional.ivy.device import default_device
@@ -360,13 +360,7 @@ get_num_dims = (
 #     for i in range(args):
 #         ret = tf.map_fn(fun, args[i])
 
-def tf_map_fn(fn):
-    def new_fn(*args):
-        args = list(args)
-        for i in range(len(args)):
-            args = [arg for arg in tf.unstack(args[i], 0)]
-        return tf.stack(fn(args))
-    return new_fn
+
 
 def vmap(fun, in_axis=0, out_axis=0):
     @ivy.to_native_arrays_and_back
@@ -391,14 +385,21 @@ def vmap(fun, in_axis=0, out_axis=0):
 
         # apply vectorisation
         if isinstance(in_axis, (tuple, list)):
-            for i in range(len(args)):
+            for i in range(len(in_axis)):
                 args[i] = tf.experimental.numpy.moveaxis(args[i], in_axis[i], 0)
         elif isinstance(in_axis, int):
             args[0] = tf.experimental.numpy.moveaxis(args[0], in_axis, 0)
 
-        ret = (
-            reduce(tf_map_fn(fun), args)
-        )
+        #func = partial(tf.map_fn(fun, args[0]))
+
+        if len(args) == 1:
+            ret = (
+                tf.map_fn(fun, args[0])
+            )
+        else:
+            ret = (
+                (reduce(fun, args))
+            )
 
         if out_axis:
             ret = tf.experimental.numpy.moveaxis(ret, 0, out_axis)
