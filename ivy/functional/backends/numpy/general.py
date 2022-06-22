@@ -276,8 +276,10 @@ current_backend_str = lambda: "numpy"
 current_backend_str.__name__ = "current_backend_str"
 
 
-def np_map_fn(fn, elems, axis=0):
-    return np.stack([fn(elem) for elem in unstack(elems, axis)])
+def np_map_fn(fn, axis=0):
+    def new_fn(elems):
+        return np.stack([fn(elem) for elem in unstack(elems, axis)])
+    return new_fn
 
 
 def vmap(func, in_axis=0, out_axis=0):
