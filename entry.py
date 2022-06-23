@@ -33,7 +33,6 @@ for i in range(3):
             print("ignored")
 
 
-
 # def vmap_batched_apply_matrix(v_batched):
 #     return ivy.vmap(vv)(v_batched)
 
