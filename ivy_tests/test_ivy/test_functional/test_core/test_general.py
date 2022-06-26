@@ -1411,6 +1411,32 @@ def test_inplace_increment(x_n_inc, tensor_fn, device, call):
 # supports_inplace
 # assert_supports_inplace
 
-def test_vmap():
-    return
 
+def _fn1(x_shape, y):
+    x = ivy.random_uniform(shape=x_shape)
+    return ivy.matmul(x, y)
+
+def _fn2():
+    pass
+
+def _fn3():
+    pass
+
+def _fn4():
+    pass
+
+
+@given(func=st.sampled_from([_fn2, _fn1, _fn3, _fn4]))
+def test_vmap(func, fw):
+
+    print(type(func.__name__))
+    if func.__name__ == '_fn1':
+        print("yes")
+    ivy.set_backend("jax")
+    vmapped_fn = ivy.vmap(func)
+    assert callable(vmapped_fn)
+    ivy.unset_backend()
+
+@given(s = st.sampled_from(['1', '2', '3']))
+def test(s):
+    print(s)
