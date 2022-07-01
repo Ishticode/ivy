@@ -48,7 +48,6 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Functions</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../../functional/frontends.html">Frontends</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../functional/ivy/activations.html">Activations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../functional/ivy/compilation.html">Compilation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../functional/ivy/constants.html">Constants</a></li>
@@ -71,7 +70,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../../functional/ivy/set.html">Set</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../functional/ivy/sorting.html">Sorting</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../functional/ivy/statistical.html">Statistical</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../functional/ivy/transformations.html">Transformations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../functional/ivy/utility.html">Utility</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Classes</span></p>
@@ -176,38 +174,31 @@
 <span class="sd">     With :code:`ivy.Array` input:</span>
 
 <span class="sd">     1. Returns a lower-triangular Cholesky factor L</span>
-
 <span class="sd">     &gt;&gt;&gt; x = ivy.array([[1., -2.], [2., 5.]])</span>
 <span class="sd">     &gt;&gt;&gt; l = ivy.cholesky(x)</span>
 <span class="sd">     &gt;&gt;&gt; print(l)</span>
 <span class="sd">     ivy.array([[ 1., 0.], [ 2., 1.]])</span>
 
-
 <span class="sd">     With :code:`ivy.NativeArray` input:</span>
 
 <span class="sd">     2. Returns an upper-triangular cholesky factor U</span>
-
 <span class="sd">     &gt;&gt;&gt; x = ivy.array([[1., -2.], [2., 5.]])</span>
 <span class="sd">     &gt;&gt;&gt; u = ivy.cholesky(x, upper = True)</span>
 <span class="sd">     &gt;&gt;&gt; print(u)</span>
 <span class="sd">     ivy.array([[ 1., -2.], [ 0.,  1.]])</span>
 
-
-
 <span class="sd">     Instance Method Examples</span>
 <span class="sd">     ------------------------</span>
-
 <span class="sd">     With :code:`ivy.Container` input:</span>
 
 <span class="sd">     3. Returns a lower-triangular Cholesky factor</span>
-
 <span class="sd">     &gt;&gt;&gt; x = ivy.Container(a = ivy.array([[3., -1.], [-1., 3.]]),\</span>
 <span class="sd">                           b = ivy.array([[2., 1.], [1., 1.]]))</span>
 <span class="sd">     &gt;&gt;&gt; y = x.cholesky()</span>
 <span class="sd">     &gt;&gt;&gt; print(y)</span>
 <span class="sd">    {</span>
-<span class="sd">         a: ivy.array([[1.73, 0.], [-0.57,  1.63]])</span>
-<span class="sd">         b: ivy.array([[1.41, 0.], [0.70, 0.70]])</span>
+<span class="sd">         a: ivy.array([[1.73, 0.], [-0.577,  1.63]]),</span>
+<span class="sd">         b: ivy.array([[1.41, 0.], [0.707, 0.707]])</span>
 <span class="sd">     }</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -365,25 +356,23 @@
 
 <span class="sd">    Functional Examples</span>
 <span class="sd">    -------------------</span>
-
 <span class="sd">    With :code:`ivy.Array` input:</span>
-
 <span class="sd">    &gt;&gt;&gt; x = ivy.array([[2.,4.],[6.,7.]])</span>
 <span class="sd">    &gt;&gt;&gt; y = ivy.det(x)</span>
 <span class="sd">    &gt;&gt;&gt; print(y)</span>
-<span class="sd">    ivy.array([-10.0])</span>
+<span class="sd">    ivy.array(-10.)</span>
 
 <span class="sd">    &gt;&gt;&gt; x = ivy.array([[3.4,-0.7,0.9],[6.,-7.4,0.],[-8.5,92,7.]])</span>
 <span class="sd">    &gt;&gt;&gt; y = ivy.det(x)</span>
 <span class="sd">    &gt;&gt;&gt; print(y)</span>
-<span class="sd">    ivy.array([293.47])</span>
+<span class="sd">    ivy.array(293.46997)</span>
 
 <span class="sd">    With :code:`ivy.NativeArray` input:</span>
 
 <span class="sd">    &gt;&gt;&gt; x = ivy.native_array([[3.4,-0.7,0.9],[6.,-7.4,0.],[-8.5,92,7.]])</span>
 <span class="sd">    &gt;&gt;&gt; y = ivy.det(x)</span>
 <span class="sd">    &gt;&gt;&gt; print(y)</span>
-<span class="sd">    ivy.array([293.47])</span>
+<span class="sd">    ivy.array(293.46997)</span>
 
 <span class="sd">    With :code:`ivy.Container` input:</span>
 
@@ -391,10 +380,7 @@
 <span class="sd">                                 b = ivy.array([[2., 1.], [1., 1.]]))</span>
 <span class="sd">    &gt;&gt;&gt; y = ivy.det(x)</span>
 <span class="sd">    &gt;&gt;&gt; print(y)</span>
-<span class="sd">    {</span>
-<span class="sd">        a: ivy.array([8.0]),</span>
-<span class="sd">        b: ivy.array([1.0])</span>
-<span class="sd">    }</span>
+<span class="sd">    {a:ivy.array(8.),b:ivy.array(1.)}</span>
 
 <span class="sd">    Instance Method Examples</span>
 <span class="sd">    ------------------------</span>
@@ -404,7 +390,7 @@
 <span class="sd">    &gt;&gt;&gt; x = ivy.array([[2.,4.],[6.,7.]])</span>
 <span class="sd">    &gt;&gt;&gt; y = x.det()</span>
 <span class="sd">    &gt;&gt;&gt; print(y)</span>
-<span class="sd">    ivy.array([-10.0])</span>
+<span class="sd">    ivy.array(-10.)</span>
 
 <span class="sd">    Using :code:`ivy.Container` instance method:</span>
 
@@ -412,10 +398,8 @@
 <span class="sd">                                    b = ivy.array([[2., 1.], [1., 1.]]))</span>
 <span class="sd">    &gt;&gt;&gt; y = x.det()</span>
 <span class="sd">    &gt;&gt;&gt; print(y)</span>
-<span class="sd">    {</span>
-<span class="sd">        a: ivy.array([8.0]),</span>
-<span class="sd">        b: ivy.array([1.0])</span>
-<span class="sd">    }</span>
+<span class="sd">    {a:ivy.array(8.),b:ivy.array(1.)}</span>
+
 
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">current_backend</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">.</span><span class="n">det</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">out</span><span class="p">)</span></div>
@@ -459,6 +443,7 @@
 <span class="sd">        last two dimensions and appending a dimension equal to the size of the resulting</span>
 <span class="sd">        diagonals. The returned array must have the same data type as ``x``.</span>
 
+
 <span class="sd">    Functional Examples</span>
 <span class="sd">    ------------------</span>
 
@@ -466,9 +451,11 @@
 
 <span class="sd">    &gt;&gt;&gt; x = ivy.array([[1., 2.],\</span>
 <span class="sd">                       [3., 4.]])</span>
+
 <span class="sd">    &gt;&gt;&gt; d = ivy.diagonal(x)</span>
 <span class="sd">    &gt;&gt;&gt; print(d)</span>
 <span class="sd">    ivy.array([1., 4.])</span>
+
 
 <span class="sd">    &gt;&gt;&gt; x = ivy.array([[[1., 2.],\</span>
 <span class="sd">                        [3., 4.]],\</span>
@@ -481,9 +468,11 @@
 
 <span class="sd">    &gt;&gt;&gt; x = ivy.array([[1., 2.],\</span>
 <span class="sd">                       [3., 4.]])</span>
+
 <span class="sd">    &gt;&gt;&gt; d = ivy.diagonal(x, 1)</span>
 <span class="sd">    &gt;&gt;&gt; print(d)</span>
-<span class="sd">    ivy.array([1.])</span>
+<span class="sd">    ivy.array([2.])</span>
+
 
 <span class="sd">    &gt;&gt;&gt; x = ivy.array([[0, 1, 2],\</span>
 <span class="sd">                       [3, 4, 5],\</span>
@@ -531,7 +520,7 @@
 <span class="sd">                              [3., 4.]])</span>
 <span class="sd">    &gt;&gt;&gt; d = ivy.diagonal(x)</span>
 <span class="sd">    &gt;&gt;&gt; print(d)</span>
-<span class="sd">    ivy.array([[1., 4.]])</span>
+<span class="sd">    ivy.array([1., 4.])</span>
 
 <span class="sd">    &gt;&gt;&gt; x = ivy.native_array([[[ 0,  1,  2],\</span>
 <span class="sd">                               [ 3,  4,  5],\</span>
@@ -554,6 +543,7 @@
 <span class="sd">    &gt;&gt;&gt; d = ivy.diagonal(x)</span>
 <span class="sd">    &gt;&gt;&gt; print(d)</span>
 <span class="sd">    ivy.array([0, 4, 8])</span>
+
 
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">current_backend</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">.</span><span class="n">diagonal</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">offset</span><span class="p">,</span> <span class="n">axis1</span><span class="o">=</span><span class="n">axis1</span><span class="p">,</span> <span class="n">axis2</span><span class="o">=</span><span class="n">axis2</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">out</span><span class="p">)</span></div>
@@ -610,7 +600,7 @@
 <span class="nd">@handle_out_argument</span>
 <span class="nd">@handle_nestable</span>
 <span class="k">def</span> <span class="nf">eigvalsh</span><span class="p">(</span>
-    <span class="n">x</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">],</span> <span class="n">out</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">/</span>
+    <span class="n">x</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">],</span> <span class="n">out</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Return the eigenvalues of a symmetric matrix (or a stack of symmetric matrices)</span>
 <span class="sd">    x.</span>
@@ -888,6 +878,7 @@
 <span class="sd">                [10., 12., 14., 16.],</span>
 <span class="sd">                [15., 18., 21., 24.],</span>
 <span class="sd">                [20., 24., 28., 32.]])</span>
+
 <span class="sd">    &gt;&gt;&gt; d = ivy.outer(x, 1)</span>
 <span class="sd">    &gt;&gt;&gt; print(d)</span>
 <span class="sd">    ivy.array([[1.],</span>
@@ -914,6 +905,7 @@
 <span class="sd">                [ 54.,  60.,  66.,  72.,  78.,  84.,  90.,  96.],</span>
 <span class="sd">                [ 63.,  70.,  77.,  84.,  91.,  98., 105., 112.],</span>
 <span class="sd">                [ 72.,  80.,  88.,  96., 104., 112., 120., 128.]])</span>
+
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">current_backend</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">)</span><span class="o">.</span><span class="n">outer</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">out</span><span class="p">)</span></div>
 
@@ -1197,33 +1189,17 @@
 
 <span class="sd">    Functional Examples</span>
 <span class="sd">    -------------------</span>
-
 <span class="sd">    With :code:`ivy.Array` input:</span>
-
 <span class="sd">    1. Axes = 0 : tensor product</span>
-
 <span class="sd">    &gt;&gt;&gt; x = ivy.array([[1., 2.], [2., 3.]])</span>
 <span class="sd">    &gt;&gt;&gt; y = ivy.array([[3., 4.], [4., 5.]])</span>
 <span class="sd">    &gt;&gt;&gt; res = ivy.tensordot(x, y, axes =0)</span>
 <span class="sd">    &gt;&gt;&gt; print(res)</span>
-<span class="sd">    ivy.array([[[[ 3.,  4.],</span>
-<span class="sd">                  [ 4.,  5.]],</span>
-
-<span class="sd">                 [[ 6.,  8.],</span>
-<span class="sd">                  [ 8., 10.]]],</span>
-
-<span class="sd">                [[[ 6.,  8.],</span>
-<span class="sd">                  [ 8., 10.]],</span>
-
-<span class="sd">                 [[ 9., 12.],</span>
-<span class="sd">                  [12., 15.]]]])</span>
-
-
+<span class="sd">    ivy.array([[[[3.,4.],[4.,5.]],[[6.,8.],[8.,10.]]],[[[6.,8.],[8.,10.]],[[9.,12.],[12.,15.]]]])</span>
 
 <span class="sd">    With a mix of :code:`ivy.Array` and :code:`ivy.NativeArray` inputs:</span>
 
 <span class="sd">    2. Axes = 1 : tensor dot product</span>
-
 <span class="sd">    &gt;&gt;&gt; x = ivy.array([[1., 0., 1.], [2., 3., 6.], [0., 7., 2.]])</span>
 <span class="sd">    &gt;&gt;&gt; y = ivy.native_array([[1.], [2.], [3.]])</span>
 <span class="sd">    &gt;&gt;&gt; res = ivy.tensordot(x, y, axes = 1)</span>
@@ -1232,11 +1208,9 @@
 <span class="sd">                [26.],</span>
 <span class="sd">                [20.]])</span>
 
-
 <span class="sd">    With :code:`ivy.Container` input:</span>
 
 <span class="sd">    3. Axes = 2: (default) tensor double contraction</span>
-
 <span class="sd">    &gt;&gt;&gt; x = ivy.Container(a=ivy.array([[1., 0., 3.], [2., 3., 4.]]),\</span>
 <span class="sd">                          b=ivy.array([[5., 6., 7.], [3., 4., 8.]]))</span>
 <span class="sd">    &gt;&gt;&gt; y = ivy.Container(a=ivy.array([[2., 4., 5.], [9., 10., 6.]]),\</span>
@@ -1244,7 +1218,7 @@
 <span class="sd">    &gt;&gt;&gt; res = ivy.tensordot(x, y)</span>
 <span class="sd">    &gt;&gt;&gt; print(res)</span>
 <span class="sd">    {</span>
-<span class="sd">        a: ivy.array(89.)</span>
+<span class="sd">        a: ivy.array(89.),</span>
 <span class="sd">        b: ivy.array(76.)</span>
 <span class="sd">    }</span>
 
@@ -1357,6 +1331,7 @@
     <span class="n">axis</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">keepdims</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
     <span class="nb">ord</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="n">Literal</span><span class="p">[</span><span class="n">inf</span><span class="p">,</span> <span class="o">-</span><span class="n">inf</span><span class="p">]]</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="n">out</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">:</span>
     <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Computes the vector norm of a vector (or batch of vectors) ``x``.</span>
 
@@ -1420,14 +1395,7 @@
 <span class="sd">        array must have a floating-point data type determined by :ref:`type-promotion`.</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="nb">ord</span> <span class="o">==</span> <span class="o">-</span><span class="nb">float</span><span class="p">(</span><span class="s2">&quot;inf&quot;</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">ivy</span><span class="o">.</span><span class="n">reduce_min</span><span class="p">(</span><span class="n">ivy</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">axis</span><span class="p">,</span> <span class="n">keepdims</span><span class="p">)</span>
-    <span class="k">elif</span> <span class="nb">ord</span> <span class="o">==</span> <span class="nb">float</span><span class="p">(</span><span class="s2">&quot;inf&quot;</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">ivy</span><span class="o">.</span><span class="n">reduce_max</span><span class="p">(</span><span class="n">ivy</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">axis</span><span class="p">,</span> <span class="n">keepdims</span><span class="p">)</span>
-    <span class="k">elif</span> <span class="nb">ord</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">ivy</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">ivy</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">x</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;float32&quot;</span><span class="p">),</span> <span class="n">axis</span><span class="p">,</span> <span class="n">keepdims</span><span class="p">)</span>
-    <span class="n">x_raised</span> <span class="o">=</span> <span class="n">x</span><span class="o">**</span><span class="nb">ord</span>
-    <span class="k">return</span> <span class="n">ivy</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">x_raised</span><span class="p">,</span> <span class="n">axis</span><span class="p">,</span> <span class="n">keepdims</span><span class="p">)</span> <span class="o">**</span> <span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="nb">ord</span><span class="p">)</span></div>
+    <span class="k">return</span> <span class="n">current_backend</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">.</span><span class="n">vector_norm</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">axis</span><span class="p">,</span> <span class="n">keepdims</span><span class="p">,</span> <span class="nb">ord</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">out</span><span class="p">)</span></div>
 
 
 <span class="c1"># Extra #</span>
