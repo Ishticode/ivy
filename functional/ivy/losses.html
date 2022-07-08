@@ -1,4 +1,5 @@
-<!DOCTYPE html>
+<!
+      <link rel="icon" type="image/png" href="../logos/ivy_logo_only.png">DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
@@ -21,7 +22,7 @@
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="cross_entropy" href="losses/cross_entropy.html" />
-    <link rel="prev" title="vector_to_skew_symmetric_matrix" href="linear_algebra/vector_to_skew_symmetric_matrix.html" /> 
+    <link rel="prev" title="ivy.Array.vector_to_skew_symmetric_matrix" href="linear_algebra/vector_to_skew_symmetric_matrix/vector_to_skew_symmetric_matrix_array.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -60,7 +61,6 @@
 <li class="toctree-l1"><a class="reference internal" href="elementwise.html">Elementwise</a></li>
 <li class="toctree-l1"><a class="reference internal" href="general.html">General</a></li>
 <li class="toctree-l1"><a class="reference internal" href="gradients.html">Gradients</a></li>
-<li class="toctree-l1"><a class="reference internal" href="image.html">Image</a></li>
 <li class="toctree-l1"><a class="reference internal" href="layers.html">Layers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="linear_algebra.html">Linear algebra</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Losses</a><ul>
@@ -82,14 +82,8 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Classes</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../stateful/activations.html">Activations</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../stateful/converters.html">Converters</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../stateful/initializers.html">Initializers</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../stateful/layers.html">Layers</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../stateful/module.html">Module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../stateful/norms.html">Norms</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../stateful/optimizers.html">Optimizers</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../stateful/sequential.html">Sequential</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../classes/data_classes.html">Data classes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../classes/stateful.html">Framework classes</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Docs</span></p>
 <ul>
@@ -140,7 +134,7 @@
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>true</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Array</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">NativeArray</span></code>]) – input array containing true labels.</p></li>
 <li><p><strong>pred</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Array</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">NativeArray</span></code>]) – input array containing Predicted labels.</p></li>
-<li><p><strong>epsilon</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]) – a float in [0.0, 1.0] specifying the amount of smoothing when calculating the (default: <code class="docutils literal notranslate"><span class="pre">1e-07</span></code>)
+<li><p><strong>epsilon</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>) – a float in [0.0, 1.0] specifying the amount of smoothing when calculating the (default: <code class="docutils literal notranslate"><span class="pre">1e-07</span></code>)
 loss. If epsilon is <code class="docutils literal notranslate"><span class="pre">0</span></code>, no smoothing will be applied. Default: <code class="docutils literal notranslate"><span class="pre">1e-7</span></code>.</p></li>
 <li><p><strong>out</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Array</span></code>]) – optional output array, for writing the result to. It must have a shape (default: <code class="docutils literal notranslate"><span class="pre">None</span></code>)
 that the inputs broadcast to.</p></li>
@@ -223,9 +217,9 @@ that the inputs broadcast to.</p></li>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>true</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Array</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">NativeArray</span></code>]) – input array containing true labels.</p></li>
 <li><p><strong>pred</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Array</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">NativeArray</span></code>]) – input array containing the predicted labels.</p></li>
-<li><p><strong>axis</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>]) – the axis along which to compute the cross-entropy. If axis is <code class="docutils literal notranslate"><span class="pre">-1</span></code>, (default: <code class="docutils literal notranslate"><span class="pre">-1</span></code>)
+<li><p><strong>axis</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – the axis along which to compute the cross-entropy. If axis is <code class="docutils literal notranslate"><span class="pre">-1</span></code>, (default: <code class="docutils literal notranslate"><span class="pre">-1</span></code>)
 the cross-entropy will be computed along the last dimension. Default: <code class="docutils literal notranslate"><span class="pre">-1</span></code>.</p></li>
-<li><p><strong>epsilon</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]) – a float in [0.0, 1.0] specifying the amount of smoothing when calculating (default: <code class="docutils literal notranslate"><span class="pre">1e-07</span></code>)
+<li><p><strong>epsilon</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>) – a float in [0.0, 1.0] specifying the amount of smoothing when calculating (default: <code class="docutils literal notranslate"><span class="pre">1e-07</span></code>)
 the loss. If epsilon is <code class="docutils literal notranslate"><span class="pre">0</span></code>, no smoothing will be applied. Default: <code class="docutils literal notranslate"><span class="pre">1e-7</span></code>.</p></li>
 <li><p><strong>out</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Array</span></code>]) – optional output array, for writing the result to. It must have a shape (default: <code class="docutils literal notranslate"><span class="pre">None</span></code>)
 that the inputs broadcast to.</p></li>
@@ -261,9 +255,9 @@ that the inputs broadcast to.</p></li>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>true</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Array</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">NativeArray</span></code>]) – input array containing the true labels as logits.</p></li>
 <li><p><strong>pred</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Array</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">NativeArray</span></code>]) – input array containing the predicted labels as logits.</p></li>
-<li><p><strong>axis</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>]) – the axis along which to compute the cross-entropy. If axis is <code class="docutils literal notranslate"><span class="pre">-1</span></code>, the (default: <code class="docutils literal notranslate"><span class="pre">-1</span></code>)
+<li><p><strong>axis</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – the axis along which to compute the cross-entropy. If axis is <code class="docutils literal notranslate"><span class="pre">-1</span></code>, the (default: <code class="docutils literal notranslate"><span class="pre">-1</span></code>)
 cross-entropy will be computed along the last dimension. Default: <code class="docutils literal notranslate"><span class="pre">-1</span></code>.</p></li>
-<li><p><strong>epsilon</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]) – a float in [0.0, 1.0] specifying the amount of smoothing when calculating the (default: <code class="docutils literal notranslate"><span class="pre">1e-07</span></code>)
+<li><p><strong>epsilon</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>) – a float in [0.0, 1.0] specifying the amount of smoothing when calculating the (default: <code class="docutils literal notranslate"><span class="pre">1e-07</span></code>)
 loss. If epsilon is <code class="docutils literal notranslate"><span class="pre">0</span></code>, no smoothing will be applied. Default: <code class="docutils literal notranslate"><span class="pre">1e-7</span></code>.</p></li>
 <li><p><strong>out</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Array</span></code>]) – optional output array, for writing the result to. It must have a shape (default: <code class="docutils literal notranslate"><span class="pre">None</span></code>)
 that the inputs broadcast to.</p></li>
@@ -356,7 +350,7 @@ that the inputs broadcast to.</p></li>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="linear_algebra/vector_to_skew_symmetric_matrix.html" class="btn btn-neutral float-left" title="vector_to_skew_symmetric_matrix" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="linear_algebra/vector_to_skew_symmetric_matrix/vector_to_skew_symmetric_matrix_array.html" class="btn btn-neutral float-left" title="ivy.Array.vector_to_skew_symmetric_matrix" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="losses/cross_entropy.html" class="btn btn-neutral float-right" title="cross_entropy" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

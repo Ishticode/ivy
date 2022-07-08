@@ -1,0 +1,569 @@
+<!
+      <link rel="icon" type="image/png" href="../logos/ivy_logo_only.png">DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ivy.container.gradients &mdash; Ivy 1.0 documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> Ivy
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Overview</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../background.html">Background</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../design.html">Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../extensions.html">Extensions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../roadmap.html">Roadmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../deep_dive.html">Deep Dive</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../faq.html">FAQ</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Functions</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../functional/ivy/activations.html">Activations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../functional/ivy/compilation.html">Compilation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../functional/ivy/constants.html">Constants</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../functional/ivy/creation.html">Creation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../functional/ivy/data_type.html">Data type</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../functional/ivy/device.html">Device</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../functional/ivy/elementwise.html">Elementwise</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../functional/ivy/general.html">General</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../functional/ivy/gradients.html">Gradients</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../functional/ivy/layers.html">Layers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../functional/ivy/linear_algebra.html">Linear algebra</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../functional/ivy/losses.html">Losses</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../functional/ivy/manipulation.html">Manipulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../functional/ivy/meta.html">Meta</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../functional/ivy/nest.html">Nest</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../functional/ivy/norms.html">Norms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../functional/ivy/random.html">Random</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../functional/ivy/searching.html">Searching</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../functional/ivy/set.html">Set</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../functional/ivy/sorting.html">Sorting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../functional/ivy/statistical.html">Statistical</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../functional/ivy/utility.html">Utility</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Classes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../classes/data_classes.html">Data classes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../classes/stateful.html">Framework classes</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Docs</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../ivy"">Ivy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../mech"">Ivy mech</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../vision"">Ivy vision</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../robot"">Ivy robot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../gym"">Ivy gym</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../memory"">Ivy memory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../builder"">Ivy builder</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../models"">Ivy models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../ecosystem"">Ivy ecosystem</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Ivy</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+      <li>ivy.container.gradients</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for ivy.container.gradients</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Union</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Dict</span>
+
+<span class="c1"># local</span>
+<span class="kn">import</span> <span class="nn">ivy</span>
+<span class="kn">from</span> <span class="nn">ivy.container.base</span> <span class="kn">import</span> <span class="n">ContainerBase</span>
+
+
+<span class="c1"># noinspection PyMissingConstructor</span>
+<div class="viewcode-block" id="ContainerWithGradients"><a class="viewcode-back" href="../../../classes/data_classes/container/gradients/ContainerWithGradients.html#ivy.container.gradients.ContainerWithGradients">[docs]</a><span class="k">class</span> <span class="nc">ContainerWithGradients</span><span class="p">(</span><span class="n">ContainerBase</span><span class="p">):</span>
+<div class="viewcode-block" id="ContainerWithGradients.static_is_variable"><a class="viewcode-back" href="../../../classes/data_classes/container/gradients/ContainerWithGradients.html#ivy.container.gradients.ContainerWithGradients.static_is_variable">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">static_is_variable</span><span class="p">(</span>
+        <span class="n">x</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">],</span>
+        <span class="n">exclusive</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">bool</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">key_chains</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">to_apply</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="n">prune_unapplied</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">map_sequences</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">ContainerBase</span><span class="o">.</span><span class="n">multi_map_in_static_method</span><span class="p">(</span>
+            <span class="s2">&quot;is_variable&quot;</span><span class="p">,</span>
+            <span class="n">x</span><span class="p">,</span>
+            <span class="n">exclusive</span><span class="p">,</span>
+            <span class="n">key_chains</span><span class="o">=</span><span class="n">key_chains</span><span class="p">,</span>
+            <span class="n">to_apply</span><span class="o">=</span><span class="n">to_apply</span><span class="p">,</span>
+            <span class="n">prune_unapplied</span><span class="o">=</span><span class="n">prune_unapplied</span><span class="p">,</span>
+            <span class="n">map_sequences</span><span class="o">=</span><span class="n">map_sequences</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="ContainerWithGradients.is_variable"><a class="viewcode-back" href="../../../classes/data_classes/container/gradients/ContainerWithGradients.html#ivy.container.gradients.ContainerWithGradients.is_variable">[docs]</a>    <span class="k">def</span> <span class="nf">is_variable</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">:</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">,</span>
+        <span class="n">exclusive</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">bool</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">key_chains</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">to_apply</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="n">prune_unapplied</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">map_sequences</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">static_is_variable</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span> <span class="n">exclusive</span><span class="p">,</span> <span class="n">key_chains</span><span class="p">,</span> <span class="n">to_apply</span><span class="p">,</span> <span class="n">prune_unapplied</span><span class="p">,</span> <span class="n">map_sequences</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="ContainerWithGradients.static_adam_step"><a class="viewcode-back" href="../../../classes/data_classes/container/gradients/ContainerWithGradients.html#ivy.container.gradients.ContainerWithGradients.static_adam_step">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">static_adam_step</span><span class="p">(</span>
+        <span class="n">dcdw</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">],</span>
+        <span class="n">mw</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">],</span>
+        <span class="n">vw</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">],</span>
+        <span class="n">step</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span>
+        <span class="n">beta1</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span>
+        <span class="n">beta2</span><span class="o">=</span><span class="mf">0.999</span><span class="p">,</span>
+        <span class="n">epsilon</span><span class="o">=</span><span class="mf">1e-7</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        ivy.Container instance method variant of ivy.adam_step.</span>
+<span class="sd">        This method simply wraps the function, and so the docstring for ivy.</span>
+<span class="sd">        adam_step also applies to this method with minimal changes</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        with :code: `ivy.container` inputs:</span>
+
+<span class="sd">        &gt;&gt;&gt; dcdw = ivy.Container(a=ivy.array([0., 1., 2.]),\</span>
+<span class="sd">                         b=ivy.array([3., 4., 5.]))</span>
+<span class="sd">        &gt;&gt;&gt; mw = ivy.Container(a=ivy.array([0., 0., 0.]),\</span>
+<span class="sd">                               b=ivy.array([0., 0., 0.]))</span>
+<span class="sd">        &gt;&gt;&gt; vw = ivy.Container(a=ivy.array([0.,]),\</span>
+<span class="sd">                               b=ivy.array([0.,]))</span>
+<span class="sd">        &gt;&gt;&gt; step = ivy.array([3.4])</span>
+<span class="sd">        &gt;&gt;&gt; beta1 = 0.87</span>
+<span class="sd">        &gt;&gt;&gt; beta2 = 0.976</span>
+<span class="sd">        &gt;&gt;&gt; epsilon = 1e-5</span>
+<span class="sd">        &gt;&gt;&gt; adam_step_delta = ivy.Container.static_adam_step(dcdw,\</span>
+<span class="sd">                                mw, vw, step, beta1, beta2, epsilon)</span>
+<span class="sd">        &gt;&gt;&gt; print(adam_step_delta)</span>
+<span class="sd">        {</span>
+<span class="sd">            a: (list[3], &lt;class ivy.array.Array&gt; shape=[3]),</span>
+<span class="sd">            b: (list[3], &lt;class ivy.array.Array&gt; shape=[3])</span>
+<span class="sd">        }</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">ContainerBase</span><span class="o">.</span><span class="n">multi_map_in_static_method</span><span class="p">(</span>
+            <span class="s2">&quot;adam_update&quot;</span><span class="p">,</span>
+            <span class="n">dcdw</span><span class="p">,</span>
+            <span class="n">mw</span><span class="p">,</span>
+            <span class="n">vw</span><span class="p">,</span>
+            <span class="n">step</span><span class="p">,</span>
+            <span class="n">beta1</span><span class="p">,</span>
+            <span class="n">beta2</span><span class="p">,</span>
+            <span class="n">epsilon</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="ContainerWithGradients.adam_step"><a class="viewcode-back" href="../../../classes/data_classes/container/gradients/ContainerWithGradients.html#ivy.container.gradients.ContainerWithGradients.adam_step">[docs]</a>    <span class="k">def</span> <span class="nf">adam_step</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">:</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">,</span>
+        <span class="n">mw</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">],</span>
+        <span class="n">vw</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">],</span>
+        <span class="n">step</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span>
+        <span class="n">beta1</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span>
+        <span class="n">beta2</span><span class="o">=</span><span class="mf">0.999</span><span class="p">,</span>
+        <span class="n">epsilon</span><span class="o">=</span><span class="mf">1e-7</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        ivy.Container instance method variant of ivy.adam_step.</span>
+<span class="sd">        This method simply wraps the function, and so the docstring for ivy.</span>
+<span class="sd">        adam_step also applies to this method with minimal changes</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        with :code: `ivy.container` inputs:</span>
+
+<span class="sd">        &gt;&gt;&gt; dcdw = ivy.Container(a=ivy.array([0., 1., 2.]),\</span>
+<span class="sd">                         b=ivy.array([3., 4., 5.]))</span>
+<span class="sd">        &gt;&gt;&gt; mw = ivy.Container(a=ivy.array([0., 0., 0.]),\</span>
+<span class="sd">                               b=ivy.array([0., 0., 0.]))</span>
+<span class="sd">        &gt;&gt;&gt; vw = ivy.Container(a=ivy.array([0.,]),\</span>
+<span class="sd">                               b=ivy.array([0.,]))</span>
+<span class="sd">        &gt;&gt;&gt; step = ivy.array(1)</span>
+<span class="sd">        &gt;&gt;&gt; adam_step_delta = dcdw.adam_step(mw, vw, step, beta1, beta2, epsilon)</span>
+<span class="sd">        {</span>
+<span class="sd">            a: (list[3], &lt;class ivy.array.Array&gt; shape=[3]),</span>
+<span class="sd">            b: (list[3], &lt;class ivy.array.Array&gt; shape=[3])</span>
+<span class="sd">        }</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">static_adam_step</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mw</span><span class="p">,</span> <span class="n">vw</span><span class="p">,</span> <span class="n">step</span><span class="p">,</span> <span class="n">beta1</span><span class="p">,</span> <span class="n">beta2</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="ContainerWithGradients.static_optimizer_update"><a class="viewcode-back" href="../../../classes/data_classes/container/gradients/ContainerWithGradients.html#ivy.container.gradients.ContainerWithGradients.static_optimizer_update">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">static_optimizer_update</span><span class="p">(</span>
+        <span class="n">w</span><span class="p">,</span>
+        <span class="n">effective_grad</span><span class="p">,</span>
+        <span class="n">lr</span><span class="p">,</span>
+        <span class="n">inplace</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">stop_gradients</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">key_chains</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">to_apply</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="n">prune_unapplied</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">map_sequences</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">:</span>
+
+        <span class="k">return</span> <span class="n">ContainerBase</span><span class="o">.</span><span class="n">multi_map_in_static_method</span><span class="p">(</span>
+            <span class="s2">&quot;optimizer_update&quot;</span><span class="p">,</span>
+            <span class="n">w</span><span class="p">,</span>
+            <span class="n">effective_grad</span><span class="p">,</span>
+            <span class="n">lr</span><span class="p">,</span>
+            <span class="n">inplace</span><span class="o">=</span><span class="n">inplace</span><span class="p">,</span>
+            <span class="n">stop_gradients</span><span class="o">=</span><span class="n">stop_gradients</span><span class="p">,</span>
+            <span class="n">key_chains</span><span class="o">=</span><span class="n">key_chains</span><span class="p">,</span>
+            <span class="n">to_apply</span><span class="o">=</span><span class="n">to_apply</span><span class="p">,</span>
+            <span class="n">prune_unapplied</span><span class="o">=</span><span class="n">prune_unapplied</span><span class="p">,</span>
+            <span class="n">map_sequences</span><span class="o">=</span><span class="n">map_sequences</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="ContainerWithGradients.optimizer_update"><a class="viewcode-back" href="../../../classes/data_classes/container/gradients/ContainerWithGradients.html#ivy.container.gradients.ContainerWithGradients.optimizer_update">[docs]</a>    <span class="k">def</span> <span class="nf">optimizer_update</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">:</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">,</span>
+        <span class="n">effective_grad</span><span class="p">,</span>
+        <span class="n">lr</span><span class="p">,</span>
+        <span class="n">inplace</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">stop_gradients</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">key_chains</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">to_apply</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="n">prune_unapplied</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">map_sequences</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">static_optimizer_update</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="n">effective_grad</span><span class="p">,</span>
+            <span class="n">lr</span><span class="p">,</span>
+            <span class="n">inplace</span><span class="p">,</span>
+            <span class="n">stop_gradients</span><span class="p">,</span>
+            <span class="n">key_chains</span><span class="p">,</span>
+            <span class="n">to_apply</span><span class="p">,</span>
+            <span class="n">prune_unapplied</span><span class="p">,</span>
+            <span class="n">map_sequences</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="ContainerWithGradients.static_gradient_descent_update"><a class="viewcode-back" href="../../../classes/data_classes/container/gradients/ContainerWithGradients.html#ivy.container.gradients.ContainerWithGradients.static_gradient_descent_update">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">static_gradient_descent_update</span><span class="p">(</span>
+        <span class="n">w</span><span class="p">,</span>
+        <span class="n">dcdw</span><span class="p">,</span>
+        <span class="n">lr</span><span class="p">,</span>
+        <span class="n">inplace</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">stop_gradients</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">key_chains</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">to_apply</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="n">prune_unapplied</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">map_sequences</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">:</span>
+
+        <span class="k">return</span> <span class="n">ContainerBase</span><span class="o">.</span><span class="n">multi_map_in_static_method</span><span class="p">(</span>
+            <span class="s2">&quot;gradient_descent_update&quot;</span><span class="p">,</span>
+            <span class="n">w</span><span class="p">,</span>
+            <span class="n">dcdw</span><span class="p">,</span>
+            <span class="n">lr</span><span class="p">,</span>
+            <span class="n">inplace</span><span class="o">=</span><span class="n">inplace</span><span class="p">,</span>
+            <span class="n">stop_gradients</span><span class="o">=</span><span class="n">stop_gradients</span><span class="p">,</span>
+            <span class="n">key_chains</span><span class="o">=</span><span class="n">key_chains</span><span class="p">,</span>
+            <span class="n">to_apply</span><span class="o">=</span><span class="n">to_apply</span><span class="p">,</span>
+            <span class="n">prune_unapplied</span><span class="o">=</span><span class="n">prune_unapplied</span><span class="p">,</span>
+            <span class="n">map_sequences</span><span class="o">=</span><span class="n">map_sequences</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="ContainerWithGradients.gradient_descent_update"><a class="viewcode-back" href="../../../classes/data_classes/container/gradients/ContainerWithGradients.html#ivy.container.gradients.ContainerWithGradients.gradient_descent_update">[docs]</a>    <span class="k">def</span> <span class="nf">gradient_descent_update</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">dcdw</span><span class="p">,</span>
+        <span class="n">lr</span><span class="p">,</span>
+        <span class="n">inplace</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">stop_gradients</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">key_chains</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">to_apply</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="n">prune_unapplied</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">map_sequences</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">static_gradient_descent_update</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="n">dcdw</span><span class="p">,</span>
+            <span class="n">lr</span><span class="p">,</span>
+            <span class="n">inplace</span><span class="p">,</span>
+            <span class="n">stop_gradients</span><span class="p">,</span>
+            <span class="n">key_chains</span><span class="p">,</span>
+            <span class="n">to_apply</span><span class="p">,</span>
+            <span class="n">prune_unapplied</span><span class="p">,</span>
+            <span class="n">map_sequences</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="ContainerWithGradients.static_lars_update"><a class="viewcode-back" href="../../../classes/data_classes/container/gradients/ContainerWithGradients.html#ivy.container.gradients.ContainerWithGradients.static_lars_update">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">static_lars_update</span><span class="p">(</span>
+        <span class="n">w</span><span class="p">,</span>
+        <span class="n">dcdw</span><span class="p">,</span>
+        <span class="n">lr</span><span class="p">,</span>
+        <span class="n">decay_lambda</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+        <span class="n">inplace</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">stop_gradients</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">key_chains</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">to_apply</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="n">prune_unapplied</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">map_sequences</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">ContainerBase</span><span class="o">.</span><span class="n">multi_map_in_static_method</span><span class="p">(</span>
+            <span class="s2">&quot;lars_update&quot;</span><span class="p">,</span>
+            <span class="n">w</span><span class="p">,</span>
+            <span class="n">dcdw</span><span class="p">,</span>
+            <span class="n">lr</span><span class="p">,</span>
+            <span class="n">decay_lambda</span><span class="o">=</span><span class="n">decay_lambda</span><span class="p">,</span>
+            <span class="n">inplace</span><span class="o">=</span><span class="n">inplace</span><span class="p">,</span>
+            <span class="n">stop_gradients</span><span class="o">=</span><span class="n">stop_gradients</span><span class="p">,</span>
+            <span class="n">key_chains</span><span class="o">=</span><span class="n">key_chains</span><span class="p">,</span>
+            <span class="n">to_apply</span><span class="o">=</span><span class="n">to_apply</span><span class="p">,</span>
+            <span class="n">prune_unapplied</span><span class="o">=</span><span class="n">prune_unapplied</span><span class="p">,</span>
+            <span class="n">map_sequences</span><span class="o">=</span><span class="n">map_sequences</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="ContainerWithGradients.lars_update"><a class="viewcode-back" href="../../../classes/data_classes/container/gradients/ContainerWithGradients.html#ivy.container.gradients.ContainerWithGradients.lars_update">[docs]</a>    <span class="k">def</span> <span class="nf">lars_update</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">dcdw</span><span class="p">,</span>
+        <span class="n">lr</span><span class="p">,</span>
+        <span class="n">decay_lambda</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+        <span class="n">inplace</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">stop_gradients</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">key_chains</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">to_apply</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="n">prune_unapplied</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">map_sequences</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">static_lars_update</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="n">dcdw</span><span class="p">,</span>
+            <span class="n">lr</span><span class="p">,</span>
+            <span class="n">decay_lambda</span><span class="p">,</span>
+            <span class="n">inplace</span><span class="p">,</span>
+            <span class="n">stop_gradients</span><span class="p">,</span>
+            <span class="n">key_chains</span><span class="p">,</span>
+            <span class="n">to_apply</span><span class="p">,</span>
+            <span class="n">prune_unapplied</span><span class="p">,</span>
+            <span class="n">map_sequences</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="ContainerWithGradients.static_adam_update"><a class="viewcode-back" href="../../../classes/data_classes/container/gradients/ContainerWithGradients.html#ivy.container.gradients.ContainerWithGradients.static_adam_update">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">static_adam_update</span><span class="p">(</span>
+        <span class="n">w</span><span class="p">,</span>
+        <span class="n">dcdw</span><span class="p">,</span>
+        <span class="n">lr</span><span class="p">,</span>
+        <span class="n">mw_tm1</span><span class="p">,</span>
+        <span class="n">vw_tm1</span><span class="p">,</span>
+        <span class="n">step</span><span class="p">,</span>
+        <span class="n">beta1</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span>
+        <span class="n">beta2</span><span class="o">=</span><span class="mf">0.999</span><span class="p">,</span>
+        <span class="n">epsilon</span><span class="o">=</span><span class="mf">1e-7</span><span class="p">,</span>
+        <span class="n">inplace</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">stop_gradients</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">key_chains</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">to_apply</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="n">prune_unapplied</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">map_sequences</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">ContainerBase</span><span class="o">.</span><span class="n">multi_map_in_static_method</span><span class="p">(</span>
+            <span class="s2">&quot;adam_update&quot;</span><span class="p">,</span>
+            <span class="n">w</span><span class="p">,</span>
+            <span class="n">dcdw</span><span class="p">,</span>
+            <span class="n">lr</span><span class="p">,</span>
+            <span class="n">mw_tm1</span><span class="o">=</span><span class="n">mw_tm1</span><span class="p">,</span>
+            <span class="n">vw_tm1</span><span class="o">=</span><span class="n">vw_tm1</span><span class="p">,</span>
+            <span class="n">step</span><span class="o">=</span><span class="n">step</span><span class="p">,</span>
+            <span class="n">beta1</span><span class="o">=</span><span class="n">beta1</span><span class="p">,</span>
+            <span class="n">beta2</span><span class="o">=</span><span class="n">beta2</span><span class="p">,</span>
+            <span class="n">epsilon</span><span class="o">=</span><span class="n">epsilon</span><span class="p">,</span>
+            <span class="n">inplace</span><span class="o">=</span><span class="n">inplace</span><span class="p">,</span>
+            <span class="n">stop_gradients</span><span class="o">=</span><span class="n">stop_gradients</span><span class="p">,</span>
+            <span class="n">key_chains</span><span class="o">=</span><span class="n">key_chains</span><span class="p">,</span>
+            <span class="n">to_apply</span><span class="o">=</span><span class="n">to_apply</span><span class="p">,</span>
+            <span class="n">prune_unapplied</span><span class="o">=</span><span class="n">prune_unapplied</span><span class="p">,</span>
+            <span class="n">map_sequences</span><span class="o">=</span><span class="n">map_sequences</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="ContainerWithGradients.adam_update"><a class="viewcode-back" href="../../../classes/data_classes/container/gradients/ContainerWithGradients.html#ivy.container.gradients.ContainerWithGradients.adam_update">[docs]</a>    <span class="k">def</span> <span class="nf">adam_update</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">dcdw</span><span class="p">,</span>
+        <span class="n">lr</span><span class="p">,</span>
+        <span class="n">mw_tm1</span><span class="p">,</span>
+        <span class="n">vw_tm1</span><span class="p">,</span>
+        <span class="n">step</span><span class="p">,</span>
+        <span class="n">beta1</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span>
+        <span class="n">beta2</span><span class="o">=</span><span class="mf">0.999</span><span class="p">,</span>
+        <span class="n">epsilon</span><span class="o">=</span><span class="mf">1e-7</span><span class="p">,</span>
+        <span class="n">inplace</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">stop_gradients</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">key_chains</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">to_apply</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="n">prune_unapplied</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">map_sequences</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">static_adam_update</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="n">dcdw</span><span class="p">,</span>
+            <span class="n">lr</span><span class="p">,</span>
+            <span class="n">mw_tm1</span><span class="p">,</span>
+            <span class="n">vw_tm1</span><span class="p">,</span>
+            <span class="n">step</span><span class="p">,</span>
+            <span class="n">beta1</span><span class="p">,</span>
+            <span class="n">beta2</span><span class="p">,</span>
+            <span class="n">epsilon</span><span class="p">,</span>
+            <span class="n">inplace</span><span class="p">,</span>
+            <span class="n">stop_gradients</span><span class="p">,</span>
+            <span class="n">key_chains</span><span class="p">,</span>
+            <span class="n">to_apply</span><span class="p">,</span>
+            <span class="n">prune_unapplied</span><span class="p">,</span>
+            <span class="n">map_sequences</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="ContainerWithGradients.static_lamb_update"><a class="viewcode-back" href="../../../classes/data_classes/container/gradients/ContainerWithGradients.html#ivy.container.gradients.ContainerWithGradients.static_lamb_update">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">static_lamb_update</span><span class="p">(</span>
+        <span class="n">w</span><span class="p">,</span>
+        <span class="n">dcdw</span><span class="p">,</span>
+        <span class="n">lr</span><span class="p">,</span>
+        <span class="n">mw_tm1</span><span class="p">,</span>
+        <span class="n">vw_tm1</span><span class="p">,</span>
+        <span class="n">step</span><span class="p">,</span>
+        <span class="n">beta1</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span>
+        <span class="n">beta2</span><span class="o">=</span><span class="mf">0.999</span><span class="p">,</span>
+        <span class="n">epsilon</span><span class="o">=</span><span class="mf">1e-7</span><span class="p">,</span>
+        <span class="n">max_trust_ratio</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+        <span class="n">decay_lambda</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+        <span class="n">inplace</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">stop_gradients</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">key_chains</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">to_apply</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="n">prune_unapplied</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">map_sequences</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">ContainerBase</span><span class="o">.</span><span class="n">multi_map_in_static_method</span><span class="p">(</span>
+            <span class="s2">&quot;lamb_update&quot;</span><span class="p">,</span>
+            <span class="n">w</span><span class="p">,</span>
+            <span class="n">dcdw</span><span class="p">,</span>
+            <span class="n">lr</span><span class="p">,</span>
+            <span class="n">mw_tm1</span><span class="o">=</span><span class="n">mw_tm1</span><span class="p">,</span>
+            <span class="n">vw_tm1</span><span class="o">=</span><span class="n">vw_tm1</span><span class="p">,</span>
+            <span class="n">step</span><span class="o">=</span><span class="n">step</span><span class="p">,</span>
+            <span class="n">beta1</span><span class="o">=</span><span class="n">beta1</span><span class="p">,</span>
+            <span class="n">beta2</span><span class="o">=</span><span class="n">beta2</span><span class="p">,</span>
+            <span class="n">epsilon</span><span class="o">=</span><span class="n">epsilon</span><span class="p">,</span>
+            <span class="n">max_trust_ratio</span><span class="o">=</span><span class="n">max_trust_ratio</span><span class="p">,</span>
+            <span class="n">decay_lambda</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+            <span class="n">inplace</span><span class="o">=</span><span class="n">inplace</span><span class="p">,</span>
+            <span class="n">stop_gradients</span><span class="o">=</span><span class="n">stop_gradients</span><span class="p">,</span>
+            <span class="n">key_chains</span><span class="o">=</span><span class="n">key_chains</span><span class="p">,</span>
+            <span class="n">to_apply</span><span class="o">=</span><span class="n">to_apply</span><span class="p">,</span>
+            <span class="n">prune_unapplied</span><span class="o">=</span><span class="n">prune_unapplied</span><span class="p">,</span>
+            <span class="n">map_sequences</span><span class="o">=</span><span class="n">map_sequences</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="ContainerWithGradients.lamb_update"><a class="viewcode-back" href="../../../classes/data_classes/container/gradients/ContainerWithGradients.html#ivy.container.gradients.ContainerWithGradients.lamb_update">[docs]</a>    <span class="k">def</span> <span class="nf">lamb_update</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">dcdw</span><span class="p">,</span>
+        <span class="n">lr</span><span class="p">,</span>
+        <span class="n">mw_tm1</span><span class="p">,</span>
+        <span class="n">vw_tm1</span><span class="p">,</span>
+        <span class="n">step</span><span class="p">,</span>
+        <span class="n">beta1</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span>
+        <span class="n">beta2</span><span class="o">=</span><span class="mf">0.999</span><span class="p">,</span>
+        <span class="n">epsilon</span><span class="o">=</span><span class="mf">1e-7</span><span class="p">,</span>
+        <span class="n">max_trust_ratio</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+        <span class="n">decay_lambda</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+        <span class="n">inplace</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">stop_gradients</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">key_chains</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">to_apply</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="n">prune_unapplied</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">map_sequences</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">static_lamb_update</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="n">dcdw</span><span class="p">,</span>
+            <span class="n">lr</span><span class="p">,</span>
+            <span class="n">mw_tm1</span><span class="p">,</span>
+            <span class="n">vw_tm1</span><span class="p">,</span>
+            <span class="n">step</span><span class="p">,</span>
+            <span class="n">beta1</span><span class="p">,</span>
+            <span class="n">beta2</span><span class="p">,</span>
+            <span class="n">epsilon</span><span class="p">,</span>
+            <span class="n">max_trust_ratio</span><span class="p">,</span>
+            <span class="n">decay_lambda</span><span class="p">,</span>
+            <span class="n">inplace</span><span class="p">,</span>
+            <span class="n">stop_gradients</span><span class="p">,</span>
+            <span class="n">key_chains</span><span class="p">,</span>
+            <span class="n">to_apply</span><span class="p">,</span>
+            <span class="n">prune_unapplied</span><span class="p">,</span>
+            <span class="n">map_sequences</span><span class="p">,</span>
+        <span class="p">)</span></div></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020, Ivy Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
