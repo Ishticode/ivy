@@ -143,13 +143,19 @@
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>func</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code>) – Function to be mapped over additional axes.</p></li>
-<li><p><strong>in_axes</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">Sequence</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>], <code class="xref py py-class docutils literal notranslate"><span class="pre">Sequence</span></code>[<code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]]) – An integer, None, or (nested) standard Python container (tuple/list) thereof specifying which (default: <code class="docutils literal notranslate"><span class="pre">0</span></code>)
-input array axes to map over.If each positional argument to fun is an array, then in_axes can be
-an integer, a None, or a tuple of integers and Nones with length equal to the number of positional
-arguments to fun. An integer or None indicates which array axis to map over for all arguments
-(with None indicating not to map any axis), and a tuple indicates which axis to map for each
-corresponding positional argument. Axis integers must be in the range [-ndim, ndim) for each array,
-where ndim is the number of dimensions (axes) of the corresponding input array.</p></li>
+<li><p><strong>in_axes</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">Sequence</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>], <code class="xref py py-class docutils literal notranslate"><span class="pre">Sequence</span></code>[<code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]]) – An integer, None, or (nested) standard Python container (default: <code class="docutils literal notranslate"><span class="pre">0</span></code>)
+(tuple/list) thereof specifying which input array
+axes to map over.If each positional argument to fun
+is an array, then in_axes can be an integer, a None,
+or a tuple of integers and Nones with length equal
+to the number of positional arguments to fun. An
+integer or None indicates which array axis to map
+over for all arguments (with None indicating not to map any axis),
+and a tuple indicates which axis to map for each
+corresponding positional argument. Axis integers must
+be in the range [-ndim, ndim) for each array,
+where ndim is the number of dimensions (axes) of the
+corresponding input array.</p></li>
 <li><p><strong>out_axes</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>]) – An integer indicating where the mapped axis should appear in the output. (default: <code class="docutils literal notranslate"><span class="pre">0</span></code>)</p></li>
 </ul>
 </dd>
@@ -158,11 +164,14 @@ where ndim is the number of dimensions (axes) of the corresponding input array.<
 </dd>
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p><ul class="simple">
-<li><p><em>ret</em> – Batched/vectorized version of func with arguments that correspond to those of func, but
-with extra array axes at positions indicated by in_axes, and a return value that corresponds
-to that of fun, but with extra array axes at positions indicated by out_axes.</p></li>
+<li><p><em>ret</em> – Batched/vectorized version of func with arguments
+that correspond to those of func, but with extra
+array axes at positions indicated by in_axes,
+and a return value that corresponds
+to that of fun, but with extra array axes
+at positions indicated by out_axes.</p></li>
 <li><p><em>This docstring is a summarised version of the</em></p></li>
-<li><p><strong>`docstring &lt;https</strong> (//jax.readthedocs.io/en/latest/_autosummary/jax.vmap.html#jax-vmap&gt;`_ for)</p></li>
+<li><p><strong>`docstring &lt;https</strong> (//jax.readthedocs.io/en/latest/_autosummary/jax.vmap.html#jax-vmap&gt;`_ for  )</p></li>
 <li><p><em>vmap from JAX documentation.</em></p></li>
 </ul>
 </p>
