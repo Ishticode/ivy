@@ -65,11 +65,12 @@
 <li class="toctree-l2"><a class="reference internal" href="6_data_types.html">Data Types</a></li>
 <li class="toctree-l2"><a class="reference internal" href="7_devices.html">Devices</a></li>
 <li class="toctree-l2"><a class="reference internal" href="8_inplace_updates.html">Inplace Updates</a></li>
-<li class="toctree-l2"><a class="reference internal" href="9_function_arguments.html">Function Arguments</a></li>
-<li class="toctree-l2"><a class="reference internal" href="10_docstrings.html">Docstrings</a></li>
-<li class="toctree-l2"><a class="reference internal" href="11_docstring_examples.html">Docstring Examples</a></li>
-<li class="toctree-l2"><a class="reference internal" href="12_array_api_tests.html">Array API Tests</a></li>
-<li class="toctree-l2"><a class="reference internal" href="13_ivy_tests.html">Ivy Tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="9_formatting.html">Formatting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10_function_arguments.html">Function Arguments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="11_docstrings.html">Docstrings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="12_docstring_examples.html">Docstring Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="13_array_api_tests.html">Array API Tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="14_ivy_tests.html">Ivy Tests</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
@@ -97,7 +98,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../functional/ivy/set.html">Set</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../functional/ivy/sorting.html">Sorting</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../functional/ivy/statistical.html">Statistical</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../functional/ivy/transformations.html">Transformations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../functional/ivy/utility.html">Utility</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Data Classes</span></p>
@@ -108,13 +108,13 @@
 <p class="caption" role="heading"><span class="caption-text">Framework Classes</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../stateful/converters.html">Converters</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../stateful/activations.html">Activations</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../stateful/layers.html">Layers</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../stateful/optimizers.html">Optimizers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../stateful/sequential.html">Sequential</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../stateful/norms.html">Norms</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../stateful/initializers.html">Initializers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../stateful/layers.html">Layers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../stateful/norms.html">Norms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../stateful/optimizers.html">Optimizers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../stateful/module.html">Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../stateful/activations.html">Activations</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Docs</span></p>
 <ul>
@@ -194,9 +194,9 @@ implementation.</p>
 </pre></div>
 </div>
 <p>The reason that the Ivy implementation has type hint <code class="code docutils literal notranslate"><span class="pre">Union[ivy.Array,</span> <span class="pre">ivy.NativeArray]</span></code> but PyTorch
-implementation has <code class="code docutils literal notranslate"><span class="pre">torch.Tensor</span></code> is explained in the <a class="reference internal" href="9_function_arguments.html#arrays"><span class="std std-ref">Arrays</span></a> section.
+implementation has <code class="code docutils literal notranslate"><span class="pre">torch.Tensor</span></code> is explained in the <a class="reference internal" href="4_arrays.html#arrays"><span class="std std-ref">Arrays</span></a> section.
 Likewise, the reason that the <code class="code docutils literal notranslate"><span class="pre">out</span></code> argument in the Ivy implementation has array type hint <code class="code docutils literal notranslate"><span class="pre">ivy.Array</span></code>
-whereas <code class="code docutils literal notranslate"><span class="pre">x</span></code> has <code class="code docutils literal notranslate"><span class="pre">Union[ivy.Array,</span> <span class="pre">ivy.NativeArray]</span></code> is also explained in the <a class="reference internal" href="9_function_arguments.html#arrays"><span class="std std-ref">Arrays</span></a> section.</p>
+whereas <code class="code docutils literal notranslate"><span class="pre">x</span></code> has <code class="code docutils literal notranslate"><span class="pre">Union[ivy.Array,</span> <span class="pre">ivy.NativeArray]</span></code> is also explained in the <a class="reference internal" href="4_arrays.html#arrays"><span class="std std-ref">Arrays</span></a> section.</p>
 </section>
 <section id="compositional-functions">
 <h2>Compositional Functions<a class="headerlink" href="#compositional-functions" title="Permalink to this heading"></a></h2>
@@ -309,7 +309,10 @@ Feel free to have a look through all of the <a class="reference external" href="
 <p>If you’re ever unsure of how best to proceed,
 please feel free to engage with the <a class="reference external" href="https://github.com/unifyai/ivy/discussions/1312">function types discussion</a>,
 or reach out on <a class="reference external" href="https://discord.gg/ZVQdvbzNQJ">discord</a> in the <a class="reference external" href="https://discord.com/channels/799879767196958751/982737839861145630">function types channel</a>!</p>
-</section>
+<p><strong>Video</strong></p>
+<iframe width="420" height="315"
+src="https://www.youtube.com/embed/mWYhQRu1Vuk" class="video">
+</iframe></section>
 </section>
 
 
