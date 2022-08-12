@@ -46,6 +46,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../contributing.html">Contributing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../deep_dive.html">Deep Dive</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary.html">Glossary</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Functions</span></p>
 <ul>
@@ -126,7 +127,7 @@
            <div itemprop="articleBody">
              
   <h1>Source code for ivy.container.gradients</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Union</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Dict</span>
+<span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Union</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Dict</span>
 
 <span class="c1"># local</span>
 <span class="kn">import</span> <span class="nn">ivy</span>
@@ -135,6 +136,116 @@
 
 <span class="c1"># noinspection PyMissingConstructor</span>
 <div class="viewcode-block" id="ContainerWithGradients"><a class="viewcode-back" href="../../../data_classes/container/gradients/ContainerWithGradients.html#ivy.container.gradients.ContainerWithGradients">[docs]</a><span class="k">class</span> <span class="nc">ContainerWithGradients</span><span class="p">(</span><span class="n">ContainerBase</span><span class="p">):</span>
+<div class="viewcode-block" id="ContainerWithGradients.static_variable"><a class="viewcode-back" href="../../../data_classes/container/gradients/ContainerWithGradients.html#ivy.container.gradients.ContainerWithGradients.static_variable">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">static_variable</span><span class="p">(</span>
+        <span class="n">x</span><span class="p">:</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">,</span>
+        <span class="n">key_chains</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">bool</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">to_apply</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="n">prune_unapplied</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">map_sequences</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        ivy.Container static method variant of ivy.variable. This method simply wraps</span>
+<span class="sd">        the function, and so the docstring for ivy.variable also applies to this</span>
+<span class="sd">        method with minimal changes.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        x</span>
+<span class="sd">            An ivy container.</span>
+<span class="sd">        key_chains</span>
+<span class="sd">            The key-chains to apply or not apply the method to. Default is None.</span>
+<span class="sd">        to_apply</span>
+<span class="sd">            If True, the method will be applied to key_chains, otherwise key_chains</span>
+<span class="sd">            will be skipped. Default is True.</span>
+<span class="sd">        prune_unapplied</span>
+<span class="sd">            Whether to prune key_chains for which the function was not applied.</span>
+<span class="sd">            Default is False.</span>
+<span class="sd">        map_sequences</span>
+<span class="sd">            Whether to also map method to sequences (lists, tuples). Default is False.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        ret</span>
+<span class="sd">            A container with ivy variables, that supports gradient computation.</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        With :code:`ivy.Container` input:</span>
+
+<span class="sd">        &gt;&gt;&gt; ivy.set_backend(&#39;torch&#39;)</span>
+<span class="sd">        &gt;&gt;&gt; x = ivy.Container(a=ivy.array([1., 2.]), b=ivy.array([3., 4.]))</span>
+<span class="sd">        &gt;&gt;&gt; y = ivy.Container.static_variable(x)</span>
+<span class="sd">        &gt;&gt;&gt; y</span>
+<span class="sd">        {</span>
+<span class="sd">            a: ivy.array([1., 2.]),</span>
+<span class="sd">            b: ivy.array([3., 4.])</span>
+<span class="sd">        }</span>
+<span class="sd">        &gt;&gt;&gt; ivy.unset_backend()</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">ContainerBase</span><span class="o">.</span><span class="n">multi_map_in_static_method</span><span class="p">(</span>
+            <span class="s2">&quot;variable&quot;</span><span class="p">,</span>
+            <span class="n">x</span><span class="p">,</span>
+            <span class="n">key_chains</span><span class="o">=</span><span class="n">key_chains</span><span class="p">,</span>
+            <span class="n">to_apply</span><span class="o">=</span><span class="n">to_apply</span><span class="p">,</span>
+            <span class="n">prune_unapplied</span><span class="o">=</span><span class="n">prune_unapplied</span><span class="p">,</span>
+            <span class="n">map_sequences</span><span class="o">=</span><span class="n">map_sequences</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="ContainerWithGradients.variable"><a class="viewcode-back" href="../../../data_classes/container/gradients/ContainerWithGradients.html#ivy.container.gradients.ContainerWithGradients.variable">[docs]</a>    <span class="k">def</span> <span class="nf">variable</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">:</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">,</span>
+        <span class="n">key_chains</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">bool</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">to_apply</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="n">prune_unapplied</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">map_sequences</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        ivy.Container instance method variant of ivy.variable. This method simply</span>
+<span class="sd">        wraps the function, and so the docstring for ivy.variable also applies to</span>
+<span class="sd">        this method with minimal changes.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        self</span>
+<span class="sd">            An ivy container.</span>
+<span class="sd">        key_chains</span>
+<span class="sd">            The key-chains to apply or not apply the method to. Default is None.</span>
+<span class="sd">        to_apply</span>
+<span class="sd">            If True, the method will be applied to key_chains, otherwise key_chains</span>
+<span class="sd">            will be skipped. Default is True.</span>
+<span class="sd">        prune_unapplied</span>
+<span class="sd">            Whether to prune key_chains for which the function was not applied.</span>
+<span class="sd">            Default is False.</span>
+<span class="sd">        map_sequences</span>
+<span class="sd">            Whether to also map method to sequences (lists, tuples). Default is False.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        ret</span>
+<span class="sd">            A container with ivy variables, that supports gradient computation.</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        With :code:`ivy.Container` input:</span>
+
+<span class="sd">        &gt;&gt;&gt; ivy.set_backend(&#39;jax&#39;)</span>
+<span class="sd">        &gt;&gt;&gt; x = ivy.Container(a=ivy.array([0.3, 1.]), b=ivy.array([-1., 2.2]))</span>
+<span class="sd">        &gt;&gt;&gt; y = x.variable()</span>
+<span class="sd">        &gt;&gt;&gt; y</span>
+<span class="sd">        {</span>
+<span class="sd">            a: ivy.array([0.3, 1.]),</span>
+<span class="sd">            b: ivy.array([-1., 2.2])</span>
+<span class="sd">        }</span>
+<span class="sd">        &gt;&gt;&gt; ivy.unset_backend()</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">static_variable</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="n">key_chains</span><span class="o">=</span><span class="n">key_chains</span><span class="p">,</span>
+            <span class="n">to_apply</span><span class="o">=</span><span class="n">to_apply</span><span class="p">,</span>
+            <span class="n">prune_unapplied</span><span class="o">=</span><span class="n">prune_unapplied</span><span class="p">,</span>
+            <span class="n">map_sequences</span><span class="o">=</span><span class="n">map_sequences</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
 <div class="viewcode-block" id="ContainerWithGradients.static_is_variable"><a class="viewcode-back" href="../../../data_classes/container/gradients/ContainerWithGradients.html#ivy.container.gradients.ContainerWithGradients.static_is_variable">[docs]</a>    <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">static_is_variable</span><span class="p">(</span>
         <span class="n">x</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">],</span>
@@ -270,6 +381,27 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">static_is_variable</span><span class="p">(</span>
             <span class="bp">self</span><span class="p">,</span> <span class="n">exclusive</span><span class="p">,</span> <span class="n">key_chains</span><span class="p">,</span> <span class="n">to_apply</span><span class="p">,</span> <span class="n">prune_unapplied</span><span class="p">,</span> <span class="n">map_sequences</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="ContainerWithGradients.static_execute_with_gradients"><a class="viewcode-back" href="../../../data_classes/container/gradients/ContainerWithGradients.html#ivy.container.gradients.ContainerWithGradients.static_execute_with_gradients">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">static_execute_with_gradients</span><span class="p">(</span>
+        <span class="n">func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">,</span>
+        <span class="n">xs</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">],</span>
+        <span class="n">retain_grads</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">key_chains</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">to_apply</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="n">prune_unapplied</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">map_sequences</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="k">return</span> <span class="n">ContainerBase</span><span class="o">.</span><span class="n">multi_map_in_static_method</span><span class="p">(</span>
+            <span class="s2">&quot;execute_with_gradients&quot;</span><span class="p">,</span>
+            <span class="n">func</span><span class="p">,</span>
+            <span class="n">xs</span><span class="p">,</span>
+            <span class="n">retain_grads</span><span class="o">=</span><span class="n">retain_grads</span><span class="p">,</span>
+            <span class="n">key_chains</span><span class="o">=</span><span class="n">key_chains</span><span class="p">,</span>
+            <span class="n">to_apply</span><span class="o">=</span><span class="n">to_apply</span><span class="p">,</span>
+            <span class="n">prune_unapplied</span><span class="o">=</span><span class="n">prune_unapplied</span><span class="p">,</span>
+            <span class="n">map_sequences</span><span class="o">=</span><span class="n">map_sequences</span><span class="p">,</span>
         <span class="p">)</span></div>
 
 <div class="viewcode-block" id="ContainerWithGradients.static_adam_step"><a class="viewcode-back" href="../../../data_classes/container/gradients/ContainerWithGradients.html#ivy.container.gradients.ContainerWithGradients.static_adam_step">[docs]</a>    <span class="nd">@staticmethod</span>
@@ -450,9 +582,9 @@
 
 <div class="viewcode-block" id="ContainerWithGradients.static_gradient_descent_update"><a class="viewcode-back" href="../../../data_classes/container/gradients/ContainerWithGradients.html#ivy.container.gradients.ContainerWithGradients.static_gradient_descent_update">[docs]</a>    <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">static_gradient_descent_update</span><span class="p">(</span>
-        <span class="n">w</span><span class="p">,</span>
-        <span class="n">dcdw</span><span class="p">,</span>
-        <span class="n">lr</span><span class="p">,</span>
+        <span class="n">w</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">],</span>
+        <span class="n">dcdw</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">],</span>
+        <span class="n">lr</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">],</span>
         <span class="n">inplace</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">stop_gradients</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
         <span class="n">key_chains</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -460,7 +592,79 @@
         <span class="n">prune_unapplied</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
         <span class="n">map_sequences</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        ivy.Container instance method variant of ivy.gradient_descent_update.</span>
+<span class="sd">        This method simply wraps the function, and so the docstring for</span>
+<span class="sd">        ivy.gradient_descent_update also applies to this method</span>
+<span class="sd">        with minimal changes.</span>
 
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        w</span>
+<span class="sd">            Weights of the function to be updated.</span>
+<span class="sd">        dcdw</span>
+<span class="sd">            Derivates of the cost c with respect to the weights ws, [dc/dw for w in ws].</span>
+<span class="sd">        lr</span>
+<span class="sd">            Learning rate(s), the rate(s) at which the weights should be</span>
+<span class="sd">            updated relative to the gradient.</span>
+<span class="sd">        inplace</span>
+<span class="sd">            Whether to perform the operation inplace, for backends which support inplace</span>
+<span class="sd">            variable updates, and handle gradients behind the scenes such as PyTorch.</span>
+<span class="sd">            If the update step should form part of a computation graph</span>
+<span class="sd">            (i.e. higher order optimization), then this should be set to False.</span>
+<span class="sd">            Default is True, provided the backend framework supports it.</span>
+<span class="sd">        stop_gradients</span>
+<span class="sd">            Whether to stop the gradients of the variables after each gradient step.</span>
+<span class="sd">            Default is True.</span>
+<span class="sd">        to_apply</span>
+<span class="sd">            If True, the method will be applied to key_chains, otherwise key_chains</span>
+<span class="sd">            will be skipped. Default is True.</span>
+<span class="sd">        prune_unapplied</span>
+<span class="sd">            Whether to prune key_chains for which the function was not applied.</span>
+<span class="sd">            Default is False.</span>
+<span class="sd">        map_sequences</span>
+<span class="sd">            Whether to also map method to sequences (lists, tuples). Default is False.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        ret</span>
+<span class="sd">            The new weights, following the gradient descent updates.</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        With :code: `ivy.container` inputs:</span>
+
+<span class="sd">        &gt;&gt;&gt; w = ivy.Container(a=ivy.array([1., 2., 3.]),\</span>
+<span class="sd">                              b=ivy.array([3.48, 5.72, 1.98]))</span>
+<span class="sd">        &gt;&gt;&gt; dcdw = ivy.Container(a=ivy.array([0.5, 0.2, 0.1]),\</span>
+<span class="sd">                                 b=ivy.array([2., 3.42, 1.69]))</span>
+<span class="sd">        &gt;&gt;&gt; lr = ivy.array(0.3)</span>
+<span class="sd">        &gt;&gt;&gt; NewWeights = ivy.Container.static_gradient_descent_update(w,\</span>
+<span class="sd">                                                                    dcdw,\</span>
+<span class="sd">                                                                    lr,\</span>
+<span class="sd">                                                                    inplace=False)</span>
+<span class="sd">        &gt;&gt;&gt; print(NewWeights)</span>
+<span class="sd">            {</span>
+<span class="sd">                a: ivy.array([0.85, 1.94, 2.97]),</span>
+<span class="sd">                b: ivy.array([2.88, 4.69, 1.47])</span>
+<span class="sd">            }</span>
+
+<span class="sd">        &gt;&gt;&gt; w = ivy.Container(a=ivy.array([1., 2., 3.]),\</span>
+<span class="sd">                              b=ivy.array([3.48, 5.72, 1.98]))</span>
+<span class="sd">        &gt;&gt;&gt; dcdw = ivy.Container(a=ivy.array([0.5, 0.2, 0.1]),\</span>
+<span class="sd">                                b=ivy.array([2., 3.42, 1.69]))</span>
+<span class="sd">        &gt;&gt;&gt; lr = ivy.Container(a=ivy.array(0.3),\</span>
+<span class="sd">                                b=ivy.array(0.1))</span>
+<span class="sd">        &gt;&gt;&gt; NewWeights = ivy.Container.static_gradient_descent_update(w,\</span>
+<span class="sd">                                                                      dcdw,\</span>
+<span class="sd">                                                                      lr,\</span>
+<span class="sd">                                                                      inplace=False)</span>
+<span class="sd">        &gt;&gt;&gt; print(NewWeights)</span>
+<span class="sd">            {</span>
+<span class="sd">                a: ivy.array([0.85, 1.94, 2.97]),</span>
+<span class="sd">                b: ivy.array([3.28, 5.38, 1.81])</span>
+<span class="sd">            }</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">ContainerBase</span><span class="o">.</span><span class="n">multi_map_in_static_method</span><span class="p">(</span>
             <span class="s2">&quot;gradient_descent_update&quot;</span><span class="p">,</span>
             <span class="n">w</span><span class="p">,</span>
@@ -475,16 +679,85 @@
         <span class="p">)</span></div>
 
 <div class="viewcode-block" id="ContainerWithGradients.gradient_descent_update"><a class="viewcode-back" href="../../../data_classes/container/gradients/ContainerWithGradients.html#ivy.container.gradients.ContainerWithGradients.gradient_descent_update">[docs]</a>    <span class="k">def</span> <span class="nf">gradient_descent_update</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span>
-        <span class="n">dcdw</span><span class="p">,</span>
-        <span class="n">lr</span><span class="p">,</span>
+        <span class="bp">self</span><span class="p">:</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">,</span>
+        <span class="n">dcdw</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">],</span>
+        <span class="n">lr</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">],</span>
         <span class="n">inplace</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">stop_gradients</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
         <span class="n">key_chains</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">to_apply</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
         <span class="n">prune_unapplied</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
         <span class="n">map_sequences</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
-    <span class="p">):</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        ivy.Container instance method variant of ivy.gradient_descent_update.</span>
+<span class="sd">        This method simply wraps the function, and so the docstring for</span>
+<span class="sd">        ivy.gradient_descent_update also applies to this method</span>
+<span class="sd">        with minimal changes.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        self</span>
+<span class="sd">            Weights of the function to be updated.</span>
+<span class="sd">        dcdw</span>
+<span class="sd">            Derivates of the cost c with respect to the weights ws, [dc/dw for w in ws].</span>
+<span class="sd">        lr</span>
+<span class="sd">            Learning rate(s), the rate(s) at which the weights should be</span>
+<span class="sd">            updated relative to the gradient.</span>
+<span class="sd">        inplace</span>
+<span class="sd">            Whether to perform the operation inplace, for backends which support inplace</span>
+<span class="sd">            variable updates, and handle gradients behind the scenes such as PyTorch.</span>
+<span class="sd">            If the update step should form part of a computation graph</span>
+<span class="sd">            (i.e. higher order optimization), then this should be set to False.</span>
+<span class="sd">            Default is True, provided the backend framework supports it.</span>
+<span class="sd">        stop_gradients</span>
+<span class="sd">            Whether to stop the gradients of the variables after each gradient step.</span>
+<span class="sd">            Default is True.</span>
+<span class="sd">        key_chains</span>
+<span class="sd">            The key-chains to apply or not apply the method to. Default is None.</span>
+<span class="sd">        to_apply</span>
+<span class="sd">            If True, the method will be applied to key_chains, otherwise key_chains</span>
+<span class="sd">            will be skipped. Default is True.</span>
+<span class="sd">        prune_unapplied</span>
+<span class="sd">            Whether to prune key_chains for which the function was not applied.</span>
+<span class="sd">            Default is False.</span>
+<span class="sd">        map_sequences</span>
+<span class="sd">            Whether to also map method to sequences (lists, tuples). Default is False.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        ret</span>
+<span class="sd">            The new weights , following the gradient descent updates.</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        With :code: `ivy.container` inputs:</span>
+
+<span class="sd">        &gt;&gt;&gt; w = ivy.Container(a=ivy.array([1., 2., 3.]),\</span>
+<span class="sd">                              b=ivy.array([3.48, 5.72, 1.98]))</span>
+<span class="sd">        &gt;&gt;&gt; dcdw = ivy.Container(a=ivy.array([0.5, 0.2, 0.1]),\</span>
+<span class="sd">                                 b=ivy.array([2., 3.42, 1.69]))</span>
+<span class="sd">        &gt;&gt;&gt; lr = ivy.array(0.3)</span>
+<span class="sd">        &gt;&gt;&gt; NewWeights = w.gradient_descent_update(dcdw, lr, inplace=False)</span>
+<span class="sd">        &gt;&gt;&gt; print(NewWeights)</span>
+<span class="sd">            {</span>
+<span class="sd">                a: ivy.array([0.85, 1.94, 2.97]),</span>
+<span class="sd">                b: ivy.array([2.88,4.69,1.47])</span>
+<span class="sd">            }</span>
+
+<span class="sd">        &gt;&gt;&gt; w = ivy.Container(a=ivy.array([1., 2., 3.]),\</span>
+<span class="sd">                              b=ivy.array([3.48, 5.72, 1.98]))</span>
+<span class="sd">        &gt;&gt;&gt; dcdw = ivy.Container(a=ivy.array([0.5, 0.2, 0.1]),\</span>
+<span class="sd">                                 b=ivy.array([2., 3.42, 1.69]))</span>
+<span class="sd">        &gt;&gt;&gt; lr = ivy.Container(a=ivy.array(0.3),\</span>
+<span class="sd">                                b=ivy.array(0.1))</span>
+<span class="sd">        &gt;&gt;&gt; NewWeights = w.gradient_descent_update(dcdw, lr, inplace=False)</span>
+<span class="sd">        &gt;&gt;&gt; print(NewWeights)</span>
+<span class="sd">            {</span>
+<span class="sd">                a: ivy.array([0.85, 1.94, 2.97]),</span>
+<span class="sd">                b: ivy.array([3.28, 5.38, 1.81])</span>
+<span class="sd">            }</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">static_gradient_descent_update</span><span class="p">(</span>
             <span class="bp">self</span><span class="p">,</span>
             <span class="n">dcdw</span><span class="p">,</span>
@@ -699,6 +972,110 @@
             <span class="n">to_apply</span><span class="p">,</span>
             <span class="n">prune_unapplied</span><span class="p">,</span>
             <span class="n">map_sequences</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="ContainerWithGradients.static_stop_gradient"><a class="viewcode-back" href="../../../data_classes/container/gradients/ContainerWithGradients.html#ivy.container.gradients.ContainerWithGradients.static_stop_gradient">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">static_stop_gradient</span><span class="p">(</span>
+        <span class="n">x</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">],</span>
+        <span class="n">preserve_type</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="n">key_chains</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">to_apply</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="n">prune_unapplied</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">map_sequences</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="o">*</span><span class="p">,</span>
+        <span class="n">out</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        ivy.Container static method variant of ivy.stop_gradient. This method simply</span>
+<span class="sd">        wraps the function, and so the docstring for ivy.stop_gradient also applies</span>
+<span class="sd">        to this method with minimal changes.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        x</span>
+<span class="sd">            Array or Container for which to stop the gradient.</span>
+<span class="sd">        preserve_type</span>
+<span class="sd">            Whether to preserve the input type (ivy.Variable or ivy.Array),</span>
+<span class="sd">            otherwise an array is always returned. Default is True.</span>
+<span class="sd">        key_chains</span>
+<span class="sd">            The key-chains to apply or not apply the method to. Default is None.</span>
+<span class="sd">        to_apply</span>
+<span class="sd">            If True, the method will be applied to key_chains, otherwise key_chains</span>
+<span class="sd">            will be skipped. Default is True.</span>
+<span class="sd">        prune_unapplied</span>
+<span class="sd">            Whether to prune key_chains for which the function was not applied.</span>
+<span class="sd">            Default is False.</span>
+<span class="sd">        map_sequences</span>
+<span class="sd">            Whether to also map method to sequences (lists, tuples). Default is False.</span>
+<span class="sd">        out</span>
+<span class="sd">            optional output array, for writing the result to. It must have a shape</span>
+<span class="sd">            that the inputs broadcast to.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        ret</span>
+<span class="sd">            The same array x, but with no gradient information.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">ContainerBase</span><span class="o">.</span><span class="n">multi_map_in_static_method</span><span class="p">(</span>
+            <span class="s2">&quot;stop_gradient&quot;</span><span class="p">,</span>
+            <span class="n">x</span><span class="p">,</span>
+            <span class="n">preserve_type</span><span class="p">,</span>
+            <span class="n">key_chains</span><span class="o">=</span><span class="n">key_chains</span><span class="p">,</span>
+            <span class="n">to_apply</span><span class="o">=</span><span class="n">to_apply</span><span class="p">,</span>
+            <span class="n">prune_unapplied</span><span class="o">=</span><span class="n">prune_unapplied</span><span class="p">,</span>
+            <span class="n">map_sequences</span><span class="o">=</span><span class="n">map_sequences</span><span class="p">,</span>
+            <span class="n">out</span><span class="o">=</span><span class="n">out</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="ContainerWithGradients.stop_gradient"><a class="viewcode-back" href="../../../data_classes/container/gradients/ContainerWithGradients.html#ivy.container.gradients.ContainerWithGradients.stop_gradient">[docs]</a>    <span class="k">def</span> <span class="nf">stop_gradient</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">:</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">,</span>
+        <span class="n">preserve_type</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="n">key_chains</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">to_apply</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="n">prune_unapplied</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">map_sequences</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="o">*</span><span class="p">,</span>
+        <span class="n">out</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        ivy.Container instance method variant of ivy.stop_gradient. This method simply</span>
+<span class="sd">        wraps the function, and so the docstring for ivy.stop_gradient also applies</span>
+<span class="sd">        to this method with minimal changes.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        self</span>
+<span class="sd">            Container for which to stop the gradient.</span>
+<span class="sd">        preserve_type</span>
+<span class="sd">            Whether to preserve the input type (ivy.Variable or ivy.Array),</span>
+<span class="sd">            otherwise an array is always returned. Default is True.</span>
+<span class="sd">        key_chains</span>
+<span class="sd">            The key-chains to apply or not apply the method to. Default is None.</span>
+<span class="sd">        to_apply</span>
+<span class="sd">            If True, the method will be applied to key_chains, otherwise key_chains</span>
+<span class="sd">            will be skipped. Default is True.</span>
+<span class="sd">        prune_unapplied</span>
+<span class="sd">            Whether to prune key_chains for which the function was not applied.</span>
+<span class="sd">            Default is False.</span>
+<span class="sd">        map_sequences</span>
+<span class="sd">            Whether to also map method to sequences (lists, tuples). Default is False.</span>
+<span class="sd">        out</span>
+<span class="sd">            optional output array, for writing the result to. It must have a shape</span>
+<span class="sd">            that the inputs broadcast to.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        ret</span>
+<span class="sd">            The same array x, but with no gradient information.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">static_stop_gradient</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="n">preserve_type</span><span class="p">,</span>
+            <span class="n">key_chains</span><span class="p">,</span>
+            <span class="n">to_apply</span><span class="p">,</span>
+            <span class="n">prune_unapplied</span><span class="p">,</span>
+            <span class="n">map_sequences</span><span class="p">,</span>
+            <span class="n">out</span><span class="o">=</span><span class="n">out</span><span class="p">,</span>
         <span class="p">)</span></div></div>
 </pre></div>
 
@@ -709,7 +1086,7 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2020, Ivy Team.</p>
+    <p>&#169; Copyright 2020-2022, Ivy Team.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

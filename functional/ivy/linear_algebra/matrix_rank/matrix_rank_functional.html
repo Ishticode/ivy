@@ -49,6 +49,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../../contributing.html">Contributing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../deep_dive.html">Deep Dive</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../glossary.html">Glossary</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Functions</span></p>
 <ul class="current">
@@ -76,6 +77,8 @@
 <li class="toctree-l2 current"><a class="reference internal" href="../matrix_rank.html">matrix_rank</a><ul class="current">
 <li class="toctree-l3 current"><a class="current reference internal" href="#">ivy.matrix_rank</a></li>
 <li class="toctree-l3"><a class="reference internal" href="matrix_rank_array.html">ivy.Array.matrix_rank</a></li>
+<li class="toctree-l3"><a class="reference internal" href="matrix_rank_container.html">ivy.Container.matrix_rank</a></li>
+<li class="toctree-l3"><a class="reference internal" href="static_matrix_rank_container.html">ivy.Container.static_matrix_rank</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../matrix_transpose.html">matrix_transpose</a></li>
@@ -196,9 +199,37 @@ data type determined by <span class="xref std std-ref">type-promotion</span> and
 </dd>
 </dl>
 <p class="rubric">Examples</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">2.</span><span class="p">],</span> <span class="p">[</span><span class="mf">3.</span><span class="p">,</span> <span class="mf">4.</span><span class="p">]])</span>
+<p>With :code: ‘ivy.Array’ inputs:</p>
+<p>1. Full Matrix
+&gt;&gt;&gt; x = ivy.array([[1., 2.], [3., 4.]])
+&gt;&gt;&gt; ivy.matrix_rank(x)
+ivy.array(2.)</p>
+<p>2. Rank Deficient Matrix
+&gt;&gt;&gt; x = ivy.array([[1., 0.], [0., 0.]])
+&gt;&gt;&gt; ivy.matrix_rank(x)
+ivy.array(1.)</p>
+<p>3. 1 Dimension - rank 1 unless all 0
+&gt;&gt;&gt; x = ivy.array([[1., 1.])
+&gt;&gt;&gt; ivy.matrix_rank(x)
+ivy.array(1.)</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">ivy</span><span class="o">.</span><span class="n">matrix_rank</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-<span class="go">ivy.array(2)</span>
+<span class="go">ivy.array(0)</span>
+</pre></div>
+</div>
+<p>With :code: ‘ivy.NativeArray’ inputs:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">native_array</span><span class="p">([[</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">2.</span><span class="p">],</span> <span class="p">[</span><span class="mf">3.</span><span class="p">,</span> <span class="mf">4.</span><span class="p">]],</span> <span class="p">[[</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ivy</span><span class="o">.</span><span class="n">matrix_rank</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="go">ivy.array([2., 1.])</span>
+</pre></div>
+</div>
+<p>With :code: ‘ivy.Container’ inputs:
+&gt;&gt;&gt; x = ivy.Container(a = ivy.array([[1., 2.], [3., 4.]]) ,</p>
+<blockquote>
+<div><p>b = ivy.array([[1., 0.], [0., 0.]]))</p>
+</div></blockquote>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">ivy</span><span class="o">.</span><span class="n">matrix_rank</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="go">{a:ivy.array(2.), b:ivy.array(1.)}</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -221,7 +252,7 @@ data type determined by <span class="xref std std-ref">type-promotion</span> and
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2020, Ivy Team.</p>
+    <p>&#169; Copyright 2020-2022, Ivy Team.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

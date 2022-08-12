@@ -49,6 +49,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../contributing.html">Contributing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../deep_dive.html">Deep Dive</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary.html">Glossary</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Functions</span></p>
 <ul class="current">
@@ -65,6 +66,9 @@
 <li class="toctree-l2"><a class="reference internal" href="is_ivy_array.html">is_ivy_array</a></li>
 <li class="toctree-l2"><a class="reference internal" href="is_array.html">is_array</a></li>
 <li class="toctree-l2"><a class="reference internal" href="is_ivy_container.html">is_ivy_container</a></li>
+<li class="toctree-l2"><a class="reference internal" href="set_array_mode.html">set_array_mode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="unset_array_mode.html">unset_array_mode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="get_array_mode.html">get_array_mode</a></li>
 <li class="toctree-l2"><a class="reference internal" href="set_nestable_mode.html">set_nestable_mode</a></li>
 <li class="toctree-l2"><a class="reference internal" href="unset_nestable_mode.html">unset_nestable_mode</a></li>
 <li class="toctree-l2"><a class="reference internal" href="get_nestable_mode.html">get_nestable_mode</a></li>
@@ -130,6 +134,8 @@
 <li class="toctree-l2"><a class="reference internal" href="shape_array_mode.html">shape_array_mode</a></li>
 <li class="toctree-l2"><a class="reference internal" href="get_num_dims.html">get_num_dims</a></li>
 <li class="toctree-l2"><a class="reference internal" href="arg_info.html">arg_info</a></li>
+<li class="toctree-l2"><a class="reference internal" href="function_unsupported_devices_and_dtypes.html">function_unsupported_devices_and_dtypes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="function_supported_devices_and_dtypes.html">function_supported_devices_and_dtypes</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../gradients.html">Gradients</a></li>
@@ -205,14 +211,43 @@
 <h1>try_else_none<a class="headerlink" href="#try-else-none" title="Permalink to this heading"></a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="ivy.functional.ivy.general.try_else_none">
-<span class="sig-prename descclassname">ivy.</span></span><span class="sig-name descname"><span class="pre">try_else_none</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fn</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/ivy/functional/ivy/general.html#try_else_none"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ivy.functional.ivy.general.try_else_none" title="Permalink to this definition"></a></dt>
-<dd><p>Try and return the function, otherwise return None if an exception was raised
-during function execution.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>fn</strong> – Function to try and call and return.</p>
+<span class="sig-prename descclassname">ivy.</span></span><span class="sig-name descname"><span class="pre">try_else_none</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fn</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/ivy/functional/ivy/general.html#try_else_none"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ivy.functional.ivy.general.try_else_none" title="Permalink to this definition"></a></dt>
+<dd><dl class="simple">
+<dt>Try and return the function, otherwise return None</dt><dd><p>if an exception was raised during function execution.</p>
 </dd>
 </dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fn</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code>) – Function to try and call and return.</p></li>
+<li><p><strong>args</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code>) – list of arguments.</p></li>
+<li><p><strong>kwargs</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code>) – dictionay of keyword arguments</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code>]</p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><ul class="simple">
+<li><p><em>Either the function itself or None if an exception was raised</em></p></li>
+<li><p><em>during function execution.</em></p></li>
+</ul>
+</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<p>with: if the function is executed without any exception
+&gt;&gt;&gt; x = ivy.array([1, 2, 3])
+&gt;&gt;&gt; y = ivy.array([4, 5, 6])
+&gt;&gt;&gt; z = ivy.try_else_none(ivy.add,x, y)
+&gt;&gt;&gt; print(z.__name__)
+add</p>
+<p>with: if the function is executed with an exception
+&gt;&gt;&gt; x = ivy.array([1, 2, 3])
+&gt;&gt;&gt; y = ‘hemant’
+&gt;&gt;&gt; z = ivy.try_else_none(ivy.add,x, y)
+&gt;&gt;&gt; print(z)
+None</p>
 </dd></dl>
 
 <div class="line-block">
@@ -233,7 +268,7 @@ during function execution.</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2020, Ivy Team.</p>
+    <p>&#169; Copyright 2020-2022, Ivy Team.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

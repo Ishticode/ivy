@@ -46,6 +46,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../../contributing.html">Contributing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../deep_dive.html">Deep Dive</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../glossary.html">Glossary</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Functions</span></p>
 <ul>
@@ -141,6 +142,8 @@
 <span class="c1"># noinspection PyShadowingBuiltins</span>
 <div class="viewcode-block" id="compile"><a class="viewcode-back" href="../../../../functional/ivy/compilation/compile.html#ivy.functional.ivy.compilation.compile">[docs]</a><span class="k">def</span> <span class="nf">compile</span><span class="p">(</span>
     <span class="n">func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">,</span>
+    <span class="o">/</span><span class="p">,</span>
+    <span class="o">*</span><span class="p">,</span>
     <span class="n">dynamic</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
     <span class="n">example_inputs</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">Any</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">static_argnums</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">[</span><span class="nb">int</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -172,7 +175,11 @@
 <span class="sd">        The handle to the newly compiled function.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">current_backend</span><span class="p">(</span><span class="n">example_inputs</span><span class="p">)</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span>
-        <span class="n">func</span><span class="p">,</span> <span class="n">dynamic</span><span class="p">,</span> <span class="n">example_inputs</span><span class="p">,</span> <span class="n">static_argnums</span><span class="p">,</span> <span class="n">static_argnames</span>
+        <span class="n">func</span><span class="p">,</span>
+        <span class="n">dynamic</span><span class="o">=</span><span class="n">dynamic</span><span class="p">,</span>
+        <span class="n">example_inputs</span><span class="o">=</span><span class="n">example_inputs</span><span class="p">,</span>
+        <span class="n">static_argnums</span><span class="o">=</span><span class="n">static_argnums</span><span class="p">,</span>
+        <span class="n">static_argnames</span><span class="o">=</span><span class="n">static_argnames</span><span class="p">,</span>
     <span class="p">)</span></div>
 </pre></div>
 
@@ -183,7 +190,7 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2020, Ivy Team.</p>
+    <p>&#169; Copyright 2020-2022, Ivy Team.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

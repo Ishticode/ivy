@@ -49,6 +49,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../contributing.html">Contributing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../deep_dive.html">Deep Dive</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary.html">Glossary</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Functions</span></p>
 <ul class="current">
@@ -192,12 +193,40 @@ Default is False.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type</dt>
-<dd class="field-even"><p><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<a class="reference internal" href="../../data_classes/array/array/Array.html#ivy.array.array.Array" title="ivy.array.array.Array"><code class="xref py py-class docutils literal notranslate"><span class="pre">Array</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">NativeArray</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">Iterable</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code>]</p>
+<dd class="field-even"><p><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<a class="reference internal" href="../../data_classes/array/array/Array.html#ivy.array.array.Array" title="ivy.array.array.Array"><code class="xref py py-class docutils literal notranslate"><span class="pre">Array</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">NativeArray</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">Iterable</span></code>]</p>
 </dd>
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p><em>ret</em> – The copied nest.</p>
 </dd>
 </dl>
+<p class="rubric">Examples</p>
+<p>With <code class="code docutils literal notranslate"><span class="pre">ivy.Array</span></code> input:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">nest</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">1.</span><span class="p">,</span><span class="mf">2.</span><span class="p">,</span><span class="mf">3.</span><span class="p">],[</span><span class="mf">7.</span><span class="p">,</span><span class="mf">8.</span><span class="p">,</span><span class="mf">9.</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">copied_nest</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">copy_nest</span><span class="p">(</span><span class="n">nest</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">copied_nest</span><span class="p">)</span>
+<span class="go">ivy.array([[1., 2., 3.],</span>
+<span class="go">        [7., 8., 9.]])</span>
+</pre></div>
+</div>
+<p>With <code class="code docutils literal notranslate"><span class="pre">Iterable</span></code> input:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">nest</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span> <span class="p">[</span><span class="mi">23</span><span class="p">,</span> <span class="mi">24</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">26</span><span class="p">,</span> <span class="mi">27</span><span class="p">]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">copied_nest</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">copy_nest</span><span class="p">(</span><span class="n">nest</span><span class="p">,</span> <span class="n">include_derived</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">copied_nest</span><span class="p">)</span>
+<span class="go">[[1, 2, 3, 4, 5], [23, 24, 25, 26, 27]]</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">nest</span> <span class="o">=</span> <span class="p">([</span><span class="mi">23</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">1337</span><span class="p">],</span> <span class="p">[</span><span class="mi">63</span><span class="p">,</span> <span class="mi">98</span><span class="p">,</span> <span class="mi">6</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">copied_nest</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">copy_nest</span><span class="p">(</span><span class="n">nest</span><span class="p">,</span> <span class="n">to_mutable</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">copied_nest</span><span class="p">)</span>
+<span class="go">[[23, 25, 1337], [63, 98, 6]]</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">nest</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;first&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">23.</span><span class="p">,</span> <span class="mf">24.</span><span class="p">,</span> <span class="mi">25</span><span class="p">],</span> <span class="s1">&#39;second&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">46.</span><span class="p">,</span> <span class="mf">48.</span><span class="p">,</span> <span class="mi">50</span><span class="p">]}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">copied_nest</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">copy_nest</span><span class="p">(</span><span class="n">nest</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">copied_nest</span><span class="p">)</span>
+<span class="go">{&#39;first&#39;: [23.0, 24.0, 25], &#39;second&#39;: [46.0, 48.0, 50]}</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="py function">
@@ -265,8 +294,8 @@ Default is False.</p></li>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>nest</strong> – The nested object to insert into.</p></li>
-<li><p><strong>indices</strong> – A tuple of tuples of indices for the indices at which to insert
+<li><p><strong>nest</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Iterable</span></code>) – The nested object to insert into.</p></li>
+<li><p><strong>indices</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code>) – A tuple of tuples of indices for the indices at which to insert
 values.</p></li>
 <li><p><strong>values</strong> – The new values for inserting.</p></li>
 </ul>
@@ -293,9 +322,54 @@ Default is False.</p></li>
 <dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></p>
 </dd>
 <dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p><em>ret</em> – x following the applicable of fn to each of it’s iterated items.</p>
+<dd class="field-odd"><p><em>ret</em> – x following the application of fn to each of its iterated items.</p>
 </dd>
 </dl>
+<p class="rubric">Examples</p>
+<p>With <code class="code docutils literal notranslate"><span class="pre">int</span></code> inputs:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">special_square</span><span class="p">(</span><span class="n">x</span> <span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span> <span class="p">:</span> <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">results</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">fn</span> <span class="o">=</span> <span class="n">special_square</span><span class="p">,</span>                           <span class="n">constant</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>                           <span class="n">unique</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;x&#39;</span> <span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]},</span>                           <span class="n">mean</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+<span class="go">[1, 4, 9]</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">results</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">fn</span> <span class="o">=</span> <span class="n">special_square</span><span class="p">,</span>                           <span class="n">constant</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>                           <span class="n">unique</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;x&#39;</span><span class="p">:[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">]},</span>                          <span class="n">mean</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+<span class="go">1.6666666666666667</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">special_pow</span><span class="p">(</span><span class="n">x</span><span class="p">:</span><span class="nb">float</span><span class="p">,</span><span class="n">y</span><span class="p">:</span><span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span><span class="nb">float</span> <span class="p">:</span> <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">results</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">fn</span> <span class="o">=</span> <span class="n">special_pow</span><span class="p">,</span>                           <span class="n">constant</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;y&#39;</span><span class="p">:[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]},</span>                           <span class="n">unique</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;x&#39;</span><span class="p">:[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]},</span>                           <span class="n">mean</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+<span class="go">[array([1,1]),</span>
+<span class="go">array([1,2]),</span>
+<span class="go">array([1,3])]</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">results</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">fn</span> <span class="o">=</span> <span class="n">special_pow</span><span class="p">,</span>                           <span class="n">constant</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;y&#39;</span><span class="p">:[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]},</span>                           <span class="n">unique</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;x&#39;</span><span class="p">:[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]},</span>                           <span class="n">mean</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+<span class="go">[1. 2.]</span>
+</pre></div>
+</div>
+<p>With <code class="code docutils literal notranslate"><span class="pre">float</span></code> inputs:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">linear_model</span><span class="p">(</span><span class="n">w</span><span class="p">:</span><span class="nb">float</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span><span class="nb">float</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span><span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span> <span class="k">return</span> <span class="n">w</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="n">b</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">results</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">fn</span> <span class="o">=</span> <span class="n">linear_model</span><span class="p">,</span>                           <span class="n">constant</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;w&#39;</span><span class="p">:</span><span class="mf">10.</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">:</span><span class="mf">1.</span><span class="p">},</span>                           <span class="n">unique</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;x&#39;</span><span class="p">:[</span><span class="mf">0.</span><span class="p">,</span><span class="mf">1.</span><span class="p">,</span><span class="mf">2.</span><span class="p">]},</span>                           <span class="n">mean</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+<span class="go">[1.0, 11.0, 21.0]</span>
+</pre></div>
+</div>
+<p>With <code class="code docutils literal notranslate"><span class="pre">ivy.Array</span></code> inputs:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">results</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">fn</span> <span class="o">=</span> <span class="n">linear_model</span><span class="p">,</span>         <span class="n">constant</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;w&#39;</span><span class="p">:</span><span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.</span><span class="p">,</span><span class="mf">0.</span><span class="p">,</span><span class="mf">1.</span><span class="p">]),</span> <span class="s1">&#39;b&#39;</span><span class="p">:</span><span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.</span><span class="p">,</span><span class="mf">10.</span><span class="p">,</span><span class="mf">100.</span><span class="p">])},</span>         <span class="n">unique</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;x&#39;</span><span class="p">:[</span><span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.</span><span class="p">,</span><span class="mf">1.</span><span class="p">,</span><span class="mf">0.</span><span class="p">]),</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.</span><span class="p">,</span><span class="mf">1.</span><span class="p">,</span><span class="mf">1.</span><span class="p">])]},</span>         <span class="n">mean</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+<span class="go">[ivy.array([0., 10., 100.]),</span>
+<span class="go">ivy.array([1., 10., 101.])]</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">results</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">fn</span> <span class="o">=</span> <span class="n">linear_model</span><span class="p">,</span>         <span class="n">constant</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;w&#39;</span><span class="p">:</span><span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.</span><span class="p">,</span><span class="mf">0.</span><span class="p">,</span><span class="mf">1.</span><span class="p">]),</span> <span class="s1">&#39;b&#39;</span><span class="p">:</span><span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.</span><span class="p">,</span><span class="mf">10.</span><span class="p">,</span><span class="mf">100.</span><span class="p">])},</span>         <span class="n">unique</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;x&#39;</span><span class="p">:[</span><span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.</span><span class="p">,</span><span class="mf">1.</span><span class="p">,</span><span class="mf">0.</span><span class="p">]),</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.</span><span class="p">,</span><span class="mf">1.</span><span class="p">,</span><span class="mf">1.</span><span class="p">])]},</span>         <span class="n">mean</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+<span class="go">ivy.array([  0.5,  10. , 100. ])</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="py function">
@@ -305,9 +379,9 @@ Default is False.</p></li>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>nest</strong> – The nested object to update.</p></li>
-<li><p><strong>index</strong> – A tuple of indices for the index at which to update.</p></li>
-<li><p><strong>fn</strong> – The function to perform on the nest at the given index.</p></li>
+<li><p><strong>nest</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Iterable</span></code>) – The nested object to update.</p></li>
+<li><p><strong>index</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code>) – A tuple of indices for the index at which to update.</p></li>
+<li><p><strong>fn</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code>) – The function to perform on the nest at the given index.</p></li>
 </ul>
 </dd>
 </dl>
@@ -320,9 +394,9 @@ Default is False.</p></li>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>nest</strong> – The nested object to update.</p></li>
-<li><p><strong>indices</strong> – A tuple of tuples of indices for the indices at which to update.</p></li>
-<li><p><strong>fn</strong> – The function to perform on the nest at the given index.</p></li>
+<li><p><strong>nest</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Iterable</span></code>) – The nested object to update.</p></li>
+<li><p><strong>indices</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code>) – A tuple of tuples of indices for the indices at which to update.</p></li>
+<li><p><strong>fn</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code>) – The function to perform on the nest at the given index.</p></li>
 </ul>
 </dd>
 </dl>
@@ -336,8 +410,8 @@ the case of dicts.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>nest</strong> – The nested object to slice.</p></li>
-<li><p><strong>indices</strong> – A tuple of tuples of indices to apply.</p></li>
+<li><p><strong>nest</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Iterable</span></code>) – The nested object to slice.</p></li>
+<li><p><strong>indices</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code>) – A tuple of tuples of indices to apply.</p></li>
 </ul>
 </dd>
 </dl>
@@ -385,6 +459,7 @@ Default is False.</p></li>
 manually.</p></li>
 <li><p><strong>_base</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>) – Whether the current function call is the first function call in the recursive (default: <code class="docutils literal notranslate"><span class="pre">True</span></code>)
 stack. Used internally, do not set manually.</p></li>
+<li><p><strong>stop_after_n_found</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>]) – to stop after some needed indices are found. (default: <code class="docutils literal notranslate"><span class="pre">None</span></code>)</p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type</dt>
@@ -394,6 +469,41 @@ stack. Used internally, do not set manually.</p></li>
 <dd class="field-odd"><p><em>ret</em> – A set of indices for the nest where the function evaluated as True.</p>
 </dd>
 </dl>
+<p class="rubric">Examples</p>
+<p>With <code class="code docutils literal notranslate"><span class="pre">List</span></code> input:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">nest</span> <span class="o">=</span> <span class="p">[[[</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="mi">19</span><span class="p">],</span> <span class="p">[[</span><span class="mi">9</span><span class="p">,</span> <span class="o">-</span><span class="mi">36</span><span class="p">,</span> <span class="mi">80</span><span class="p">],</span> <span class="o">-</span><span class="mf">10.19</span><span class="p">]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fun</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">abs</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">nested_indices</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">nested_indices_where</span><span class="p">(</span><span class="n">nest</span><span class="p">,</span> <span class="n">fn</span><span class="o">=</span><span class="n">fun</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">nested_indices</span><span class="p">)</span>
+<span class="go">[</span>
+<span class="go">    [0, 0, 0], [0, 0, 1],</span>
+<span class="go">    [0, 0, 2], [0, 1],</span>
+<span class="go">    [1, 0, 0], [1, 0, 1],</span>
+<span class="go">    [1, 0, 2], [1, 1]</span>
+<span class="go">]</span>
+</pre></div>
+</div>
+<p>With <code class="code docutils literal notranslate"><span class="pre">Tuple</span></code> input:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">nest</span> <span class="o">=</span> <span class="p">([</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">4.</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fun</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">abs</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">nested_indices</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">nested_indices_where</span><span class="p">(</span><span class="n">nest</span><span class="p">,</span> <span class="n">fn</span><span class="o">=</span><span class="n">fun</span><span class="p">,</span> <span class="n">stop_after_n_found</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">nested_indices</span><span class="p">)</span>
+<span class="go">[[0, 0], [0, 1], [0, 2], [1, 0]]</span>
+</pre></div>
+</div>
+<p>With <code class="code docutils literal notranslate"><span class="pre">Dict</span></code> input:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">nest</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;a&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">2.</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.</span><span class="p">],</span> <span class="s1">&#39;b&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">4.</span><span class="p">,</span> <span class="mf">1.9</span><span class="p">],</span> <span class="s1">&#39;c&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">9.4</span><span class="p">]}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fun</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">abs</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">nested_indices</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">nested_indices_where</span><span class="p">(</span><span class="n">nest</span><span class="p">,</span> <span class="n">fn</span><span class="o">=</span><span class="n">fun</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">nested_indices</span><span class="p">)</span>
+<span class="go">[</span>
+<span class="go">    [&#39;a&#39;, 0], [&#39;a&#39;, 1],</span>
+<span class="go">    [&#39;a&#39;, 2], [&#39;b&#39;, 0],</span>
+<span class="go">    [&#39;b&#39;, 1], [&#39;b&#39;, 2],</span>
+<span class="go">    [&#39;c&#39;, 0]</span>
+<span class="go">]</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="py function">
@@ -437,7 +547,7 @@ structured ivy arrays.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>func</strong> – Function to apply to each nest entry.</p></li>
+<li><p><strong>func</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code>) – Function to apply to each nest entry.</p></li>
 <li><p><strong>nest</strong> – nests to map.</p></li>
 <li><p><strong>key_chains</strong> – The key-chains to apply or not apply the method to. Default is None.</p></li>
 <li><p><strong>to_apply</strong> – If True, the method will be applied to key_chains, otherwise key_chains will
@@ -462,8 +572,8 @@ otherwise the leftmost nest value is used. Default is False.</p></li>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>nest</strong> – The nested object to prune.</p></li>
-<li><p><strong>index</strong> – A tuple of indices for the index at which to prune.</p></li>
+<li><p><strong>nest</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Iterable</span></code>) – The nested object to prune.</p></li>
+<li><p><strong>index</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code>) – A tuple of indices for the index at which to prune.</p></li>
 </ul>
 </dd>
 </dl>
@@ -476,8 +586,8 @@ otherwise the leftmost nest value is used. Default is False.</p></li>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>nest</strong> – The nested object to prune.</p></li>
-<li><p><strong>indices</strong> – A tuple of tuples of indices for the indices at which to prune.</p></li>
+<li><p><strong>nest</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Iterable</span></code>) – The nested object to prune.</p></li>
+<li><p><strong>indices</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code>) – A tuple of tuples of indices for the indices at which to prune.</p></li>
 </ul>
 </dd>
 </dl>
@@ -490,12 +600,53 @@ otherwise the leftmost nest value is used. Default is False.</p></li>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>nest</strong> – The nested object to update.</p></li>
-<li><p><strong>index</strong> – A tuple of indices for the index at which to update.</p></li>
-<li><p><strong>value</strong> – The new value for updating.</p></li>
+<li><p><strong>nest</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<a class="reference internal" href="../../data_classes/array/array/Array.html#ivy.array.array.Array" title="ivy.array.array.Array"><code class="xref py py-class docutils literal notranslate"><span class="pre">Array</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">NativeArray</span></code>, <a class="reference internal" href="../../data_classes/container/container/Container.html#ivy.container.container.Container" title="ivy.container.container.Container"><code class="xref py py-class docutils literal notranslate"><span class="pre">Container</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code>]) – The nested object to update.</p></li>
+<li><p><strong>index</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Sequence</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>]]) – A tuple of indices for the index at which to update.</p></li>
+<li><p><strong>value</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code>) – The new value for updating.</p></li>
 </ul>
 </dd>
 </dl>
+<p class="rubric">Examples</p>
+<p>With <code class="code docutils literal notranslate"><span class="pre">ivy.Array</span></code> inputs:
+&gt;&gt;&gt; x = ivy.array([[1., 2.], [3., 4.]])
+&gt;&gt;&gt; y = (1, 1)
+&gt;&gt;&gt; z = 5.
+&gt;&gt;&gt; ivy.set_nest_at_index(x, y, z)
+&gt;&gt;&gt; print(x)
+ivy.array([[1., 2.], [3., 5.]])</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">2.</span><span class="p">,</span> <span class="mf">3.</span><span class="p">,</span> <span class="mf">4.</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">z</span> <span class="o">=</span> <span class="mf">5.</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ivy</span><span class="o">.</span><span class="n">set_nest_at_index</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="go">ivy.array([1., 5., 3., 4.])</span>
+</pre></div>
+</div>
+<p>With <code class="code docutils literal notranslate"><span class="pre">Dict</span></code> input:
+&gt;&gt;&gt; x = {1 : [1, [2, 3]], 2: (4, 5)}
+&gt;&gt;&gt; y = (1, 1)
+&gt;&gt;&gt; z = 2
+&gt;&gt;&gt; ivy.set_nest_at_index(x, y, z)
+&gt;&gt;&gt; print(x)
+{1: [1, 2], 2: (4, 5)}</p>
+<p>With <code class="code docutils literal notranslate"><span class="pre">List</span></code> inputs:
+&gt;&gt;&gt; x = [[‘a’, ‘b’, ‘c’],              [‘d’, ‘e’, ‘f’],              [‘g’, [‘h’, ‘i’]]]
+&gt;&gt;&gt; y = (2, 1, 0)
+&gt;&gt;&gt; z = ‘H’
+&gt;&gt;&gt; ivy.set_nest_at_index(x, y, z)
+&gt;&gt;&gt; print(x)
+[[‘a’,’b’,’c’],[‘d’,’e’,’f’],[‘g’,[‘H’,’i’]]]</p>
+<blockquote>
+<div><p>With <code class="code docutils literal notranslate"><span class="pre">ivy.Container</span></code> input:</p>
+</div></blockquote>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">2.</span><span class="p">])</span> <span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">4.</span><span class="p">,</span> <span class="mf">5.</span><span class="p">]))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">,)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">z</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">3.</span><span class="p">,</span> <span class="mf">4.</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ivy</span><span class="o">.</span><span class="n">set_nest_at_index</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="go">{    a: ivy.array([1., 2.]),    b: ivy.array([3., 4.])    }</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="py function">
@@ -570,7 +721,7 @@ otherwise the leftmost nest value is used. Default is False.</p></li>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2020, Ivy Team.</p>
+    <p>&#169; Copyright 2020-2022, Ivy Team.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

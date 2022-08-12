@@ -46,6 +46,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../contributing.html">Contributing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../deep_dive.html">Deep Dive</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary.html">Glossary</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Functions</span></p>
 <ul>
@@ -216,6 +217,97 @@
         <span class="o">*</span><span class="p">,</span>
         <span class="n">out</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        ivy.Container instance method variant of ivy.var.</span>
+<span class="sd">        This method simply wraps the function, and so the</span>
+<span class="sd">        docstring for ivy.var also applies to this method</span>
+<span class="sd">        with minimal changes.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        self</span>
+<span class="sd">            input container. Should have a floating-point data type.</span>
+<span class="sd">        axis</span>
+<span class="sd">            axis or axes along which variances must be computed. By default, the</span>
+<span class="sd">            variance must be computed over the entire array for each array in the input</span>
+<span class="sd">            container. If a tuple of integers, variances must be computed over</span>
+<span class="sd">            multiple axes. Default: None.</span>
+<span class="sd">        correction</span>
+<span class="sd">            degrees of freedom adjustment. Setting this parameter to a value other than</span>
+<span class="sd">            0 has the effect of adjusting the divisor during the calculation of the</span>
+<span class="sd">            variance according to N-c where N corresponds to the total number of</span>
+<span class="sd">            elements over which the variance is computed and c corresponds to the</span>
+<span class="sd">            provided degrees of freedom adjustment. When computing the variance of a</span>
+<span class="sd">            population, setting this parameter to 0 is the standard choice (i.e.,</span>
+<span class="sd">            the provided array contains data constituting an entire population).</span>
+<span class="sd">            When computing the unbiased sample variance, setting this parameter to 1</span>
+<span class="sd">            is the standard choice (i.e., the provided array contains data sampled from</span>
+<span class="sd">            a larger population; this is commonly referred to as Bessel&#39;s correction).</span>
+<span class="sd">            Default: 0.</span>
+<span class="sd">        keepdims</span>
+<span class="sd">            if True, the reduced axes (dimensions) must be included in the result as</span>
+<span class="sd">            singleton dimensions, and, accordingly, the result must be compatible</span>
+<span class="sd">            with the input array (see Broadcasting). Otherwise, if False, the</span>
+<span class="sd">            reduced axes (dimensions) must not be included in the result.</span>
+<span class="sd">            Default: False.</span>
+<span class="sd">            input array. Should have a floating-point data type.</span>
+<span class="sd">        key_chains</span>
+<span class="sd">            The key-chains to apply or not apply the method to.</span>
+<span class="sd">            Default is None.</span>
+<span class="sd">        to_apply</span>
+<span class="sd">            If True, the method will be applied to key_chains,</span>
+<span class="sd">            otherwise key_chains will be skipped. Default is True.</span>
+<span class="sd">        prune_unapplied</span>
+<span class="sd">            Whether to prune key_chains for which the function was not</span>
+<span class="sd">            applied. Default is False.</span>
+<span class="sd">        map_sequences</span>
+<span class="sd">            Whether to also map method to sequences (lists, tuples).</span>
+<span class="sd">            Default is False.</span>
+<span class="sd">        out</span>
+<span class="sd">            optional output, for writing the result to. It must have a</span>
+<span class="sd">            shape that the inputs broadcast to.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        ret</span>
+<span class="sd">            a container contianing different arrays depends on parameters. see below</span>
+<span class="sd">            for the types of arrays in the returned container if the variance was</span>
+<span class="sd">            computed over the entire array, a zero-dimensional array containing the</span>
+<span class="sd">            variance; otherwise, a non-zero-dimensional array containing the variances.</span>
+<span class="sd">            The returned container must have the same data type as self.</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        &gt;&gt;&gt; x = ivy.Container(a=ivy.array([0.0, 1.0, 2.0]), \</span>
+<span class="sd">        b=ivy.array([3.0, 4.0, 5.0]))</span>
+<span class="sd">        &gt;&gt;&gt; y = x.var()</span>
+<span class="sd">        &gt;&gt;&gt; print(y)</span>
+<span class="sd">        {</span>
+<span class="sd">            a: ivy.array(0.6666667),</span>
+<span class="sd">            b: ivy.array(0.6666667)</span>
+<span class="sd">        }</span>
+
+<span class="sd">        &gt;&gt;&gt; x = ivy.Container(a=ivy.array([0.0, 1.0, 2.0]), \</span>
+<span class="sd">        b=ivy.array([3.0, 4.0, 5.0]))</span>
+<span class="sd">        &gt;&gt;&gt; y = ivy.Container(a=ivy.array(0.), b=ivy.array(0.))</span>
+<span class="sd">        &gt;&gt;&gt; x.var(out=y)</span>
+<span class="sd">        &gt;&gt;&gt; print(y)</span>
+<span class="sd">        {</span>
+<span class="sd">            a: ivy.array(0.6666667),</span>
+<span class="sd">            b: ivy.array(0.6666667)</span>
+<span class="sd">        }</span>
+
+<span class="sd">        &gt;&gt;&gt; x = ivy.Container(a=ivy.array([[0.0, 1.0, 2.0], [3.0, 4.0, 5.0]]), \</span>
+<span class="sd">                              b=ivy.array([[6.0, 7.0, 8.0], [9.0, 10.0, 11.0]]))</span>
+<span class="sd">        &gt;&gt;&gt; y = ivy.Container(a=ivy.array([0., 0., 0.]), b=ivy.array([0., 0., 0.]))</span>
+<span class="sd">        &gt;&gt;&gt; x.var(axis=0, out=y)</span>
+<span class="sd">        &gt;&gt;&gt; print(y)</span>
+<span class="sd">        {</span>
+<span class="sd">            a: ivy.array([2.25, 2.25, 2.25]),</span>
+<span class="sd">            b: ivy.array([2.25, 2.25, 2.25])</span>
+<span class="sd">        }</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">handle_inplace</span><span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">map</span><span class="p">(</span>
                 <span class="k">lambda</span> <span class="n">x_</span><span class="p">,</span> <span class="n">_</span><span class="p">:</span> <span class="n">ivy</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="n">x_</span><span class="p">,</span> <span class="n">axis</span><span class="p">,</span> <span class="n">correction</span><span class="p">,</span> <span class="n">keepdims</span><span class="p">)</span>
@@ -226,6 +318,79 @@
                 <span class="n">prune_unapplied</span><span class="p">,</span>
                 <span class="n">map_sequences</span><span class="p">,</span>
             <span class="p">),</span>
+            <span class="n">out</span><span class="o">=</span><span class="n">out</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="ContainerWithStatistical.static_var"><a class="viewcode-back" href="../../../data_classes/container/statistical/ContainerWithStatistical.html#ivy.container.statistical.ContainerWithStatistical.static_var">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">static_var</span><span class="p">(</span>
+        <span class="n">x</span><span class="p">:</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">,</span>
+        <span class="n">axis</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">correction</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span>
+        <span class="n">keepdims</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">key_chains</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">to_apply</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="n">prune_unapplied</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">map_sequences</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="o">*</span><span class="p">,</span>
+        <span class="n">out</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        ivy.Container static method variant of ivy.var.</span>
+<span class="sd">        This method simply wraps the function, and so</span>
+<span class="sd">        the docstring for ivy.var also applies to this method</span>
+<span class="sd">        with minimal changes.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        self</span>
+<span class="sd">            input array. Should have a floating-point data type.</span>
+<span class="sd">        key_chains</span>
+<span class="sd">            The key-chains to apply or not apply the method to.</span>
+<span class="sd">            Default is None.</span>
+<span class="sd">        to_apply</span>
+<span class="sd">            If True, the method will be applied to key_chains,</span>
+<span class="sd">            otherwise key_chains will be skipped. Default is True.</span>
+<span class="sd">        prune_unapplied</span>
+<span class="sd">            Whether to prune key_chains for which the function was</span>
+<span class="sd">            not applied. Default is False.</span>
+<span class="sd">        map_sequences</span>
+<span class="sd">            Whether to also map method to sequences (lists, tuples).</span>
+<span class="sd">            Default is False.</span>
+<span class="sd">        out</span>
+<span class="sd">            optional output, for writing the result to.</span>
+<span class="sd">            It must have a shape that the inputs broadcast to.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        ret</span>
+<span class="sd">           if the variance was computed over the entire array,</span>
+<span class="sd">           a zero-dimensional array containing the variance;</span>
+<span class="sd">           otherwise, a non-zero-dimensional array containing the</span>
+<span class="sd">           variances. The returned array must have the same data</span>
+<span class="sd">           type as x.</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        &gt;&gt;&gt; x = ivy.Container(a=ivy.array([0.1, 0.2, 0.9]), \</span>
+<span class="sd">                              b=ivy.array([0.7, 0.1, 0.9]))</span>
+<span class="sd">        &gt;&gt;&gt; y = ivy.Container.static_var(x)</span>
+<span class="sd">        &gt;&gt;&gt; print(y)</span>
+<span class="sd">        {</span>
+<span class="sd">            a:ivy.array(0.12666667),</span>
+<span class="sd">            b:ivy.array(0.11555555)</span>
+<span class="sd">        }</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">ContainerBase</span><span class="o">.</span><span class="n">multi_map_in_static_method</span><span class="p">(</span>
+            <span class="s2">&quot;var&quot;</span><span class="p">,</span>
+            <span class="n">x</span><span class="p">,</span>
+            <span class="n">key_chains</span><span class="o">=</span><span class="n">key_chains</span><span class="p">,</span>
+            <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">,</span>
+            <span class="n">correction</span><span class="o">=</span><span class="n">correction</span><span class="p">,</span>
+            <span class="n">keepdims</span><span class="o">=</span><span class="n">keepdims</span><span class="p">,</span>
+            <span class="n">to_apply</span><span class="o">=</span><span class="n">to_apply</span><span class="p">,</span>
+            <span class="n">prune_unapplied</span><span class="o">=</span><span class="n">prune_unapplied</span><span class="p">,</span>
+            <span class="n">map_sequences</span><span class="o">=</span><span class="n">map_sequences</span><span class="p">,</span>
             <span class="n">out</span><span class="o">=</span><span class="n">out</span><span class="p">,</span>
         <span class="p">)</span></div>
 
@@ -333,7 +498,7 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2020, Ivy Team.</p>
+    <p>&#169; Copyright 2020-2022, Ivy Team.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

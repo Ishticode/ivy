@@ -49,6 +49,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../../contributing.html">Contributing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../deep_dive.html">Deep Dive</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../glossary.html">Glossary</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Functions</span></p>
 <ul class="current">
@@ -65,6 +66,9 @@
 <li class="toctree-l2"><a class="reference internal" href="../is_ivy_array.html">is_ivy_array</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../is_array.html">is_array</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../is_ivy_container.html">is_ivy_container</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../set_array_mode.html">set_array_mode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../unset_array_mode.html">unset_array_mode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../get_array_mode.html">get_array_mode</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../set_nestable_mode.html">set_nestable_mode</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../unset_nestable_mode.html">unset_nestable_mode</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../get_nestable_mode.html">get_nestable_mode</a></li>
@@ -136,6 +140,8 @@
 <li class="toctree-l2"><a class="reference internal" href="../shape_array_mode.html">shape_array_mode</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../get_num_dims.html">get_num_dims</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../arg_info.html">arg_info</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../function_unsupported_devices_and_dtypes.html">function_unsupported_devices_and_dtypes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../function_supported_devices_and_dtypes.html">function_supported_devices_and_dtypes</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../gradients.html">Gradients</a></li>
@@ -213,13 +219,13 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="ivy.container.container_methods.static_to_numpy">
 <span class="sig-prename descclassname">ivy.Container.</span></span><span class="sig-name descname"><span class="pre">static_to_numpy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key_chains</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">to_apply</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prune_unapplied</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">map_sequences</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/ivy/container/general.html#ContainerWithGeneral.static_to_numpy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ivy.container.container_methods.static_to_numpy" title="Permalink to this definition"></a></dt>
-<dd><p>ivy.Container static method variant of <a href="../to_numpy/to_numpy_functional.html">ivy.to_numpy</a>. This methfor <a href="../to_numpy/to_numpy_functional.html">ivy.to_numpy</a> wraps
-the function, and so the docstring for ivy.to_numpy also applies to this method
+<dd><p>ivy.Container static method variant of <a href="../to_numpy/to_numpy_functional.html">ivy.to_numpy</a>. This method simply wraps
+the function, and so the docstring for <a href="../to_numpy/to_numpy_functional.html">ivy.to_numpy</a> also applies to this method
 with minimal changes.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>x</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<a class="reference internal" href="../../../../data_classes/array/array/Array.html#ivy.array.array.Array" title="ivy.array.array.Array"><code class="xref py py-class docutils literal notranslate"><span class="pre">Array</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">NativeArray</span></code>]) – input container.</p></li>
+<li><p><strong>x</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<a class="reference internal" href="../../../../data_classes/array/array/Array.html#ivy.array.array.Array" title="ivy.array.array.Array"><code class="xref py py-class docutils literal notranslate"><span class="pre">Array</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">NativeArray</span></code>, <a class="reference internal" href="../../../../data_classes/container/container/Container.html#ivy.container.container.Container" title="ivy.container.container.Container"><code class="xref py py-class docutils literal notranslate"><span class="pre">Container</span></code></a>]) – input container.</p></li>
 <li><p><strong>key_chains</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>], <code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]]]) – The key-chains to apply or not apply the method to. Default is None. (default: <code class="docutils literal notranslate"><span class="pre">None</span></code>)</p></li>
 <li><p><strong>to_apply</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>) – If True, the method will be applied to key_chains, otherwise key_chains (default: <code class="docutils literal notranslate"><span class="pre">True</span></code>)
 will be skipped. Default is True.</p></li>
@@ -276,7 +282,7 @@ Default is False.</p></li>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2020, Ivy Team.</p>
+    <p>&#169; Copyright 2020-2022, Ivy Team.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
