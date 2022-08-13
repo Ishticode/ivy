@@ -1222,3 +1222,13 @@ def deconv_length(dim_size, stride_size, kernel_size, padding, dilation=1):
     elif padding == "SAME":
         dim_size = dim_size * stride_size
     return dim_size
+
+
+def embedding(indices, weights):
+    """
+    Embedding lookup
+    """
+    assert weights.ndim == 2, \
+        "weights (embedding matrix) must be 2D, got {}D".format(weights.ndim)
+    indices = ivy.array(indices, dtype=ivy.int64)
+    return weights[(indices.data,)]

@@ -1388,3 +1388,24 @@ class LSTM(Module):
         if not self._return_state:
             return h_t
         return h_t, (h_n_list, c_n_list)
+
+
+class Embedding(Module):
+
+    def __init__(self, vocabulary_size, embed_dim, device=None, v=None, dtype=None):
+        self.vocabulary_size = vocabulary_size
+        self.embed_dim = embed_dim
+        self.embedding_matrix = ivy.random_uniform(
+            shape=(self.vocabulary_size, self.embed_dim),
+            device=device,
+            dtype=dtype,
+        )
+        Module.__init__(self, device, v, dtype=dtype)
+
+    def _create_variables(self, device, dtype=None):
+        self.embedding_matrix = ivy.variable(self.embedding_matrix)
+        v = {'w': self.embedding_matrix}
+        return v
+
+    def _forward(self, x):
+        return ivy.embedding(x, self.v.w)
