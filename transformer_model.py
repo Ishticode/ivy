@@ -49,10 +49,10 @@ class TransformerEncoder(Module):
         self.pos_embedding = Embedding(maxlength, embed_size)
         self.blocks = Sequential(
             *[TransformerBlock(embed_size, num_heads, drop_out, device, v) for _ in range(num_stacks)])
-        
 
     def _create_variables(self, device, dtype):
-        pass
+        return ivy.Container(
+            embedding=self.embedding._create_variables(device, dtype))
 
     def _forward(self, x, mask=None):
         batch, seq_len = x.shape
