@@ -318,7 +318,7 @@ class MultiHeadAttention(Module):
             the desired data type of the internal variables to be created if not
              provided. Default is None.
         """
-        return ivy.Container(to_kv={"k": self._to_k.v, "v": self._to_v.v})
+        return ivy.Container(to_kv={"k": self._to_k.v, "v": self._to_v.vm})
 
     def _forward(self, inputs, context=None, mask=None):
         """
@@ -1395,15 +1395,20 @@ class Embedding(Module):
     def __init__(self, vocabulary_size, embed_dim, device=None, v=None, dtype=None):
         self.vocabulary_size = vocabulary_size
         self.embed_dim = embed_dim
-        self.embedding_matrix = ivy.random_uniform(
+        self.device = device
+        self.v = v
+        self.dtype = dtype
+        Module.__init__(self,
+                        device=self.device,
+                        v=self.v,
+                        dtype=self.dtype)
+
+    def _create_variables(self, device, dtype=None):
+        self.embedding_matrix = ivy.variable(ivy.random_uniform(
             shape=(self.vocabulary_size, self.embed_dim),
             device=device,
             dtype=dtype,
-        )
-        Module.__init__(self, device, v, dtype=dtype)
-
-    def _create_variables(self, device, dtype=None):
-        self.embedding_matrix = ivy.variable(self.embedding_matrix)
+        ))
         v = {'w': self.embedding_matrix}
         return v
 

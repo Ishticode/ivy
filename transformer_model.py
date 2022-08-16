@@ -1,5 +1,5 @@
 import ivy
-from ivy import Container, Linear, MultiHeadAttention, Module, Sequential, softmax, Embedding, Dropout
+from ivy import Container, Linear, MultiHeadAttention, Module, Sequential, SoftMax, Embedding, Dropout, LayerNorm
 
 
 # class TransformerConfig(Container):
@@ -9,44 +9,50 @@ from ivy import Container, Linear, MultiHeadAttention, Module, Sequential, softm
 
 class TransformerBlock(Module):
 
-    def __init__(self, embed_size, num_heads, head_dim, dropout, device=None, v=None):
-        super().__init__()
-        self.attention = MultiHeadAttention(embed_size, num_heads, head_dim, dropout, device, v)
-        self.ffn = Sequential(
-            Linear(embed_size, 4 * head_dim),
-            Linear(4 * head_dim, embed_size),
-            softmax,
-        )
-        #add normlizer
+    def __init__(self, embed_dim, num_heads, dropout, device=None, v=None):
+        self.embed_dim = embed_dim
+        self.num_heads = num_heads
+        self.head_dim = embed_dim // num_heads
         self.dropout = dropout
         self.device = device
         self.v = v
+        self.attention = MultiHeadAttention(self.embed_dim,
+                                            self.num_heads,
+                                            self.head_dim,
+                                            self.dropout,
+                                            self.device,
+                                            self.v)
+        self.ffn = Sequential(
+            Linear(self.embed_dim, 4 * self.head_dim),
+            Linear(4 * self.head_dim, self.embed_size),
+        )
+        self.dropout = Dropout(dropout)
+        self.Norm = LayerNorm(self.embed_dim)
+        ivy.Module.__init__(
+            self,
+            device,
+            v if v_exists else None,
+            dtype=dtype,
+        )
 
-    def _forward(self, x, mask=None):
-        y = self.attention(x, x, x, mask)
-        y = (1 - self.dropout) * y + self.dropout * x
-        y = self.ffn(y)
-        y = (1 - self.dropout) * y + self.dropout * x
+    def _forward(self, input, mask=None):
+        attn = self.attention(input, mask)
+        normalised = self.dropout(self.Norm(attn.to_q.v+input))
+        fwd = self.ffn(normalised)
+        y = self.dropout(self.Norm(fwd + normalised))
         return y
 
 
 class TransformerEncoder(Module):
-    def __init__(self, vocab, embed_size, num_stacks, num_heads, drop_out, maxlength, device=None, v=None):
-        super().__init__()
-        self.vocab = vocab
-        self.embed_size = embed_size
-        self.num_layers = num_stacks
-        self.heads = num_heads
-        self.head_dim = embed_size // num_heads
-        self.drop_out = Dropout(drop_out)
-        self.maxlength = maxlength
-        self.device = device
-        self.v = v
-        self.embedding = Embedding(vocab, embed_size)
+    def __init__(self, vocab_size, embed_size, num_stacks, num_heads, drop_out, maxlength, device=None, v=None):
+        self.embedding = Embedding(vocab_size, embed_size)
         self.pos_embedding = Embedding(maxlength, embed_size)
-        self.layers = Sequential(
-            *[TransformerBlock(embed_size, num_heads, self.head_dim, drop_out, device, v) for _ in range(num_stacks)]
-        )
+        self.blocks = Sequential(
+            *[TransformerBlock(embed_size, num_heads, drop_out, device, v) for _ in range(num_stacks)])
+        
+
+    def _create_variables(self, device, dtype):
+        pass
 
     def _forward(self, x, mask=None):
         batch, seq_len = x.shape
