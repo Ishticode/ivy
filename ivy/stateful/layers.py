@@ -318,7 +318,7 @@ class MultiHeadAttention(Module):
             the desired data type of the internal variables to be created if not
              provided. Default is None.
         """
-        return ivy.Container(to_kv={"k": self._to_k.v, "v": self._to_v.vm})
+        return ivy.Container(to_kv={"k": self._to_k.v, "v": self._to_v.v})
 
     def _forward(self, inputs, context=None, mask=None):
         """
