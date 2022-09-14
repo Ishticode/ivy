@@ -60,6 +60,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../data_type.html">Data type</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../device.html">Device</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../elementwise.html">Elementwise</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../extensions.html">Extensions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../general.html">General</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../gradients.html">Gradients</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../layers.html">Layers</a></li>
@@ -151,7 +152,6 @@
 function, and so the docstring for <a href="./sort/sort_functional.html">ivy.sort</a> also applies to this method
 with minimal changes.</p>
 <p class="rubric">Examples</p>
-<p>With：code:<cite>ivy.Container</cite> inputs:</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">5</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">]),</span>                          <span class="n">b</span><span class="o">=</span><span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">8</span><span class="p">,</span> <span class="mi">1</span><span class="p">]))</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
@@ -161,20 +161,21 @@ with minimal changes.</p>
 <span class="go">}</span>
 </pre></div>
 </div>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">5</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">]),</span>                           <span class="n">b</span><span class="o">=</span><span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">8</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">]]))</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">5</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">]),</span>                          <span class="n">b</span><span class="o">=</span><span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">8</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">]]))</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
-<span class="go">{ a: ivy.array([0.2, 5., 9.]),       b: ivy.array([[1., 8.],[0.8, 5.]])</span>
+<span class="go">{</span>
+<span class="go">    a: ivy.array([0.2, 5., 9.]),</span>
+<span class="go">    b: ivy.array([[1., 8.], [0.8, 5.]])</span>
 <span class="go">}</span>
 </pre></div>
 </div>
-<p>With：code:<cite>ivy.Container</cite> inputs:</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">8</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]),</span>                          <span class="n">b</span><span class="o">=</span><span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">9</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.4</span><span class="p">,</span> <span class="mi">0</span><span class="p">]]))</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
 <span class="go">{</span>
 <span class="go">    a: ivy.array([0.5, 6., 8.]),</span>
-<span class="go">    b: ivy.array([[0.7, 9.],                        [0., 0.4]])</span>
+<span class="go">    b: ivy.array([[0.7, 9.],[0., 0.4]])</span>
 <span class="go">}</span>
 </pre></div>
 </div>
@@ -183,8 +184,7 @@ with minimal changes.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
 <span class="go">{</span>
 <span class="go">    a: ivy.array([0.5, 6., 8.]),</span>
-<span class="go">    b: ivy.array([[0.7, 9.],</span>
-<span class="go">          [0., 0.4]])</span>
+<span class="go">    b: ivy.array([[0.7, 9.],[0., 0.4]])</span>
 <span class="go">}</span>
 </pre></div>
 </div>

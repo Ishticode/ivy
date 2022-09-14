@@ -60,6 +60,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../data_type.html">Data type</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../device.html">Device</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../elementwise.html">Elementwise</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../extensions.html">Extensions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../general.html">General</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../gradients.html">Gradients</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../layers.html">Layers</a></li>
@@ -73,6 +74,7 @@
 <li class="toctree-l3 current"><a class="current reference internal" href="#">ivy.permute_dims</a></li>
 <li class="toctree-l3"><a class="reference internal" href="permute_dims_array.html">ivy.Array.permute_dims</a></li>
 <li class="toctree-l3"><a class="reference internal" href="permute_dims_container.html">ivy.Container.permute_dims</a></li>
+<li class="toctree-l3"><a class="reference internal" href="static_permute_dims_container.html">ivy.Container.static_permute_dims</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../reshape.html">reshape</a></li>
@@ -85,6 +87,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../split.html">split</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../swapaxes.html">swapaxes</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../tile.html">tile</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../unstack.html">unstack</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../zero_pad.html">zero_pad</a></li>
 </ul>
 </li>
@@ -157,12 +160,12 @@
 <h1>ivy.permute_dims<a class="headerlink" href="#ivy-permute-dims" title="Permalink to this heading"></a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="ivy.functional.ivy.manipulation.permute_dims">
-<span class="sig-prename descclassname">ivy.</span></span><span class="sig-name descname"><span class="pre">permute_dims</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axes</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/ivy/functional/ivy/manipulation.html#permute_dims"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ivy.functional.ivy.manipulation.permute_dims" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname">ivy.</span></span><span class="sig-name descname"><span class="pre">permute_dims</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">/</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axes</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/ivy/functional/ivy/manipulation.html#permute_dims"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ivy.functional.ivy.manipulation.permute_dims" title="Permalink to this definition"></a></dt>
 <dd><p>Permutes the axes (dimensions) of an array x.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>x</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<a class="reference internal" href="../../../../data_classes/array/array/Array.html#ivy.array.array.Array" title="ivy.array.array.Array"><code class="xref py py-class docutils literal notranslate"><span class="pre">Array</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">NativeArray</span></code>]) – input array.</p></li>
+<li><p><strong>x</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<a class="reference internal" href="../../../../data_classes/array/array/Array.html#ivy.array.array.Array" title="ivy.array.array.Array"><code class="xref py py-class docutils literal notranslate"><span class="pre">Array</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">_DeviceArray</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">DeviceArray</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">Tensor</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">Tensor</span></code>]) – input array.</p></li>
 <li><p><strong>axes</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>, <code class="xref py py-data docutils literal notranslate"><span class="pre">...</span></code>]) – tuple containing a permutation of (0, 1, …, N-1) where N is the number of axes
 (dimensions) of x.</p></li>
 <li><p><strong>out</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<a class="reference internal" href="../../../../data_classes/array/array/Array.html#ivy.array.array.Array" title="ivy.array.array.Array"><code class="xref py py-class docutils literal notranslate"><span class="pre">Array</span></code></a>]) – optional output array, for writing the result to. It must have a shape that the (default: <code class="docutils literal notranslate"><span class="pre">None</span></code>)
@@ -177,6 +180,65 @@ inputs broadcast to.</p></li>
 data type as x.</p>
 </dd>
 </dl>
+<p class="rubric">Examples</p>
+<p>With <code class="code docutils literal notranslate"><span class="pre">ivy.Array</span></code> input:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">permute_dims</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">axes</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+<span class="go">ivy.array([[1, 4],</span>
+<span class="go">           [2, 5],</span>
+<span class="go">           [3, 6]])</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">permute_dims</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">axes</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+<span class="go">ivy.array([[0., 0.],</span>
+<span class="go">           [0., 0.],</span>
+<span class="go">           [0., 0.]])</span>
+</pre></div>
+</div>
+<p>With one <code class="code docutils literal notranslate"><span class="pre">ivy.Container</span></code> input:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span> <span class="p">,</span><span class="mf">2.</span><span class="p">]]),</span> <span class="n">b</span><span class="o">=</span><span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">3.</span><span class="p">,</span> <span class="mf">4.</span><span class="p">,</span> <span class="mf">5.</span><span class="p">]]))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">permute_dims</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">axes</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+<span class="go">{</span>
+<span class="go">a: ivy.array([[0.],</span>
+<span class="go">              [1.],</span>
+<span class="go">              [2.]]),</span>
+<span class="go">b: ivy.array([[3.],</span>
+<span class="go">              [4.],</span>
+<span class="go">              [5.]])</span>
+<span class="go">}</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">2.</span><span class="p">]]),</span> <span class="n">b</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">3.</span><span class="p">,</span> <span class="mf">4.</span><span class="p">,</span> <span class="mf">5.</span><span class="p">]]))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">permute_dims</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">axes</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">out</span><span class="o">=</span><span class="n">x</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+<span class="go">{</span>
+<span class="go">a: ivy.array([[0.],</span>
+<span class="go">              [1.],</span>
+<span class="go">              [2.]]),</span>
+<span class="go">b: ivy.array([[3.],</span>
+<span class="go">              [4.],</span>
+<span class="go">              [5.]])</span>
+<span class="go">}</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">2.</span><span class="p">]]),</span> <span class="n">b</span><span class="o">=</span><span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">3.</span><span class="p">,</span> <span class="mf">4.</span><span class="p">,</span> <span class="mf">5.</span><span class="p">]]))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">permute_dims</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">axes</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">out</span><span class="o">=</span><span class="n">ivy</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+<span class="go">ivy.array([[3.],</span>
+<span class="go">           [4.],</span>
+<span class="go">           [5.]])</span>
+</pre></div>
+</div>
+<p>This function conforms to the <a class="reference external" href="https://data-apis.org/array-api/latest/">Array API Standard</a>. This docstring is an extension of the
+<a class="reference external" href="https://data-apis.org/array-api/latest/API_specification/generated/signatures.elementwise_functions.tan.html">docstring</a> : E501
+in the standard.</p>
+<p>Both the description and the type hints above assumes an array input for simplicity,
+but this function is <em>nestable</em>, and therefore also accepts <code class="code docutils literal notranslate"><span class="pre">ivy.Container</span></code>
+instances in place of any of the arguments.</p>
 </dd></dl>
 
 <div class="line-block">

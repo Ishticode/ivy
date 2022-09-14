@@ -50,16 +50,16 @@
 <li class="toctree-l1 current"><a class="reference internal" href="../deep_dive.html">Deep Dive</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="0_navigating_the_code.html">Navigating the Code</a></li>
 <li class="toctree-l2"><a class="reference internal" href="1_function_types.html">Function Types</a></li>
-<li class="toctree-l2"><a class="reference internal" href="2_backend_setting.html">Backend Setting</a></li>
-<li class="toctree-l2"><a class="reference internal" href="3_function_wrapping.html">Function Wrapping</a></li>
-<li class="toctree-l2"><a class="reference internal" href="4_arrays.html">Arrays</a></li>
-<li class="toctree-l2"><a class="reference internal" href="5_containers.html">Containers</a></li>
-<li class="toctree-l2"><a class="reference internal" href="6_data_types.html">Data Types</a></li>
-<li class="toctree-l2"><a class="reference internal" href="7_devices.html">Devices</a></li>
-<li class="toctree-l2"><a class="reference internal" href="8_inplace_updates.html">Inplace Updates</a></li>
-<li class="toctree-l2"><a class="reference internal" href="9_formatting.html">Formatting</a></li>
-<li class="toctree-l2"><a class="reference internal" href="10_function_arguments.html">Function Arguments</a></li>
-<li class="toctree-l2"><a class="reference internal" href="11_submodule_helpers.html">Submodule Helper Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2_superset_behaviour.html">Superset Behaviour</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3_backend_setting.html">Backend Setting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="4_function_wrapping.html">Function Wrapping</a></li>
+<li class="toctree-l2"><a class="reference internal" href="5_arrays.html">Arrays</a></li>
+<li class="toctree-l2"><a class="reference internal" href="6_containers.html">Containers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="7_data_types.html">Data Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="8_devices.html">Devices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="9_inplace_updates.html">Inplace Updates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10_formatting.html">Formatting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="11_function_arguments.html">Function Arguments</a></li>
 <li class="toctree-l2"><a class="reference internal" href="12_docstrings.html">Docstrings</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Docstring Examples</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#ivy-tan">ivy.tan</a></li>
@@ -85,6 +85,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../functional/ivy/data_type.html">Data type</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../functional/ivy/device.html">Device</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../functional/ivy/elementwise.html">Elementwise</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../functional/ivy/extensions.html">Extensions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../functional/ivy/general.html">General</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../functional/ivy/gradients.html">Gradients</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../functional/ivy/layers.html">Layers</a></li>
@@ -342,7 +343,7 @@ Let’s look at an example to make it more clear what is meant by <em>all possib
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">my_func</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">array</span><span class="p">,</span>
             <span class="n">mode</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">std</span><span class="p">,</span> <span class="n">prod</span><span class="p">,</span> <span class="n">var</span><span class="p">],</span>
             <span class="n">some_flag</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span>
-            <span class="n">another_flag</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+            <span class="n">another_flag</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
             <span class="n">axes</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]]]</span><span class="o">=-</span><span class="mi">1</span><span class="p">):</span>
 </pre></div>
 </div>
@@ -376,6 +377,7 @@ examples that should be included in the docstring!</p>
 <p>The signature for <code class="code docutils literal notranslate"><span class="pre">ivy.tan</span></code> is as follows:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">tan</span><span class="p">(</span>
     <span class="n">x</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">],</span>
+    <span class="o">/</span><span class="p">,</span>
     <span class="o">*</span><span class="p">,</span>
     <span class="n">out</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">:</span>
@@ -495,9 +497,10 @@ point 11.</p>
 <p>The signature for <code class="code docutils literal notranslate"><span class="pre">ivy.roll</span></code> is as follows:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">roll</span><span class="p">(</span>
     <span class="n">x</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">],</span>
+    <span class="o">/</span><span class="p">,</span>
     <span class="n">shift</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">int</span><span class="p">]],</span>
-    <span class="n">axis</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">int</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="o">*</span><span class="p">,</span>
+    <span class="n">axis</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">int</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">out</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">:</span>
 </pre></div>
@@ -659,6 +662,7 @@ in order to satisfy point 11.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">add</span><span class="p">(</span>
     <span class="n">x1</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">],</span>
     <span class="n">x2</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">],</span>
+    <span class="o">/</span><span class="p">,</span>
     <span class="o">*</span><span class="p">,</span>
     <span class="n">out</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">:</span>

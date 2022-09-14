@@ -60,6 +60,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../functional/ivy/data_type.html">Data type</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../functional/ivy/device.html">Device</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../functional/ivy/elementwise.html">Elementwise</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../functional/ivy/extensions.html">Extensions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../functional/ivy/general.html">General</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../functional/ivy/gradients.html">Gradients</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../functional/ivy/layers.html">Layers</a></li>
@@ -495,6 +496,24 @@ container_rightmost.</p></li>
 <dd></dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="ivy.container.base.ContainerBase.cont_inplace_update">
+<span class="sig-name descname"><span class="pre">cont_inplace_update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dict_in</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">config</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ivy/container/base.html#ContainerBase.cont_inplace_update"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ivy.container.base.ContainerBase.cont_inplace_update" title="Permalink to this definition"></a></dt>
+<dd><p>Update the contents of this container inplace, using either a new dict or
+container.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dict_in</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Container</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code>]) – New dict or container to update the current container inplace with.</p></li>
+<li><p><strong>**config</strong> – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Container</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="ivy.container.base.ContainerBase.contains_sub_container">
 <span class="sig-name descname"><span class="pre">contains_sub_container</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sub_cont</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">partial</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ivy/container/base.html#ContainerBase.contains_sub_container"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ivy.container.base.ContainerBase.contains_sub_container" title="Permalink to this definition"></a></dt>
 <dd><p>Determine whether the current container contains the sub-container, with
@@ -635,6 +654,11 @@ Default is True.</p></li>
 </dd>
 </dl>
 </dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ivy.container.base.ContainerBase.duplicate_array_keychains">
+<span class="sig-name descname"><span class="pre">duplicate_array_keychains</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ivy/container/base.html#ContainerBase.duplicate_array_keychains"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ivy.container.base.ContainerBase.duplicate_array_keychains" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="ivy.container.base.ContainerBase.find_sub_container">
@@ -971,24 +995,6 @@ Default is False.</p></li>
 </dl>
 </dd></dl>
 
-<dl class="py method">
-<dt class="sig sig-object py" id="ivy.container.base.ContainerBase.inplace_update">
-<span class="sig-name descname"><span class="pre">inplace_update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dict_in</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">config</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ivy/container/base.html#ContainerBase.inplace_update"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ivy.container.base.ContainerBase.inplace_update" title="Permalink to this definition"></a></dt>
-<dd><p>Update the contents of this container inplace, using either a new dict or
-container.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>dict_in</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Container</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code>]) – New dict or container to update the current container inplace with.</p></li>
-<li><p><strong>**config</strong> – </p></li>
-</ul>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Container</span></code></p>
-</dd>
-</dl>
-</dd></dl>
-
 <dl class="py property">
 <dt class="sig sig-object py" id="ivy.container.base.ContainerBase.ivy">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ivy</span></span><a class="headerlink" href="#ivy.container.base.ContainerBase.ivy" title="Permalink to this definition"></a></dt>
@@ -1131,7 +1137,7 @@ otherwise the leftmost container value is used. Default is False.</p></li>
 <em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">multi_map_in_static_method</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fn_name</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key_chains</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">to_apply</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prune_unapplied</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">map_sequences</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ivy/container/base.html#ContainerBase.multi_map_in_static_method"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ivy.container.base.ContainerBase.multi_map_in_static_method" title="Permalink to this definition"></a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Container</span></code></p>
+<dd class="field-odd"><p><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Container</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">Container</span></code>], <code class="xref py py-class docutils literal notranslate"><span class="pre">Container</span></code>]</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1744,7 +1750,7 @@ appending to file. (Default value = None)</p></li>
 <dd><p>Constructor to their original form.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p><em>ret</em> – Container data in it’s raw form.</p>
+<dd class="field-odd"><p><em>ret</em> – Container data in its raw form.</p>
 </dd>
 </dl>
 </dd></dl>

@@ -60,6 +60,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../data_type.html">Data type</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../device.html">Device</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../elementwise.html">Elementwise</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../extensions.html">Extensions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../general.html">General</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../gradients.html">Gradients</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../layers.html">Layers</a></li>
@@ -151,8 +152,8 @@
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>x</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<a class="reference internal" href="../../../../data_classes/array/array/Array.html#ivy.array.array.Array" title="ivy.array.array.Array"><code class="xref py py-class docutils literal notranslate"><span class="pre">Array</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">NativeArray</span></code>]) – input array</p></li>
-<li><p><strong>v</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<a class="reference internal" href="../../../../data_classes/array/array/Array.html#ivy.array.array.Array" title="ivy.array.array.Array"><code class="xref py py-class docutils literal notranslate"><span class="pre">Array</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">NativeArray</span></code>]) – specific elements to insert in array x1</p></li>
+<li><p><strong>x</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<a class="reference internal" href="../../../../data_classes/array/array/Array.html#ivy.array.array.Array" title="ivy.array.array.Array"><code class="xref py py-class docutils literal notranslate"><span class="pre">Array</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">_DeviceArray</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">DeviceArray</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">Tensor</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">Tensor</span></code>]) – input array</p></li>
+<li><p><strong>v</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<a class="reference internal" href="../../../../data_classes/array/array/Array.html#ivy.array.array.Array" title="ivy.array.array.Array"><code class="xref py py-class docutils literal notranslate"><span class="pre">Array</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">_DeviceArray</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">DeviceArray</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">Tensor</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">Tensor</span></code>]) – specific elements to insert in array x1</p></li>
 <li><p><strong>side</strong> – The specific elements’ index is at the ‘left’ side or
 ‘right’ side in the sorted array x1. If the side is ‘left’, the
 index of the first suitable location located is given. If
@@ -168,7 +169,7 @@ index of the first suitable location located is given. If
 </dd>
 </dl>
 <p class="rubric">Examples</p>
-<p>With：code:<cite>ivy.Array</cite> inputs:</p>
+<p>With <code class="code docutils literal notranslate"><span class="pre">ivy.Array</span></code> input:</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x1</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">x2</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">y</span>  <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">searchsorted</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span><span class="n">x2</span><span class="p">)</span>

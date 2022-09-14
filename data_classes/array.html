@@ -60,6 +60,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../functional/ivy/data_type.html">Data type</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../functional/ivy/device.html">Device</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../functional/ivy/elementwise.html">Elementwise</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../functional/ivy/extensions.html">Extensions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../functional/ivy/general.html">General</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../functional/ivy/gradients.html">Gradients</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../functional/ivy/layers.html">Layers</a></li>
@@ -173,6 +174,8 @@ with minimal changes.</p>
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>self</strong> – first input array. Should have a numeric data type.</p></li>
+<li><p><strong>other</strong> – second input array. Must be compatible with <code class="docutils literal notranslate"><span class="pre">self</span></code>
+(see <span class="xref std std-ref">broadcasting</span>). Should have a numeric data type.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -271,6 +274,8 @@ with minimal changes.</p>
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>self</strong> – first input array. Should have a numeric data type.</p></li>
+<li><p><strong>other</strong> – second input array. Must be compatible with <code class="docutils literal notranslate"><span class="pre">self</span></code>
+(see <span class="xref std std-ref">broadcasting</span>). Should have a numeric data type.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -289,11 +294,69 @@ data type determined by <span class="xref std std-ref">type-promotion</span>.</p
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="ivy.array.array.Array.adam_update">
-<span class="sig-name descname"><span class="pre">adam_update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ivy.array.array.Array.adam_update" title="Permalink to this definition"></a></dt>
-<dd><p>Add the data of the current array from which the instance function is invoked
-as the first arg parameter or kwarg parameter. Return the new function with
-the name function_name and the new args variable or kwargs as the new inputs.</p>
+<dt class="sig sig-object py" id="ivy.array.array.Array.__rrshift__">
+<span class="sig-name descname"><span class="pre">__rrshift__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ivy/array/array.html#Array.__rrshift__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ivy.array.array.Array.__rrshift__" title="Permalink to this definition"></a></dt>
+<dd><p>ivy.Array reverse special method variant of ivy.bitwise_right_shift.
+This method simply wraps the function, and so the docstring for
+ivy.bitwise_right_shift also applies to this method with minimal changes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>self</strong> – first input array. Should have an integer data type.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><em>ret</em> – an array containing the element-wise results. The returned array must have
+a data type determined by <span class="xref std std-ref">type-promotion</span>.</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="mi">32</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">a</span> <span class="o">&gt;&gt;</span> <span class="n">b</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+<span class="go">ivy.array([32, 16,  8])</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ivy.array.array.Array.__rshift__">
+<span class="sig-name descname"><span class="pre">__rshift__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ivy/array/array.html#Array.__rshift__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ivy.array.array.Array.__rshift__" title="Permalink to this definition"></a></dt>
+<dd><p>ivy.Array special method variant of ivy.bitwise_right_shift. This method
+simply wraps the function, and so the docstring for ivy.bitwise_right_shift
+also applies to this method with minimal changes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>self</strong> – first input array. Should have an integer data type.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><em>ret</em> – an array containing the element-wise results. The returned array must have
+a data type determined by <span class="xref std std-ref">type-promotion</span>.</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<p>With <code class="code docutils literal notranslate"><span class="pre">ivy.Array</span></code> instances only:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">a</span> <span class="o">&gt;&gt;</span> <span class="n">b</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+<span class="go">ivy.array([2, 1, 1])</span>
+</pre></div>
+</div>
+<p>With mix of <code class="code docutils literal notranslate"><span class="pre">ivy.Array</span></code> and <code class="code docutils literal notranslate"><span class="pre">ivy.Container</span></code> instances:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">64</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span><span class="n">a</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]),</span> <span class="n">b</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">3</span><span class="p">]))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">a</span> <span class="o">&gt;&gt;</span> <span class="n">b</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+<span class="go">{</span>
+<span class="go">    a: ivy.array([5, 5, 16]),</span>
+<span class="go">    b: ivy.array([0, 1, 8])</span>
+<span class="go">}</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="py method">
@@ -345,22 +408,6 @@ the name function_name and the new args variable or kwargs as the new inputs.</p
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="ivy.array.array.Array.array_equal">
-<span class="sig-name descname"><span class="pre">array_equal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ivy.array.array.Array.array_equal" title="Permalink to this definition"></a></dt>
-<dd><p>Add the data of the current array from which the instance function is invoked
-as the first arg parameter or kwarg parameter. Return the new function with
-the name function_name and the new args variable or kwargs as the new inputs.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="ivy.array.array.Array.arrays_equal">
-<span class="sig-name descname"><span class="pre">arrays_equal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ivy.array.array.Array.arrays_equal" title="Permalink to this definition"></a></dt>
-<dd><p>Add the data of the current array from which the instance function is invoked
-as the first arg parameter or kwarg parameter. Return the new function with
-the name function_name and the new args variable or kwargs as the new inputs.</p>
-</dd></dl>
-
-<dl class="py method">
 <dt class="sig sig-object py" id="ivy.array.array.Array.as_ivy_dev">
 <span class="sig-name descname"><span class="pre">as_ivy_dev</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ivy.array.array.Array.as_ivy_dev" title="Permalink to this definition"></a></dt>
 <dd><p>Add the data of the current array from which the instance function is invoked
@@ -393,16 +440,16 @@ the name function_name and the new args variable or kwargs as the new inputs.</p
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="ivy.array.array.Array.assert_supports_inplace">
-<span class="sig-name descname"><span class="pre">assert_supports_inplace</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ivy.array.array.Array.assert_supports_inplace" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="ivy.array.array.Array.cache_fn">
+<span class="sig-name descname"><span class="pre">cache_fn</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ivy.array.array.Array.cache_fn" title="Permalink to this definition"></a></dt>
 <dd><p>Add the data of the current array from which the instance function is invoked
 as the first arg parameter or kwarg parameter. Return the new function with
 the name function_name and the new args variable or kwargs as the new inputs.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="ivy.array.array.Array.cache_fn">
-<span class="sig-name descname"><span class="pre">cache_fn</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ivy.array.array.Array.cache_fn" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="ivy.array.array.Array.check_float">
+<span class="sig-name descname"><span class="pre">check_float</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ivy.array.array.Array.check_float" title="Permalink to this definition"></a></dt>
 <dd><p>Add the data of the current array from which the instance function is invoked
 as the first arg parameter or kwarg parameter. Return the new function with
 the name function_name and the new args variable or kwargs as the new inputs.</p>
@@ -433,14 +480,6 @@ the name function_name and the new args variable or kwargs as the new inputs.</p
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="ivy.array.array.Array.conv1d_transpose">
-<span class="sig-name descname"><span class="pre">conv1d_transpose</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ivy.array.array.Array.conv1d_transpose" title="Permalink to this definition"></a></dt>
-<dd><p>Add the data of the current array from which the instance function is invoked
-as the first arg parameter or kwarg parameter. Return the new function with
-the name function_name and the new args variable or kwargs as the new inputs.</p>
-</dd></dl>
-
-<dl class="py method">
 <dt class="sig sig-object py" id="ivy.array.array.Array.conv2d">
 <span class="sig-name descname"><span class="pre">conv2d</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ivy.array.array.Array.conv2d" title="Permalink to this definition"></a></dt>
 <dd><p>Add the data of the current array from which the instance function is invoked
@@ -451,46 +490,6 @@ the name function_name and the new args variable or kwargs as the new inputs.</p
 <dl class="py method">
 <dt class="sig sig-object py" id="ivy.array.array.Array.conv2d_transpose">
 <span class="sig-name descname"><span class="pre">conv2d_transpose</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ivy.array.array.Array.conv2d_transpose" title="Permalink to this definition"></a></dt>
-<dd><p>Add the data of the current array from which the instance function is invoked
-as the first arg parameter or kwarg parameter. Return the new function with
-the name function_name and the new args variable or kwargs as the new inputs.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="ivy.array.array.Array.conv3d">
-<span class="sig-name descname"><span class="pre">conv3d</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ivy.array.array.Array.conv3d" title="Permalink to this definition"></a></dt>
-<dd><p>Add the data of the current array from which the instance function is invoked
-as the first arg parameter or kwarg parameter. Return the new function with
-the name function_name and the new args variable or kwargs as the new inputs.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="ivy.array.array.Array.conv3d_transpose">
-<span class="sig-name descname"><span class="pre">conv3d_transpose</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ivy.array.array.Array.conv3d_transpose" title="Permalink to this definition"></a></dt>
-<dd><p>Add the data of the current array from which the instance function is invoked
-as the first arg parameter or kwarg parameter. Return the new function with
-the name function_name and the new args variable or kwargs as the new inputs.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="ivy.array.array.Array.copy_array">
-<span class="sig-name descname"><span class="pre">copy_array</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ivy.array.array.Array.copy_array" title="Permalink to this definition"></a></dt>
-<dd><p>Add the data of the current array from which the instance function is invoked
-as the first arg parameter or kwarg parameter. Return the new function with
-the name function_name and the new args variable or kwargs as the new inputs.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="ivy.array.array.Array.cumprod">
-<span class="sig-name descname"><span class="pre">cumprod</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ivy.array.array.Array.cumprod" title="Permalink to this definition"></a></dt>
-<dd><p>Add the data of the current array from which the instance function is invoked
-as the first arg parameter or kwarg parameter. Return the new function with
-the name function_name and the new args variable or kwargs as the new inputs.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="ivy.array.array.Array.cumsum">
-<span class="sig-name descname"><span class="pre">cumsum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ivy.array.array.Array.cumsum" title="Permalink to this definition"></a></dt>
 <dd><p>Add the data of the current array from which the instance function is invoked
 as the first arg parameter or kwarg parameter. Return the new function with
 the name function_name and the new args variable or kwargs as the new inputs.</p>
@@ -520,14 +519,6 @@ the name function_name and the new args variable or kwargs as the new inputs.</p
 <dl class="py method">
 <dt class="sig sig-object py" id="ivy.array.array.Array.deconv_length">
 <span class="sig-name descname"><span class="pre">deconv_length</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ivy.array.array.Array.deconv_length" title="Permalink to this definition"></a></dt>
-<dd><p>Add the data of the current array from which the instance function is invoked
-as the first arg parameter or kwarg parameter. Return the new function with
-the name function_name and the new args variable or kwargs as the new inputs.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="ivy.array.array.Array.default">
-<span class="sig-name descname"><span class="pre">default</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ivy.array.array.Array.default" title="Permalink to this definition"></a></dt>
 <dd><p>Add the data of the current array from which the instance function is invoked
 as the first arg parameter or kwarg parameter. Return the new function with
 the name function_name and the new args variable or kwargs as the new inputs.</p>
@@ -586,14 +577,6 @@ the name function_name and the new args variable or kwargs as the new inputs.</p
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">device</span></span><a class="headerlink" href="#ivy.array.array.Array.device" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
-<dl class="py method">
-<dt class="sig sig-object py" id="ivy.array.array.Array.dropout">
-<span class="sig-name descname"><span class="pre">dropout</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ivy.array.array.Array.dropout" title="Permalink to this definition"></a></dt>
-<dd><p>Add the data of the current array from which the instance function is invoked
-as the first arg parameter or kwarg parameter. Return the new function with
-the name function_name and the new args variable or kwargs as the new inputs.</p>
-</dd></dl>
-
 <dl class="py property">
 <dt class="sig sig-object py" id="ivy.array.array.Array.dtype">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">dtype</span></span><a class="headerlink" href="#ivy.array.array.Array.dtype" title="Permalink to this definition"></a></dt>
@@ -602,14 +585,6 @@ the name function_name and the new args variable or kwargs as the new inputs.</p
 <dl class="py method">
 <dt class="sig sig-object py" id="ivy.array.array.Array.dtype_bits">
 <span class="sig-name descname"><span class="pre">dtype_bits</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ivy.array.array.Array.dtype_bits" title="Permalink to this definition"></a></dt>
-<dd><p>Add the data of the current array from which the instance function is invoked
-as the first arg parameter or kwarg parameter. Return the new function with
-the name function_name and the new args variable or kwargs as the new inputs.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="ivy.array.array.Array.embedding">
-<span class="sig-name descname"><span class="pre">embedding</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ivy.array.array.Array.embedding" title="Permalink to this definition"></a></dt>
 <dd><p>Add the data of the current array from which the instance function is invoked
 as the first arg parameter or kwarg parameter. Return the new function with
 the name function_name and the new args variable or kwargs as the new inputs.</p>
@@ -632,32 +607,8 @@ the name function_name and the new args variable or kwargs as the new inputs.</p
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="ivy.array.array.Array.exists">
-<span class="sig-name descname"><span class="pre">exists</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ivy.array.array.Array.exists" title="Permalink to this definition"></a></dt>
-<dd><p>Add the data of the current array from which the instance function is invoked
-as the first arg parameter or kwarg parameter. Return the new function with
-the name function_name and the new args variable or kwargs as the new inputs.</p>
-</dd></dl>
-
-<dl class="py method">
 <dt class="sig sig-object py" id="ivy.array.array.Array.eye">
 <span class="sig-name descname"><span class="pre">eye</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ivy.array.array.Array.eye" title="Permalink to this definition"></a></dt>
-<dd><p>Add the data of the current array from which the instance function is invoked
-as the first arg parameter or kwarg parameter. Return the new function with
-the name function_name and the new args variable or kwargs as the new inputs.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="ivy.array.array.Array.floormod">
-<span class="sig-name descname"><span class="pre">floormod</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ivy.array.array.Array.floormod" title="Permalink to this definition"></a></dt>
-<dd><p>Add the data of the current array from which the instance function is invoked
-as the first arg parameter or kwarg parameter. Return the new function with
-the name function_name and the new args variable or kwargs as the new inputs.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="ivy.array.array.Array.fourier_encode">
-<span class="sig-name descname"><span class="pre">fourier_encode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ivy.array.array.Array.fourier_encode" title="Permalink to this definition"></a></dt>
 <dd><p>Add the data of the current array from which the instance function is invoked
 as the first arg parameter or kwarg parameter. Return the new function with
 the name function_name and the new args variable or kwargs as the new inputs.</p>
@@ -768,8 +719,8 @@ the name function_name and the new args variable or kwargs as the new inputs.</p
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="ivy.array.array.Array.get_num_dims">
-<span class="sig-name descname"><span class="pre">get_num_dims</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ivy.array.array.Array.get_num_dims" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="ivy.array.array.Array.get_queue_timeout">
+<span class="sig-name descname"><span class="pre">get_queue_timeout</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ivy.array.array.Array.get_queue_timeout" title="Permalink to this definition"></a></dt>
 <dd><p>Add the data of the current array from which the instance function is invoked
 as the first arg parameter or kwarg parameter. Return the new function with
 the name function_name and the new args variable or kwargs as the new inputs.</p>
@@ -778,6 +729,14 @@ the name function_name and the new args variable or kwargs as the new inputs.</p
 <dl class="py method">
 <dt class="sig sig-object py" id="ivy.array.array.Array.get_referrers_recursive">
 <span class="sig-name descname"><span class="pre">get_referrers_recursive</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ivy.array.array.Array.get_referrers_recursive" title="Permalink to this definition"></a></dt>
+<dd><p>Add the data of the current array from which the instance function is invoked
+as the first arg parameter or kwarg parameter. Return the new function with
+the name function_name and the new args variable or kwargs as the new inputs.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ivy.array.array.Array.get_tmp_dir">
+<span class="sig-name descname"><span class="pre">get_tmp_dir</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ivy.array.array.Array.get_tmp_dir" title="Permalink to this definition"></a></dt>
 <dd><p>Add the data of the current array from which the instance function is invoked
 as the first arg parameter or kwarg parameter. Return the new function with
 the name function_name and the new args variable or kwargs as the new inputs.</p>
@@ -794,6 +753,14 @@ the name function_name and the new args variable or kwargs as the new inputs.</p
 <dl class="py method">
 <dt class="sig sig-object py" id="ivy.array.array.Array.grad">
 <span class="sig-name descname"><span class="pre">grad</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ivy.array.array.Array.grad" title="Permalink to this definition"></a></dt>
+<dd><p>Add the data of the current array from which the instance function is invoked
+as the first arg parameter or kwarg parameter. Return the new function with
+the name function_name and the new args variable or kwargs as the new inputs.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ivy.array.array.Array.handle_exceptions">
+<span class="sig-name descname"><span class="pre">handle_exceptions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ivy.array.array.Array.handle_exceptions" title="Permalink to this definition"></a></dt>
 <dd><p>Add the data of the current array from which the instance function is invoked
 as the first arg parameter or kwarg parameter. Return the new function with
 the name function_name and the new args variable or kwargs as the new inputs.</p>
@@ -824,8 +791,8 @@ the name function_name and the new args variable or kwargs as the new inputs.</p
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="ivy.array.array.Array.indices_where">
-<span class="sig-name descname"><span class="pre">indices_where</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ivy.array.array.Array.indices_where" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="ivy.array.array.Array.infer_default_dtype">
+<span class="sig-name descname"><span class="pre">infer_default_dtype</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ivy.array.array.Array.infer_default_dtype" title="Permalink to this definition"></a></dt>
 <dd><p>Add the data of the current array from which the instance function is invoked
 as the first arg parameter or kwarg parameter. Return the new function with
 the name function_name and the new args variable or kwargs as the new inputs.</p>
@@ -856,32 +823,16 @@ the name function_name and the new args variable or kwargs as the new inputs.</p
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="ivy.array.array.Array.inplace_decrement">
-<span class="sig-name descname"><span class="pre">inplace_decrement</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ivy.array.array.Array.inplace_decrement" title="Permalink to this definition"></a></dt>
-<dd><p>Add the data of the current array from which the instance function is invoked
-as the first arg parameter or kwarg parameter. Return the new function with
-the name function_name and the new args variable or kwargs as the new inputs.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="ivy.array.array.Array.inplace_increment">
-<span class="sig-name descname"><span class="pre">inplace_increment</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ivy.array.array.Array.inplace_increment" title="Permalink to this definition"></a></dt>
-<dd><p>Add the data of the current array from which the instance function is invoked
-as the first arg parameter or kwarg parameter. Return the new function with
-the name function_name and the new args variable or kwargs as the new inputs.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="ivy.array.array.Array.inplace_update">
-<span class="sig-name descname"><span class="pre">inplace_update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ivy.array.array.Array.inplace_update" title="Permalink to this definition"></a></dt>
-<dd><p>Add the data of the current array from which the instance function is invoked
-as the first arg parameter or kwarg parameter. Return the new function with
-the name function_name and the new args variable or kwargs as the new inputs.</p>
-</dd></dl>
-
-<dl class="py method">
 <dt class="sig sig-object py" id="ivy.array.array.Array.inplace_variables_supported">
 <span class="sig-name descname"><span class="pre">inplace_variables_supported</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ivy.array.array.Array.inplace_variables_supported" title="Permalink to this definition"></a></dt>
+<dd><p>Add the data of the current array from which the instance function is invoked
+as the first arg parameter or kwarg parameter. Return the new function with
+the name function_name and the new args variable or kwargs as the new inputs.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ivy.array.array.Array.inputs_to_ivy_arrays">
+<span class="sig-name descname"><span class="pre">inputs_to_ivy_arrays</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ivy.array.array.Array.inputs_to_ivy_arrays" title="Permalink to this definition"></a></dt>
 <dd><p>Add the data of the current array from which the instance function is invoked
 as the first arg parameter or kwarg parameter. Return the new function with
 the name function_name and the new args variable or kwargs as the new inputs.</p>
@@ -896,40 +847,16 @@ the name function_name and the new args variable or kwargs as the new inputs.</p
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="ivy.array.array.Array.integer_arrays_to_float">
+<span class="sig-name descname"><span class="pre">integer_arrays_to_float</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ivy.array.array.Array.integer_arrays_to_float" title="Permalink to this definition"></a></dt>
+<dd><p>Add the data of the current array from which the instance function is invoked
+as the first arg parameter or kwarg parameter. Return the new function with
+the name function_name and the new args variable or kwargs as the new inputs.</p>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="ivy.array.array.Array.invalid_dtype">
 <span class="sig-name descname"><span class="pre">invalid_dtype</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ivy.array.array.Array.invalid_dtype" title="Permalink to this definition"></a></dt>
-<dd><p>Add the data of the current array from which the instance function is invoked
-as the first arg parameter or kwarg parameter. Return the new function with
-the name function_name and the new args variable or kwargs as the new inputs.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="ivy.array.array.Array.is_array">
-<span class="sig-name descname"><span class="pre">is_array</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ivy.array.array.Array.is_array" title="Permalink to this definition"></a></dt>
-<dd><p>Add the data of the current array from which the instance function is invoked
-as the first arg parameter or kwarg parameter. Return the new function with
-the name function_name and the new args variable or kwargs as the new inputs.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="ivy.array.array.Array.is_ivy_array">
-<span class="sig-name descname"><span class="pre">is_ivy_array</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ivy.array.array.Array.is_ivy_array" title="Permalink to this definition"></a></dt>
-<dd><p>Add the data of the current array from which the instance function is invoked
-as the first arg parameter or kwarg parameter. Return the new function with
-the name function_name and the new args variable or kwargs as the new inputs.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="ivy.array.array.Array.is_ivy_container">
-<span class="sig-name descname"><span class="pre">is_ivy_container</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ivy.array.array.Array.is_ivy_container" title="Permalink to this definition"></a></dt>
-<dd><p>Add the data of the current array from which the instance function is invoked
-as the first arg parameter or kwarg parameter. Return the new function with
-the name function_name and the new args variable or kwargs as the new inputs.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="ivy.array.array.Array.is_native_array">
-<span class="sig-name descname"><span class="pre">is_native_array</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ivy.array.array.Array.is_native_array" title="Permalink to this definition"></a></dt>
 <dd><p>Add the data of the current array from which the instance function is invoked
 as the first arg parameter or kwarg parameter. Return the new function with
 the name function_name and the new args variable or kwargs as the new inputs.</p>
@@ -955,30 +882,6 @@ the name function_name and the new args variable or kwargs as the new inputs.</p
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="ivy.array.array.Array.lamb_update">
-<span class="sig-name descname"><span class="pre">lamb_update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ivy.array.array.Array.lamb_update" title="Permalink to this definition"></a></dt>
-<dd><p>Add the data of the current array from which the instance function is invoked
-as the first arg parameter or kwarg parameter. Return the new function with
-the name function_name and the new args variable or kwargs as the new inputs.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="ivy.array.array.Array.lars_update">
-<span class="sig-name descname"><span class="pre">lars_update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ivy.array.array.Array.lars_update" title="Permalink to this definition"></a></dt>
-<dd><p>Add the data of the current array from which the instance function is invoked
-as the first arg parameter or kwarg parameter. Return the new function with
-the name function_name and the new args variable or kwargs as the new inputs.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="ivy.array.array.Array.linear">
-<span class="sig-name descname"><span class="pre">linear</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ivy.array.array.Array.linear" title="Permalink to this definition"></a></dt>
-<dd><p>Add the data of the current array from which the instance function is invoked
-as the first arg parameter or kwarg parameter. Return the new function with
-the name function_name and the new args variable or kwargs as the new inputs.</p>
-</dd></dl>
-
-<dl class="py method">
 <dt class="sig sig-object py" id="ivy.array.array.Array.linspace">
 <span class="sig-name descname"><span class="pre">linspace</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ivy.array.array.Array.linspace" title="Permalink to this definition"></a></dt>
 <dd><p>Add the data of the current array from which the instance function is invoked
@@ -989,14 +892,6 @@ the name function_name and the new args variable or kwargs as the new inputs.</p
 <dl class="py method">
 <dt class="sig sig-object py" id="ivy.array.array.Array.logspace">
 <span class="sig-name descname"><span class="pre">logspace</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ivy.array.array.Array.logspace" title="Permalink to this definition"></a></dt>
-<dd><p>Add the data of the current array from which the instance function is invoked
-as the first arg parameter or kwarg parameter. Return the new function with
-the name function_name and the new args variable or kwargs as the new inputs.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="ivy.array.array.Array.lstm_update">
-<span class="sig-name descname"><span class="pre">lstm_update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ivy.array.array.Array.lstm_update" title="Permalink to this definition"></a></dt>
 <dd><p>Add the data of the current array from which the instance function is invoked
 as the first arg parameter or kwarg parameter. Return the new function with
 the name function_name and the new args variable or kwargs as the new inputs.</p>
@@ -1034,14 +929,6 @@ the name function_name and the new args variable or kwargs as the new inputs.</p
 <dl class="py method">
 <dt class="sig sig-object py" id="ivy.array.array.Array.minimum">
 <span class="sig-name descname"><span class="pre">minimum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ivy.array.array.Array.minimum" title="Permalink to this definition"></a></dt>
-<dd><p>Add the data of the current array from which the instance function is invoked
-as the first arg parameter or kwarg parameter. Return the new function with
-the name function_name and the new args variable or kwargs as the new inputs.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="ivy.array.array.Array.multi_head_attention">
-<span class="sig-name descname"><span class="pre">multi_head_attention</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ivy.array.array.Array.multi_head_attention" title="Permalink to this definition"></a></dt>
 <dd><p>Add the data of the current array from which the instance function is invoked
 as the first arg parameter or kwarg parameter. Return the new function with
 the name function_name and the new args variable or kwargs as the new inputs.</p>
@@ -1107,24 +994,8 @@ the name function_name and the new args variable or kwargs as the new inputs.</p
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="ivy.array.array.Array.one_hot">
-<span class="sig-name descname"><span class="pre">one_hot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ivy.array.array.Array.one_hot" title="Permalink to this definition"></a></dt>
-<dd><p>Add the data of the current array from which the instance function is invoked
-as the first arg parameter or kwarg parameter. Return the new function with
-the name function_name and the new args variable or kwargs as the new inputs.</p>
-</dd></dl>
-
-<dl class="py method">
 <dt class="sig sig-object py" id="ivy.array.array.Array.ones">
 <span class="sig-name descname"><span class="pre">ones</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ivy.array.array.Array.ones" title="Permalink to this definition"></a></dt>
-<dd><p>Add the data of the current array from which the instance function is invoked
-as the first arg parameter or kwarg parameter. Return the new function with
-the name function_name and the new args variable or kwargs as the new inputs.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="ivy.array.array.Array.optimizer_update">
-<span class="sig-name descname"><span class="pre">optimizer_update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ivy.array.array.Array.optimizer_update" title="Permalink to this definition"></a></dt>
 <dd><p>Add the data of the current array from which the instance function is invoked
 as the first arg parameter or kwarg parameter. Return the new function with
 the name function_name and the new args variable or kwargs as the new inputs.</p>
@@ -1179,32 +1050,8 @@ the name function_name and the new args variable or kwargs as the new inputs.</p
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="ivy.array.array.Array.queue_timeout">
-<span class="sig-name descname"><span class="pre">queue_timeout</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ivy.array.array.Array.queue_timeout" title="Permalink to this definition"></a></dt>
-<dd><p>Add the data of the current array from which the instance function is invoked
-as the first arg parameter or kwarg parameter. Return the new function with
-the name function_name and the new args variable or kwargs as the new inputs.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="ivy.array.array.Array.scaled_dot_product_attention">
-<span class="sig-name descname"><span class="pre">scaled_dot_product_attention</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ivy.array.array.Array.scaled_dot_product_attention" title="Permalink to this definition"></a></dt>
-<dd><p>Add the data of the current array from which the instance function is invoked
-as the first arg parameter or kwarg parameter. Return the new function with
-the name function_name and the new args variable or kwargs as the new inputs.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="ivy.array.array.Array.scatter_flat">
-<span class="sig-name descname"><span class="pre">scatter_flat</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ivy.array.array.Array.scatter_flat" title="Permalink to this definition"></a></dt>
-<dd><p>Add the data of the current array from which the instance function is invoked
-as the first arg parameter or kwarg parameter. Return the new function with
-the name function_name and the new args variable or kwargs as the new inputs.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="ivy.array.array.Array.scatter_nd">
-<span class="sig-name descname"><span class="pre">scatter_nd</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ivy.array.array.Array.scatter_nd" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="ivy.array.array.Array.reciprocal">
+<span class="sig-name descname"><span class="pre">reciprocal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ivy.array.array.Array.reciprocal" title="Permalink to this definition"></a></dt>
 <dd><p>Add the data of the current array from which the instance function is invoked
 as the first arg parameter or kwarg parameter. Return the new function with
 the name function_name and the new args variable or kwargs as the new inputs.</p>
@@ -1389,30 +1236,6 @@ the name function_name and the new args variable or kwargs as the new inputs.</p
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="ivy.array.array.Array.stable_pow">
-<span class="sig-name descname"><span class="pre">stable_pow</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ivy.array.array.Array.stable_pow" title="Permalink to this definition"></a></dt>
-<dd><p>Add the data of the current array from which the instance function is invoked
-as the first arg parameter or kwarg parameter. Return the new function with
-the name function_name and the new args variable or kwargs as the new inputs.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="ivy.array.array.Array.supports_inplace">
-<span class="sig-name descname"><span class="pre">supports_inplace</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ivy.array.array.Array.supports_inplace" title="Permalink to this definition"></a></dt>
-<dd><p>Add the data of the current array from which the instance function is invoked
-as the first arg parameter or kwarg parameter. Return the new function with
-the name function_name and the new args variable or kwargs as the new inputs.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="ivy.array.array.Array.tmp_dir">
-<span class="sig-name descname"><span class="pre">tmp_dir</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ivy.array.array.Array.tmp_dir" title="Permalink to this definition"></a></dt>
-<dd><p>Add the data of the current array from which the instance function is invoked
-as the first arg parameter or kwarg parameter. Return the new function with
-the name function_name and the new args variable or kwargs as the new inputs.</p>
-</dd></dl>
-
-<dl class="py method">
 <dt class="sig sig-object py" id="ivy.array.array.Array.to_ivy">
 <span class="sig-name descname"><span class="pre">to_ivy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ivy.array.array.Array.to_ivy" title="Permalink to this definition"></a></dt>
 <dd><p>Add the data of the current array from which the instance function is invoked
@@ -1447,14 +1270,6 @@ the name function_name and the new args variable or kwargs as the new inputs.</p
 <dl class="py method">
 <dt class="sig sig-object py" id="ivy.array.array.Array.to_native_shape">
 <span class="sig-name descname"><span class="pre">to_native_shape</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ivy.array.array.Array.to_native_shape" title="Permalink to this definition"></a></dt>
-<dd><p>Add the data of the current array from which the instance function is invoked
-as the first arg parameter or kwarg parameter. Return the new function with
-the name function_name and the new args variable or kwargs as the new inputs.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="ivy.array.array.Array.to_scalar">
-<span class="sig-name descname"><span class="pre">to_scalar</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ivy.array.array.Array.to_scalar" title="Permalink to this definition"></a></dt>
 <dd><p>Add the data of the current array from which the instance function is invoked
 as the first arg parameter or kwarg parameter. Return the new function with
 the name function_name and the new args variable or kwargs as the new inputs.</p>
@@ -1549,6 +1364,14 @@ the name function_name and the new args variable or kwargs as the new inputs.</p
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="ivy.array.array.Array.unset_queue_timeout">
+<span class="sig-name descname"><span class="pre">unset_queue_timeout</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ivy.array.array.Array.unset_queue_timeout" title="Permalink to this definition"></a></dt>
+<dd><p>Add the data of the current array from which the instance function is invoked
+as the first arg parameter or kwarg parameter. Return the new function with
+the name function_name and the new args variable or kwargs as the new inputs.</p>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="ivy.array.array.Array.unset_shape_array_mode">
 <span class="sig-name descname"><span class="pre">unset_shape_array_mode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ivy.array.array.Array.unset_shape_array_mode" title="Permalink to this definition"></a></dt>
 <dd><p>Add the data of the current array from which the instance function is invoked
@@ -1589,16 +1412,8 @@ the name function_name and the new args variable or kwargs as the new inputs.</p
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="ivy.array.array.Array.value_is_nan">
-<span class="sig-name descname"><span class="pre">value_is_nan</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ivy.array.array.Array.value_is_nan" title="Permalink to this definition"></a></dt>
-<dd><p>Add the data of the current array from which the instance function is invoked
-as the first arg parameter or kwarg parameter. Return the new function with
-the name function_name and the new args variable or kwargs as the new inputs.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="ivy.array.array.Array.variable_data">
-<span class="sig-name descname"><span class="pre">variable_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ivy.array.array.Array.variable_data" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="ivy.array.array.Array.vmap">
+<span class="sig-name descname"><span class="pre">vmap</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ivy.array.array.Array.vmap" title="Permalink to this definition"></a></dt>
 <dd><p>Add the data of the current array from which the instance function is invoked
 as the first arg parameter or kwarg parameter. Return the new function with
 the name function_name and the new args variable or kwargs as the new inputs.</p>
@@ -1607,6 +1422,14 @@ the name function_name and the new args variable or kwargs as the new inputs.</p
 <dl class="py method">
 <dt class="sig sig-object py" id="ivy.array.array.Array.with_grads">
 <span class="sig-name descname"><span class="pre">with_grads</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ivy.array.array.Array.with_grads" title="Permalink to this definition"></a></dt>
+<dd><p>Add the data of the current array from which the instance function is invoked
+as the first arg parameter or kwarg parameter. Return the new function with
+the name function_name and the new args variable or kwargs as the new inputs.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ivy.array.array.Array.wraps">
+<span class="sig-name descname"><span class="pre">wraps</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ivy.array.array.Array.wraps" title="Permalink to this definition"></a></dt>
 <dd><p>Add the data of the current array from which the instance function is invoked
 as the first arg parameter or kwarg parameter. Return the new function with
 the name function_name and the new args variable or kwargs as the new inputs.</p>
@@ -1637,6 +1460,7 @@ the name function_name and the new args variable or kwargs as the new inputs.</p
 </div>
 <div class="toctree-wrapper compound">
 </div>
+<p>This should have hopefully given you an overview of the Array submodule,If you’re ever unsure of how best to proceed, please feel free to engage with the <a class="reference external" href="https://github.com/unifyai/ivy/discussions/2206">Array discussion</a>,or reach out on <a class="reference external" href="https://discord.gg/ZVQdvbzNQJ">discord</a> in the <a class="reference external" href="https://discord.com/channels/799879767196958751/1000042910831620176">Array channel</a>!</p>
 </section>
 
 

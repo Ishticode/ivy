@@ -86,7 +86,7 @@ Contents
 Overview
 --------
 
-Ivy is an ML framework that currently supports JAX, TensorFlow, PyTorch, MXNet, and Numpy.
+Ivy is an ML framework that currently supports JAX, TensorFlow, PyTorch, and Numpy.
 We’re very excited for you to try it out!
 
 Next on our roadmap is to support automatic code conversions between all frameworks 🔄,
@@ -152,7 +152,7 @@ You can immediately use Ivy to train a neural network, using your favorite frame
     print('Finished training!')
 
 This example uses PyTorch as a backend framework,
-but the backend can easily be changed to your favorite frameworks, such as TensorFlow, JAX, or MXNet.
+but the backend can easily be changed to your favorite frameworks, such as TensorFlow, or JAX.
 
 **Framework Agnostic Functions**
 
@@ -164,7 +164,6 @@ This is the same for ALL Ivy functions. They can accept tensors from any framewo
     import jax.numpy as jnp
     import tensorflow as tf
     import numpy as np
-    import mxnet as mx
     import torch
 
     import ivy
@@ -172,7 +171,6 @@ This is the same for ALL Ivy functions. They can accept tensors from any framewo
     jax_concatted   = ivy.concat((jnp.ones((1,)), jnp.ones((1,))), -1)
     tf_concatted    = ivy.concat((tf.ones((1,)), tf.ones((1,))), -1)
     np_concatted    = ivy.concat((np.ones((1,)), np.ones((1,))), -1)
-    mx_concatted    = ivy.concat((mx.nd.ones((1,)), mx.nd.ones((1,))), -1)
     torch_concatted = ivy.concat((torch.ones((1,)), torch.ones((1,))), -1)
 
 To see a list of all Ivy methods, type :code:`ivy.` into a python command prompt and press :code:`tab`.
@@ -320,67 +318,6 @@ Citation
 .. toctree::
    :hidden:
    :maxdepth: -1
-   :caption: Array
-
-   array/activations.rst
-   array/array.rst
-   array/array_methods.rst
-   array/conversions.rst
-   array/creation.rst
-   array/data_type.rst
-   array/device.rst
-   array/elementwise.rst
-   array/general.rst
-   array/gradients.rst
-   array/image.rst
-   array/layers.rst
-   array/linear_algebra.rst
-   array/losses.rst
-   array/manipulation.rst
-   array/norms.rst
-   array/random.rst
-   array/searching.rst
-   array/set.rst
-   array/sorting.rst
-   array/statistical.rst
-   array/utility.rst
-   array/wrapping.rst
-
-
-.. toctree::
-   :hidden:
-   :maxdepth: -1
-   :caption: Container
-
-   container/activations.rst
-   container/base.rst
-   container/container.rst
-   container/container_methods.rst
-   container/conversions.rst
-   container/creation.rst
-   container/data_type.rst
-   container/device.rst
-   container/elementwise.rst
-   container/general.rst
-   container/gradients.rst
-   container/image.rst
-   container/layers.rst
-   container/linear_algebra.rst
-   container/losses.rst
-   container/manipulation.rst
-   container/norms.rst
-   container/random.rst
-   container/searching.rst
-   container/set.rst
-   container/sorting.rst
-   container/statistical.rst
-   container/utility.rst
-   container/wrapping.rst
-
-
-.. toctree::
-   :hidden:
-   :maxdepth: -1
    :caption: Functions
 
    functional/backends.rst
@@ -391,15 +328,24 @@ Citation
 .. toctree::
    :hidden:
    :maxdepth: -1
-   :caption: Stateful
+   :caption: Data Classes
 
-   stateful/activations.rst
-   stateful/converters.rst
+   data_classes/container.rst
+   data_classes/array.rst
+
+
+.. toctree::
+   :hidden:
+   :maxdepth: -1
+   :caption: Framework Classes
+
    stateful/initializers.rst
-   stateful/layers.rst
-   stateful/module.rst
-   stateful/norms.rst
+   stateful/converters.rst
    stateful/optimizers.rst
+   stateful/module.rst
+   stateful/layers.rst
+   stateful/norms.rst
+   stateful/activations.rst
    stateful/sequential.rst
 
 
