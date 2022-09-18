@@ -22,7 +22,7 @@
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
     <link rel="next" title="Extensions" href="../../extensions.html" />
-    <link rel="prev" title="ivy.Container.static_trunc_divide" href="static_trunc_divide_container.html" /> 
+    <link rel="prev" title="ivy.Array.trunc_divide" href="trunc_divide_array.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -125,6 +125,7 @@
 <li class="toctree-l2 current"><a class="reference internal" href="../trunc_divide.html">trunc_divide</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="trunc_divide_functional.html">ivy.trunc_divide</a></li>
 <li class="toctree-l3"><a class="reference internal" href="static_trunc_divide_container.html">ivy.Container.static_trunc_divide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trunc_divide_array.html">ivy.Array.trunc_divide</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">ivy.Container.trunc_divide</a></li>
 </ul>
 </li>
@@ -239,13 +240,13 @@ by <span class="xref std std-ref">type-promotion</span>.</p>
 </dl>
 <p class="rubric">Examples</p>
 <p>With <code class="code docutils literal notranslate"><span class="pre">ivy.Container</span></code> inputs:</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x1</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">12.</span><span class="p">,</span> <span class="mf">3.5</span><span class="p">,</span> <span class="mf">6.3</span><span class="p">]),</span> <span class="n">b</span><span class="o">=</span><span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">3.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">]))</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">x2</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">2.3</span><span class="p">,</span> <span class="mi">3</span><span class="p">]),</span> <span class="n">b</span><span class="o">=</span><span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">2.4</span><span class="p">,</span> <span class="mf">3.</span><span class="p">,</span> <span class="mf">2.</span><span class="p">]))</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">x1</span><span class="o">.</span><span class="n">divide</span><span class="p">(</span><span class="n">x2</span><span class="p">)</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x1</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">12.</span><span class="p">,</span> <span class="mf">3.5</span><span class="p">,</span> <span class="mf">6.3</span><span class="p">]),</span> <span class="n">b</span><span class="o">=</span><span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">3.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">9.</span><span class="p">]))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x2</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">2.3</span><span class="p">,</span> <span class="o">-</span><span class="mi">3</span><span class="p">]),</span> <span class="n">b</span><span class="o">=</span><span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">2.4</span><span class="p">,</span> <span class="mf">3.</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.</span><span class="p">]))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">x1</span><span class="o">.</span><span class="n">trunc_divide</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
 <span class="go">{</span>
-<span class="go">    a: ivy.array([12., 1.52, 2.1]),</span>
-<span class="go">    b: ivy.array([1.25, 0.333, 0.45])</span>
+<span class="go">    a: ivy.array([12., 1., -2.]),</span>
+<span class="go">    b: ivy.array([1., 0., -4.])</span>
 <span class="go">}</span>
 </pre></div>
 </div>
@@ -262,7 +263,7 @@ by <span class="xref std std-ref">type-promotion</span>.</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="static_trunc_divide_container.html" class="btn btn-neutral float-left" title="ivy.Container.static_trunc_divide" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="trunc_divide_array.html" class="btn btn-neutral float-left" title="ivy.Array.trunc_divide" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="../../extensions.html" class="btn btn-neutral float-right" title="Extensions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
