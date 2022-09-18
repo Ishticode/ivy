@@ -5181,7 +5181,6 @@
     <span class="n">to_apply</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
     <span class="n">prune_unapplied</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
     <span class="n">map_sequences</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
-    <span class="n">rounding_mode</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="kc">None</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">out</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
@@ -5207,11 +5206,6 @@
 <span class="sd">        Default is False.</span>
 <span class="sd">    map_sequences</span>
 <span class="sd">        Whether to also map method to sequences (lists, tuples). Default is False.</span>
-<span class="sd">    rounding_mode</span>
-<span class="sd">        optional string/NoneType specifying the rounding mode. If None, true division is used.</span>
-<span class="sd">        If &#39;floor&#39;, the floor division mode is used rounding results down.</span>
-<span class="sd">        If &#39;trunc&#39;, C-style integer division is used rounding results towards zero.</span>
-
 <span class="sd">    out</span>
 <span class="sd">        optional output container, for writing the result to. It must have a shape</span>
 <span class="sd">        that the inputs broadcast to.</span>
@@ -5227,29 +5221,14 @@
 <span class="sd">    --------</span>
 <span class="sd">    With :code:`ivy.Container` inputs:</span>
 
-<span class="sd">    &gt;&gt;&gt; x1 = ivy.Container(a=ivy.array([12., -3.5, 6.3]), b=ivy.array([3., 1., 0.9]))</span>
-<span class="sd">    &gt;&gt;&gt; x2 = ivy.Container(a=ivy.array([1., 2.3, 3]), b=ivy.array([2.4, -3., 2.]))</span>
+<span class="sd">    &gt;&gt;&gt; x1 = ivy.Container(a=ivy.array([12., 3.5, 6.3]), b=ivy.array([3., 1., 0.9]))</span>
+<span class="sd">    &gt;&gt;&gt; x2 = ivy.Container(a=ivy.array([1., 2.3, 3]), b=ivy.array([2.4, 3., 2.]))</span>
 <span class="sd">    &gt;&gt;&gt; y = ivy.Container.static_divide(x1, x2)</span>
 <span class="sd">    &gt;&gt;&gt; print(y)</span>
 <span class="sd">    {</span>
-<span class="sd">        a: ivy.array([12., -1.52, 2.1]),</span>
-<span class="sd">        b: ivy.array([1.25, -0.333, 0.45])</span>
+<span class="sd">        a: ivy.array([12., 1.52, 2.1]),</span>
+<span class="sd">        b: ivy.array([1.25, 0.333, 0.45])</span>
 <span class="sd">    }</span>
-
-<span class="sd">    &gt;&gt;&gt; y = ivy.Container.static_divide(x1, x2, rounding_mode=&#39;floor&#39;)</span>
-<span class="sd">    &gt;&gt;&gt; print(y)</span>
-<span class="sd">    {</span>
-<span class="sd">        a: ivy.array([12., -2., 2.]),</span>
-<span class="sd">        b: ivy.array([1., -1., 0.])</span>
-<span class="sd">    }</span>
-
-<span class="sd">    &gt;&gt;&gt; y = ivy.Container.static_divide(x1, x2, rounding_mode=&#39;trunc&#39;)</span>
-<span class="sd">    &gt;&gt;&gt; print(y)</span>
-<span class="sd">    {</span>
-<span class="sd">        a: ivy.array([12., -1., 2.]),</span>
-<span class="sd">        b: ivy.array([1., -0., 0.])</span>
-<span class="sd">    }</span>
-
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">pass</span></div>
 
@@ -5263,7 +5242,6 @@
     <span class="n">to_apply</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
     <span class="n">prune_unapplied</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
     <span class="n">map_sequences</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
-    <span class="n">rounding_mode</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="kc">None</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">out</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
@@ -5290,10 +5268,6 @@
 <span class="sd">        Default is False.</span>
 <span class="sd">    map_sequences</span>
 <span class="sd">        Whether to also map method to sequences (lists, tuples). Default is False.</span>
-<span class="sd">    rounding_mode</span>
-<span class="sd">        optional string/NoneType specifying the rounding mode. If None, true division is used.</span>
-<span class="sd">        If &#39;floor&#39;, the floor division mode is used rounding results down.</span>
-<span class="sd">        If &#39;trunc&#39;, C-style integer division is used rounding results towards zero.</span>
 <span class="sd">    out</span>
 <span class="sd">        optional output container, for writing the result to. It must have a shape</span>
 <span class="sd">        that the inputs broadcast to.</span>
@@ -5309,29 +5283,14 @@
 <span class="sd">    --------</span>
 <span class="sd">    With :code:`ivy.Container` inputs:</span>
 
-<span class="sd">    &gt;&gt;&gt; x1 = ivy.Container(a=ivy.array([12., -3.5, 6.3]), b=ivy.array([3., 1., 0.9]))</span>
-<span class="sd">    &gt;&gt;&gt; x2 = ivy.Container(a=ivy.array([1., 2.3, 3]), b=ivy.array([2.4, -3., 2.]))</span>
+<span class="sd">    &gt;&gt;&gt; x1 = ivy.Container(a=ivy.array([12., 3.5, 6.3]), b=ivy.array([3., 1., 0.9]))</span>
+<span class="sd">    &gt;&gt;&gt; x2 = ivy.Container(a=ivy.array([1., 2.3, 3]), b=ivy.array([2.4, 3., 2.]))</span>
 <span class="sd">    &gt;&gt;&gt; y = x1.divide(x2)</span>
 <span class="sd">    &gt;&gt;&gt; print(y)</span>
 <span class="sd">    {</span>
-<span class="sd">        a: ivy.array([12., -1.52, 2.1]),</span>
-<span class="sd">        b: ivy.array([1.25, -0.333, 0.45])</span>
+<span class="sd">        a: ivy.array([12., 1.52, 2.1]),</span>
+<span class="sd">        b: ivy.array([1.25, 0.333, 0.45])</span>
 <span class="sd">    }</span>
-
-<span class="sd">    &gt;&gt;&gt; y = x1.divide(x2, rounding_mode=&#39;floor&#39;)</span>
-<span class="sd">    &gt;&gt;&gt; print(y)</span>
-<span class="sd">    {</span>
-<span class="sd">        a: ivy.array([12., -2., 2.]),</span>
-<span class="sd">        b: ivy.array([1., -1., 0.])</span>
-<span class="sd">    }</span>
-
-<span class="sd">    &gt;&gt;&gt; y = x1.divide(x2, rounding_mode=&#39;trunc&#39;)</span>
-<span class="sd">    &gt;&gt;&gt; print(y)</span>
-<span class="sd">    {</span>
-<span class="sd">        a: ivy.array([12., -1., 2.]),</span>
-<span class="sd">        b: ivy.array([1., -0., 0.])</span>
-<span class="sd">    }</span>
-
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">pass</span></div>
 
@@ -11524,8 +11483,8 @@
 
 
 <div class="viewcode-block" id="static_gather_nd"><a class="viewcode-back" href="../../../functional/ivy/general/gather_nd/static_gather_nd_container.html#ivy.container.container_methods.static_gather_nd">[docs]</a><span class="k">def</span> <span class="nf">static_gather_nd</span><span class="p">(</span>
-    <span class="n">params</span><span class="p">:</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">,</span>
-    <span class="n">indices</span><span class="p">:</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">,</span>
+    <span class="n">params</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">],</span>
+    <span class="n">indices</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">],</span>
     <span class="o">/</span><span class="p">,</span>
     <span class="o">*</span><span class="p">,</span>
     <span class="n">key_chains</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -11555,6 +11514,18 @@
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
 <span class="sd">        Container object with all sub-array dimensions gathered.</span>
+<span class="sd">    </span>
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; x = ivy.Container(a=ivy.array([[0., 10., 20.],[30.,40.,50.]]),\</span>
+<span class="sd">                          b=ivy.array([[0., 100., 200.],[300.,400.,500.]]))</span>
+<span class="sd">    &gt;&gt;&gt; y = ivy.Container(a=ivy.array([1,0]),\</span>
+<span class="sd">                            b=ivy.array([0]))</span>
+<span class="sd">    &gt;&gt;&gt; print(ivy.Container.static_gather_nd(x, y))</span>
+<span class="sd">    {</span>
+<span class="sd">        a: ivy.array(30.),</span>
+<span class="sd">        b: ivy.array([0., 100., 200.])</span>
+<span class="sd">    }</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">pass</span></div>
@@ -11607,15 +11578,18 @@
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
-<span class="sd">    &gt;&gt;&gt; x = ivy.Container(a=ivy.array([1, 2, 3]),\</span>
-<span class="sd">                          b=ivy.array([2, 3, 4]))</span>
-<span class="sd">    &gt;&gt;&gt; y = ivy.Container(a=ivy.array([2]),\</span>
-<span class="sd">                          b=ivy.array([1]))</span>
+<span class="sd">    &gt;&gt;&gt; x = ivy.Container(a=ivy.array([[[0., 10.], [20.,30.]],\</span>
+<span class="sd">                                        [[40.,50.],[60.,70.]]]),\</span>
+<span class="sd">                          b=ivy.array([[[0., 100.], [200.,300.]],\</span>
+<span class="sd">                                        [[400.,500.],[600.,700.]]]))</span>
+<span class="sd">    &gt;&gt;&gt; y = ivy.Container(a=ivy.array([1,0]),\</span>
+<span class="sd">                            b=ivy.array([0]))</span>
 <span class="sd">    &gt;&gt;&gt; z = x.gather_nd(y)</span>
 <span class="sd">    &gt;&gt;&gt; print(z)</span>
 <span class="sd">    {</span>
-<span class="sd">        a: ivy.array(3),</span>
-<span class="sd">        b: ivy.array(3)</span>
+<span class="sd">        a: ivy.array([40., 50.]),</span>
+<span class="sd">        b: ivy.array([[0., 100.], </span>
+<span class="sd">                    [200., 300.]])</span>
 <span class="sd">    }</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">pass</span></div>
