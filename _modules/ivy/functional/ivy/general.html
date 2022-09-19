@@ -1433,7 +1433,7 @@
     <span class="o">*</span><span class="p">,</span>
     <span class="n">include_infs</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Determine whether the single valued array or scalar is of nan type.</span>
+    <span class="sd">&quot;&quot;&quot;Determines whether the single valued array or scalar is of nan type.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -1447,9 +1447,35 @@
 <span class="sd">    ret</span>
 <span class="sd">        Boolean as to whether the input value is a nan or not.</span>
 
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; x = ivy.array([451])</span>
+<span class="sd">    &gt;&gt;&gt; y = ivy.value_is_nan(x)</span>
+<span class="sd">    &gt;&gt;&gt; print(y)</span>
+<span class="sd">    False</span>
+
+<span class="sd">    &gt;&gt;&gt; x = ivy.array([float(&#39;inf&#39;)])</span>
+<span class="sd">    &gt;&gt;&gt; y = ivy.value_is_nan(x)</span>
+<span class="sd">    &gt;&gt;&gt; print(y)</span>
+<span class="sd">    True</span>
+
+<span class="sd">    &gt;&gt;&gt; x = ivy.array([float(&#39;inf&#39;)])</span>
+<span class="sd">    &gt;&gt;&gt; y = ivy.value_is_nan(x, include_infs=False)</span>
+<span class="sd">    &gt;&gt;&gt; print(y)</span>
+<span class="sd">    False</span>
+
+<span class="sd">    &gt;&gt;&gt; x = ivy.array([float(&#39;nan&#39;)])</span>
+<span class="sd">    &gt;&gt;&gt; y = ivy.value_is_nan(x, include_infs=False)</span>
+<span class="sd">    &gt;&gt;&gt; print(y)</span>
+<span class="sd">    True</span>
+
+<span class="sd">    &gt;&gt;&gt; x = ivy.array([0])</span>
+<span class="sd">    &gt;&gt;&gt; y = ivy.value_is_nan(x)</span>
+<span class="sd">    &gt;&gt;&gt; print(y)</span>
+<span class="sd">    False</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">x_scalar</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">to_scalar</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">if</span> <span class="n">ivy</span><span class="o">.</span><span class="n">is_native_array</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">else</span> <span class="n">x</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">x_scalar</span> <span class="o">==</span> <span class="n">x_scalar</span><span class="p">:</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">x_scalar</span> <span class="o">==</span> <span class="n">x</span><span class="p">:</span>
         <span class="k">return</span> <span class="kc">True</span>
     <span class="k">if</span> <span class="n">include_infs</span> <span class="ow">and</span> <span class="n">x_scalar</span> <span class="o">==</span> <span class="n">INF</span> <span class="ow">or</span> <span class="n">x_scalar</span> <span class="o">==</span> <span class="o">-</span><span class="n">INF</span><span class="p">:</span>
         <span class="k">return</span> <span class="kc">True</span>
@@ -2340,7 +2366,7 @@
     <span class="k">return</span> <span class="n">numerator</span> <span class="o">/</span> <span class="p">(</span><span class="n">denominator</span> <span class="o">+</span> <span class="n">default</span><span class="p">(</span><span class="n">min_denominator</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">_MIN_DENOMINATOR</span><span class="p">))</span></div>
 
 
-<div class="viewcode-block" id="stable_pow"><a class="viewcode-back" href="../../../../functional/ivy/general/stable_pow/stable_pow_functional.html#ivy.functional.ivy.general.stable_pow">[docs]</a><span class="nd">@inputs_to_native_arrays</span>
+<div class="viewcode-block" id="stable_pow"><a class="viewcode-back" href="../../../../functional/ivy/general/stable_pow/stable_pow_functional.html#ivy.functional.ivy.general.stable_pow">[docs]</a><span class="nd">@to_native_arrays_and_back</span>
 <span class="nd">@handle_nestable</span>
 <span class="nd">@handle_exceptions</span>
 <span class="k">def</span> <span class="nf">stable_pow</span><span class="p">(</span>
@@ -3086,6 +3112,7 @@
 <span class="k">def</span> <span class="nf">gather_nd</span><span class="p">(</span>
     <span class="n">params</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">],</span>
     <span class="n">indices</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">],</span>
+    <span class="o">/</span><span class="p">,</span>
     <span class="o">*</span><span class="p">,</span>
     <span class="n">out</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">]:</span>
@@ -3115,20 +3142,6 @@
 <span class="sd">    &gt;&gt;&gt; print(ivy.gather_nd(x, y))</span>
 <span class="sd">    ivy.array(1.)</span>
 
-<span class="sd">    With :code:`ivy.NativeArray` input:</span>
-
-<span class="sd">    &gt;&gt;&gt; x = ivy.native_array([0., 1., 2.])</span>
-<span class="sd">    &gt;&gt;&gt; y = ivy.native_array([1])</span>
-<span class="sd">    &gt;&gt;&gt; print(ivy.gather_nd(x, y))</span>
-<span class="sd">    ivy.array(1.)</span>
-
-<span class="sd">    With a mix of :code:`ivy.Array` and :code:`ivy.NativeArray` inputs:</span>
-
-<span class="sd">    &gt;&gt;&gt; x = ivy.native_array([0., 1., 2.])</span>
-<span class="sd">    &gt;&gt;&gt; y = ivy.array([1])</span>
-<span class="sd">    &gt;&gt;&gt; print(ivy.gather_nd(x, y))</span>
-<span class="sd">    ivy.array(1.)</span>
-
 <span class="sd">    With a mix of :code:`ivy.Array` and :code:`ivy.Container` inputs:</span>
 
 <span class="sd">    &gt;&gt;&gt; x = ivy.Container(a=ivy.array([0., 1., 2.]), \</span>
@@ -3142,14 +3155,14 @@
 
 <span class="sd">    With :code:`ivy.Container` input:</span>
 
-<span class="sd">    &gt;&gt;&gt; x = ivy.Container(a=ivy.array([0., 1., 2.]), \</span>
-<span class="sd">                          b=ivy.array([4., 5., 6.]))</span>
-<span class="sd">    &gt;&gt;&gt; y = ivy.Container(a=ivy.array([0]), \</span>
-<span class="sd">                          b=ivy.array([2]))</span>
+<span class="sd">    &gt;&gt;&gt; x = ivy.Container(a=ivy.array([[0., 10., 20.],[30.,40.,50.]]),\</span>
+<span class="sd">                              b=ivy.array([[0., 100., 200.],[300.,400.,500.]]))</span>
+<span class="sd">    &gt;&gt;&gt; y = ivy.Container(a=ivy.array([1,0]),\</span>
+<span class="sd">                              b=ivy.array([0]))</span>
 <span class="sd">    &gt;&gt;&gt; print(ivy.gather_nd(x, y))</span>
 <span class="sd">    {</span>
-<span class="sd">        a: ivy.array(0.),</span>
-<span class="sd">        b: ivy.array(6.)</span>
+<span class="sd">        a: ivy.array(30.),</span>
+<span class="sd">        b: ivy.array([0., 100., 200.])</span>
 <span class="sd">    }</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">res</span> <span class="o">=</span> <span class="n">current_backend</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">indices</span><span class="p">)</span><span class="o">.</span><span class="n">gather_nd</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">indices</span><span class="p">)</span>
@@ -3432,7 +3445,13 @@
     <span class="k">for</span> <span class="n">device</span> <span class="ow">in</span> <span class="n">supported_devices</span><span class="p">:</span>
         <span class="n">supported</span><span class="p">[</span><span class="n">device</span><span class="p">]</span> <span class="o">=</span> <span class="n">supported_dtypes</span>
 
-    <span class="c1"># Their values are formated like either</span>
+    <span class="k">if</span> <span class="s2">&quot;backend&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">fn</span><span class="o">.</span><span class="vm">__module__</span> <span class="ow">and</span> <span class="s2">&quot;frontend&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">fn</span><span class="o">.</span><span class="vm">__module__</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">complement</span><span class="p">:</span>
+            <span class="n">all_comb</span> <span class="o">=</span> <span class="n">_all_dnd_combinations</span><span class="p">()</span>
+            <span class="n">supported</span> <span class="o">=</span> <span class="n">_dnd_dict_difference</span><span class="p">(</span><span class="n">all_comb</span><span class="p">,</span> <span class="n">supported</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">supported</span>
+
+    <span class="c1"># Their values are formatted like either</span>
     <span class="c1"># 1. fn.supported_device_and_dtype = {&quot;cpu&quot;:(&quot;float16&quot;,)}</span>
 
     <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">fn</span><span class="p">,</span> <span class="s2">&quot;supported_device_and_dtype&quot;</span><span class="p">):</span>

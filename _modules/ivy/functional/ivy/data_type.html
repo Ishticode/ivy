@@ -227,11 +227,15 @@
             <span class="k">continue</span>
         <span class="n">visited</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">fn</span><span class="p">)</span>
 
-        <span class="c1"># Assuming that it&#39;s set in backend</span>
+        <span class="c1"># if it&#39;s in the backend, we can get the dtypes directly</span>
+        <span class="c1"># if it&#39;s in the front end, we need to recurse</span>
         <span class="k">if</span> <span class="s2">&quot;backend&quot;</span> <span class="ow">in</span> <span class="n">fn</span><span class="o">.</span><span class="vm">__module__</span><span class="p">:</span>
             <span class="n">f_supported</span> <span class="o">=</span> <span class="n">wrapper</span><span class="p">(</span><span class="n">get_fn</span><span class="p">(</span><span class="n">fn</span><span class="p">,</span> <span class="kc">False</span><span class="p">))</span>
             <span class="n">out</span> <span class="o">=</span> <span class="n">merge_fn</span><span class="p">(</span><span class="n">f_supported</span><span class="p">,</span> <span class="n">out</span><span class="p">)</span>
             <span class="k">continue</span>
+        <span class="k">elif</span> <span class="s2">&quot;frontend&quot;</span> <span class="ow">in</span> <span class="n">fn</span><span class="o">.</span><span class="vm">__module__</span><span class="p">:</span>
+            <span class="n">f_supported</span> <span class="o">=</span> <span class="n">wrapper</span><span class="p">(</span><span class="n">get_fn</span><span class="p">(</span><span class="n">fn</span><span class="p">,</span> <span class="kc">False</span><span class="p">))</span>
+            <span class="n">out</span> <span class="o">=</span> <span class="n">merge_fn</span><span class="p">(</span><span class="n">f_supported</span><span class="p">,</span> <span class="n">out</span><span class="p">)</span>
 
         <span class="c1"># skip if it&#39;s not a function</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">inspect</span><span class="o">.</span><span class="n">isfunction</span><span class="p">(</span><span class="n">fn</span><span class="p">):</span>
@@ -252,7 +256,7 @@
     <span class="c1"># We only care about getting dtype info from the base function</span>
     <span class="c1"># if we do need to at some point use dtype information from the parent function</span>
     <span class="c1"># we can comment out the following condition</span>
-    <span class="k">if</span> <span class="s2">&quot;backend&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">fn</span><span class="o">.</span><span class="vm">__module__</span><span class="p">:</span>
+    <span class="k">if</span> <span class="s2">&quot;backend&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">fn</span><span class="o">.</span><span class="vm">__module__</span> <span class="ow">and</span> <span class="s2">&quot;frontend&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">fn</span><span class="o">.</span><span class="vm">__module__</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">complement</span><span class="p">:</span>
             <span class="n">supported</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">ivy</span><span class="o">.</span><span class="n">all_dtypes</span><span class="p">)</span><span class="o">.</span><span class="n">difference</span><span class="p">(</span><span class="n">supported</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">supported</span>
