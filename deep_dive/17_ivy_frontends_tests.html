@@ -21,7 +21,7 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Open Tasks" href="../contributing/4_open_tasks.html" />
+    <link rel="next" title="Exception Handling" href="18_exception_handling.html" />
     <link rel="prev" title="Ivy Frontends" href="16_ivy_frontends.html" /> 
 </head>
 
@@ -52,12 +52,12 @@
 <li class="toctree-l2"><a class="reference internal" href="1_function_types.html">Function Types</a></li>
 <li class="toctree-l2"><a class="reference internal" href="2_superset_behaviour.html">Superset Behaviour</a></li>
 <li class="toctree-l2"><a class="reference internal" href="3_backend_setting.html">Backend Setting</a></li>
-<li class="toctree-l2"><a class="reference internal" href="5_arrays.html">Arrays</a></li>
-<li class="toctree-l2"><a class="reference internal" href="6_containers.html">Containers</a></li>
-<li class="toctree-l2"><a class="reference internal" href="7_data_types.html">Data Types</a></li>
-<li class="toctree-l2"><a class="reference internal" href="8_devices.html">Devices</a></li>
-<li class="toctree-l2"><a class="reference internal" href="9_inplace_updates.html">Inplace Updates</a></li>
-<li class="toctree-l2"><a class="reference internal" href="4_function_wrapping.html">Function Wrapping</a></li>
+<li class="toctree-l2"><a class="reference internal" href="4_arrays.html">Arrays</a></li>
+<li class="toctree-l2"><a class="reference internal" href="5_containers.html">Containers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="6_data_types.html">Data Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="7_devices.html">Devices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="8_inplace_updates.html">Inplace Updates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="9_function_wrapping.html">Function Wrapping</a></li>
 <li class="toctree-l2"><a class="reference internal" href="10_formatting.html">Formatting</a></li>
 <li class="toctree-l2"><a class="reference internal" href="11_function_arguments.html">Function Arguments</a></li>
 <li class="toctree-l2"><a class="reference internal" href="12_docstrings.html">Docstrings</a></li>
@@ -81,6 +81,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#hypothesis-helpers">Hypothesis Helpers</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="18_exception_handling.html">Exception Handling</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
@@ -114,19 +115,19 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Data Classes</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../data_classes/container.html">Container</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../data_classes/array.html">Array</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../data_classes/container.html">Container</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Framework Classes</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../stateful/initializers.html">Initializers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../stateful/converters.html">Converters</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../stateful/optimizers.html">Optimizers</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../stateful/module.html">Module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../stateful/layers.html">Layers</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../stateful/norms.html">Norms</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../stateful/activations.html">Activations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../stateful/sequential.html">Sequential</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../stateful/activations.html">Activations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../stateful/module.html">Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../stateful/optimizers.html">Optimizers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../stateful/norms.html">Norms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../stateful/layers.html">Layers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../stateful/initializers.html">Initializers</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Docs</span></p>
 <ul>
@@ -202,9 +203,11 @@ We assume knowledge of hypothesis data generation strategies and how to implemen
 <p><strong>Jax</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># ivy_tests/test_ivy/test_frontends/test_jax/test_jax_lax_operators.py</span>
 <span class="c1">#tan</span>
-<span class="nd">@handle_cmd_line_args</span>
-<span class="nd">@given</span><span class="p">(</span>
-    <span class="n">dtype_and_x</span><span class="o">=</span><span class="n">helpers</span><span class="o">.</span><span class="n">dtype_and_values</span><span class="p">(</span><span class="n">available_dtypes</span><span class="o">=</span><span class="n">ivy_jax</span><span class="o">.</span><span class="n">valid_float_dtypes</span><span class="p">),</span>
+<span class="nd">handle_cmd_line_args</span>
+<span class="nd">given</span><span class="p">(</span>
+    <span class="n">dtype_and_x</span><span class="o">=</span><span class="n">helpers</span><span class="o">.</span><span class="n">dtype_and_values</span><span class="p">(</span>
+        <span class="n">available_dtypes</span><span class="o">=</span><span class="n">helpers</span><span class="o">.</span><span class="n">get_dtypes</span><span class="p">(</span><span class="s2">&quot;float&quot;</span><span class="p">)</span>
+    <span class="p">),</span>
     <span class="n">num_positional_args</span><span class="o">=</span><span class="n">helpers</span><span class="o">.</span><span class="n">num_positional_args</span><span class="p">(</span>
         <span class="n">fn_name</span><span class="o">=</span><span class="s2">&quot;ivy.functional.frontends.jax.lax.tan&quot;</span>
     <span class="p">)</span>
@@ -217,7 +220,6 @@ We assume knowledge of hypothesis data generation strategies and how to implemen
     <span class="n">fw</span><span class="p">,</span>
 <span class="p">):</span>
     <span class="n">input_dtype</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="n">dtype_and_x</span>
-
     <span class="n">helpers</span><span class="o">.</span><span class="n">test_frontend_function</span><span class="p">(</span>
         <span class="n">input_dtypes</span><span class="o">=</span><span class="n">input_dtype</span><span class="p">,</span>
         <span class="n">as_variable_flags</span><span class="o">=</span><span class="n">as_variable</span><span class="p">,</span>
@@ -233,7 +235,7 @@ We assume knowledge of hypothesis data generation strategies and how to implemen
 </div>
 <ul class="simple">
 <li><p>As you can see we generate almost everything we need to test a frontend function within the <code class="code docutils literal notranslate"><span class="pre">&#64;given</span></code> and <code class="code docutils literal notranslate"><span class="pre">&#64;handle_cmd_line_args</span></code> decorators.</p></li>
-<li><p>We use <code class="code docutils literal notranslate"><span class="pre">ivy_jax.valid_float_dtypes</span></code> to generate <code class="code docutils literal notranslate"><span class="pre">available_dtypes</span></code>, these are valid <code class="code docutils literal notranslate"><span class="pre">float</span></code> data types specifically for Jax.</p></li>
+<li><p>We use <code class="code docutils literal notranslate"><span class="pre">helpers.get_dtypes(&quot;float&quot;)</span></code> to generate <code class="code docutils literal notranslate"><span class="pre">available_dtypes</span></code>, these are valid <code class="code docutils literal notranslate"><span class="pre">float</span></code> data types specifically for Jax.</p></li>
 <li><p>We pass <code class="code docutils literal notranslate"><span class="pre">fn_name</span></code> to <code class="code docutils literal notranslate"><span class="pre">helpers.num_positional_args</span></code> which is used to determine the number of positional arguments for <code class="code docutils literal notranslate"><span class="pre">jax.lax.tan</span></code>.</p></li>
 <li><p>We do not generate any values for <code class="code docutils literal notranslate"><span class="pre">fw</span></code>, these values are generated by PyTest and are only passed as an argument to <code class="code docutils literal notranslate"><span class="pre">test_jax_lax_tan()</span></code>.</p></li>
 <li><p>We separate the <code class="code docutils literal notranslate"><span class="pre">input_dtype</span></code> and <code class="code docutils literal notranslate"><span class="pre">x</span></code> from <code class="code docutils literal notranslate"><span class="pre">dtype_and_x</span></code> using <code class="code docutils literal notranslate"><span class="pre">input_dtype,</span> <span class="pre">x</span> <span class="pre">=</span> <span class="pre">dtype_and_x</span></code> which is generated as a tuple.</p></li>
@@ -246,17 +248,16 @@ We assume knowledge of hypothesis data generation strategies and how to implemen
 <p><strong>NumPy</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># ivy_tests/test_ivy/test_frontends/test_numpy/test_mathematical_functions/test_np_trigonometric_functions.py</span>
 <span class="c1">#tan</span>
-<span class="nd">@handle_cmd_line_args</span>
-<span class="nd">@given</span><span class="p">(</span>
-<span class="n">dtype_and_x</span><span class="o">=</span><span class="n">helpers</span><span class="o">.</span><span class="n">dtype_and_values</span><span class="p">(</span><span class="n">available_dtypes</span><span class="o">=</span><span class="n">ivy_np</span><span class="o">.</span><span class="n">valid_float_dtypes</span><span class="p">),</span>
-<span class="n">dtype</span><span class="o">=</span><span class="n">st</span><span class="o">.</span><span class="n">sampled_from</span><span class="p">(</span><span class="n">ivy_np</span><span class="o">.</span><span class="n">valid_float_dtypes</span> <span class="o">+</span> <span class="p">(</span><span class="kc">None</span><span class="p">,)),</span>
-<span class="n">where</span><span class="o">=</span><span class="n">np_frontend_helpers</span><span class="o">.</span><span class="n">where</span><span class="p">(),</span>
-<span class="n">as_variable</span><span class="o">=</span><span class="n">helpers</span><span class="o">.</span><span class="n">array_bools</span><span class="p">(),</span>
-<span class="n">with_out</span><span class="o">=</span><span class="n">st</span><span class="o">.</span><span class="n">booleans</span><span class="p">(),</span>
-<span class="n">num_positional_args</span><span class="o">=</span><span class="n">helpers</span><span class="o">.</span><span class="n">num_positional_args</span><span class="p">(</span>
-    <span class="n">fn_name</span><span class="o">=</span><span class="s2">&quot;ivy.functional.frontends.numpy.tan&quot;</span>
-<span class="p">),</span>
-<span class="n">native_array</span><span class="o">=</span><span class="n">helpers</span><span class="o">.</span><span class="n">array_bools</span><span class="p">(),</span>
+<span class="nd">handle_cmd_line_args</span>
+<span class="nd">given</span><span class="p">(</span>
+    <span class="n">dtype_and_x</span><span class="o">=</span><span class="n">helpers</span><span class="o">.</span><span class="n">dtype_and_values</span><span class="p">(</span>
+        <span class="n">available_dtypes</span><span class="o">=</span><span class="n">helpers</span><span class="o">.</span><span class="n">get_dtypes</span><span class="p">(</span><span class="s2">&quot;numeric&quot;</span><span class="p">)</span>
+    <span class="p">),</span>
+    <span class="n">dtype</span><span class="o">=</span><span class="n">helpers</span><span class="o">.</span><span class="n">get_dtypes</span><span class="p">(</span><span class="s2">&quot;numeric&quot;</span><span class="p">,</span> <span class="n">none</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+    <span class="n">where</span><span class="o">=</span><span class="n">np_frontend_helpers</span><span class="o">.</span><span class="n">where</span><span class="p">(),</span>
+    <span class="n">num_positional_args</span><span class="o">=</span><span class="n">helpers</span><span class="o">.</span><span class="n">num_positional_args</span><span class="p">(</span>
+        <span class="n">fn_name</span><span class="o">=</span><span class="s2">&quot;ivy.functional.frontends.numpy.tan&quot;</span>
+    <span class="p">),</span>
 <span class="p">)</span>
 <span class="k">def</span> <span class="nf">test_numpy_tan</span><span class="p">(</span>
     <span class="n">dtype_and_x</span><span class="p">,</span>
@@ -297,7 +298,7 @@ We assume knowledge of hypothesis data generation strategies and how to implemen
 </pre></div>
 </div>
 <ul class="simple">
-<li><p>Here we use <code class="code docutils literal notranslate"><span class="pre">ivy_np.valid_float_dtypes()</span></code> to generate <code class="code docutils literal notranslate"><span class="pre">available_dtypes</span></code>, these are valid <code class="code docutils literal notranslate"><span class="pre">float</span></code> data types specifically for NumPy.</p></li>
+<li><p>Here we use <code class="code docutils literal notranslate"><span class="pre">helpers.get_dtypes(&quot;numeric&quot;)</span></code> to generate <code class="code docutils literal notranslate"><span class="pre">available_dtypes</span></code>, these are valid <code class="code docutils literal notranslate"><span class="pre">numeric</span></code> data types specifically for NumPy.</p></li>
 <li><p>NumPy has an optional argument <code class="code docutils literal notranslate"><span class="pre">where</span></code> which is generated using <code class="code docutils literal notranslate"><span class="pre">np_frontend_helpers.where()</span></code>.</p></li>
 <li><p><code class="code docutils literal notranslate"><span class="pre">numpy.tan()</span></code> supports <code class="code docutils literal notranslate"><span class="pre">out</span></code> arguments so we set generate values for <code class="code docutils literal notranslate"><span class="pre">with_out</span></code>.</p></li>
 <li><p>Using <code class="code docutils literal notranslate"><span class="pre">np_frontend_helpers.handle_where_and_array_bools()</span></code> we do some processing on the generated <code class="code docutils literal notranslate"><span class="pre">where</span></code> value.</p></li>
@@ -308,14 +309,12 @@ We assume knowledge of hypothesis data generation strategies and how to implemen
 <p><strong>TensorFlow</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># ivy_tests/test_ivy/test_frontends/test_tensorflow/test_tf_functions.py</span>
 <span class="c1">#tan</span>
-<span class="nd">@handle_cmd_line_args</span>
-<span class="nd">@given</span><span class="p">(</span>
-<span class="n">dtype_and_x</span><span class="o">=</span><span class="n">helpers</span><span class="o">.</span><span class="n">dtype_and_values</span><span class="p">(</span><span class="n">available_dtypes</span><span class="o">=</span><span class="n">ivy_tf</span><span class="o">.</span><span class="n">valid_float_dtypes</span><span class="p">),</span>
-<span class="n">as_variable</span><span class="o">=</span><span class="n">st</span><span class="o">.</span><span class="n">booleans</span><span class="p">(),</span>
-<span class="n">num_positional_args</span><span class="o">=</span><span class="n">helpers</span><span class="o">.</span><span class="n">num_positional_args</span><span class="p">(</span>
-    <span class="n">fn_name</span><span class="o">=</span><span class="s2">&quot;ivy.functional.frontends.tensorflow.tan&quot;</span>
-<span class="p">),</span>
-<span class="n">native_array</span><span class="o">=</span><span class="n">st</span><span class="o">.</span><span class="n">booleans</span><span class="p">(),</span>
+<span class="nd">handle_cmd_line_args</span>
+<span class="nd">given</span><span class="p">(</span>
+    <span class="n">dtype_and_x</span><span class="o">=</span><span class="n">helpers</span><span class="o">.</span><span class="n">dtype_and_values</span><span class="p">(</span><span class="n">available_dtypes</span><span class="o">=</span><span class="n">helpers</span><span class="o">.</span><span class="n">get_dtypes</span><span class="p">(</span><span class="s2">&quot;float&quot;</span><span class="p">),</span>
+    <span class="n">num_positional_args</span><span class="o">=</span><span class="n">helpers</span><span class="o">.</span><span class="n">num_positional_args</span><span class="p">(</span>
+        <span class="n">fn_name</span><span class="o">=</span><span class="s2">&quot;ivy.functional.frontends.tensorflow.tan&quot;</span>
+    <span class="p">),</span>
 <span class="p">)</span>
 <span class="k">def</span> <span class="nf">test_tensorflow_tan</span><span class="p">(</span>
     <span class="n">dtype_and_x</span><span class="p">,</span> <span class="n">as_variable</span><span class="p">,</span> <span class="n">num_positional_args</span><span class="p">,</span> <span class="n">native_array</span><span class="p">,</span> <span class="n">fw</span>
@@ -335,27 +334,20 @@ We assume knowledge of hypothesis data generation strategies and how to implemen
 </pre></div>
 </div>
 <ul class="simple">
-<li><p>We use <code class="code docutils literal notranslate"><span class="pre">ivy_tf.valid_float_dtypes</span></code> to generate <code class="code docutils literal notranslate"><span class="pre">available_dtypes</span></code>, these are valid <code class="code docutils literal notranslate"><span class="pre">float</span></code> data types specifically for TensorFlow.</p></li>
+<li><p>We use <code class="code docutils literal notranslate"><span class="pre">helpers.get_dtypes(&quot;float&quot;)</span></code> to generate <code class="code docutils literal notranslate"><span class="pre">available_dtypes</span></code>, these are valid <code class="code docutils literal notranslate"><span class="pre">float</span></code> data types specifically for TensorFlow.</p></li>
 <li><p>We set <code class="code docutils literal notranslate"><span class="pre">fn_tree</span></code> to <code class="code docutils literal notranslate"><span class="pre">tan</span></code> which is the path to the function in the TensorFlow namespace.</p></li>
 </ul>
 <p><strong>PyTorch</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># ivy_tests/test_ivy/test_frontends/test_torch/test_pointwise_ops.py</span>
 <span class="c1">#tan</span>
-<span class="nd">@handle_cmd_line_args</span>
-<span class="nd">@given</span><span class="p">(</span>
-<span class="n">dtype_and_x</span><span class="o">=</span><span class="n">helpers</span><span class="o">.</span><span class="n">dtype_and_values</span><span class="p">(</span>
-    <span class="n">available_dtypes</span><span class="o">=</span><span class="nb">tuple</span><span class="p">(</span>
-        <span class="nb">set</span><span class="p">(</span><span class="n">ivy_np</span><span class="o">.</span><span class="n">valid_float_dtypes</span><span class="p">)</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span>
-            <span class="nb">set</span><span class="p">(</span><span class="n">ivy_torch</span><span class="o">.</span><span class="n">valid_float_dtypes</span><span class="p">)</span>
-        <span class="p">)</span>
-    <span class="p">)</span>
-<span class="p">),</span>
-<span class="n">as_variable</span><span class="o">=</span><span class="n">st</span><span class="o">.</span><span class="n">booleans</span><span class="p">(),</span>
-<span class="n">with_out</span><span class="o">=</span><span class="n">st</span><span class="o">.</span><span class="n">booleans</span><span class="p">(),</span>
-<span class="n">num_positional_args</span><span class="o">=</span><span class="n">helpers</span><span class="o">.</span><span class="n">num_positional_args</span><span class="p">(</span>
-    <span class="n">fn_name</span><span class="o">=</span><span class="s2">&quot;functional.frontends.torch.tan&quot;</span>
-<span class="p">),</span>
-<span class="n">native_array</span><span class="o">=</span><span class="n">st</span><span class="o">.</span><span class="n">booleans</span><span class="p">(),</span>
+<span class="nd">handle_cmd_line_args</span>
+<span class="nd">given</span><span class="p">(</span>
+    <span class="n">dtype_and_x</span><span class="o">=</span><span class="n">helpers</span><span class="o">.</span><span class="n">dtype_and_values</span><span class="p">(</span>
+        <span class="n">available_dtypes</span><span class="o">=</span><span class="n">helpers</span><span class="o">.</span><span class="n">get_dtypes</span><span class="p">(</span><span class="s2">&quot;float&quot;</span><span class="p">),</span>
+    <span class="p">),</span>
+    <span class="n">num_positional_args</span><span class="o">=</span><span class="n">helpers</span><span class="o">.</span><span class="n">num_positional_args</span><span class="p">(</span>
+        <span class="n">fn_name</span><span class="o">=</span><span class="s2">&quot;functional.frontends.torch.tan&quot;</span>
+    <span class="p">),</span>
 <span class="p">)</span>
 <span class="k">def</span> <span class="nf">test_torch_tan</span><span class="p">(</span>
     <span class="n">dtype_and_x</span><span class="p">,</span>
@@ -381,9 +373,8 @@ We assume knowledge of hypothesis data generation strategies and how to implemen
 </pre></div>
 </div>
 <ul class="simple">
-<li><p>We use <code class="code docutils literal notranslate"><span class="pre">ivy_tf.valid_float_dtypes</span></code> to generate <code class="code docutils literal notranslate"><span class="pre">available_dtypes</span></code>, these are valid <code class="code docutils literal notranslate"><span class="pre">float</span></code> data types specifically for TensorFlow.</p></li>
+<li><p>We use <code class="code docutils literal notranslate"><span class="pre">helpers.get_dtypes(&quot;float&quot;)</span></code> to generate <code class="code docutils literal notranslate"><span class="pre">available_dtypes</span></code>, these are valid <code class="code docutils literal notranslate"><span class="pre">float</span></code> data types specifically for PyTorch.</p></li>
 <li><p>We set <code class="code docutils literal notranslate"><span class="pre">fn_tree</span></code> to <code class="code docutils literal notranslate"><span class="pre">tan</span></code> which is the path to the function in the PyTorch namespace.</p></li>
-<li><p>Torch accepts both Torch and NumPy data-types so we create a <code class="code docutils literal notranslate"><span class="pre">tuple</span></code> of the two as <code class="code docutils literal notranslate"><span class="pre">available_dtypes</span></code>.</p></li>
 </ul>
 </section>
 <section id="ivy-full">
@@ -394,7 +385,7 @@ This function requires us to create extra functions for generating <code class="
 <p><strong>Jax</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># ivy_tests/test_ivy/test_frontends/test_jax/test_jax_lax_operators.py</span>
 <span class="c1"># full</span>
-<span class="nd">@st</span><span class="o">.</span><span class="n">composite</span>
+<span class="nd">st</span><span class="o">.</span><span class="n">composite</span>
 <span class="k">def</span> <span class="nf">_dtypes</span><span class="p">(</span><span class="n">draw</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">draw</span><span class="p">(</span>
         <span class="n">st</span><span class="o">.</span><span class="n">shared</span><span class="p">(</span>
@@ -406,7 +397,7 @@ This function requires us to create extra functions for generating <code class="
     <span class="p">)</span>
 
 
-<span class="nd">@st</span><span class="o">.</span><span class="n">composite</span>
+<span class="nd">st</span><span class="o">.</span><span class="n">composite</span>
 <span class="k">def</span> <span class="nf">_fill_value</span><span class="p">(</span><span class="n">draw</span><span class="p">):</span>
     <span class="n">dtype</span> <span class="o">=</span> <span class="n">draw</span><span class="p">(</span><span class="n">_dtypes</span><span class="p">())[</span><span class="mi">0</span><span class="p">]</span>
     <span class="k">if</span> <span class="n">ivy</span><span class="o">.</span><span class="n">is_uint_dtype</span><span class="p">(</span><span class="n">dtype</span><span class="p">):</span>
@@ -415,8 +406,8 @@ This function requires us to create extra functions for generating <code class="
         <span class="k">return</span> <span class="n">draw</span><span class="p">(</span><span class="n">helpers</span><span class="o">.</span><span class="n">ints</span><span class="p">(</span><span class="n">min_value</span><span class="o">=-</span><span class="mi">5</span><span class="p">,</span> <span class="n">max_value</span><span class="o">=</span><span class="mi">5</span><span class="p">))</span>
     <span class="k">return</span> <span class="n">draw</span><span class="p">(</span><span class="n">helpers</span><span class="o">.</span><span class="n">floats</span><span class="p">(</span><span class="n">min_value</span><span class="o">=-</span><span class="mi">5</span><span class="p">,</span> <span class="n">max_value</span><span class="o">=</span><span class="mi">5</span><span class="p">))</span>
 
-<span class="nd">@handle_cmd_line_args</span>
-<span class="nd">@given</span><span class="p">(</span>
+<span class="nd">handle_cmd_line_args</span>
+<span class="nd">given</span><span class="p">(</span>
     <span class="n">shape</span><span class="o">=</span><span class="n">helpers</span><span class="o">.</span><span class="n">get_shape</span><span class="p">(</span>
         <span class="n">allow_none</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
         <span class="n">min_num_dims</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
@@ -462,7 +453,7 @@ This function requires us to create extra functions for generating <code class="
 <p><strong>NumPy</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># ivy_tests/test_ivy/test_frontends/test_numpy/creation_routines/test_from_shape_or_value.py</span>
 <span class="c1"># full</span>
-<span class="nd">@st</span><span class="o">.</span><span class="n">composite</span>
+<span class="nd">st</span><span class="o">.</span><span class="n">composite</span>
 <span class="k">def</span> <span class="nf">_dtypes</span><span class="p">(</span><span class="n">draw</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">draw</span><span class="p">(</span>
         <span class="n">st</span><span class="o">.</span><span class="n">shared</span><span class="p">(</span>
@@ -474,7 +465,7 @@ This function requires us to create extra functions for generating <code class="
     <span class="p">)</span>
 
 
-<span class="nd">@st</span><span class="o">.</span><span class="n">composite</span>
+<span class="nd">st</span><span class="o">.</span><span class="n">composite</span>
 <span class="k">def</span> <span class="nf">_fill_value</span><span class="p">(</span><span class="n">draw</span><span class="p">):</span>
     <span class="n">dtype</span> <span class="o">=</span> <span class="n">draw</span><span class="p">(</span><span class="n">_dtypes</span><span class="p">())[</span><span class="mi">0</span><span class="p">]</span>
     <span class="k">if</span> <span class="n">ivy</span><span class="o">.</span><span class="n">is_uint_dtype</span><span class="p">(</span><span class="n">dtype</span><span class="p">):</span>
@@ -483,8 +474,8 @@ This function requires us to create extra functions for generating <code class="
         <span class="k">return</span> <span class="n">draw</span><span class="p">(</span><span class="n">helpers</span><span class="o">.</span><span class="n">ints</span><span class="p">(</span><span class="n">min_value</span><span class="o">=-</span><span class="mi">5</span><span class="p">,</span> <span class="n">max_value</span><span class="o">=</span><span class="mi">5</span><span class="p">))</span>
     <span class="k">return</span> <span class="n">draw</span><span class="p">(</span><span class="n">helpers</span><span class="o">.</span><span class="n">floats</span><span class="p">(</span><span class="n">min_value</span><span class="o">=-</span><span class="mi">5</span><span class="p">,</span> <span class="n">max_value</span><span class="o">=</span><span class="mi">5</span><span class="p">))</span>
 
-<span class="nd">@handle_cmd_line_args</span>
-<span class="nd">@given</span><span class="p">(</span>
+<span class="nd">handle_cmd_line_args</span>
+<span class="nd">given</span><span class="p">(</span>
     <span class="n">shape</span><span class="o">=</span><span class="n">helpers</span><span class="o">.</span><span class="n">get_shape</span><span class="p">(</span>
         <span class="n">allow_none</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
         <span class="n">min_num_dims</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
@@ -527,7 +518,7 @@ This function requires us to create extra functions for generating <code class="
 <p><strong>TensorFlow</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># ivy_tests/test_ivy/test_frontends/test_tensorflow/test_tf_functions.py</span>
 <span class="c1"># full</span>
-<span class="nd">@st</span><span class="o">.</span><span class="n">composite</span>
+<span class="nd">st</span><span class="o">.</span><span class="n">composite</span>
 <span class="k">def</span> <span class="nf">_dtypes</span><span class="p">(</span><span class="n">draw</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">draw</span><span class="p">(</span>
         <span class="n">st</span><span class="o">.</span><span class="n">shared</span><span class="p">(</span>
@@ -539,7 +530,7 @@ This function requires us to create extra functions for generating <code class="
     <span class="p">)</span>
 
 
-<span class="nd">@st</span><span class="o">.</span><span class="n">composite</span>
+<span class="nd">st</span><span class="o">.</span><span class="n">composite</span>
 <span class="k">def</span> <span class="nf">_fill_value</span><span class="p">(</span><span class="n">draw</span><span class="p">):</span>
     <span class="n">dtype</span> <span class="o">=</span> <span class="n">draw</span><span class="p">(</span><span class="n">_dtypes</span><span class="p">())[</span><span class="mi">0</span><span class="p">]</span>
     <span class="k">if</span> <span class="n">ivy</span><span class="o">.</span><span class="n">is_uint_dtype</span><span class="p">(</span><span class="n">dtype</span><span class="p">):</span>
@@ -548,8 +539,8 @@ This function requires us to create extra functions for generating <code class="
         <span class="k">return</span> <span class="n">draw</span><span class="p">(</span><span class="n">helpers</span><span class="o">.</span><span class="n">ints</span><span class="p">(</span><span class="n">min_value</span><span class="o">=-</span><span class="mi">5</span><span class="p">,</span> <span class="n">max_value</span><span class="o">=</span><span class="mi">5</span><span class="p">))</span>
     <span class="k">return</span> <span class="n">draw</span><span class="p">(</span><span class="n">helpers</span><span class="o">.</span><span class="n">floats</span><span class="p">(</span><span class="n">min_value</span><span class="o">=-</span><span class="mi">5</span><span class="p">,</span> <span class="n">max_value</span><span class="o">=</span><span class="mi">5</span><span class="p">))</span>
 
-<span class="nd">@handle_cmd_line_args</span>
-<span class="nd">@given</span><span class="p">(</span>
+<span class="nd">handle_cmd_line_args</span>
+<span class="nd">given</span><span class="p">(</span>
     <span class="n">shape</span><span class="o">=</span><span class="n">helpers</span><span class="o">.</span><span class="n">get_shape</span><span class="p">(</span>
         <span class="n">allow_none</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
         <span class="n">min_num_dims</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
@@ -593,7 +584,7 @@ This function requires us to create extra functions for generating <code class="
 <p><strong>PyTorch</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># ivy_tests/test_ivy/test_frontends/test_torch/test_creation_ops.py</span>
 <span class="c1"># full</span>
-<span class="nd">@st</span><span class="o">.</span><span class="n">composite</span>
+<span class="nd">st</span><span class="o">.</span><span class="n">composite</span>
 <span class="k">def</span> <span class="nf">_dtypes</span><span class="p">(</span><span class="n">draw</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">draw</span><span class="p">(</span>
         <span class="n">st</span><span class="o">.</span><span class="n">shared</span><span class="p">(</span>
@@ -605,7 +596,7 @@ This function requires us to create extra functions for generating <code class="
     <span class="p">)</span>
 
 
-<span class="nd">@st</span><span class="o">.</span><span class="n">composite</span>
+<span class="nd">st</span><span class="o">.</span><span class="n">composite</span>
 <span class="k">def</span> <span class="nf">_fill_value</span><span class="p">(</span><span class="n">draw</span><span class="p">):</span>
     <span class="n">dtype</span> <span class="o">=</span> <span class="n">draw</span><span class="p">(</span><span class="n">_dtypes</span><span class="p">())[</span><span class="mi">0</span><span class="p">]</span>
     <span class="k">if</span> <span class="n">ivy</span><span class="o">.</span><span class="n">is_uint_dtype</span><span class="p">(</span><span class="n">dtype</span><span class="p">):</span>
@@ -615,7 +606,7 @@ This function requires us to create extra functions for generating <code class="
     <span class="k">return</span> <span class="n">draw</span><span class="p">(</span><span class="n">helpers</span><span class="o">.</span><span class="n">floats</span><span class="p">(</span><span class="n">min_value</span><span class="o">=-</span><span class="mi">5</span><span class="p">,</span> <span class="n">max_value</span><span class="o">=</span><span class="mi">5</span><span class="p">))</span>
 
 
-<span class="nd">@st</span><span class="o">.</span><span class="n">composite</span>
+<span class="nd">st</span><span class="o">.</span><span class="n">composite</span>
 <span class="k">def</span> <span class="nf">_requires_grad</span><span class="p">(</span><span class="n">draw</span><span class="p">):</span>
     <span class="n">dtype</span> <span class="o">=</span> <span class="n">draw</span><span class="p">(</span><span class="n">_dtypes</span><span class="p">())[</span><span class="mi">0</span><span class="p">]</span>
     <span class="k">if</span> <span class="n">ivy</span><span class="o">.</span><span class="n">is_int_dtype</span><span class="p">(</span><span class="n">dtype</span><span class="p">)</span> <span class="ow">or</span> <span class="n">ivy</span><span class="o">.</span><span class="n">is_uint_dtype</span><span class="p">(</span><span class="n">dtype</span><span class="p">):</span>
@@ -625,8 +616,8 @@ This function requires us to create extra functions for generating <code class="
 
 
 <span class="c1"># full</span>
-<span class="nd">@handle_cmd_line_args</span>
-<span class="nd">@given</span><span class="p">(</span>
+<span class="nd">handle_cmd_line_args</span>
+<span class="nd">given</span><span class="p">(</span>
     <span class="n">shape</span><span class="o">=</span><span class="n">helpers</span><span class="o">.</span><span class="n">get_shape</span><span class="p">(</span>
         <span class="n">allow_none</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
         <span class="n">min_num_dims</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
@@ -694,8 +685,8 @@ which is the frontend class to test. This is the relevant Ivy frontend class and
 <p><strong>Jax</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># ivy_tests/test_ivy/test_frontends/test_jax/test_jax_devicearray.py</span>
 <span class="c1"># add</span>
-<span class="nd">@handle_cmd_line_args</span>
-<span class="nd">@given</span><span class="p">(</span>
+<span class="nd">handle_cmd_line_args</span>
+<span class="nd">given</span><span class="p">(</span>
     <span class="n">dtype_and_x</span><span class="o">=</span><span class="n">helpers</span><span class="o">.</span><span class="n">dtype_and_values</span><span class="p">(</span>
         <span class="n">available_dtypes</span><span class="o">=</span><span class="n">helpers</span><span class="o">.</span><span class="n">get_dtypes</span><span class="p">(</span><span class="s2">&quot;numeric&quot;</span><span class="p">,</span> <span class="n">full</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
         <span class="n">num_arrays</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
@@ -736,8 +727,8 @@ which is the frontend class to test. This is the relevant Ivy frontend class and
 <p><strong>NumPy</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># ivy_tests/test_ivy/test_frontends/test_numpy/test_ndarray.py</span>
 <span class="c1"># add</span>
-<span class="nd">@handle_cmd_line_args</span>
-<span class="nd">@given</span><span class="p">(</span>
+<span class="nd">handle_cmd_line_args</span>
+<span class="nd">given</span><span class="p">(</span>
     <span class="n">dtype_and_x</span><span class="o">=</span><span class="n">helpers</span><span class="o">.</span><span class="n">dtype_and_values</span><span class="p">(</span>
         <span class="n">available_dtypes</span><span class="o">=</span><span class="n">ivy_np</span><span class="o">.</span><span class="n">valid_float_dtypes</span><span class="p">,</span> <span class="n">num_arrays</span><span class="o">=</span><span class="mi">2</span>
     <span class="p">),</span>
@@ -797,8 +788,8 @@ which is the frontend class to test. This is the relevant Ivy frontend class and
 <p><strong>TensorFlow</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># ivy_tests/test_ivy/test_frontends/test_tensorflow/test_tensor.py</span>
 <span class="c1"># add</span>
-<span class="nd">@handle_cmd_line_args</span>
-<span class="nd">@given</span><span class="p">(</span>
+<span class="nd">handle_cmd_line_args</span>
+<span class="nd">given</span><span class="p">(</span>
     <span class="n">dtype_and_x</span><span class="o">=</span><span class="n">helpers</span><span class="o">.</span><span class="n">dtype_and_values</span><span class="p">(</span>
         <span class="n">available_dtypes</span><span class="o">=</span><span class="nb">tuple</span><span class="p">(</span>
             <span class="nb">set</span><span class="p">(</span><span class="n">ivy_np</span><span class="o">.</span><span class="n">valid_float_dtypes</span><span class="p">)</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">ivy_tf</span><span class="o">.</span><span class="n">valid_float_dtypes</span><span class="p">))</span>
@@ -836,8 +827,8 @@ which is the frontend class to test. This is the relevant Ivy frontend class and
 <p><strong>PyTorch</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># ivy_tests/test_ivy/test_frontends/test_torch/test_tensor.py</span>
 <span class="c1"># add</span>
-<span class="nd">@handle_cmd_line_args</span>
-<span class="nd">@given</span><span class="p">(</span>
+<span class="nd">handle_cmd_line_args</span>
+<span class="nd">given</span><span class="p">(</span>
     <span class="n">dtype_and_x</span><span class="o">=</span><span class="n">helpers</span><span class="o">.</span><span class="n">dtype_and_values</span><span class="p">(</span>
         <span class="n">available_dtypes</span><span class="o">=</span><span class="nb">tuple</span><span class="p">(</span>
             <span class="nb">set</span><span class="p">(</span><span class="n">ivy_np</span><span class="o">.</span><span class="n">valid_float_dtypes</span><span class="p">)</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span>
@@ -892,7 +883,7 @@ which is the frontend class to test. This is the relevant Ivy frontend class and
 <p><strong>Jax</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># ivy_tests/test_ivy/test_frontends/test_jax/test_jax_devicearray.py</span>
 <span class="c1"># reshape</span>
-<span class="nd">@st</span><span class="o">.</span><span class="n">composite</span>
+<span class="nd">st</span><span class="o">.</span><span class="n">composite</span>
 <span class="k">def</span> <span class="nf">_reshape_helper</span><span class="p">(</span><span class="n">draw</span><span class="p">):</span>
     <span class="c1"># generate a shape s.t len(shape) &gt; 0</span>
     <span class="n">shape</span> <span class="o">=</span> <span class="n">draw</span><span class="p">(</span><span class="n">helpers</span><span class="o">.</span><span class="n">get_shape</span><span class="p">(</span><span class="n">min_num_dims</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
@@ -911,8 +902,8 @@ which is the frontend class to test. This is the relevant Ivy frontend class and
         <span class="k">return</span> <span class="n">x</span><span class="p">,</span> <span class="n">dtype</span><span class="p">,</span> <span class="n">reshape_shape</span><span class="p">,</span> <span class="kc">None</span>
 
 
-<span class="nd">@handle_cmd_line_args</span>
-<span class="nd">@given</span><span class="p">(</span>
+<span class="nd">handle_cmd_line_args</span>
+<span class="nd">given</span><span class="p">(</span>
     <span class="n">x_reshape_permut</span><span class="o">=</span><span class="n">_reshape_helper</span><span class="p">(),</span>
     <span class="n">num_positional_args</span><span class="o">=</span><span class="n">helpers</span><span class="o">.</span><span class="n">num_positional_args</span><span class="p">(</span>
         <span class="n">fn_name</span><span class="o">=</span><span class="s2">&quot;ivy.functional.frontends.jax.DeviceArray.reshape&quot;</span>
@@ -948,7 +939,7 @@ which is the frontend class to test. This is the relevant Ivy frontend class and
 <p><strong>NumPy</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># ivy_tests/test_ivy/test_frontends/test_numpy/test_ndarray.py</span>
 <span class="c1"># reshape</span>
-<span class="nd">@st</span><span class="o">.</span><span class="n">composite</span>
+<span class="nd">st</span><span class="o">.</span><span class="n">composite</span>
 <span class="k">def</span> <span class="nf">dtypes_x_reshape</span><span class="p">(</span><span class="n">draw</span><span class="p">):</span>
     <span class="n">dtypes</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="n">draw</span><span class="p">(</span>
         <span class="n">helpers</span><span class="o">.</span><span class="n">dtype_and_values</span><span class="p">(</span>
@@ -965,8 +956,8 @@ which is the frontend class to test. This is the relevant Ivy frontend class and
     <span class="k">return</span> <span class="n">dtypes</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">shape</span>
 
 
-<span class="nd">@handle_cmd_line_args</span>
-<span class="nd">@given</span><span class="p">(</span>
+<span class="nd">handle_cmd_line_args</span>
+<span class="nd">given</span><span class="p">(</span>
     <span class="n">dtypes_x_shape</span><span class="o">=</span><span class="n">dtypes_x_reshape</span><span class="p">(),</span>
     <span class="n">copy</span><span class="o">=</span><span class="n">st</span><span class="o">.</span><span class="n">booleans</span><span class="p">(),</span>
     <span class="n">with_out</span><span class="o">=</span><span class="n">st</span><span class="o">.</span><span class="n">booleans</span><span class="p">(),</span>
@@ -1008,7 +999,7 @@ which is the frontend class to test. This is the relevant Ivy frontend class and
 <p><strong>TensorFlow</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># ivy_tests/test_ivy/test_frontends/test_tensorflow/test_tensor.py</span>
 <span class="c1"># reshape</span>
-<span class="nd">@st</span><span class="o">.</span><span class="n">composite</span>
+<span class="nd">st</span><span class="o">.</span><span class="n">composite</span>
 <span class="k">def</span> <span class="nf">dtypes_x_reshape</span><span class="p">(</span><span class="n">draw</span><span class="p">):</span>
     <span class="n">dtypes</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="n">draw</span><span class="p">(</span>
         <span class="n">helpers</span><span class="o">.</span><span class="n">dtype_and_values</span><span class="p">(</span>
@@ -1025,8 +1016,8 @@ which is the frontend class to test. This is the relevant Ivy frontend class and
     <span class="k">return</span> <span class="n">dtypes</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">shape</span>
 
 
-<span class="nd">@handle_cmd_line_args</span>
-<span class="nd">@given</span><span class="p">(</span>
+<span class="nd">handle_cmd_line_args</span>
+<span class="nd">given</span><span class="p">(</span>
     <span class="n">dtypes_x_shape</span><span class="o">=</span><span class="n">dtypes_x_reshape</span><span class="p">(),</span>
     <span class="n">num_positional_args</span><span class="o">=</span><span class="n">helpers</span><span class="o">.</span><span class="n">num_positional_args</span><span class="p">(</span>
         <span class="n">fn_name</span><span class="o">=</span><span class="s2">&quot;ivy.functional.frontends.tensorflow.Tensor.Reshape&quot;</span><span class="p">,</span>
@@ -1061,7 +1052,7 @@ which is the frontend class to test. This is the relevant Ivy frontend class and
 <p><strong>PyTorch</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># ivy_tests/test_ivy/test_frontends/test_tensorflow/test_tensor.py</span>
 <span class="c1"># reshape</span>
-<span class="nd">@st</span><span class="o">.</span><span class="n">composite</span>
+<span class="nd">st</span><span class="o">.</span><span class="n">composite</span>
 <span class="k">def</span> <span class="nf">dtypes_x_reshape</span><span class="p">(</span><span class="n">draw</span><span class="p">):</span>
     <span class="n">dtypes</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="n">draw</span><span class="p">(</span>
         <span class="n">helpers</span><span class="o">.</span><span class="n">dtype_and_values</span><span class="p">(</span>
@@ -1079,8 +1070,8 @@ which is the frontend class to test. This is the relevant Ivy frontend class and
     <span class="k">return</span> <span class="n">dtypes</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">shape</span>
 
 
-<span class="nd">@handle_cmd_line_args</span>
-<span class="nd">@given</span><span class="p">(</span>
+<span class="nd">handle_cmd_line_args</span>
+<span class="nd">given</span><span class="p">(</span>
     <span class="n">dtypes_x_reshape</span><span class="o">=</span><span class="n">dtypes_x_reshape</span><span class="p">(),</span>
     <span class="n">num_positional_args</span><span class="o">=</span><span class="n">helpers</span><span class="o">.</span><span class="n">num_positional_args</span><span class="p">(</span>
         <span class="n">fn_name</span><span class="o">=</span><span class="s2">&quot;ivy.functional.frontends.torch.Tensor.reshape&quot;</span><span class="p">,</span>
@@ -1159,7 +1150,7 @@ or reach out on <a class="reference external" href="https://discord.gg/ZVQdvbzNQ
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="16_ivy_frontends.html" class="btn btn-neutral float-left" title="Ivy Frontends" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="../contributing/4_open_tasks.html" class="btn btn-neutral float-right" title="Open Tasks" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="18_exception_handling.html" class="btn btn-neutral float-right" title="Exception Handling" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
