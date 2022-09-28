@@ -306,3 +306,23 @@ def conv_general_dilated(
 
 
 conv_general_dilated.unsupported_dtypes = ("bfloat16",)
+
+
+def max_pool1d(
+    x: Union[tf.Tensor, tf.Variable],
+    kernel_size: Union[int, Tuple[int]],
+    strides: int,
+    padding: str,
+    /,
+    *,
+    dilation_rate: int = 1,
+    data_format: str = "NWC",
+
+    out: Optional[Union[tf.Tensor, tf.Variable]] = None,
+) -> Union[tf.Tensor, tf.Variable]:
+    if data_format == "NCW":
+        x = tf.transpose(x, (0, 2, 1))
+    res = tf.nn.max_pool1d(x, kernel_size, strides, padding)
+    if data_format == "NCW":
+        res = tf.transpose(res, (0, 2, 1))
+    return res

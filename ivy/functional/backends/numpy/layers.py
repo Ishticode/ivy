@@ -540,3 +540,39 @@ def conv_general_dilated(
     if data_format == "channel_first":
         return np.transpose(res, (0, -1, *range(1, dims + 1)))
     return res
+
+
+def max_pool1d(
+    x: np.ndarray,
+    kernel_size: Union[int, Tuple[int]],
+    strides: int,
+    padding: str,
+    /,
+    *,
+    data_format: str = "NWC",
+    dilations: int = 1,
+    out: Optional[np.ndarray] = None,
+) -> np.ndarray:
+    if isinstance(strides, tuple):
+        strides = strides[0]
+    if isinstance(dilations, tuple):
+        dilations = dilations[0]
+    if data_format == "NCW":
+        x = np.transpose(x, (0, 2, 1))
+    x_shape = (1,) + x.shape
+    filter_shape = (1,) + filters.shape
+    x_strides = (x.strides[0],) + x.strides
+    filter_strides = (filters.strides[0],) + filters.strides
+    x = np.lib.stride_tricks.as_strided(x, shape=x_shape, strides=x_strides)
+    filters = np.lib.stride_tricks.as_strided(
+        filters, shape=filter_shape, strides=filter_strides
+    )
+    x = np.transpose(x, (1, 0, 2, 3))
+    res = conv2d(x, filters, strides, padding, data_format="NHWC", dilations=dilations)
+    res = np.transpose(res, (1, 0, 2, 3))
+    res = np.lib.stride_tricks.as_strided(
+        res, shape=res.shape[1:], strides=res.strides[1:]
+    )
+    if data_format == "NCW":
+        res = np.transpose(res, (0, 2, 1))
+    return res

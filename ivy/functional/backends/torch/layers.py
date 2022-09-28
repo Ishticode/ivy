@@ -533,3 +533,38 @@ def conv_general_dilated(
 
 
 conv_general_dilated.unsupported_dtypes = ("float16", "bfloat16")
+
+
+def max_pool1d(
+    x: torch.Tensor,
+    kernel_size: Union[int, Tuple[int]],
+    strides: Union[int, Tuple[int]],
+    padding: str,
+    /,
+    *,
+    dilation: Union[int, Tuple[int]] = 1,
+    data_format: str = "NWC",
+    out: Optional[torch.Tensor] = None,
+) -> torch.Tensor:
+
+    if isinstance(strides, tuple):
+        strides = strides[0]
+    if isinstance(dilation, tuple):
+        dilation = dilation[0]
+
+    #k_w_after_dilation = kernel_size.shape[0] + ((dilation - 1) * (filters.shape[0] - 1))
+
+    if data_format == "NWC":
+        x = x.permute(0, 2, 1)
+    x_shape = x.shape[2]
+    pad_w = ivy.handle_padding(x_shape, strides, kernel_size, padding)
+    x = torch.nn.functional.pad(x, [pad_w // 2, pad_w - pad_w // 2], value=0)
+    if padding != "VALID" and padding != "SAME":
+        raise ivy.exceptions.IvyException(
+            "Invalid padding arg {}\n"
+            'Must be one of: "VALID" or "SAME"'.format(padding)
+        )
+    res = torch.nn.functional.max_pool1d(x, kernel_size, strides, 0, dilation)
+    if data_format == "NWC":
+        res = res.permute(0, 2, 1)
+    return res

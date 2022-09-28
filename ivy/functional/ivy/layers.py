@@ -1313,3 +1313,23 @@ def get_x_data_format(dims: int = 2, data_format: str = "channel_first"):
             return "NCDHW"
         else:
             return "NDHWC"
+
+
+@to_native_arrays_and_back
+@handle_out_argument
+@handle_nestable
+@handle_exceptions
+def max_pool1d(
+        x: Union[ivy.Array, ivy.NativeArray],
+        kernel_size: Union[int, Tuple[int]],
+        strides: int,
+        padding: str,
+        /,
+        *,
+        data_format: str = "NWC",
+        out: Optional[ivy.Array] = None
+) -> ivy.Array:
+
+    return current_backend(x).max_pool1d(
+        x, kernel_size, strides, padding, data_format=data_format, out=out
+    )
