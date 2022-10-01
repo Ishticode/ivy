@@ -196,9 +196,20 @@
 <span class="sd">        containing the minimum values. The returned array must have the same data type</span>
 <span class="sd">        as x.</span>
 
+
+<span class="sd">    This method conforms to the `Array API Standard</span>
+<span class="sd">    &lt;https://data-apis.org/array-api/latest/&gt;`_. This docstring is an extension of the</span>
+<span class="sd">    `docstring &lt;https://data-apis.org/array-api/latest/API_specification/generated/signatures.statistical_functions.min.html&gt;`_  </span>
+<span class="sd">    in the standard.</span>
+
+<span class="sd">    Both the description and the type hints above assumes an array input for simplicity,</span>
+<span class="sd">    but this function is *nestable*, and therefore also accepts :class:`ivy.Container`</span>
+<span class="sd">    instances in place of any of the arguments.</span>
+
+
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
-<span class="sd">    With :code:`ivy.Array` input:</span>
+<span class="sd">    With :class:`ivy.Array` input:</span>
 
 <span class="sd">    &gt;&gt;&gt; x = ivy.array([1, 2, 3])</span>
 <span class="sd">    &gt;&gt;&gt; z = x.min()</span>
@@ -221,7 +232,7 @@
 <span class="sd">    &gt;&gt;&gt; print(y)</span>
 <span class="sd">    ivy.array(0)</span>
 
-<span class="sd">    With :code:`ivy.Container` input:</span>
+<span class="sd">    With :class:`ivy.Container` input:</span>
 
 <span class="sd">    &gt;&gt;&gt; x = ivy.Container(a=ivy.array([0., 1., 2.]), b=ivy.array([3., 4., 5.]))</span>
 <span class="sd">    &gt;&gt;&gt; y = ivy.min(x)</span>
@@ -295,18 +306,19 @@
 <span class="sd">        containing the maximum values. The returned array must have the same data type</span>
 <span class="sd">        as ``x``.</span>
 
+
 <span class="sd">    This method conforms to the `Array API Standard</span>
 <span class="sd">    &lt;https://data-apis.org/array-api/latest/&gt;`_. This docstring is an extension of the</span>
-<span class="sd">    `docstring &lt;https://data-apis.org/array-api/latest/API_specification/generated/signatures.elementwise_functions.max.html&gt;`_  </span>
+<span class="sd">    `docstring &lt;https://data-apis.org/array-api/latest/API_specification/generated/signatures.statistical_functions.max.html&gt;`_  </span>
 <span class="sd">    in the standard.</span>
 
 <span class="sd">    Both the description and the type hints above assumes an array input for simplicity,</span>
-<span class="sd">    but this function is *nestable*, and therefore also accepts :code:`ivy.Container`</span>
+<span class="sd">    but this function is *nestable*, and therefore also accepts :class:`ivy.Container`</span>
 <span class="sd">    instances in place of any of the arguments.</span>
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
-<span class="sd">    With :code:`ivy.Array` input:</span>
+<span class="sd">    With :class:`ivy.Array` input:</span>
 
 <span class="sd">    &gt;&gt;&gt; x = ivy.array([1, 2, 3])</span>
 <span class="sd">    &gt;&gt;&gt; z = x.max()</span>
@@ -329,7 +341,7 @@
 <span class="sd">    &gt;&gt;&gt; print(y)</span>
 <span class="sd">    ivy.array(10)</span>
 
-<span class="sd">    With :code:`ivy.Container` input:</span>
+<span class="sd">    With :class:`ivy.Container` input:</span>
 
 <span class="sd">    &gt;&gt;&gt; x = ivy.Container(a=ivy.array([0., 1., 2.]), b=ivy.array([3., 4., 5.]))</span>
 <span class="sd">    &gt;&gt;&gt; y = ivy.max(x)</span>
@@ -411,12 +423,12 @@
 
 <span class="sd">    Both the description and the type hints above assumes an array input for</span>
 <span class="sd">    simplicity, but this function is *nestable*, and therefore also accepts</span>
-<span class="sd">    :code:`ivy.Container` instances in place of any of the arguments.</span>
+<span class="sd">    :class:`ivy.Container` instances in place of any of the arguments.</span>
 
 <span class="sd">    </span>
 <span class="sd">    Functional Examples</span>
 <span class="sd">    -------------------</span>
-<span class="sd">    With :code:`ivy.Array` input:</span>
+<span class="sd">    With :class:`ivy.Array` input:</span>
 
 <span class="sd">    &gt;&gt;&gt; x = ivy.array([3., 4., 5.])</span>
 <span class="sd">    &gt;&gt;&gt; y = ivy.mean(x)</span>
@@ -435,7 +447,7 @@
 <span class="sd">    &gt;&gt;&gt; print(y)</span>
 <span class="sd">    ivy.array([-1.4,  1.4])</span>
 
-<span class="sd">    With :code:`ivy.native_array` input:</span>
+<span class="sd">    With :class:`ivy.NativeArray` input:</span>
 
 <span class="sd">    &gt;&gt;&gt; x = ivy.native_array([3., 4., 5.])</span>
 <span class="sd">    &gt;&gt;&gt; y = ivy.mean(x)</span>
@@ -454,7 +466,7 @@
 <span class="sd">    &gt;&gt;&gt; print(y)</span>
 <span class="sd">    [1., 4.]</span>
 
-<span class="sd">    With :code:`ivy.Container` input:</span>
+<span class="sd">    With :class:`ivy.Container` input:</span>
 
 <span class="sd">    &gt;&gt;&gt; x = ivy.Container(a=ivy.array([-1., 0., 1.]), b=ivy.array([1.1, 0.2, 1.4]))</span>
 <span class="sd">    &gt;&gt;&gt; y = ivy.mean(x)</span>
@@ -475,7 +487,7 @@
 
 <span class="sd">    Instance Method Examples</span>
 <span class="sd">    ------------------------</span>
-<span class="sd">    With :code:`ivy.Array` input:</span>
+<span class="sd">    With :class:`ivy.Array` input:</span>
 
 <span class="sd">    &gt;&gt;&gt; x = ivy.array([3., 4., 5.])</span>
 <span class="sd">    &gt;&gt;&gt; y = x.mean()</span>
@@ -494,7 +506,7 @@
 <span class="sd">    &gt;&gt;&gt; print(y)</span>
 <span class="sd">    ivy.array([-0.25,  1.05,  2.1])</span>
 
-<span class="sd">    With :code:`ivy.Container` input:</span>
+<span class="sd">    With :class:`ivy.Container` input:</span>
 
 <span class="sd">    &gt;&gt;&gt; x = ivy.Container(a=ivy.array([0.1, 1.1]), b=ivy.array([0.2, 2.2, 4.2]))</span>
 <span class="sd">    &gt;&gt;&gt; y = x.mean()</span>
@@ -539,6 +551,8 @@
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Calculates the product of input array x elements.</span>
 
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
 <span class="sd">    x</span>
 <span class="sd">        input array. Should have a numeric data type.</span>
 <span class="sd">    axis</span>
@@ -575,6 +589,16 @@
 <span class="sd">        array containing the product; otherwise, a non-zero-dimensional array containing</span>
 <span class="sd">        the products. The returned array must have a data type as described by the dtype</span>
 <span class="sd">        parameter above.</span>
+
+
+<span class="sd">    This method conforms to the `Array API Standard</span>
+<span class="sd">    &lt;https://data-apis.org/array-api/latest/&gt;`_. This docstring is an extension of the</span>
+<span class="sd">    `docstring &lt;https://data-apis.org/array-api/latest/API_specification/generated/signatures.statistical_functions.prod.html&gt;`_  </span>
+<span class="sd">    in the standard.</span>
+
+<span class="sd">    Both the description and the type hints above assumes an array input for simplicity,</span>
+<span class="sd">    but this function is *nestable*, and therefore also accepts :class:`ivy.Container`</span>
+<span class="sd">    instances in place of any of the arguments.</span>
 
 <span class="sd">    &gt;&gt;&gt; x = ivy.array([1, 2, 3])</span>
 <span class="sd">    &gt;&gt;&gt; z = ivy.prod(x)</span>
@@ -653,6 +677,16 @@
 <span class="sd">        containing the standard deviation; otherwise, an array containing the standard</span>
 <span class="sd">        deviations. The returned array must have a data type as described by the</span>
 <span class="sd">        ``dtype`` parameter above.</span>
+
+
+<span class="sd">    This method conforms to the `Array API Standard</span>
+<span class="sd">    &lt;https://data-apis.org/array-api/latest/&gt;`_. This docstring is an extension of the</span>
+<span class="sd">    `docstring &lt;https://data-apis.org/array-api/latest/API_specification/generated/signatures.statistical_functions.std.html&gt;`_  </span>
+<span class="sd">    in the standard.</span>
+
+<span class="sd">    Both the description and the type hints above assumes an array input for simplicity,</span>
+<span class="sd">    but this function is *nestable*, and therefore also accepts :class:`ivy.Container`</span>
+<span class="sd">    instances in place of any of the arguments.</span>
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
@@ -736,9 +770,19 @@
 <span class="sd">        containing the sum; otherwise, an array containing the sums. The returned array</span>
 <span class="sd">        must have a data type as described by the ``dtype`` parameter above.</span>
 
+
+<span class="sd">    This method conforms to the `Array API Standard</span>
+<span class="sd">    &lt;https://data-apis.org/array-api/latest/&gt;`_. This docstring is an extension of the</span>
+<span class="sd">    `docstring &lt;https://data-apis.org/array-api/latest/API_specification/generated/signatures.statistical_functions.sum.html&gt;`_  </span>
+<span class="sd">    in the standard.</span>
+
+<span class="sd">    Both the description and the type hints above assumes an array input for simplicity,</span>
+<span class="sd">    but this function is *nestable*, and therefore also accepts :class:`ivy.Container`</span>
+<span class="sd">    instances in place of any of the arguments.</span>
+
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
-<span class="sd">    With :code:`ivy.Array` input:</span>
+<span class="sd">    With :class:`ivy.Array` input:</span>
 
 <span class="sd">    &gt;&gt;&gt; x = ivy.array([0.41, 0.89])</span>
 <span class="sd">    &gt;&gt;&gt; y = ivy.sum(x)</span>
@@ -762,7 +806,7 @@
 <span class="sd">    &gt;&gt;&gt; print(y)</span>
 <span class="sd">    ivy.array([4, 7, 12])</span>
 
-<span class="sd">    With :code:`ivy.native_array` input:</span>
+<span class="sd">    With :class:`ivy.NativeArray` input:</span>
 
 <span class="sd">    &gt;&gt;&gt; x = ivy.native_array([0.1, 0.2, 0.3, 0.3, 0.9, 0.10])</span>
 <span class="sd">    &gt;&gt;&gt; y = ivy.sum(x)</span>
@@ -775,7 +819,7 @@
 <span class="sd">    &gt;&gt;&gt; print(y)</span>
 <span class="sd">    ivy.array(8.)</span>
 
-<span class="sd">    With :code:`ivy.Container` input:</span>
+<span class="sd">    With :class:`ivy.Container` input:</span>
 
 <span class="sd">    &gt;&gt;&gt; x = ivy.Container(a=ivy.array([0., 1., 2.]), b=ivy.array([3., 4., 5.]))</span>
 <span class="sd">    &gt;&gt;&gt; y = ivy.sum(x)</span>
@@ -846,9 +890,19 @@
 <span class="sd">        containing the variance; otherwise, a non-zero-dimensional array containing the</span>
 <span class="sd">        variances. The returned array must have the same data type as x.</span>
 
+
+<span class="sd">    This method conforms to the `Array API Standard</span>
+<span class="sd">    &lt;https://data-apis.org/array-api/latest/&gt;`_. This docstring is an extension of the</span>
+<span class="sd">    `docstring &lt;https://data-apis.org/array-api/latest/API_specification/generated/signatures.statistical_functions.var.html&gt;`_  </span>
+<span class="sd">    in the standard.</span>
+
+<span class="sd">    Both the description and the type hints above assumes an array input for simplicity,</span>
+<span class="sd">    but this function is *nestable*, and therefore also accepts :class:`ivy.Container`</span>
+<span class="sd">    instances in place of any of the arguments.</span>
+
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
-<span class="sd">    With :code:`ivy.Array` input:</span>
+<span class="sd">    With :class:`ivy.Array` input:</span>
 
 <span class="sd">    &gt;&gt;&gt; x = ivy.array([0.1, 0.2, 0.3, 0.3, 0.9, 0.10])</span>
 <span class="sd">    &gt;&gt;&gt; y = ivy.var(x)</span>
@@ -866,14 +920,14 @@
 <span class="sd">    &gt;&gt;&gt; print(x)</span>
 <span class="sd">    ivy.array(0.07472222)</span>
 
-<span class="sd">    With :code:`ivy.native_array` input:</span>
+<span class="sd">    With :class:`ivy.NativeArray` input:</span>
 
 <span class="sd">    &gt;&gt;&gt; x = ivy.native_array([0.1, 0.2, 0.3, 0.3, 0.9, 0.10])</span>
 <span class="sd">    &gt;&gt;&gt; y = ivy.var(x)</span>
 <span class="sd">    &gt;&gt;&gt; print(y)</span>
 <span class="sd">    ivy.array(0.07472222)</span>
 
-<span class="sd">    With :code:`ivy.Container` input:</span>
+<span class="sd">    With :class:`ivy.Container` input:</span>
 
 <span class="sd">    &gt;&gt;&gt; x = ivy.Container(a=ivy.array([0.1, 0.2, 0.9]), \</span>
 <span class="sd">                          b=ivy.array([0.7, 0.1, 0.9]))</span>
@@ -884,18 +938,9 @@
 <span class="sd">        b: ivy.array(0.11555555)</span>
 <span class="sd">    }</span>
 
-<span class="sd">    This function conforms to the `Array API Standard</span>
-<span class="sd">    &lt;https://data-apis.org/array-api/latest/&gt;`_. This docstring is an extension of the</span>
-<span class="sd">    `docstring &lt;https://data-apis.org/array-api/latest/API_specification/generated/</span>
-<span class="sd">    signatures.elementwise_functions.tan.html&gt;`_ in the standard.</span>
-
-<span class="sd">    Both the description and the type hints above assumes an array input for simplicity,</span>
-<span class="sd">    but this function is *nestable*, and therefore also accepts :code:`ivy.Container`</span>
-<span class="sd">    instances in place of any of the arguments.</span>
-
 <span class="sd">    Functional Examples</span>
 <span class="sd">    -------------------</span>
-<span class="sd">    With :code:`ivy.Array` input:</span>
+<span class="sd">    With :class:`ivy.Array` input:</span>
 
 <span class="sd">    &gt;&gt;&gt; x = ivy.array([0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0])</span>
 <span class="sd">    &gt;&gt;&gt; y = ivy.var(x)</span>
@@ -926,7 +971,7 @@
 <span class="sd">    &gt;&gt;&gt; print(y)</span>
 <span class="sd">    ivy.array([6., 6., 6.])</span>
 
-<span class="sd">    With :code:`ivy.NativeArray` input:</span>
+<span class="sd">    With :class:`ivy.NativeArray` input:</span>
 
 <span class="sd">    &gt;&gt;&gt; x = ivy.native_array([1.0, 2.0, 2.0, 3.0])</span>
 <span class="sd">    &gt;&gt;&gt; y = ivy.var(x)</span>
@@ -939,7 +984,7 @@
 <span class="sd">    &gt;&gt;&gt; print(y)</span>
 <span class="sd">    ivy.array(0.5)</span>
 
-<span class="sd">    With :code:`ivy.Container` input:</span>
+<span class="sd">    With :class:`ivy.Container` input:</span>
 
 <span class="sd">    &gt;&gt;&gt; x = ivy.Container(a=ivy.array([0.0, 1.0, 2.0]), b=ivy.array([3.0, 4.0, 5.0]))</span>
 <span class="sd">    &gt;&gt;&gt; y = ivy.var(x)</span>
@@ -1013,13 +1058,9 @@
 <span class="sd">        Array which holds the result of applying cumsum at each</span>
 <span class="sd">        original array elements along the specified axis.</span>
 
-<span class="sd">    Both the description and the type hints above assumes an array input for simplicity,</span>
-<span class="sd">    but this function is *nestable*, and therefore also accepts :code:`ivy.Container`</span>
-<span class="sd">    instances in place of any of the arguments.</span>
-
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
-<span class="sd">    With :code:`ivy.Array` input:</span>
+<span class="sd">    With :class:`ivy.Array` input:</span>
 
 <span class="sd">    &gt;&gt;&gt; x = ivy.array([1, 5, 2, 0])</span>
 <span class="sd">    &gt;&gt;&gt; y = ivy.cumsum(x, exclusive= True, reverse=False)</span>
@@ -1050,7 +1091,7 @@
 <span class="sd">               [14, 11,  5],</span>
 <span class="sd">               [14, 13, 10]])</span>
 
-<span class="sd">    With :code:`ivy.Container` input:</span>
+<span class="sd">    With :class:`ivy.Container` input:</span>
 
 <span class="sd">    &gt;&gt;&gt; x = ivy.Container(a=ivy.array([[1, 3, 5]]), \</span>
 <span class="sd">                          b=ivy.array([[3, 5, 7]]))</span>
@@ -1151,7 +1192,7 @@
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
-<span class="sd">    With :code:`ivy.Array` input:</span>
+<span class="sd">    With :class:`ivy.Array` input:</span>
 
 <span class="sd">    &gt;&gt;&gt; x = ivy.array([2, 3, 4])</span>
 <span class="sd">    &gt;&gt;&gt; y = ivy.cumprod(x)</span>
@@ -1188,7 +1229,7 @@
 <span class="sd">                [2.,  3.],</span>
 <span class="sd">                [10., 21.]])</span>
 
-<span class="sd">    With :code:`ivy.Container` input:</span>
+<span class="sd">    With :class:`ivy.Container` input:</span>
 
 <span class="sd">    &gt;&gt;&gt; x = ivy.Container(a=ivy.array([2, 3, 4]), b=ivy.array([3, 4, 5]))</span>
 <span class="sd">    &gt;&gt;&gt; y = ivy.cumprod(x)</span>
@@ -1274,7 +1315,7 @@
 <span class="sd">    Functional Examples</span>
 <span class="sd">    -------------------</span>
 
-<span class="sd">    With :code: &#39;ivy.Array&#39; input:</span>
+<span class="sd">    With :class:`ivy.Array` input:</span>
 
 <span class="sd">    &gt;&gt;&gt; x = ivy.array([[0, 1, 2], [3, 4, 5], [6, 7, 8]])</span>
 <span class="sd">    &gt;&gt;&gt; y = ivy.einsum(&#39;ii&#39;, x)</span>
@@ -1339,14 +1380,14 @@
 <span class="sd">           [ 40,  48,  56,  64,  72,  80,  88,  96, 104, 112],</span>
 <span class="sd">           [ 45,  54,  63,  72,  81,  90,  99, 108, 117, 126]])</span>
 
-<span class="sd">    With :code:&#39;ivy.NativeArray&#39; input:</span>
+<span class="sd">    With :class:`ivy.NativeArray` input:</span>
 
 <span class="sd">    &gt;&gt;&gt; x = ivy.native_array([[0, 1, 2], [3, 4, 5], [6, 7, 8]])</span>
 <span class="sd">    &gt;&gt;&gt; y = ivy.einsum(&#39;ii&#39;, x)</span>
 <span class="sd">    &gt;&gt;&gt; print(y)</span>
 <span class="sd">    ivy.array(12)</span>
 
-<span class="sd">    With a mix of code: &#39;ivy.Array&#39; and code: &#39;ivy.NativeArray&#39; inputs:</span>
+<span class="sd">    With a mix of :class:`ivy.Array` and :class:`ivy.NativeArray` inputs:</span>
 
 <span class="sd">    &gt;&gt;&gt; A = ivy.array([0, 1, 2])</span>
 <span class="sd">    &gt;&gt;&gt; B = ivy.native_array([[ 0, 1, 2, 3],\</span>
@@ -1356,7 +1397,7 @@
 <span class="sd">    &gt;&gt;&gt; print(C)</span>
 <span class="sd">    ivy.array([ 0, 22, 76])</span>
 
-<span class="sd">    With a mix of :code:`ivy.Array` and :code:`ivy.Container` inputs:</span>
+<span class="sd">    With a mix of :class:`ivy.Array` and :class:`ivy.Container` inputs:</span>
 
 <span class="sd">    &gt;&gt;&gt; x = ivy.array([0, 1, 2])</span>
 <span class="sd">    &gt;&gt;&gt; y = ivy.Container(a=ivy.array([[ 0,  1,  2,  3],\</span>
@@ -1372,7 +1413,7 @@
 <span class="sd">        b: ivy.array([0, 15, 54])</span>
 <span class="sd">    }</span>
 
-<span class="sd">    With :code: &#39;ivy.Container&#39; input:</span>
+<span class="sd">    With :class:`ivy.Container` input:</span>
 
 <span class="sd">    &gt;&gt;&gt; x = ivy.Container(a=ivy.array([[0, 1, 0],[1, 1, 0],[1, 1, 1]]),\</span>
 <span class="sd">                          b=ivy.array([[0, 1, 2],[4, 5, 6],[8, 9, 10]]))</span>
@@ -1386,14 +1427,14 @@
 <span class="sd">    Instance Method Examples</span>
 <span class="sd">    ------------------------</span>
 
-<span class="sd">    Using :code: &#39;ivy.Array&#39; instance method:</span>
+<span class="sd">    Using :class:`ivy.Array` instance method:</span>
 
 <span class="sd">    &gt;&gt;&gt; x = ivy.array([[0, 1, 2], [3, 4, 5], [6, 7, 8]])</span>
 <span class="sd">    &gt;&gt;&gt; y = x.einsum(&#39;ii&#39;)</span>
 <span class="sd">    &gt;&gt;&gt; print(y)</span>
 <span class="sd">    ivy.array(12)</span>
 
-<span class="sd">    Using :code: &#39;ivy.Container&#39; instance method:</span>
+<span class="sd">    Using :class:`ivy.Container` instance method:</span>
 
 <span class="sd">    &gt;&gt;&gt; x = ivy.Container(a=ivy.array([[0, 1, 0],[1, 1, 0],[1, 1, 1]]),\</span>
 <span class="sd">                          b=ivy.array([[0, 1, 2],[4, 5, 6],[8, 9, 10]]))</span>

@@ -602,7 +602,7 @@
 
 <span class="sd">        Examples</span>
 <span class="sd">        --------</span>
-<span class="sd">        With :code:`ivy.Container` instance method:</span>
+<span class="sd">        With :class:`ivy.Container` instance method:</span>
 
 <span class="sd">        &gt;&gt;&gt; x = ivy.Container(a=ivy.array([0., 1., 2.]), \</span>
 <span class="sd">                              b=ivy.array([3., 4., 5.]))</span>
@@ -672,7 +672,7 @@
 
 <span class="sd">        Examples</span>
 <span class="sd">        --------</span>
-<span class="sd">        With :code:`ivy.Container` instance method:</span>
+<span class="sd">        With :class:`ivy.Container` instance method:</span>
 
 <span class="sd">        &gt;&gt;&gt; x = ivy.Container(a=ivy.array([0., 1., 2.]), \</span>
 <span class="sd">                              b=ivy.array([3., 4., 5.]))</span>
@@ -925,7 +925,7 @@
 
 <span class="sd">        Examples</span>
 <span class="sd">        --------</span>
-<span class="sd">        Using :code:`ivy.Container` instance method:</span>
+<span class="sd">        Using :class:`ivy.Container` instance method:</span>
 <span class="sd">        &gt;&gt;&gt; x = ivy.Container(a=ivy.array([-6.7, 2.4, -8.5]),\</span>
 <span class="sd">                               b=ivy.array([1.5, -0.3, 0]),\</span>
 <span class="sd">                               c=ivy.array([-4.7, -5.4, 7.5]))</span>
@@ -1066,7 +1066,7 @@
 
 <span class="sd">        Examples</span>
 <span class="sd">        --------</span>
-<span class="sd">        Using :code:`ivy.Container` instance method:</span>
+<span class="sd">        Using :class:`ivy.Container` instance method:</span>
 <span class="sd">        &gt;&gt;&gt; x = ivy.Container(a=ivy.array([-6.7, 2.4, -8.5]),\</span>
 <span class="sd">                               b=ivy.array([1.5, -0.3, 0]),\</span>
 <span class="sd">                               c=ivy.array([-4.7, -5.4, 7.5]))</span>
@@ -1082,93 +1082,6 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">static_inplace_increment</span><span class="p">(</span>
             <span class="bp">self</span><span class="p">,</span>
             <span class="n">val</span><span class="p">,</span>
-            <span class="n">key_chains</span><span class="o">=</span><span class="n">key_chains</span><span class="p">,</span>
-            <span class="n">to_apply</span><span class="o">=</span><span class="n">to_apply</span><span class="p">,</span>
-            <span class="n">prune_unapplied</span><span class="o">=</span><span class="n">prune_unapplied</span><span class="p">,</span>
-            <span class="n">map_sequences</span><span class="o">=</span><span class="n">map_sequences</span><span class="p">,</span>
-        <span class="p">)</span></div>
-
-<div class="viewcode-block" id="ContainerWithGeneral.static_supports_inplace_update"><a class="viewcode-back" href="../../../data_classes/container/general/ContainerWithGeneral.html#ivy.container.general.ContainerWithGeneral.static_supports_inplace_update">[docs]</a>    <span class="nd">staticmethod</span>
-    <span class="k">def</span> <span class="nf">static_supports_inplace_update</span><span class="p">(</span>
-        <span class="n">x</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">],</span>
-        <span class="o">/</span><span class="p">,</span>
-        <span class="o">*</span><span class="p">,</span>
-        <span class="n">key_chains</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="n">to_apply</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
-        <span class="n">prune_unapplied</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
-        <span class="n">map_sequences</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        ivy.Container static method variant of ivy.supports_inplace_update. This</span>
-<span class="sd">        method simply wrapsthe function, and so the docstring for</span>
-<span class="sd">        ivy.supports_inplace_update also applies to this method with minimal changes.</span>
-
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
-<span class="sd">        x</span>
-<span class="sd">            input container to check for inplace support for.</span>
-<span class="sd">        key_chains</span>
-<span class="sd">            The key-chains to apply or not apply the method to. Default is None.</span>
-<span class="sd">        to_apply</span>
-<span class="sd">            If True, the method will be applied to key_chains, otherwise key_chains</span>
-<span class="sd">            will be skipped. Default is True.</span>
-<span class="sd">        prune_unapplied</span>
-<span class="sd">            Whether to prune key_chains for which the function was not applied.</span>
-<span class="sd">            Default is False.</span>
-<span class="sd">        map_sequences</span>
-<span class="sd">            Whether to also map method to sequences (lists, tuples). Default is False.</span>
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">        ret</span>
-<span class="sd">            a container of whether or not inplace operations are supported for x and</span>
-<span class="sd">            its leaves.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">ContainerBase</span><span class="o">.</span><span class="n">multi_map_in_static_method</span><span class="p">(</span>
-            <span class="s2">&quot;supports_inplace_update&quot;</span><span class="p">,</span>
-            <span class="n">x</span><span class="p">,</span>
-            <span class="n">key_chains</span><span class="o">=</span><span class="n">key_chains</span><span class="p">,</span>
-            <span class="n">to_apply</span><span class="o">=</span><span class="n">to_apply</span><span class="p">,</span>
-            <span class="n">prune_unapplied</span><span class="o">=</span><span class="n">prune_unapplied</span><span class="p">,</span>
-            <span class="n">map_sequences</span><span class="o">=</span><span class="n">map_sequences</span><span class="p">,</span>
-        <span class="p">)</span></div>
-
-<div class="viewcode-block" id="ContainerWithGeneral.supports_inplace_update"><a class="viewcode-back" href="../../../data_classes/container/general/ContainerWithGeneral.html#ivy.container.general.ContainerWithGeneral.supports_inplace_update">[docs]</a>    <span class="k">def</span> <span class="nf">supports_inplace_update</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">:</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">,</span>
-        <span class="o">/</span><span class="p">,</span>
-        <span class="o">*</span><span class="p">,</span>
-        <span class="n">key_chains</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="n">to_apply</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
-        <span class="n">prune_unapplied</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
-        <span class="n">map_sequences</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        ivy.Container instance method variant of ivy.supports_inplace_update. This</span>
-<span class="sd">        method simply wrapsthe function, and so the docstring for</span>
-<span class="sd">        ivy.supports_inplace_update also applies to this methodwith minimal changes.</span>
-
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
-<span class="sd">        x</span>
-<span class="sd">            input container to check for inplace support for.</span>
-<span class="sd">        key_chains</span>
-<span class="sd">            The key-chains to apply or not apply the method to. Default is None.</span>
-<span class="sd">        to_apply</span>
-<span class="sd">            If True, the method will be applied to key_chains, otherwise key_chains</span>
-<span class="sd">            will be skipped. Default is True.</span>
-<span class="sd">        prune_unapplied</span>
-<span class="sd">            Whether to prune key_chains for which the function was not applied.</span>
-<span class="sd">            Default is False.</span>
-<span class="sd">        map_sequences</span>
-<span class="sd">            Whether to also map method to sequences (lists, tuples). Default is False.</span>
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">        ret</span>
-<span class="sd">            True if support, raises exception otherwise`</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">static_supports_inplace_update</span><span class="p">(</span>
-            <span class="bp">self</span><span class="p">,</span>
             <span class="n">key_chains</span><span class="o">=</span><span class="n">key_chains</span><span class="p">,</span>
             <span class="n">to_apply</span><span class="o">=</span><span class="n">to_apply</span><span class="p">,</span>
             <span class="n">prune_unapplied</span><span class="o">=</span><span class="n">prune_unapplied</span><span class="p">,</span>
@@ -1307,7 +1220,7 @@
 
 <span class="sd">        Examples</span>
 <span class="sd">        --------</span>
-<span class="sd">        With one :code:`ivy.Container` input:</span>
+<span class="sd">        With one :class:`ivy.Container` input:</span>
 
 <span class="sd">        &gt;&gt;&gt; x1 = ivy.Container(a=ivy.array([1, 0, 1, 1]), b=ivy.array([1, -1, 0, 0]))</span>
 <span class="sd">        &gt;&gt;&gt; x2 = ivy.array([1, 0, 1, 1])</span>
@@ -1318,7 +1231,7 @@
 <span class="sd">            b: ivy.array([True, False, False, False])</span>
 <span class="sd">        }</span>
 
-<span class="sd">        With multiple :code:`ivy.Container` input:</span>
+<span class="sd">        With multiple :class:`ivy.Container` input:</span>
 
 <span class="sd">        &gt;&gt;&gt; x1 = ivy.Container(a=ivy.array([1, 0, 1, 1]), \</span>
 <span class="sd">                                b=ivy.native_array([1, 0, 0, 1]))</span>
@@ -1387,7 +1300,7 @@
 
 <span class="sd">        Examples</span>
 <span class="sd">        --------</span>
-<span class="sd">        With one :code:`ivy.Container` instances:</span>
+<span class="sd">        With one :class:`ivy.Container` instances:</span>
 
 <span class="sd">        &gt;&gt;&gt; x1 = ivy.Container(a=ivy.array([1, 0, 1, 1]), b=ivy.array([1, -1, 0, 0]))</span>
 <span class="sd">        &gt;&gt;&gt; x2 = ivy.array([1, 0, 1, 1])</span>
@@ -1407,7 +1320,7 @@
 <span class="sd">            b: false</span>
 <span class="sd">        }</span>
 
-<span class="sd">        With multiple :code:`ivy.Container` instances:</span>
+<span class="sd">        With multiple :class:`ivy.Container` instances:</span>
 
 <span class="sd">        &gt;&gt;&gt; x1 = ivy.Container(a=ivy.native_array([1, 0, 0]),\</span>
 <span class="sd">                                b=ivy.array([1, 2, 3]))</span>
@@ -1577,7 +1490,8 @@
         <span class="n">indices</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">],</span>
         <span class="o">/</span><span class="p">,</span>
         <span class="o">*</span><span class="p">,</span>
-        <span class="n">axis</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>
+        <span class="n">axis</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>
+        <span class="n">batch_dims</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
         <span class="n">key_chains</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">to_apply</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
         <span class="n">prune_unapplied</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
@@ -1598,6 +1512,8 @@
 <span class="sd">            gathered along the specified axis.</span>
 <span class="sd">        axis</span>
 <span class="sd">            The axis from which the indices will be gathered. Default is -1.</span>
+<span class="sd">        batch_dims</span>
+<span class="sd">            optional int, lets you gather different items from each element of a batch.</span>
 <span class="sd">        key_chains</span>
 <span class="sd">            The key-chains to apply or not apply the method to. Default is None.</span>
 <span class="sd">        to_apply</span>
@@ -1609,8 +1525,8 @@
 <span class="sd">        map_sequences</span>
 <span class="sd">            Whether to also map method to sequences (lists, tuples). Default is False.</span>
 <span class="sd">        out</span>
-<span class="sd">            A container for writing the result to. It must have a shapethat the inputs </span>
-<span class="sd">            broadcast to. (Optional)</span>
+<span class="sd">            optional array, for writing the result to. It must have a shape </span>
+<span class="sd">            that the inputs broadcast to.</span>
 
 
 <span class="sd">        Returns</span>
@@ -1621,7 +1537,7 @@
 
 <span class="sd">        Examples</span>
 <span class="sd">        --------</span>
-<span class="sd">        With :code:`ivy.Container` input:</span>
+<span class="sd">        With :class:`ivy.Container` input:</span>
 
 <span class="sd">        &gt;&gt;&gt; x = ivy.Container(a = ivy.array([0., 1., 2.]), \</span>
 <span class="sd">                            b = ivy.array([4., 5., 6.]))</span>
@@ -1633,7 +1549,7 @@
 <span class="sd">            b: ivy.array([5., 6.])</span>
 <span class="sd">        }</span>
 
-<span class="sd">        With a mix of :code:`ivy.Array` and :code:`ivy.Container` inputs:</span>
+<span class="sd">        With a mix of :class:`ivy.Array` and :class:`ivy.Container` inputs:</span>
 <span class="sd">        </span>
 <span class="sd">        &gt;&gt;&gt; x = ivy.Container(a = ivy.array([0., 1., 2.]), \</span>
 <span class="sd">                            b = ivy.array([4., 5., 6.]))</span>
@@ -1650,6 +1566,7 @@
             <span class="n">params</span><span class="p">,</span>
             <span class="n">indices</span><span class="p">,</span>
             <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">,</span>
+            <span class="n">batch_dims</span><span class="o">=</span><span class="n">batch_dims</span><span class="p">,</span>
             <span class="n">key_chains</span><span class="o">=</span><span class="n">key_chains</span><span class="p">,</span>
             <span class="n">to_apply</span><span class="o">=</span><span class="n">to_apply</span><span class="p">,</span>
             <span class="n">prune_unapplied</span><span class="o">=</span><span class="n">prune_unapplied</span><span class="p">,</span>
@@ -1662,7 +1579,8 @@
         <span class="n">indices</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">],</span>
         <span class="o">/</span><span class="p">,</span>
         <span class="o">*</span><span class="p">,</span>
-        <span class="n">axis</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>
+        <span class="n">axis</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>
+        <span class="n">batch_dims</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
         <span class="n">key_chains</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">to_apply</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
         <span class="n">prune_unapplied</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
@@ -1683,6 +1601,8 @@
 <span class="sd">            gathered along the specified axis.</span>
 <span class="sd">        axis</span>
 <span class="sd">            The axis from which the indices will be gathered. Default is -1.</span>
+<span class="sd">        batch_dims</span>
+<span class="sd">            optional int, lets you gather different items from each element of a batch.</span>
 <span class="sd">        key_chains</span>
 <span class="sd">            The key-chains to apply or not apply the method to. Default is None.</span>
 <span class="sd">        to_apply</span>
@@ -1695,8 +1615,8 @@
 <span class="sd">            Whether to also map method to sequences (lists, tuples). Default is</span>
 <span class="sd">            False.</span>
 <span class="sd">        out</span>
-<span class="sd">            A container for writing the result to. It must have a shape</span>
-<span class="sd">            that the inputs broadcast to. (Optional)</span>
+<span class="sd">            optional array, for writing the result to. It must have a shape </span>
+<span class="sd">            that the inputs broadcast to.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
@@ -1721,6 +1641,7 @@
             <span class="bp">self</span><span class="p">,</span>
             <span class="n">indices</span><span class="p">,</span>
             <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">,</span>
+            <span class="n">batch_dims</span><span class="o">=</span><span class="n">batch_dims</span><span class="p">,</span>
             <span class="n">key_chains</span><span class="o">=</span><span class="n">key_chains</span><span class="p">,</span>
             <span class="n">to_apply</span><span class="o">=</span><span class="n">to_apply</span><span class="p">,</span>
             <span class="n">prune_unapplied</span><span class="o">=</span><span class="n">prune_unapplied</span><span class="p">,</span>
@@ -1769,7 +1690,7 @@
 
 <span class="sd">        Examples</span>
 <span class="sd">        --------</span>
-<span class="sd">        With :code:`ivy.Container` input:</span>
+<span class="sd">        With :class:`ivy.Container` input:</span>
 <span class="sd">        &gt;&gt;&gt; x = ivy.Container(a=ivy.array([1, 2, 3]), b=ivy.array([1, 2, float(&#39;nan&#39;)]))</span>
 <span class="sd">        &gt;&gt;&gt; y = ivy.Container.static_has_nans(x)</span>
 <span class="sd">        &gt;&gt;&gt; print(y)</span>
@@ -2613,7 +2534,7 @@
 
 <span class="sd">        Examples</span>
 <span class="sd">        --------</span>
-<span class="sd">        With :code:`ivy.Container` input:</span>
+<span class="sd">        With :class:`ivy.Container` input:</span>
 <span class="sd">        &gt;&gt;&gt; x = ivy.Container(a=ivy.array([452]), b=ivy.array([float(&#39;inf&#39;)]))</span>
 <span class="sd">        &gt;&gt;&gt; y = ivy.Container.static_value_is_nan(x)</span>
 <span class="sd">        &gt;&gt;&gt; print(y)</span>
@@ -2622,7 +2543,7 @@
 <span class="sd">            b: true</span>
 <span class="sd">        }</span>
 
-<span class="sd">        With :code:`ivy.Container` input:</span>
+<span class="sd">        With :class:`ivy.Container` input:</span>
 <span class="sd">        &gt;&gt;&gt; x = ivy.Container(a=ivy.array([float(&#39;nan&#39;)]), b=ivy.array([0]))</span>
 <span class="sd">        &gt;&gt;&gt; y = ivy.Container.static_value_is_nan(x)</span>
 <span class="sd">        &gt;&gt;&gt; print(y)</span>
@@ -2631,7 +2552,7 @@
 <span class="sd">            b: false</span>
 <span class="sd">        }</span>
 
-<span class="sd">        With :code:`ivy.Container` input:</span>
+<span class="sd">        With :class:`ivy.Container` input:</span>
 <span class="sd">        &gt;&gt;&gt; x = ivy.Container(a=ivy.array([float(&#39;inf&#39;)]), b=ivy.array([22]))</span>
 <span class="sd">        &gt;&gt;&gt; y = ivy.Container.static_value_is_nan(x, include_infs=False)</span>
 <span class="sd">        &gt;&gt;&gt; print(y)</span>
@@ -2761,7 +2682,7 @@
 
 <span class="sd">        Examples</span>
 <span class="sd">        --------</span>
-<span class="sd">        With one :code:`ivy.Container` inputs:</span>
+<span class="sd">        With one :class:`ivy.Container` inputs:</span>
 
 <span class="sd">        &gt;&gt;&gt; x = ivy.Container(a=ivy.array([1, 0, 1, 1]),\</span>
 <span class="sd">                            b=ivy.array([1, -1, 0, 0]))</span>
@@ -2783,7 +2704,7 @@
 
 <span class="sd">        Examples</span>
 <span class="sd">        --------</span>
-<span class="sd">        With one :code:`ivy.Container` static method:</span>
+<span class="sd">        With one :class:`ivy.Container` static method:</span>
 <span class="sd">        </span>
 <span class="sd">        &gt;&gt;&gt; x = ivy.Container(a=ivy.array([-1, 0, 1]),\</span>
 <span class="sd">                            b=ivy.array([-1, 0, 1, 1, 1, 0]))</span>
@@ -2841,7 +2762,7 @@
 
 <span class="sd">        Examples</span>
 <span class="sd">        --------</span>
-<span class="sd">        With one :code:`ivy.Container` instances:</span>
+<span class="sd">        With one :class:`ivy.Container` instances:</span>
 
 <span class="sd">        &gt;&gt;&gt; x = ivy.Container(a=ivy.native_array([[-1, 0, 1], [-1, 0, 1], [1, 0, -1]]),\</span>
 <span class="sd">                    b=ivy.native_array([[-1, 0, 0], [1, 0, 1], [1, 1, 1]]))</span>
@@ -2871,7 +2792,7 @@
 
 <span class="sd">        Examples</span>
 <span class="sd">        --------</span>
-<span class="sd">        With :code:`ivy.Container` instance method:</span>
+<span class="sd">        With :class:`ivy.Container` instance method:</span>
 
 <span class="sd">        &gt;&gt;&gt; x = ivy.Container(a=ivy.array([1, 0, 1]),\</span>
 <span class="sd">                            b=ivy.array([-1, 0, 1, 1]))</span>
@@ -2929,7 +2850,7 @@
 
 <span class="sd">        Examples</span>
 <span class="sd">        --------</span>
-<span class="sd">        With one :code:`ivy.Container` inputs:</span>
+<span class="sd">        With one :class:`ivy.Container` inputs:</span>
 
 <span class="sd">        &gt;&gt;&gt; x = ivy.Container(a=ivy.array([-1]), b=ivy.array([3]))</span>
 <span class="sd">        &gt;&gt;&gt; y = ivy.Container.static_to_scalar(x)</span>
@@ -2992,7 +2913,7 @@
 
 <span class="sd">        Examples</span>
 <span class="sd">        --------</span>
-<span class="sd">        With one :code:`ivy.Container` instances:</span>
+<span class="sd">        With one :class:`ivy.Container` instances:</span>
 
 
 <span class="sd">        &gt;&gt;&gt; x = ivy.Container(a=ivy.array([1]), b=ivy.array([0]),\</span>
@@ -3052,7 +2973,7 @@
 
 <span class="sd">        Examples</span>
 <span class="sd">        --------</span>
-<span class="sd">        With one :code:`ivy.Container` inputs:</span>
+<span class="sd">        With one :class:`ivy.Container` inputs:</span>
 
 
 <span class="sd">        &gt;&gt;&gt; x = ivy.Container(a=ivy.array([0, 1, 2]))</span>
@@ -3106,7 +3027,7 @@
 
 <span class="sd">        Examples</span>
 <span class="sd">        --------</span>
-<span class="sd">        With one :code:`ivy.Container` instances:</span>
+<span class="sd">        With one :class:`ivy.Container` instances:</span>
 
 
 <span class="sd">        &gt;&gt;&gt; x = ivy.Container(a=ivy.array([0, 1, 2]))</span>
@@ -3574,7 +3495,7 @@
 
 <span class="sd">        Examples</span>
 <span class="sd">        --------</span>
-<span class="sd">        With :code:`ivy.Container` input:</span>
+<span class="sd">        With :class:`ivy.Container` input:</span>
 
 <span class="sd">        &gt;&gt;&gt; x = ivy.Container(a=ivy.array([[0., 1., 2.]]), \</span>
 <span class="sd">                              b=ivy.array([[3., 4., 5.]]))</span>
@@ -3644,7 +3565,7 @@
 
 <span class="sd">        Examples</span>
 <span class="sd">        --------</span>
-<span class="sd">        With :code:`ivy.Container` instance method:</span>
+<span class="sd">        With :class:`ivy.Container` instance method:</span>
 
 <span class="sd">        &gt;&gt;&gt; x = ivy.Container(a=ivy.array([[0., 1., 2.]]), \</span>
 <span class="sd">                              b=ivy.array([[3., 4., 5.]]))</span>

@@ -129,17 +129,18 @@
              
   <h1>Source code for ivy.functional.ivy.searching</h1><div class="highlight"><pre>
 <span></span><span class="c1"># global</span>
+<span class="kn">from</span> <span class="nn">numbers</span> <span class="kn">import</span> <span class="n">Number</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Union</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Tuple</span>
 
 <span class="c1"># local</span>
 <span class="kn">import</span> <span class="nn">ivy</span>
 <span class="kn">from</span> <span class="nn">ivy.backend_handler</span> <span class="kn">import</span> <span class="n">current_backend</span>
+<span class="kn">from</span> <span class="nn">ivy.exceptions</span> <span class="kn">import</span> <span class="n">handle_exceptions</span>
 <span class="kn">from</span> <span class="nn">ivy.func_wrapper</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">to_native_arrays_and_back</span><span class="p">,</span>
     <span class="n">handle_out_argument</span><span class="p">,</span>
     <span class="n">handle_nestable</span><span class="p">,</span>
 <span class="p">)</span>
-<span class="kn">from</span> <span class="nn">ivy.exceptions</span> <span class="kn">import</span> <span class="n">handle_exceptions</span>
 
 
 <span class="c1"># Array API Standard #</span>
@@ -185,10 +186,20 @@
 <span class="sd">        containing the indices of the maximum values. The returned array must have be</span>
 <span class="sd">        the default array index data type.</span>
 
+
+<span class="sd">    This function conforms to the `Array API Standard</span>
+<span class="sd">    &lt;https://data-apis.org/array-api/latest/&gt;`_. This docstring is an extension of the</span>
+<span class="sd">    `docstring &lt;https://data-apis.org/array-api/latest/API_specification/generated/signatures.searching_functions.argmax.html#signatures.searching_functions.argmax&gt;`_ </span>
+<span class="sd">    in the standard.</span>
+
+<span class="sd">    Both the description and the type hints above assumes an array input for simplicity,</span>
+<span class="sd">    but this function is *nestable*, and therefore also accepts :class:`ivy.Container`</span>
+<span class="sd">    instances in place of any of the arguments.</span>
+
 <span class="sd">    Functional Examples</span>
 <span class="sd">    --------</span>
 
-<span class="sd">    With :code:`ivy.Array` input:</span>
+<span class="sd">    With :class:`ivy.Array` input:</span>
 
 <span class="sd">    &gt;&gt;&gt; x = ivy.array([-0., 1., -1.])</span>
 <span class="sd">    &gt;&gt;&gt; y = ivy.argmax(x)</span>
@@ -200,30 +211,23 @@
 <span class="sd">    &gt;&gt;&gt; print(x)</span>
 <span class="sd">    ivy.array([1])</span>
 
-<span class="sd">    &gt;&gt;&gt; x=ivy.array([[1., -0., -1.], \</span>
-<span class="sd">                     [-2., 3., 2.]])</span>
+<span class="sd">    &gt;&gt;&gt; x=ivy.array([[1., -0., -1.], [-2., 3., 2.]])</span>
 <span class="sd">    &gt;&gt;&gt; y = ivy.argmax(x, axis= 1)</span>
 <span class="sd">    &gt;&gt;&gt; print(y)</span>
 <span class="sd">    ivy.array([0, 1])</span>
 
-<span class="sd">    &gt;&gt;&gt; x=ivy.array([[4., 0., -1.], \</span>
-<span class="sd">                     [2., -3., 6]])</span>
+<span class="sd">    &gt;&gt;&gt; x=ivy.array([[4., 0., -1.], [2., -3., 6]])</span>
 <span class="sd">    &gt;&gt;&gt; y = ivy.argmax(x, axis= 1, keepdims= True)</span>
 <span class="sd">    &gt;&gt;&gt; print(y)</span>
-<span class="sd">    ivy.array([[0], \</span>
-<span class="sd">              [2]])</span>
+<span class="sd">    ivy.array([[0], [2]])</span>
 
-<span class="sd">    &gt;&gt;&gt; x=ivy.array([[4., 0., -1.], \</span>
-<span class="sd">                     [2., -3., 6], \</span>
-<span class="sd">                     [2., -3., 6]])</span>
+<span class="sd">    &gt;&gt;&gt; x=ivy.array([[4., 0., -1.],[2., -3., 6], [2., -3., 6]])</span>
 <span class="sd">    &gt;&gt;&gt; z= ivy.zeros((1,3), dtype=ivy.int64)</span>
 <span class="sd">    &gt;&gt;&gt; y = ivy.argmax(x, axis= 1, keepdims= True, out= z)</span>
 <span class="sd">    &gt;&gt;&gt; print(z)</span>
-<span class="sd">    ivy.array([[0], \</span>
-<span class="sd">               [2], \</span>
-<span class="sd">               [2]])</span>
+<span class="sd">    ivy.array([[0],[2],[2]])</span>
 
-<span class="sd">    With :code:`ivy.NativeArray` input:</span>
+<span class="sd">    With :class:`ivy.NativeArray` input:</span>
 
 <span class="sd">    &gt;&gt;&gt; x = ivy.native_array([-0., 1., -1.])</span>
 <span class="sd">    &gt;&gt;&gt; y = ivy.argmax(x)</span>
@@ -233,7 +237,7 @@
 <span class="sd">    Instance Method Examples</span>
 <span class="sd">    ------------------------</span>
 
-<span class="sd">    Using :code:`ivy.Array` instance method:</span>
+<span class="sd">    Using :class:`ivy.Array` instance method:</span>
 
 <span class="sd">    &gt;&gt;&gt; x = ivy.array([0., 1., 2.])</span>
 <span class="sd">    &gt;&gt;&gt; y = x.argmax()</span>
@@ -283,10 +287,20 @@
 <span class="sd">    ret</span>
 <span class="sd">        Array containing the indices of the minimum values across the specified axis.</span>
 
+
+<span class="sd">    This function conforms to the `Array API Standard</span>
+<span class="sd">    &lt;https://data-apis.org/array-api/latest/&gt;`_. This docstring is an extension of the</span>
+<span class="sd">    `docstring &lt;https://data-apis.org/array-api/latest/API_specification/generated/signatures.searching_functions.argmin.html&gt;`_ </span>
+<span class="sd">    in the standard.</span>
+
+<span class="sd">    Both the description and the type hints above assumes an array input for simplicity,</span>
+<span class="sd">    but this function is *nestable*, and therefore also accepts :class:`ivy.Container`</span>
+<span class="sd">    instances in place of any of the arguments.</span>
+
 <span class="sd">    Functional Examples</span>
 <span class="sd">    --------</span>
 
-<span class="sd">    With :code:`ivy.Array` input:</span>
+<span class="sd">    With :class:`ivy.Array` input:</span>
 
 <span class="sd">    &gt;&gt;&gt; x = ivy.array([0., 1., -1.])</span>
 <span class="sd">    &gt;&gt;&gt; y = ivy.argmin(x)</span>
@@ -314,7 +328,7 @@
 <span class="sd">               [1]])</span>
 
 
-<span class="sd">    With :code:`ivy.NativeArray` input:</span>
+<span class="sd">    With :class:`ivy.NativeArray` input:</span>
 
 <span class="sd">    &gt;&gt;&gt; x = ivy.native_array([0., 1., -1.])</span>
 <span class="sd">    &gt;&gt;&gt; y = ivy.argmin(x)</span>
@@ -322,7 +336,7 @@
 <span class="sd">    ivy.array(2)</span>
 
 
-<span class="sd">    With :code:`ivy.Container` input:</span>
+<span class="sd">    With :class:`ivy.Container` input:</span>
 
 <span class="sd">    &gt;&gt;&gt; x = ivy.Container(a=ivy.array([0., -1., 2.]), b=ivy.array([3., 4., 5.]))</span>
 <span class="sd">    &gt;&gt;&gt; y = ivy.argmin(x)</span>
@@ -333,14 +347,14 @@
 <span class="sd">    Instance Method Examples</span>
 <span class="sd">    ------------------------</span>
 
-<span class="sd">    Using :code:`ivy.Array` instance method:</span>
+<span class="sd">    Using :class:`ivy.Array` instance method:</span>
 
 <span class="sd">    &gt;&gt;&gt; x = ivy.array([0., 1., -1.])</span>
 <span class="sd">    &gt;&gt;&gt; y = x.argmin()</span>
 <span class="sd">    &gt;&gt;&gt; print(y)</span>
 <span class="sd">    ivy.array(2)</span>
 
-<span class="sd">    Using :code:`ivy.Container` instance method:</span>
+<span class="sd">    Using :class:`ivy.Container` instance method:</span>
 
 <span class="sd">    &gt;&gt;&gt; x = ivy.Container(a=ivy.array([0., -1., 2.]), b=ivy.array([3., 4., 5.]))</span>
 <span class="sd">    &gt;&gt;&gt; y = x.argmin()</span>
@@ -353,7 +367,14 @@
 <div class="viewcode-block" id="nonzero"><a class="viewcode-back" href="../../../../functional/ivy/searching/nonzero/nonzero_functional.html#ivy.functional.ivy.searching.nonzero">[docs]</a><span class="nd">to_native_arrays_and_back</span>
 <span class="nd">handle_nestable</span>
 <span class="nd">handle_exceptions</span>
-<span class="k">def</span> <span class="nf">nonzero</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">],</span> <span class="o">/</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">]:</span>
+<span class="k">def</span> <span class="nf">nonzero</span><span class="p">(</span>
+    <span class="n">x</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">],</span>
+    <span class="o">/</span><span class="p">,</span>
+    <span class="o">*</span><span class="p">,</span>
+    <span class="n">as_tuple</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="n">size</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">fill_value</span><span class="p">:</span> <span class="n">Number</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">],</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">]:</span>
     <span class="sd">&quot;&quot;&quot;Returns the indices of the array elements which are non-zero.</span>
 
 <span class="sd">    Parameters</span>
@@ -361,6 +382,19 @@
 <span class="sd">    x</span>
 <span class="sd">        input array. Must have a positive rank. If `x` is zero-dimensional, the function</span>
 <span class="sd">        must raise an exception.</span>
+<span class="sd">    as_tuple</span>
+<span class="sd">        if True, the output is returned as a tuple of indices, one for each</span>
+<span class="sd">        dimension of the input, containing the indices of the true elements in that</span>
+<span class="sd">        dimension. If False, the coordinates are returned in a (N, ndim) array,</span>
+<span class="sd">        where N is the number of true elements. Default = True.</span>
+<span class="sd">    size</span>
+<span class="sd">        if specified, the function will return an array of shape (size, ndim).</span>
+<span class="sd">        If the number of non-zero elements is fewer than size, the remaining elements</span>
+<span class="sd">        will be filled with fill_value. Default = None.</span>
+<span class="sd">    fill_value</span>
+<span class="sd">        when size is specified and there are fewer than size number of elements,</span>
+<span class="sd">        the remaining elements in the output array will be filled with fill_value.</span>
+<span class="sd">        Default = 0.</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
@@ -371,10 +405,20 @@
 <span class="sd">        row-major, C-style order. The returned array must have the default array index</span>
 <span class="sd">        data type.</span>
 
+
+<span class="sd">    This function conforms to the `Array API Standard</span>
+<span class="sd">    &lt;https://data-apis.org/array-api/latest/&gt;`_. This docstring is an extension of the</span>
+<span class="sd">    `docstring &lt;https://data-apis.org/array-api/latest/API_specification/generated/signatures.searching_functions.nonzero.html&gt;`_ </span>
+<span class="sd">    in the standard.</span>
+
+<span class="sd">    Both the description and the type hints above assumes an array input for simplicity,</span>
+<span class="sd">    but this function is *nestable*, and therefore also accepts :class:`ivy.Container`</span>
+<span class="sd">    instances in place of any of the arguments.</span>
+
 <span class="sd">    Functional Examples</span>
 <span class="sd">    -------------------</span>
 
-<span class="sd">    With :code:`ivy.Array` input:</span>
+<span class="sd">    With :class:`ivy.Array` input:</span>
 
 <span class="sd">    &gt;&gt;&gt; x = ivy.array([0, 10, 15, 20, -50, 0])</span>
 <span class="sd">    &gt;&gt;&gt; y = ivy.nonzero(x)</span>
@@ -386,7 +430,17 @@
 <span class="sd">    &gt;&gt;&gt; print(y)</span>
 <span class="sd">    (ivy.array([0, 0, 1, 1]), ivy.array([0, 1, 0, 1]))</span>
 
-<span class="sd">    With :code:`ivy.NativeArray` input:</span>
+<span class="sd">    &gt;&gt;&gt; x = ivy.array([[0, 2], [-1, -2]])</span>
+<span class="sd">    &gt;&gt;&gt; y = ivy.nonzero(x, as_tuple=False)</span>
+<span class="sd">    &gt;&gt;&gt; print(y)</span>
+<span class="sd">    ivy.array([[0, 1], [1, 0], [1, 1]])</span>
+
+<span class="sd">    &gt;&gt;&gt; x = ivy.array([0, 1])</span>
+<span class="sd">    &gt;&gt;&gt; y = ivy.nonzero(x, size=2, fill_value=4)</span>
+<span class="sd">    &gt;&gt;&gt; print(y)</span>
+<span class="sd">    (ivy.array([1, 4]),)</span>
+
+<span class="sd">    With :class:`ivy.NativeArray` input:</span>
 
 <span class="sd">    &gt;&gt;&gt; x = ivy.native_array([[10, 20], [10, 0], [0, 0]])</span>
 <span class="sd">    &gt;&gt;&gt; y = ivy.nonzero(x)</span>
@@ -398,7 +452,7 @@
 <span class="sd">    &gt;&gt;&gt; print(y)</span>
 <span class="sd">    (ivy.array([1, 2, 4]), ivy.array([0, 0, 0]))</span>
 
-<span class="sd">    With :code:`ivy.Container` input:</span>
+<span class="sd">    With :class:`ivy.Container` input:</span>
 
 <span class="sd">    &gt;&gt;&gt; x = ivy.Container(a=ivy.array([0,1,2,3,0]), b=ivy.array([[1,1], [0,0]]))</span>
 <span class="sd">    &gt;&gt;&gt; y = ivy.nonzero(x)</span>
@@ -417,14 +471,14 @@
 <span class="sd">    Instance Method Examples</span>
 <span class="sd">    ------------------------</span>
 
-<span class="sd">    Using :code:`ivy.Array` instance method:</span>
+<span class="sd">    Using :class:`ivy.Array` instance method:</span>
 
 <span class="sd">    &gt;&gt;&gt; x = ivy.array([0,0,0,1,1,1])</span>
 <span class="sd">    &gt;&gt;&gt; y = x.nonzero()</span>
 <span class="sd">    &gt;&gt;&gt; print(y)</span>
 <span class="sd">    (ivy.array([3, 4, 5]),)</span>
 
-<span class="sd">    Using :code:`ivy.Container` instance method:</span>
+<span class="sd">    Using :class:`ivy.Container` instance method:</span>
 
 <span class="sd">    &gt;&gt;&gt; x = ivy.Container(a=ivy.array([1,1,1]), b=ivy.native_array([0]))</span>
 <span class="sd">    &gt;&gt;&gt; y = x.nonzero()</span>
@@ -440,7 +494,9 @@
 <span class="sd">    &gt;&gt;&gt; print(y.b)</span>
 <span class="sd">    (ivy.array([]),)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="n">current_backend</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">.</span><span class="n">nonzero</span><span class="p">(</span><span class="n">x</span><span class="p">)</span></div>
+    <span class="k">return</span> <span class="n">current_backend</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">.</span><span class="n">nonzero</span><span class="p">(</span>
+        <span class="n">x</span><span class="p">,</span> <span class="n">as_tuple</span><span class="o">=</span><span class="n">as_tuple</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">size</span><span class="p">,</span> <span class="n">fill_value</span><span class="o">=</span><span class="n">fill_value</span>
+    <span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="where"><a class="viewcode-back" href="../../../../functional/ivy/searching/where/where_functional.html#ivy.functional.ivy.searching.where">[docs]</a><span class="nd">to_native_arrays_and_back</span>
@@ -475,10 +531,20 @@
 <span class="sd">        An array with elements from x1 where condition is True, and elements from x2</span>
 <span class="sd">        elsewhere.</span>
 
+
+<span class="sd">    This function conforms to the `Array API Standard</span>
+<span class="sd">    &lt;https://data-apis.org/array-api/latest/&gt;`_. This docstring is an extension of the</span>
+<span class="sd">    `docstring &lt;https://data-apis.org/array-api/latest/API_specification/generated/signatures.searching_functions.where.html&gt;`_ </span>
+<span class="sd">    in the standard.</span>
+
+<span class="sd">    Both the description and the type hints above assumes an array input for simplicity,</span>
+<span class="sd">    but this function is *nestable*, and therefore also accepts :class:`ivy.Container`</span>
+<span class="sd">    instances in place of any of the arguments.</span>
+
 <span class="sd">    Functional Examples</span>
 <span class="sd">    -------------------</span>
 
-<span class="sd">    With `ivy.Array` input:</span>
+<span class="sd">    With :class:`ivy.Array` input:</span>
 
 <span class="sd">    &gt;&gt;&gt; condition = ivy.array([[True, False], [True, True]])</span>
 <span class="sd">    &gt;&gt;&gt; x1 = ivy.array([[1, 2], [3, 4]])</span>
@@ -487,7 +553,7 @@
 <span class="sd">    &gt;&gt;&gt; print(res)</span>
 <span class="sd">    ivy.array([[1,6],[3,4]])</span>
 
-<span class="sd">    With `ivy.NativeArray` input:</span>
+<span class="sd">    With :class:`ivy.NativeArray` input:</span>
 
 <span class="sd">    &gt;&gt;&gt; condition = ivy.array([[True, False], [False, True]])</span>
 <span class="sd">    &gt;&gt;&gt; x1 = ivy.native_array([[1, 2], [3, 4]])</span>
@@ -496,7 +562,7 @@
 <span class="sd">    &gt;&gt;&gt; print(res)</span>
 <span class="sd">    array([[1, 6], [7, 4]])</span>
 
-<span class="sd">    With a mix of `ivy.Array` and `ivy.NativeArray` inputs:</span>
+<span class="sd">    With a mix of :class:`ivy.Array` and :class:`ivy.NativeArray` inputs:</span>
 
 <span class="sd">    &gt;&gt;&gt; x1 = ivy.array([[6, 13, 22, 7, 12], [7, 11, 16, 32, 9]])</span>
 <span class="sd">    &gt;&gt;&gt; x2 = ivy.native_array([[44, 20, 8, 35, 9], [98, 23, 43, 6, 13]])</span>
@@ -504,7 +570,7 @@
 <span class="sd">    &gt;&gt;&gt; print(res)</span>
 <span class="sd">    ivy.array([[ 44, 20, 8, 35, 12], [98, 23, 16, 6, 13]])</span>
 
-<span class="sd">    With `ivy.Container` input:</span>
+<span class="sd">    With :class:`ivy.Container` input:</span>
 
 <span class="sd">    &gt;&gt;&gt; x1 = ivy.Container(a=ivy.array([3, 1, 5]), b=ivy.array([2, 4, 6]))</span>
 <span class="sd">    &gt;&gt;&gt; x2 = ivy.Container(a=ivy.array([0, 7, 2]), b=ivy.array([3, 8, 5]))</span>
@@ -515,7 +581,7 @@
 <span class="sd">        b: ivy.array([3, 8, 6])</span>
 <span class="sd">    }</span>
 
-<span class="sd">    With a mix of `ivy.Array` and `ivy.Container` inputs:</span>
+<span class="sd">    With a mix of :class:`ivy.Array` and :class:`ivy.Container` inputs:</span>
 
 <span class="sd">    &gt;&gt;&gt; x1 = ivy.array([[1.1, 2, -3.6], [5, 4, 3.1]])</span>
 <span class="sd">    &gt;&gt;&gt; x2 = ivy.Container(a=ivy.array([0, 7, 2]),b=ivy.array([3, 8, 5]))</span>
@@ -529,7 +595,7 @@
 <span class="sd">    Instance Method Examples</span>
 <span class="sd">    -------------------</span>
 
-<span class="sd">    With `ivy.Array` input:</span>
+<span class="sd">    With :class:`ivy.Array` input:</span>
 
 <span class="sd">    &gt;&gt;&gt; condition = ivy.array([[True, False], [True, True]])</span>
 <span class="sd">    &gt;&gt;&gt; x1 = ivy.array([[1, 2], [3, 4]])</span>
@@ -538,7 +604,7 @@
 <span class="sd">    &gt;&gt;&gt; print(res)</span>
 <span class="sd">    ivy.array([[1, 6], [3, 4]])</span>
 
-<span class="sd">    With `ivy.Container` input:</span>
+<span class="sd">    With :class:`ivy.Container` input:</span>
 
 <span class="sd">    &gt;&gt;&gt; x1 = ivy.Container(a=ivy.array([3, 1, 5]), b=ivy.array([2, 4, 6]))</span>
 <span class="sd">    &gt;&gt;&gt; x2 = ivy.Container(a=ivy.array([0, 7, 2]), b=ivy.array([3, 8, 5]))</span>

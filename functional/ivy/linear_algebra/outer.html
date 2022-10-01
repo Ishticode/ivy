@@ -191,9 +191,15 @@ inputs broadcast to.</p></li>
 The returned array must have a data type determined by Type Promotion Rules.</p>
 </dd>
 </dl>
+<p>This function conforms to the <a class="reference external" href="https://data-apis.org/array-api/latest/">Array API Standard</a>. This docstring is an extension of the
+<a class="reference external" href="https://data-apis.org/array-api/latest/extensions/generated/signatures.linalg.outer.html">docstring</a> 
+in the standard.</p>
+<p>Both the description and the type hints above assumes an array input for simplicity,
+but this function is <em>nestable</em>, and therefore also accepts <code class="xref py py-class docutils literal notranslate"><span class="pre">ivy.Container</span></code>
+instances in place of any of the arguments.</p>
 <p class="rubric">Examples</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">2.</span><span class="p">],</span>                       <span class="p">[</span><span class="mf">3.</span><span class="p">,</span> <span class="mf">4.</span><span class="p">]])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">5.</span><span class="p">,</span> <span class="mf">6.</span><span class="p">],</span>                       <span class="p">[</span><span class="mf">7.</span><span class="p">,</span> <span class="mf">8.</span><span class="p">]])</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">2.</span><span class="p">],[</span><span class="mf">3.</span><span class="p">,</span> <span class="mf">4.</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">5.</span><span class="p">,</span> <span class="mf">6.</span><span class="p">],[</span><span class="mf">7.</span><span class="p">,</span> <span class="mf">8.</span><span class="p">]])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">d</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">outer</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
 <span class="go">ivy.array([[ 5.,  6.,  7.,  8.],</span>
@@ -210,21 +216,21 @@ The returned array must have a data type determined by Type Promotion Rules.</p>
 <span class="go">            [4.]])</span>
 </pre></div>
 </div>
-<p>A 3-D Example
-&gt;&gt;&gt; x = ivy.array([[[1., 2.],                        [3., 4.]],                       [[5., 6.],                        [7., 8.]]])
-&gt;&gt;&gt; y = ivy.array([[[9., 10.],                        [11., 12.]],                       [[13., 14.],                        [15., 16.]]])
-&gt;&gt;&gt; d = ivy.outer(x, y)
-&gt;&gt;&gt; print(d)
-ivy.array([[  9.,  10.,  11.,  12.,  13.,  14.,  15.,  16.],</p>
-<blockquote>
-<div><p>[ 18.,  20.,  22.,  24.,  26.,  28.,  30.,  32.],
-[ 27.,  30.,  33.,  36.,  39.,  42.,  45.,  48.],
-[ 36.,  40.,  44.,  48.,  52.,  56.,  60.,  64.],
-[ 45.,  50.,  55.,  60.,  65.,  70.,  75.,  80.],
-[ 54.,  60.,  66.,  72.,  78.,  84.,  90.,  96.],
-[ 63.,  70.,  77.,  84.,  91.,  98., 105., 112.],
-[ 72.,  80.,  88.,  96., 104., 112., 120., 128.]])</p>
-</div></blockquote>
+<p>A 3-D Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([[[</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">2.</span><span class="p">],</span>                        <span class="p">[</span><span class="mf">3.</span><span class="p">,</span> <span class="mf">4.</span><span class="p">]],</span>                       <span class="p">[[</span><span class="mf">5.</span><span class="p">,</span> <span class="mf">6.</span><span class="p">],</span>                        <span class="p">[</span><span class="mf">7.</span><span class="p">,</span> <span class="mf">8.</span><span class="p">]]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([[[</span><span class="mf">9.</span><span class="p">,</span> <span class="mf">10.</span><span class="p">],</span>                        <span class="p">[</span><span class="mf">11.</span><span class="p">,</span> <span class="mf">12.</span><span class="p">]],</span>                       <span class="p">[[</span><span class="mf">13.</span><span class="p">,</span> <span class="mf">14.</span><span class="p">],</span>                        <span class="p">[</span><span class="mf">15.</span><span class="p">,</span> <span class="mf">16.</span><span class="p">]]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">d</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">outer</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+<span class="go">ivy.array([[  9.,  10.,  11.,  12.,  13.,  14.,  15.,  16.],</span>
+<span class="go">            [ 18.,  20.,  22.,  24.,  26.,  28.,  30.,  32.],</span>
+<span class="go">            [ 27.,  30.,  33.,  36.,  39.,  42.,  45.,  48.],</span>
+<span class="go">            [ 36.,  40.,  44.,  48.,  52.,  56.,  60.,  64.],</span>
+<span class="go">            [ 45.,  50.,  55.,  60.,  65.,  70.,  75.,  80.],</span>
+<span class="go">            [ 54.,  60.,  66.,  72.,  78.,  84.,  90.,  96.],</span>
+<span class="go">            [ 63.,  70.,  77.,  84.,  91.,  98., 105., 112.],</span>
+<span class="go">            [ 72.,  80.,  88.,  96., 104., 112., 120., 128.]])</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="py function">
@@ -257,38 +263,6 @@ ivy.array([[  9.,  10.,  11.,  12.,  13.,  14.,  15.,  16.],</p>
 </dl>
 </dd></dl>
 
-<table class="colwidths-given docutils align-default" id="id1">
-<caption><span class="caption-text">Device Support</span><a class="headerlink" href="#id1" title="Permalink to this table"></a></caption>
-<colgroup>
-<col style="width: 20%" />
-<col style="width: 20%" />
-<col style="width: 20%" />
-<col style="width: 20%" />
-<col style="width: 20%" />
-</colgroup>
-<thead>
-<tr class="row-odd"><th class="head"><p>Device</p></th>
-<th class="head"><p>JAX</p></th>
-<th class="head"><p>NumPy</p></th>
-<th class="head"><p>TensorFlow</p></th>
-<th class="head"><p>PyTorch</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>CPU</p></td>
-<td><p>✅</p></td>
-<td><p>✅</p></td>
-<td><p>✅</p></td>
-<td><p>✅</p></td>
-</tr>
-<tr class="row-odd"><td><p>GPU</p></td>
-<td><p>❌</p></td>
-<td><p>❌</p></td>
-<td><p>❌</p></td>
-<td><p>❌</p></td>
-</tr>
-</tbody>
-</table>
 <div class="line-block">
 <div class="line"><br /></div>
 <div class="line"><strong>Supported Frameworks:</strong></div>
