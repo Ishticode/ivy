@@ -76,15 +76,6 @@
 <li class="toctree-l2"><a class="reference internal" href="17_ivy_frontends_tests.html">Ivy Frontend Tests</a></li>
 <li class="toctree-l2"><a class="reference internal" href="18_exception_handling.html">Exception Handling</a></li>
 <li class="toctree-l2"><a class="reference internal" href="19_continuous_integration.html">Continuous Integration (CI) 🔁</a></li>
-<li class="toctree-l2"><a class="reference internal" href="19_continuous_integration.html#github-actions">GitHub Actions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="19_continuous_integration.html#array-api-tests">Array API Tests</a></li>
-<li class="toctree-l2"><a class="reference internal" href="19_continuous_integration.html#ivy-core-tests">Ivy Core Tests</a></li>
-<li class="toctree-l2"><a class="reference internal" href="19_continuous_integration.html#ivy-nn-tests">Ivy NN Tests</a></li>
-<li class="toctree-l2"><a class="reference internal" href="19_continuous_integration.html#ivy-stateful-tests">Ivy Stateful Tests</a></li>
-<li class="toctree-l2"><a class="reference internal" href="19_continuous_integration.html#ivy-frontend-tests">Ivy Frontend Tests</a></li>
-<li class="toctree-l2"><a class="reference internal" href="19_continuous_integration.html#ci-pipeline">CI Pipeline ➡️</a></li>
-<li class="toctree-l2"><a class="reference internal" href="19_continuous_integration.html#scheduled-tests-cron-jobs">Scheduled Tests (Cron Jobs)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="19_continuous_integration.html#dashboard">Dashboard</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
@@ -342,13 +333,13 @@ Again, the reasons for these features are explained in the following sections.</
     <span class="p">),</span> <span class="s2">&quot;the fill_value and data type are not compatible&quot;</span>
 </pre></div>
 </div>
-<p>In the <code class="code docutils literal notranslate"><span class="pre">full_like</span></code> function in <code class="code docutils literal notranslate"><span class="pre">creation.py</span></code>, the types of
+<p>In the <code class="xref py py-func docutils literal notranslate"><span class="pre">full_like()</span></code> function in <code class="xref py py-mod docutils literal notranslate"><span class="pre">creation.py</span></code>, the types of
 <code class="code docutils literal notranslate"><span class="pre">fill_value</span></code> and <code class="code docutils literal notranslate"><span class="pre">dtype</span></code> has to be verified to avoid errors. This
 check has to be applied to all backends, which means the related code is common
 and identical. In this case, we can extract the code to be a helper function on
-its own, placed in its related submodule (<code class="code docutils literal notranslate"><span class="pre">creation.py</span></code> here). In this
+its own, placed in its related submodule (<code class="xref py py-mod docutils literal notranslate"><span class="pre">creation.py</span></code> here). In this
 example, the helper function is named as
-<code class="code docutils literal notranslate"><span class="pre">_assert_fill_value_and_dtype_are_compatible</span></code>.</p>
+<code class="xref py py-func docutils literal notranslate"><span class="pre">_assert_fill_value_and_dtype_are_compatible()</span></code>.</p>
 <p>Then, we import this submodule-specific helper function to the respective backends,
 where examples for each backend is shown below.</p>
 <p><strong>Jax</strong></p>
