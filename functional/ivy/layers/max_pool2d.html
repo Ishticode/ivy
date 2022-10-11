@@ -168,12 +168,13 @@
 <div><dl class="simple">
 <dt>x</dt><dd><p>Input image <em>[batch_size,h,w,d_in]</em>.</p>
 </dd>
-<dt>kernel</dt><dd><p>Size of the kernel i.e., the sliding window for each dimension of input. <em>[h,w]</em>.</p>
+<dt>kernel</dt><dd><p>Size of the kernel i.e., the sliding window for each
+dimension of input. <em>[h,w]</em>.</p>
 </dd>
 <dt>strides</dt><dd><p>The stride of the sliding window for each dimension of input.</p>
 </dd>
-<dt>padding</dt><dd><p>SAME” or “VALID” indicating the algorithm, or list indicating the per-dimension
-paddings.</p>
+<dt>padding</dt><dd><p>SAME” or “VALID” indicating the algorithm, or list
+indicating the per-dimensio paddings.</p>
 </dd>
 <dt>data_format</dt><dd><p>NHWC” or “NCHW”. Defaults to “NHWC”.</p>
 </dd>
@@ -184,9 +185,10 @@ paddings.</p>
 <dt>ret</dt><dd><p>The result of the pooling operation.</p>
 </dd>
 </dl>
-<p>Both the description and the type hints above assumes an array input for simplicity,
-but this function is <em>nestable</em>, and therefore also accepts <code class="xref py py-class docutils literal notranslate"><span class="pre">ivy.Container</span></code>
-instances in place of any of the arguments.</p>
+<p>Both the description and the type hints above assumes an array input
+for simplicity, but this function is <em>nestable</em>, and therefore
+also accepts <code class="xref py py-class docutils literal notranslate"><span class="pre">ivy.Container</span></code> instances in place of any of
+the arguments.</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">ivy</span><span class="o">.</span><span class="n">max_pool2d</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="s1">&#39;SAME&#39;</span><span class="p">))</span>
 <span class="go">ivy.array([[[[ 2,  3],</span>
