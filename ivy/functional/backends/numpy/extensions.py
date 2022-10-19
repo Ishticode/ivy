@@ -364,3 +364,43 @@ def fmax(
 
 
 fmax.support_native_out = True
+
+
+def max_pool1d(
+    x: np.ndarray,
+    kernel: Union[int, Tuple[int], Tuple[int, int]],
+    strides: Union[int, Tuple[int], Tuple[int, int]],
+    padding: str,
+    /,
+    *,
+    data_format: str = "NWC",
+    out: Optional[np.ndarray] = None,
+) -> np.ndarray:
+
+    if isinstance(strides, tuple):
+        strides = strides[0]
+    if isinstance(kernel, tuple):
+        kernel = kernel[0]
+
+    if data_format == "NWC":
+        x = x.permute(0, 2, 1)
+
+    x_shape = (1,) + x.shape
+    kernel_shape = (1, kernel)
+    x_strides = (x.strides[0],) + x.strides
+    kernel_strides = (kernel.strides[0],) + kernel.strides
+    x = np.lib.stride_tricks.as_strided(x, shape=x_shape, strides=x_strides)
+    kernel = np.lib.stride_tricks.as_strided(
+        kernel, shape=kernel_shape, strides=kernel_strides
+    )
+    x = np.transpose(x, (1, 0, 2, 3))
+    res = max_pool2d(x, kernel, strides, padding, data_format="NWC")
+    res = np.transpose(res, (1, 0, 2, 3))
+    res = np.lib.stride_tricks.as_strided(
+        res, shape=res.shape[1:], strides=res.strides[1:]
+    )
+
+    res = sub_matrices.max(axis=(3, 4))
+    if data_format == "NCW":
+        return np.transpose(res, (0, 3, 1, 2))
+    return res

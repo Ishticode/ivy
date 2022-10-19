@@ -333,3 +333,31 @@ def fmax(
 
 
 fmax.support_native_out = True
+
+
+# noinspection PyUnresolvedReferences
+def max_pool1d(
+    x: torch.Tensor,
+    kernel: Union[int, Tuple[int]],
+    strides: Union[int, Tuple[int]],
+    padding: str,
+    /,
+    *,
+    data_format: str = "NWC",
+    out: Optional[torch.Tensor] = None,
+) -> torch.Tensor:
+    if isinstance(strides, tuple):
+        strides = strides[0]
+    if isinstance(kernel, tuple):
+        kernel = kernel[0]
+
+    if data_format == "NWC":
+        x = x.permute(0, 2, 1)
+    x_shape = x.shape[2]
+    pad_w = ivy.handle_padding(x_shape, strides, kernel, padding)
+    x = torch.nn.functional.pad(x, [pad_w // 2, pad_w - pad_w // 2], value=float("-inf"))
+    res = torch.nn.functional.max_pool1d(x, kernel, strides, 0)
+    if data_format == "NWC":
+        res = res.permute(0, 2, 1)
+    return res
+

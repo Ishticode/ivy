@@ -250,3 +250,23 @@ def fmax(
 
 
 fmax.supported_dtypes = ("blfoat16", "float16", "float32", "float64")
+
+
+def max_pool2d(
+    x: Union[tf.Tensor, tf.Variable],
+    kernel: Union[int, Tuple[int]],
+    strides: Union[int, Tuple[int]],
+    padding: str,
+    /,
+    *,
+    data_format: str = "NWC",
+    out: Optional[Union[tf.Tensor, tf.Variable]] = None,
+) -> Union[tf.Tensor, tf.Variable]:
+
+    if data_format == "NCW":
+        x = tf.transpose(x, (0, 2, 1))
+    res = tf.nn.max_pool1d(x, kernel, strides, padding)
+
+    if data_format == "NCW":
+        res = tf.transpose(res, (0, 2, 1))
+    return res

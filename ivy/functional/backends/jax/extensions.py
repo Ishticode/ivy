@@ -303,3 +303,23 @@ def fmax(
     out: Optional[JaxArray] = None,
 ) -> JaxArray:
     return jnp.fmax(x1, x2)
+
+
+def max_pool1d(
+    x: JaxArray,
+    kernel: Union[int, Tuple[int]],
+    strides: Union[int, Tuple[int]],
+    padding: str,
+    /,
+    *,
+    data_format: str = "NWC",
+    out: Optional[JaxArray] = None,
+) -> JaxArray:
+    if data_format == "NCW":
+        x = np.transpose(x, (0, 2, 1))
+
+    res = _pool(x, -jnp.inf, jlax.max, kernel, strides, padding)
+
+    if data_format == "NCW":
+        res = np.transpose(x, (0, 2, 1))
+    return res

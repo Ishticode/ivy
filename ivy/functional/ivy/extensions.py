@@ -1341,3 +1341,49 @@ def fmax(
     ivy.array([ 0,  0,  nan])
     """
     return ivy.current_backend().fmax(x1, x2, out=out)
+
+
+@handle_out_argument
+@to_native_arrays_and_back
+@handle_out_argument
+def max_pool1d(
+    x: Union[ivy.Array, ivy.NativeArray],
+    kernel: Union[ivy.Array, ivy.NativeArray],
+    strides: Union[int, Tuple[int], Tuple[int, int]],
+    padding: str,
+    /,
+    *,
+    data_format: str = "NWC",
+    out: Optional[ivy.Array] = None,
+) -> ivy.Array:
+    """Computes a 1-D max pool given 3-D input x.
+
+    Parameters
+    ----------
+    x
+        Input image *[batch_size, w, d_in]*.
+    kernel
+        Size of the kernel i.e., the sliding window for each
+        dimension of input. *[w]*.
+    strides
+        The stride of the sliding window for each dimension of input.
+    padding
+        SAME" or "VALID" indicating the algorithm, or list
+        indicating the per-dimensio paddings.
+    data_format
+        NHWC" or "NCHW". Defaults to "NHWC".
+    out
+        optional output array, for writing the result to.
+
+    Returns
+    -------
+    ret
+        The result of the pooling operation.
+
+    Both the description and the type hints above assumes an array input
+    for simplicity, but this function is *nestable*, and therefore
+    also accepts :class:`ivy.Container` instances in place of any of
+    the arguments.
+
+    """
+    return ivy.current_backend(x).max_pool1d(x, kernel, strides, padding, data_format=data_format, out=out)
