@@ -22,7 +22,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Initializer" href="initializers/Initializer.html" />
-    <link rel="prev" title="LSTM" href="layers/LSTM.html" /> 
+    <link rel="prev" title="LAMB" href="optimizers/LAMB.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -79,18 +79,13 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Data Classes</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../data_classes/array.html">Array</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../data_classes/container.html">Container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../data_classes/array.html">Array</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Framework Classes</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="converters.html">Converters</a></li>
-<li class="toctree-l1"><a class="reference internal" href="sequential.html">Sequential</a></li>
-<li class="toctree-l1"><a class="reference internal" href="activations.html">Activations</a></li>
-<li class="toctree-l1"><a class="reference internal" href="module.html">Module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="optimizers.html">Optimizers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="norms.html">Norms</a></li>
-<li class="toctree-l1"><a class="reference internal" href="layers.html">Layers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="optimizers.html">Optimizers</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Initializers</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="initializers/Initializer.html">Initializer</a></li>
 <li class="toctree-l2"><a class="reference internal" href="initializers/Constant.html">Constant</a></li>
@@ -103,6 +98,11 @@
 <li class="toctree-l2"><a class="reference internal" href="initializers/KaimingNormal.html">KaimingNormal</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="sequential.html">Sequential</a></li>
+<li class="toctree-l1"><a class="reference internal" href="activations.html">Activations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="layers.html">Layers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="module.html">Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="converters.html">Converters</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Docs</span></p>
 <ul>
@@ -153,7 +153,7 @@
 <dd><p>Constant initializer, will fill in all values with the value of <cite>constant</cite>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>constant</strong> – Constant value for initialization.</p>
+<dd class="field-odd"><p><strong>constant</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>) – Constant value for initialization.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -171,11 +171,11 @@
 </dd>
 </dl>
 </p></li>
-<li><p><strong>device</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Device</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">Device</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">device</span></code>]) – Device on which to create the layer’s variables ‘cuda:0’, ‘cuda:1’, ‘cpu’
+<li><p><strong>device</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Device</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">NativeDevice</span></code>]) – Device on which to create the layer’s variables ‘cuda:0’, ‘cuda:1’, ‘cpu’
 etc. Default is cpu.</p></li>
 <li><p><strong>fan_out</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]) – The number of nodes in the next layer. (default: <code class="docutils literal notranslate"><span class="pre">None</span></code>)</p></li>
 <li><p><strong>fan_in</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]) – The number of nodes in the previous layer. (default: <code class="docutils literal notranslate"><span class="pre">None</span></code>)</p></li>
-<li><p><strong>dtype</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Dtype</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">dtype</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">DType</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">dtype</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]]) – Desired data type. (default: <code class="docutils literal notranslate"><span class="pre">None</span></code>)</p></li>
+<li><p><strong>dtype</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Dtype</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">NativeDtype</span></code>]]) – Desired data type. (default: <code class="docutils literal notranslate"><span class="pre">None</span></code>)</p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type</dt>
@@ -238,11 +238,11 @@ initial weights must be picked carefully.</p>
 </dd>
 </dl>
 </p></li>
-<li><p><strong>device</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Device</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">Device</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">device</span></code>]) – Device on which to create the layer’s variables ‘cuda:0’, ‘cuda:1’, ‘cpu’
+<li><p><strong>device</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Device</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">NativeDevice</span></code>]) – Device on which to create the layer’s variables ‘cuda:0’, ‘cuda:1’, ‘cpu’
 etc. Default is cpu.</p></li>
 <li><p><strong>fan_out</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]) – The number of nodes in the next layer. (default: <code class="docutils literal notranslate"><span class="pre">None</span></code>)</p></li>
 <li><p><strong>fan_in</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]) – The number of nodes in the previous layer. (default: <code class="docutils literal notranslate"><span class="pre">None</span></code>)</p></li>
-<li><p><strong>dtype</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Dtype</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">dtype</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">DType</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">dtype</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]]) – Desired data type. (default: <code class="docutils literal notranslate"><span class="pre">None</span></code>)</p></li>
+<li><p><strong>dtype</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Dtype</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">NativeDtype</span></code>]]) – Desired data type. (default: <code class="docutils literal notranslate"><span class="pre">None</span></code>)</p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type</dt>
@@ -369,7 +369,7 @@ is <cite>0</cite> and the variance is
 This is useful when training using forward-propogation.</p></li>
 <li><p><cite>fan_sum</cite> sets <cite>fan</cite> to the sum of the number of input features and
 output features of this neuron.</p></li>
-<li><p><cite>fan_sum</cite> sets <cite>fan</cite> to the average of the number of input features and
+<li><p><cite>fan_avg</cite> sets <cite>fan</cite> to the average of the number of input features and
 output features of this neuron.</p></li>
 </ul>
 </p></li>
@@ -426,7 +426,7 @@ etc. Default is cpu.</p></li>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="layers/LSTM.html" class="btn btn-neutral float-left" title="LSTM" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="optimizers/LAMB.html" class="btn btn-neutral float-left" title="LAMB" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="initializers/Initializer.html" class="btn btn-neutral float-right" title="Initializer" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

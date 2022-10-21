@@ -76,19 +76,19 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Data Classes</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../data_classes/array.html">Array</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../data_classes/container.html">Container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../data_classes/array.html">Array</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Framework Classes</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../stateful/converters.html">Converters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../stateful/norms.html">Norms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../stateful/optimizers.html">Optimizers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../stateful/initializers.html">Initializers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../stateful/sequential.html">Sequential</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../stateful/activations.html">Activations</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../stateful/module.html">Module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../stateful/optimizers.html">Optimizers</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../stateful/norms.html">Norms</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../stateful/layers.html">Layers</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../stateful/initializers.html">Initializers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../stateful/module.html">Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../stateful/converters.html">Converters</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Docs</span></p>
 <ul>
@@ -229,7 +229,7 @@
         <span class="k">return</span> <span class="n">ivy</span><span class="o">.</span><span class="n">is_ivy_container</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="ArrayWithGeneral.all_equal"><a class="viewcode-back" href="../../../data_classes/array/general/ArrayWithGeneral.html#ivy.array.general.ArrayWithGeneral.all_equal">[docs]</a>    <span class="k">def</span> <span class="nf">all_equal</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">:</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">x2</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">Any</span><span class="p">],</span> <span class="o">/</span><span class="p">,</span> <span class="n">equality_matrix</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="p">:</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="o">*</span><span class="n">x2</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">Any</span><span class="p">],</span> <span class="n">equality_matrix</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="nb">bool</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">]:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        ivy.Array instance method variant of ivy.all_equal. This method simply wraps the</span>
@@ -244,7 +244,7 @@
 <span class="sd">            input iterable to compare to ``self``</span>
 <span class="sd">        equality_matrix</span>
 <span class="sd">            Whether to return a matrix of equalities comparing each input with every</span>
-<span class="sd">            other. Default is False.</span>
+<span class="sd">            other. Default is ``False``.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
@@ -253,7 +253,8 @@
 <span class="sd">            equality_matrix=True is set.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">ivy</span><span class="o">.</span><span class="n">all_equal</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">equality_matrix</span><span class="o">=</span><span class="n">equality_matrix</span><span class="p">)</span></div>
+        <span class="n">arrays</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">x2</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">ivy</span><span class="o">.</span><span class="n">all_equal</span><span class="p">(</span><span class="o">*</span><span class="n">arrays</span><span class="p">,</span> <span class="n">equality_matrix</span><span class="o">=</span><span class="n">equality_matrix</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="ArrayWithGeneral.has_nans"><a class="viewcode-back" href="../../../data_classes/array/general/ArrayWithGeneral.html#ivy.array.general.ArrayWithGeneral.has_nans">[docs]</a>    <span class="k">def</span> <span class="nf">has_nans</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">include_infs</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -267,7 +268,7 @@
 <span class="sd">            input array</span>
 <span class="sd">        include_infs</span>
 <span class="sd">            Whether to include ``+infinity`` and ``-infinity`` in the check.</span>
-<span class="sd">            Default is True.</span>
+<span class="sd">            Default is ``True``.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
@@ -305,7 +306,7 @@
 <span class="sd">            The array which indicates the indices that will be gathered along</span>
 <span class="sd">            the specified axis.</span>
 <span class="sd">        axis</span>
-<span class="sd">            The axis from which the indices will be gathered. Default is -1.</span>
+<span class="sd">            The axis from which the indices will be gathered. Default is ``-1``.</span>
 <span class="sd">        batch_dims</span>
 <span class="sd">            optional int, lets you gather different items from each element of a batch.</span>
 <span class="sd">        out</span>
@@ -349,7 +350,7 @@
 <span class="sd">        updates</span>
 <span class="sd">            values to update input tensor with</span>
 <span class="sd">        shape</span>
-<span class="sd">            The shape of the result. Default is None, in which case tensor</span>
+<span class="sd">            The shape of the result. Default is ``None``, in which case tensor</span>
 <span class="sd">            argument must be provided.</span>
 <span class="sd">        reduction</span>
 <span class="sd">            The reduction method for the scatter, one of &#39;sum&#39;, &#39;min&#39;, &#39;max&#39;</span>
@@ -562,7 +563,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">ivy</span><span class="o">.</span><span class="n">einops_repeat</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">,</span> <span class="n">pattern</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">out</span><span class="p">,</span> <span class="o">**</span><span class="n">axes_lengths</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="ArrayWithGeneral.to_numpy"><a class="viewcode-back" href="../../../data_classes/array/general/ArrayWithGeneral.html#ivy.array.general.ArrayWithGeneral.to_numpy">[docs]</a>    <span class="k">def</span> <span class="nf">to_numpy</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<div class="viewcode-block" id="ArrayWithGeneral.to_numpy"><a class="viewcode-back" href="../../../data_classes/array/general/ArrayWithGeneral.html#ivy.array.general.ArrayWithGeneral.to_numpy">[docs]</a>    <span class="k">def</span> <span class="nf">to_numpy</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="o">/</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">copy</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        ivy.Array instance method variant of ivy.to_numpy. This method simply wraps</span>
 <span class="sd">        the function, and so the docstring for ivy.to_numpy also applies to this method</span>
@@ -579,9 +580,9 @@
 <span class="sd">            a numpy array copying all the element of the array ``self``.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">ivy</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="n">ivy</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">copy</span><span class="o">=</span><span class="n">copy</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="ArrayWithGeneral.to_list"><a class="viewcode-back" href="../../../data_classes/array/general/ArrayWithGeneral.html#ivy.array.general.ArrayWithGeneral.to_list">[docs]</a>    <span class="k">def</span> <span class="nf">to_list</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">:</span>
+<div class="viewcode-block" id="ArrayWithGeneral.to_list"><a class="viewcode-back" href="../../../data_classes/array/general/ArrayWithGeneral.html#ivy.array.general.ArrayWithGeneral.to_list">[docs]</a>    <span class="k">def</span> <span class="nf">to_list</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="o">/</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        ivy.Array instance method variant of ivy.to_list. This method simply wraps</span>
 <span class="sd">        the function, and so the docstring for ivy.to_list also applies to this method</span>
@@ -787,29 +788,6 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array_equal</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="ArrayWithGeneral.arrays_equal"><a class="viewcode-back" href="../../../data_classes/array/general/ArrayWithGeneral.html#ivy.array.general.ArrayWithGeneral.arrays_equal">[docs]</a>    <span class="k">def</span> <span class="nf">arrays_equal</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">:</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">]]</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        ivy.Array instance method variant of ivy.arrays_equal. This method simply wraps</span>
-<span class="sd">        the function, and so the docstring for ivy.arrays_equal also applies to this</span>
-<span class="sd">        method with minimal changes.</span>
-
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
-<span class="sd">        self</span>
-<span class="sd">            input array</span>
-<span class="sd">        x</span>
-<span class="sd">            input list of arrays to compare to ``self``</span>
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">        ret</span>
-<span class="sd">            Boolean, whether the input arrays are equal</span>
-
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">ivy</span><span class="o">.</span><span class="n">arrays_equal</span><span class="p">([</span><span class="bp">self</span><span class="p">]</span> <span class="o">+</span> <span class="n">x</span><span class="p">)</span></div>
-
 <div class="viewcode-block" id="ArrayWithGeneral.assert_supports_inplace"><a class="viewcode-back" href="../../../data_classes/array/general/ArrayWithGeneral.html#ivy.array.general.ArrayWithGeneral.assert_supports_inplace">[docs]</a>    <span class="k">def</span> <span class="nf">assert_supports_inplace</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        ivy.Array instance method variant of ivy.assert_supports_inplace. This method</span>
@@ -882,13 +860,13 @@
 <span class="sd">            The number of frequency bands for the encoding. Default is 4.</span>
 <span class="sd">        linear</span>
 <span class="sd">            Whether to space the frequency bands linearly as opposed to geometrically.</span>
-<span class="sd">            Default is False.</span>
+<span class="sd">            Default is ``False``.</span>
 <span class="sd">        concat</span>
 <span class="sd">            Whether to concatenate the position, sin and cos values, or return</span>
-<span class="sd">            seperately. Default is True.</span>
+<span class="sd">            seperately. Default is ``True``.</span>
 <span class="sd">        flatten</span>
 <span class="sd">            Whether to flatten the position dimension into the batch dimension.</span>
-<span class="sd">            Default is False.</span>
+<span class="sd">            Default is ``False``.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
@@ -917,7 +895,7 @@
 <span class="sd">        self</span>
 <span class="sd">            input array</span>
 <span class="sd">        include_infs</span>
-<span class="sd">            Whether to include infs and -infs in the check. Default is True.</span>
+<span class="sd">            Whether to include infs and -infs in the check. Default is ``True``.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
@@ -989,12 +967,12 @@
 <span class="sd">        default_val</span>
 <span class="sd">            The default value.</span>
 <span class="sd">        catch_exceptions</span>
-<span class="sd">            Whether to catch exceptions from callable x. Default is False.</span>
+<span class="sd">            Whether to catch exceptions from callable x. Default is ``False``.</span>
 <span class="sd">        rev</span>
-<span class="sd">            Whether to reverse the input x and default_val. Default is False.</span>
+<span class="sd">            Whether to reverse the input x and default_val. Default is ``False``.</span>
 <span class="sd">        with_callable</span>
 <span class="sd">            Whether either of the arguments might be callable functions.</span>
-<span class="sd">            Default is False.</span>
+<span class="sd">            Default is ``False``.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
