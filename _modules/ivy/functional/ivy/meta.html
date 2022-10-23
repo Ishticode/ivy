@@ -50,6 +50,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Functions</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../functional/extensions.html">Extensions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../functional/ivy/activations.html">Activations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../functional/ivy/compilation.html">Compilation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../functional/ivy/constants.html">Constants</a></li>
@@ -57,7 +58,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../../functional/ivy/data_type.html">Data type</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../functional/ivy/device.html">Device</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../functional/ivy/elementwise.html">Elementwise</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../functional/ivy/extensions.html">Extensions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../functional/ivy/general.html">General</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../functional/ivy/gradients.html">Gradients</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../functional/ivy/layers.html">Layers</a></li>
@@ -613,7 +613,7 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">num_tasks</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">num_tasks</span> <span class="o">=</span> <span class="n">batch</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">num_tasks</span> <span class="o">=</span> <span class="n">batch</span><span class="o">.</span><span class="n">shared_shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
     <span class="n">rets</span> <span class="o">=</span> <span class="n">_train_tasks</span><span class="p">(</span>
         <span class="n">batch</span><span class="p">,</span>
         <span class="n">inner_batch_fn</span><span class="p">,</span>
@@ -700,7 +700,7 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">num_tasks</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">num_tasks</span> <span class="o">=</span> <span class="n">batch</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">num_tasks</span> <span class="o">=</span> <span class="n">batch</span><span class="o">.</span><span class="n">shared_shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
     <span class="c1"># noinspection PyTypeChecker</span>
     <span class="n">rets</span> <span class="o">=</span> <span class="n">_train_tasks</span><span class="p">(</span>
         <span class="n">batch</span><span class="p">,</span>
@@ -824,7 +824,7 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">num_tasks</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">num_tasks</span> <span class="o">=</span> <span class="n">batch</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">num_tasks</span> <span class="o">=</span> <span class="n">batch</span><span class="o">.</span><span class="n">shared_shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
     <span class="n">unique_outer</span> <span class="o">=</span> <span class="n">outer_v</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
     <span class="n">func_ret</span><span class="p">,</span> <span class="n">grads</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">execute_with_gradients</span><span class="p">(</span>
         <span class="k">lambda</span> <span class="n">v</span><span class="p">:</span> <span class="n">_train_tasks</span><span class="p">(</span>
