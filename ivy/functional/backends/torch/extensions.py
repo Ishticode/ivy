@@ -334,3 +334,12 @@ def fmax(
 
 
 fmax.support_native_out = True
+
+
+def vstack(
+    arrays: Sequence[torch.Tensor],
+    /,
+    *,
+    out: Optional[torch.Tensor] = None,
+) -> torch.Tensor:
+    return torch.vstack(arrays, out=None)

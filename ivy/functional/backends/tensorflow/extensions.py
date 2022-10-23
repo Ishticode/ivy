@@ -250,3 +250,12 @@ def fmax(
     x2 = tf.where(tf.math.is_nan(x1), float("inf"), x2)
     ret = tf.math.maximum(x1, x2, name=None)
     return tf.where(tf.math.is_inf(ret), float("nan"))
+
+
+def vstack(
+    arrays: Union[Sequence[tf.Tensor], Sequence[tf.Variable]],
+    /,
+    *,
+    out: Optional[Union[tf.Tensor, tf.Variable]] = None,
+) -> Union[tf.Tensor, tf.Variable]:
+    return tf.experimental.numpy.vstack(arrays)

@@ -1341,3 +1341,33 @@ def fmax(
     ivy.array([ 0,  0,  nan])
     """
     return ivy.current_backend().fmax(x1, x2, out=out)
+
+
+@to_native_arrays_and_back
+@handle_out_argument
+def vstack(arrays: Sequence[ivy.Array], /) -> ivy.Array:
+    """Stack arrays in sequence vertically (row wise).
+
+    Parameters
+    ----------
+    arrays
+        Sequence of arrays to be stacked.
+    Returns
+    -------
+    ret
+        The array formed by stacking the given arrays.
+
+    Examples
+    --------
+    >>> x = ivy.array([1, 2, 3])
+    >>> y = ivy.array([2, 3, 4])
+    >>> ivy.vstack((x, y))
+    ivy.array([[ 1.,  2.,  3.],
+        [ 2.,  3.,  4.]])
+    >>> ivy.vstack((x, y, x, y))
+    ivy.array([[ 1.,  2.,  3.],
+        [ 2.,  3.,  4.],
+        [ 1.,  2.,  3.],
+        [ 2.,  3.,  4.]])
+    """
+    return ivy.current_backend(arrays[0]).vstack(arrays)

@@ -494,3 +494,20 @@ class ArrayWithExtensions(abc.ABC):
         ivy.array([ 0,  0,  nan])
         """
         return ivy.fmax(self._data, x2, out=out)
+
+    def vstack(
+        self: ivy.Array,
+        /,
+        arrays: Union[
+            Tuple[Union[ivy.Array, ivy.NativeArray]],
+            List[Union[ivy.Array, ivy.NativeArray]],
+        ],
+        *,
+        out: Optional[ivy.Array] = None,
+    ) -> ivy.Array:
+        """
+        ivy.Array instance method variant of ivy.stack. This method simply
+        wraps the function, and so the docstring for ivy.stack also applies
+        to this method with minimal changes.
+        """
+        return ivy.vstack(self.concat(arrays), out=out)

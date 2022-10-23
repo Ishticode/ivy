@@ -364,3 +364,12 @@ def fmax(
 
 
 fmax.support_native_out = True
+
+
+def vstack(
+    arrays: Sequence[np.ndarray],
+    /,
+    *,
+    out: Optional[np.ndarray] = None,
+) -> np.ndarray:
+    return np.vstack(arrays)

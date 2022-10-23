@@ -303,3 +303,12 @@ def fmax(
     out: Optional[JaxArray] = None,
 ) -> JaxArray:
     return jnp.fmax(x1, x2)
+
+
+def vstack(
+    arrays: Sequence[JaxArray],
+    /,
+    *,
+    out: Optional[JaxArray] = None,
+) -> JaxArray:
+    return jnp.vstack(arrays)

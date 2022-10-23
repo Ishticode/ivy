@@ -890,3 +890,8 @@ def test_fmax(
         x1=np.asarray(x[0], dtype=input_dtype[0]),
         x2=np.asarray(x[1], dtype=input_dtype[1]),
     )
+
+
+
+def test_vstack():
+    pass
