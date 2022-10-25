@@ -66,7 +66,6 @@
 <li class="toctree-l2"><a class="reference internal" href="function_arguments.html">Function Arguments</a></li>
 <li class="toctree-l2"><a class="reference internal" href="docstrings.html">Docstrings</a></li>
 <li class="toctree-l2"><a class="reference internal" href="docstring_examples.html">Docstring Examples</a></li>
-<li class="toctree-l2"><a class="reference internal" href="array_api_tests.html">Array API Tests</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ivy_tests.html">Ivy Tests</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ivy_frontends.html">Ivy Frontends</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ivy_frontends_tests.html">Ivy Frontend Tests</a></li>
@@ -79,7 +78,6 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Functions</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../functional/extensions.html">Extensions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../functional/ivy/activations.html">Activations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../functional/ivy/compilation.html">Compilation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../functional/ivy/constants.html">Constants</a></li>
@@ -87,6 +85,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../functional/ivy/data_type.html">Data type</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../functional/ivy/device.html">Device</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../functional/ivy/elementwise.html">Elementwise</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../functional/ivy/extensions.html">Extensions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../functional/ivy/general.html">General</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../functional/ivy/gradients.html">Gradients</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../functional/ivy/layers.html">Layers</a></li>
@@ -225,10 +224,10 @@ the argument is listed as required in the backend-specific implementations at
 <p>This is exactly the same as with the <code class="code docutils literal notranslate"><span class="pre">dtype</span></code> argument, as explained in the <a class="reference internal" href="data_types.html#data-types"><span class="std std-ref">Data Types</span></a> section.</p>
 <p>Let’s take a look at the function <code class="xref py py-func docutils literal notranslate"><span class="pre">ivy.zeros()</span></code> as an example.</p>
 <p>The implementation in <code class="xref py py-mod docutils literal notranslate"><span class="pre">ivy/functional/ivy/creation.py</span></code> has the following signature:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">outputs_to_ivy_arrays</span>
-<span class="nd">handle_out_argument</span>
-<span class="nd">infer_dtype</span>
-<span class="nd">infer_device</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@outputs_to_ivy_arrays</span>
+<span class="nd">@handle_out_argument</span>
+<span class="nd">@infer_dtype</span>
+<span class="nd">@infer_device</span>
 <span class="k">def</span> <span class="nf">zeros</span><span class="p">(</span>
     <span class="n">shape</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">int</span><span class="p">]],</span>
     <span class="o">*</span><span class="p">,</span>

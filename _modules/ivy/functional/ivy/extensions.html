@@ -372,38 +372,38 @@
     <span class="c1"># Properties #</span>
     <span class="c1"># -----------#</span>
 
-    <span class="nd">property</span>
+    <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span>
 
-    <span class="nd">property</span>
+    <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">coo_indices</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_coo_indices</span>
 
-    <span class="nd">property</span>
+    <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">csr_crow_indices</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_csr_crow_indices</span>
 
-    <span class="nd">property</span>
+    <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">csr_col_indices</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_csr_col_indices</span>
 
-    <span class="nd">property</span>
+    <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">values</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_values</span>
 
-    <span class="nd">property</span>
+    <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">dense_shape</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dense_shape</span>
 
     <span class="c1"># Setters #</span>
     <span class="c1"># --------#</span>
 
-    <span class="nd">data</span><span class="o">.</span><span class="n">setter</span>
+    <span class="nd">@data</span><span class="o">.</span><span class="n">setter</span>
     <span class="k">def</span> <span class="nf">data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_init_data</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 
-    <span class="nd">coo_indices</span><span class="o">.</span><span class="n">setter</span>
+    <span class="nd">@coo_indices</span><span class="o">.</span><span class="n">setter</span>
     <span class="k">def</span> <span class="nf">coo_indices</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">indices</span><span class="p">):</span>
         <span class="n">indices</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">indices</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;int64&quot;</span><span class="p">)</span>
         <span class="n">_verify_coo_components</span><span class="p">(</span>
@@ -411,7 +411,7 @@
         <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_coo_indices</span> <span class="o">=</span> <span class="n">indices</span>
 
-    <span class="nd">csr_crow_indices</span><span class="o">.</span><span class="n">setter</span>
+    <span class="nd">@csr_crow_indices</span><span class="o">.</span><span class="n">setter</span>
     <span class="k">def</span> <span class="nf">csr_crow_indices</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">indices</span><span class="p">):</span>
         <span class="n">indices</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">indices</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;int64&quot;</span><span class="p">)</span>
         <span class="n">_verify_csr_components</span><span class="p">(</span>
@@ -422,7 +422,7 @@
         <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_csr_crow_indices</span> <span class="o">=</span> <span class="n">indices</span>
 
-    <span class="nd">csr_col_indices</span><span class="o">.</span><span class="n">setter</span>
+    <span class="nd">@csr_col_indices</span><span class="o">.</span><span class="n">setter</span>
     <span class="k">def</span> <span class="nf">csr_col_indices</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">indices</span><span class="p">):</span>
         <span class="n">indices</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">indices</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;int64&quot;</span><span class="p">)</span>
         <span class="n">_verify_csr_components</span><span class="p">(</span>
@@ -433,7 +433,7 @@
         <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_csr_col_indices</span> <span class="o">=</span> <span class="n">indices</span>
 
-    <span class="nd">values</span><span class="o">.</span><span class="n">setter</span>
+    <span class="nd">@values</span><span class="o">.</span><span class="n">setter</span>
     <span class="k">def</span> <span class="nf">values</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">values</span><span class="p">):</span>
         <span class="n">values</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">values</span><span class="p">)</span>
         <span class="n">_verify_coo_components</span><span class="p">(</span>
@@ -441,7 +441,7 @@
         <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_values</span> <span class="o">=</span> <span class="n">values</span>
 
-    <span class="nd">dense_shape</span><span class="o">.</span><span class="n">setter</span>
+    <span class="nd">@dense_shape</span><span class="o">.</span><span class="n">setter</span>
     <span class="k">def</span> <span class="nf">dense_shape</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dense_shape</span><span class="p">):</span>
         <span class="n">dense_shape</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Shape</span><span class="p">(</span><span class="n">dense_shape</span><span class="p">)</span>
         <span class="n">_verify_coo_components</span><span class="p">(</span>
@@ -486,14 +486,14 @@
     <span class="k">return</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">SparseArray</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="is_native_sparse_array"><a class="viewcode-back" href="../../../../functional/ivy/extensions/is_native_sparse_array.html#ivy.functional.ivy.extensions.is_native_sparse_array">[docs]</a><span class="nd">inputs_to_native_arrays</span>
-<span class="nd">handle_exceptions</span>
+<div class="viewcode-block" id="is_native_sparse_array"><a class="viewcode-back" href="../../../../functional/ivy/extensions/is_native_sparse_array.html#ivy.functional.ivy.extensions.is_native_sparse_array">[docs]</a><span class="nd">@inputs_to_native_arrays</span>
+<span class="nd">@handle_exceptions</span>
 <span class="k">def</span> <span class="nf">is_native_sparse_array</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">ivy</span><span class="o">.</span><span class="n">current_backend</span><span class="p">()</span><span class="o">.</span><span class="n">is_native_sparse_array</span><span class="p">(</span><span class="n">x</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="native_sparse_array"><a class="viewcode-back" href="../../../../functional/ivy/extensions/native_sparse_array.html#ivy.functional.ivy.extensions.native_sparse_array">[docs]</a><span class="nd">inputs_to_native_arrays</span>
-<span class="nd">handle_exceptions</span>
+<div class="viewcode-block" id="native_sparse_array"><a class="viewcode-back" href="../../../../functional/ivy/extensions/native_sparse_array.html#ivy.functional.ivy.extensions.native_sparse_array">[docs]</a><span class="nd">@inputs_to_native_arrays</span>
+<span class="nd">@handle_exceptions</span>
 <span class="k">def</span> <span class="nf">native_sparse_array</span><span class="p">(</span>
     <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
     <span class="o">*</span><span class="p">,</span>
@@ -513,16 +513,16 @@
     <span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="native_sparse_array_to_indices_values_and_shape"><a class="viewcode-back" href="../../../../functional/ivy/extensions/native_sparse_array_to_indices_values_and_shape.html#ivy.functional.ivy.extensions.native_sparse_array_to_indices_values_and_shape">[docs]</a><span class="nd">handle_exceptions</span>
+<div class="viewcode-block" id="native_sparse_array_to_indices_values_and_shape"><a class="viewcode-back" href="../../../../functional/ivy/extensions/native_sparse_array_to_indices_values_and_shape.html#ivy.functional.ivy.extensions.native_sparse_array_to_indices_values_and_shape">[docs]</a><span class="nd">@handle_exceptions</span>
 <span class="k">def</span> <span class="nf">native_sparse_array_to_indices_values_and_shape</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">ivy</span><span class="o">.</span><span class="n">current_backend</span><span class="p">()</span><span class="o">.</span><span class="n">native_sparse_array_to_indices_values_and_shape</span><span class="p">(</span><span class="n">x</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="sinc"><a class="viewcode-back" href="../../../../functional/ivy/extensions/sinc/sinc_functional.html#ivy.functional.ivy.extensions.sinc">[docs]</a><span class="nd">integer_arrays_to_float</span>
-<span class="nd">to_native_arrays_and_back</span>
-<span class="nd">handle_out_argument</span>
-<span class="nd">handle_nestable</span>
-<span class="nd">handle_exceptions</span>
+<div class="viewcode-block" id="sinc"><a class="viewcode-back" href="../../../../functional/ivy/extensions/sinc/sinc_functional.html#ivy.functional.ivy.extensions.sinc">[docs]</a><span class="nd">@integer_arrays_to_float</span>
+<span class="nd">@to_native_arrays_and_back</span>
+<span class="nd">@handle_out_argument</span>
+<span class="nd">@handle_nestable</span>
+<span class="nd">@handle_exceptions</span>
 <span class="k">def</span> <span class="nf">sinc</span><span class="p">(</span>
     <span class="n">x</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">],</span>
     <span class="o">/</span><span class="p">,</span>
@@ -594,10 +594,10 @@
     <span class="k">return</span> <span class="n">ivy</span><span class="o">.</span><span class="n">current_backend</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">.</span><span class="n">sinc</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">out</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="flatten"><a class="viewcode-back" href="../../../../functional/ivy/extensions/flatten/flatten_functional.html#ivy.functional.ivy.extensions.flatten">[docs]</a><span class="nd">to_native_arrays_and_back</span>
-<span class="nd">handle_out_argument</span>
-<span class="nd">handle_nestable</span>
-<span class="nd">handle_exceptions</span>
+<div class="viewcode-block" id="flatten"><a class="viewcode-back" href="../../../../functional/ivy/extensions/flatten/flatten_functional.html#ivy.functional.ivy.extensions.flatten">[docs]</a><span class="nd">@to_native_arrays_and_back</span>
+<span class="nd">@handle_out_argument</span>
+<span class="nd">@handle_nestable</span>
+<span class="nd">@handle_exceptions</span>
 <span class="k">def</span> <span class="nf">flatten</span><span class="p">(</span>
     <span class="n">x</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">],</span>
     <span class="o">/</span><span class="p">,</span>
@@ -720,10 +720,10 @@
     <span class="k">return</span> <span class="n">ivy</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">lst</span><span class="p">))</span></div>
 
 
-<div class="viewcode-block" id="vorbis_window"><a class="viewcode-back" href="../../../../functional/ivy/extensions/vorbis_window.html#ivy.functional.ivy.extensions.vorbis_window">[docs]</a><span class="nd">to_native_arrays_and_back</span>
-<span class="nd">handle_out_argument</span>
-<span class="nd">handle_nestable</span>
-<span class="nd">handle_exceptions</span>
+<div class="viewcode-block" id="vorbis_window"><a class="viewcode-back" href="../../../../functional/ivy/extensions/vorbis_window.html#ivy.functional.ivy.extensions.vorbis_window">[docs]</a><span class="nd">@to_native_arrays_and_back</span>
+<span class="nd">@handle_out_argument</span>
+<span class="nd">@handle_nestable</span>
+<span class="nd">@handle_exceptions</span>
 <span class="k">def</span> <span class="nf">vorbis_window</span><span class="p">(</span>
     <span class="n">window_length</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">],</span>
     <span class="o">*</span><span class="p">,</span>
@@ -758,9 +758,9 @@
     <span class="k">return</span> <span class="n">ivy</span><span class="o">.</span><span class="n">current_backend</span><span class="p">()</span><span class="o">.</span><span class="n">vorbis_window</span><span class="p">(</span><span class="n">window_length</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">out</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="lcm"><a class="viewcode-back" href="../../../../functional/ivy/extensions/lcm/lcm_functional.html#ivy.functional.ivy.extensions.lcm">[docs]</a><span class="nd">to_native_arrays_and_back</span>
-<span class="nd">handle_out_argument</span>
-<span class="nd">handle_nestable</span>
+<div class="viewcode-block" id="lcm"><a class="viewcode-back" href="../../../../functional/ivy/extensions/lcm/lcm_functional.html#ivy.functional.ivy.extensions.lcm">[docs]</a><span class="nd">@to_native_arrays_and_back</span>
+<span class="nd">@handle_out_argument</span>
+<span class="nd">@handle_nestable</span>
 <span class="k">def</span> <span class="nf">lcm</span><span class="p">(</span>
     <span class="n">x1</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">],</span>
     <span class="n">x2</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">],</span>
@@ -796,10 +796,10 @@
     <span class="k">return</span> <span class="n">ivy</span><span class="o">.</span><span class="n">current_backend</span><span class="p">()</span><span class="o">.</span><span class="n">lcm</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">out</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="hann_window"><a class="viewcode-back" href="../../../../functional/ivy/extensions/hann_window/hann_window_functional.html#ivy.functional.ivy.extensions.hann_window">[docs]</a><span class="nd">to_native_arrays_and_back</span>
-<span class="nd">handle_out_argument</span>
-<span class="nd">handle_nestable</span>
-<span class="nd">handle_exceptions</span>
+<div class="viewcode-block" id="hann_window"><a class="viewcode-back" href="../../../../functional/ivy/extensions/hann_window/hann_window_functional.html#ivy.functional.ivy.extensions.hann_window">[docs]</a><span class="nd">@to_native_arrays_and_back</span>
+<span class="nd">@handle_out_argument</span>
+<span class="nd">@handle_nestable</span>
+<span class="nd">@handle_exceptions</span>
 <span class="k">def</span> <span class="nf">hann_window</span><span class="p">(</span>
     <span class="n">window_length</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
     <span class="n">periodic</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
@@ -841,9 +841,9 @@
     <span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="max_pool2d"><a class="viewcode-back" href="../../../../functional/ivy/extensions/max_pool2d/max_pool2d_functional.html#ivy.functional.ivy.extensions.max_pool2d">[docs]</a><span class="nd">to_native_arrays_and_back</span>
-<span class="nd">handle_out_argument</span>
-<span class="nd">handle_nestable</span>
+<div class="viewcode-block" id="max_pool2d"><a class="viewcode-back" href="../../../../functional/ivy/extensions/max_pool2d/max_pool2d_functional.html#ivy.functional.ivy.extensions.max_pool2d">[docs]</a><span class="nd">@to_native_arrays_and_back</span>
+<span class="nd">@handle_out_argument</span>
+<span class="nd">@handle_nestable</span>
 <span class="k">def</span> <span class="nf">max_pool2d</span><span class="p">(</span>
     <span class="n">x</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">],</span>
     <span class="n">kernel</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]],</span>
@@ -904,10 +904,10 @@
     <span class="k">return</span> <span class="n">ivy</span><span class="o">.</span><span class="n">current_backend</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">.</span><span class="n">max_pool2d</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">kernel</span><span class="p">,</span> <span class="n">strides</span><span class="p">,</span> <span class="n">padding</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">out</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="kaiser_window"><a class="viewcode-back" href="../../../../functional/ivy/extensions/kaiser_window/kaiser_window_functional.html#ivy.functional.ivy.extensions.kaiser_window">[docs]</a><span class="nd">to_native_arrays_and_back</span>
-<span class="nd">handle_out_argument</span>
-<span class="nd">handle_nestable</span>
-<span class="nd">handle_exceptions</span>
+<div class="viewcode-block" id="kaiser_window"><a class="viewcode-back" href="../../../../functional/ivy/extensions/kaiser_window/kaiser_window_functional.html#ivy.functional.ivy.extensions.kaiser_window">[docs]</a><span class="nd">@to_native_arrays_and_back</span>
+<span class="nd">@handle_out_argument</span>
+<span class="nd">@handle_nestable</span>
+<span class="nd">@handle_exceptions</span>
 <span class="k">def</span> <span class="nf">kaiser_window</span><span class="p">(</span>
     <span class="n">window_length</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
     <span class="n">periodic</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
@@ -951,9 +951,9 @@
     <span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="moveaxis"><a class="viewcode-back" href="../../../../functional/ivy/extensions/moveaxis/moveaxis_functional.html#ivy.functional.ivy.extensions.moveaxis">[docs]</a><span class="nd">to_native_arrays_and_back</span>
-<span class="nd">handle_out_argument</span>
-<span class="nd">handle_nestable</span>
+<div class="viewcode-block" id="moveaxis"><a class="viewcode-back" href="../../../../functional/ivy/extensions/moveaxis/moveaxis_functional.html#ivy.functional.ivy.extensions.moveaxis">[docs]</a><span class="nd">@to_native_arrays_and_back</span>
+<span class="nd">@handle_out_argument</span>
+<span class="nd">@handle_nestable</span>
 <span class="k">def</span> <span class="nf">moveaxis</span><span class="p">(</span>
     <span class="n">a</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">],</span>
     <span class="n">source</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">int</span><span class="p">]],</span>
@@ -993,7 +993,7 @@
     <span class="k">return</span> <span class="n">ivy</span><span class="o">.</span><span class="n">current_backend</span><span class="p">()</span><span class="o">.</span><span class="n">moveaxis</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">source</span><span class="p">,</span> <span class="n">destination</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">out</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="ndenumerate"><a class="viewcode-back" href="../../../../functional/ivy/extensions/ndenumerate.html#ivy.functional.ivy.extensions.ndenumerate">[docs]</a><span class="nd">handle_exceptions</span>
+<div class="viewcode-block" id="ndenumerate"><a class="viewcode-back" href="../../../../functional/ivy/extensions/ndenumerate.html#ivy.functional.ivy.extensions.ndenumerate">[docs]</a><span class="nd">@handle_exceptions</span>
 <span class="k">def</span> <span class="nf">ndenumerate</span><span class="p">(</span>
     <span class="nb">input</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Generator</span><span class="p">:</span>
@@ -1032,7 +1032,7 @@
     <span class="k">return</span> <span class="n">_ndenumerate</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="ndindex"><a class="viewcode-back" href="../../../../functional/ivy/extensions/ndindex.html#ivy.functional.ivy.extensions.ndindex">[docs]</a><span class="nd">handle_exceptions</span>
+<div class="viewcode-block" id="ndindex"><a class="viewcode-back" href="../../../../functional/ivy/extensions/ndindex.html#ivy.functional.ivy.extensions.ndindex">[docs]</a><span class="nd">@handle_exceptions</span>
 <span class="k">def</span> <span class="nf">ndindex</span><span class="p">(</span>
     <span class="n">shape</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Generator</span><span class="p">:</span>
@@ -1073,10 +1073,10 @@
     <span class="k">return</span> <span class="n">_iter_product</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="pad"><a class="viewcode-back" href="../../../../functional/ivy/extensions/pad/pad_functional.html#ivy.functional.ivy.extensions.pad">[docs]</a><span class="nd">to_native_arrays_and_back</span>
-<span class="nd">handle_out_argument</span>
-<span class="nd">handle_nestable</span>
-<span class="nd">handle_exceptions</span>
+<div class="viewcode-block" id="pad"><a class="viewcode-back" href="../../../../functional/ivy/extensions/pad/pad_functional.html#ivy.functional.ivy.extensions.pad">[docs]</a><span class="nd">@to_native_arrays_and_back</span>
+<span class="nd">@handle_out_argument</span>
+<span class="nd">@handle_nestable</span>
+<span class="nd">@handle_exceptions</span>
 <span class="k">def</span> <span class="nf">pad</span><span class="p">(</span>
     <span class="n">x</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">],</span>
     <span class="o">/</span><span class="p">,</span>
@@ -1265,9 +1265,9 @@
     <span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="heaviside"><a class="viewcode-back" href="../../../../functional/ivy/extensions/heaviside/heaviside_functional.html#ivy.functional.ivy.extensions.heaviside">[docs]</a><span class="nd">to_native_arrays_and_back</span>
-<span class="nd">handle_out_argument</span>
-<span class="nd">handle_nestable</span>
+<div class="viewcode-block" id="heaviside"><a class="viewcode-back" href="../../../../functional/ivy/extensions/heaviside/heaviside_functional.html#ivy.functional.ivy.extensions.heaviside">[docs]</a><span class="nd">@to_native_arrays_and_back</span>
+<span class="nd">@handle_out_argument</span>
+<span class="nd">@handle_nestable</span>
 <span class="k">def</span> <span class="nf">heaviside</span><span class="p">(</span>
     <span class="n">x1</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">],</span>
     <span class="n">x2</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">],</span>
@@ -1309,10 +1309,10 @@
     <span class="k">return</span> <span class="n">ivy</span><span class="o">.</span><span class="n">current_backend</span><span class="p">()</span><span class="o">.</span><span class="n">heaviside</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">out</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="median"><a class="viewcode-back" href="../../../../functional/ivy/extensions/median/median_functional.html#ivy.functional.ivy.extensions.median">[docs]</a><span class="nd">to_native_arrays_and_back</span>
-<span class="nd">handle_out_argument</span>
-<span class="nd">handle_nestable</span>
-<span class="nd">handle_exceptions</span>
+<div class="viewcode-block" id="median"><a class="viewcode-back" href="../../../../functional/ivy/extensions/median/median_functional.html#ivy.functional.ivy.extensions.median">[docs]</a><span class="nd">@to_native_arrays_and_back</span>
+<span class="nd">@handle_out_argument</span>
+<span class="nd">@handle_nestable</span>
+<span class="nd">@handle_exceptions</span>
 <span class="k">def</span> <span class="nf">median</span><span class="p">(</span>
     <span class="nb">input</span><span class="p">:</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span>
     <span class="o">/</span><span class="p">,</span>
@@ -1352,9 +1352,9 @@
     <span class="k">return</span> <span class="n">ivy</span><span class="o">.</span><span class="n">current_backend</span><span class="p">()</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="n">keepdims</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">out</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="flipud"><a class="viewcode-back" href="../../../../functional/ivy/extensions/flipud/flipud_functional.html#ivy.functional.ivy.extensions.flipud">[docs]</a><span class="nd">to_native_arrays_and_back</span>
-<span class="nd">handle_out_argument</span>
-<span class="nd">handle_nestable</span>
+<div class="viewcode-block" id="flipud"><a class="viewcode-back" href="../../../../functional/ivy/extensions/flipud/flipud_functional.html#ivy.functional.ivy.extensions.flipud">[docs]</a><span class="nd">@to_native_arrays_and_back</span>
+<span class="nd">@handle_out_argument</span>
+<span class="nd">@handle_nestable</span>
 <span class="k">def</span> <span class="nf">flipud</span><span class="p">(</span>
     <span class="n">m</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">],</span>
     <span class="o">/</span><span class="p">,</span>
@@ -1389,9 +1389,9 @@
     <span class="k">return</span> <span class="n">ivy</span><span class="o">.</span><span class="n">current_backend</span><span class="p">()</span><span class="o">.</span><span class="n">flipud</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">out</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="fmod"><a class="viewcode-back" href="../../../../functional/ivy/extensions/fmod/fmod_functional.html#ivy.functional.ivy.extensions.fmod">[docs]</a><span class="nd">to_native_arrays_and_back</span>
-<span class="nd">handle_out_argument</span>
-<span class="nd">handle_nestable</span>
+<div class="viewcode-block" id="fmod"><a class="viewcode-back" href="../../../../functional/ivy/extensions/fmod/fmod_functional.html#ivy.functional.ivy.extensions.fmod">[docs]</a><span class="nd">@to_native_arrays_and_back</span>
+<span class="nd">@handle_out_argument</span>
+<span class="nd">@handle_nestable</span>
 <span class="k">def</span> <span class="nf">fmod</span><span class="p">(</span>
     <span class="n">x1</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">],</span>
     <span class="n">x2</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">],</span>
@@ -1430,9 +1430,9 @@
     <span class="k">return</span> <span class="n">ivy</span><span class="o">.</span><span class="n">current_backend</span><span class="p">()</span><span class="o">.</span><span class="n">fmod</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">out</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="fmax"><a class="viewcode-back" href="../../../../functional/ivy/extensions/fmax/fmax_functional.html#ivy.functional.ivy.extensions.fmax">[docs]</a><span class="nd">to_native_arrays_and_back</span>
-<span class="nd">handle_out_argument</span>
-<span class="nd">handle_nestable</span>
+<div class="viewcode-block" id="fmax"><a class="viewcode-back" href="../../../../functional/ivy/extensions/fmax/fmax_functional.html#ivy.functional.ivy.extensions.fmax">[docs]</a><span class="nd">@to_native_arrays_and_back</span>
+<span class="nd">@handle_out_argument</span>
+<span class="nd">@handle_nestable</span>
 <span class="k">def</span> <span class="nf">fmax</span><span class="p">(</span>
     <span class="n">x1</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">],</span>
     <span class="n">x2</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">],</span>
@@ -1471,6 +1471,52 @@
 <span class="sd">    ivy.array([ 0,  0,  nan])</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">ivy</span><span class="o">.</span><span class="n">current_backend</span><span class="p">()</span><span class="o">.</span><span class="n">fmax</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">out</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="max_pool1d"><a class="viewcode-back" href="../../../../functional/ivy/extensions/max_pool1d.html#ivy.functional.ivy.extensions.max_pool1d">[docs]</a><span class="nd">@handle_out_argument</span>
+<span class="nd">@to_native_arrays_and_back</span>
+<span class="nd">@handle_out_argument</span>
+<span class="k">def</span> <span class="nf">max_pool1d</span><span class="p">(</span>
+    <span class="n">x</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">],</span>
+    <span class="n">kernel</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">],</span>
+    <span class="n">strides</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]],</span>
+    <span class="n">padding</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="o">/</span><span class="p">,</span>
+    <span class="o">*</span><span class="p">,</span>
+    <span class="n">data_format</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;NWC&quot;</span><span class="p">,</span>
+    <span class="n">out</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Computes a 1-D max pool given 3-D input x.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    x</span>
+<span class="sd">        Input image *[batch_size, w, d_in]*.</span>
+<span class="sd">    kernel</span>
+<span class="sd">        Size of the kernel i.e., the sliding window for each</span>
+<span class="sd">        dimension of input. *[w]*.</span>
+<span class="sd">    strides</span>
+<span class="sd">        The stride of the sliding window for each dimension of input.</span>
+<span class="sd">    padding</span>
+<span class="sd">        SAME&quot; or &quot;VALID&quot; indicating the algorithm, or list</span>
+<span class="sd">        indicating the per-dimensio paddings.</span>
+<span class="sd">    data_format</span>
+<span class="sd">        NHWC&quot; or &quot;NCHW&quot;. Defaults to &quot;NHWC&quot;.</span>
+<span class="sd">    out</span>
+<span class="sd">        optional output array, for writing the result to.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    ret</span>
+<span class="sd">        The result of the pooling operation.</span>
+
+<span class="sd">    Both the description and the type hints above assumes an array input</span>
+<span class="sd">    for simplicity, but this function is *nestable*, and therefore</span>
+<span class="sd">    also accepts :class:`ivy.Container` instances in place of any of</span>
+<span class="sd">    the arguments.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">ivy</span><span class="o">.</span><span class="n">current_backend</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">.</span><span class="n">max_pool1d</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">kernel</span><span class="p">,</span> <span class="n">strides</span><span class="p">,</span> <span class="n">padding</span><span class="p">,</span> <span class="n">data_format</span><span class="o">=</span><span class="n">data_format</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">out</span><span class="p">)</span></div>
 </pre></div>
 
            </div>

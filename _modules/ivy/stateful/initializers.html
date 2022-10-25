@@ -50,7 +50,6 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Functions</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../functional/extensions.html">Extensions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../functional/ivy/activations.html">Activations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../functional/ivy/compilation.html">Compilation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../functional/ivy/constants.html">Constants</a></li>
@@ -58,6 +57,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../functional/ivy/data_type.html">Data type</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../functional/ivy/device.html">Device</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../functional/ivy/elementwise.html">Elementwise</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../functional/ivy/extensions.html">Extensions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../functional/ivy/general.html">General</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../functional/ivy/gradients.html">Gradients</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../functional/ivy/layers.html">Layers</a></li>
@@ -128,13 +128,10 @@
            <div itemprop="articleBody">
              
   <h1>Source code for ivy.stateful.initializers</h1><div class="highlight"><pre>
-<span></span><span class="c1"># global</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Union</span><span class="p">,</span> <span class="n">Optional</span>
-<span class="kn">import</span> <span class="nn">abc</span>
-
-<span class="c1"># local</span>
+<span></span><span class="c1"># local</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Union</span>
 <span class="kn">import</span> <span class="nn">ivy</span>
-
+<span class="kn">import</span> <span class="nn">abc</span>
 
 <span class="c1"># Initializer #</span>
 <span class="c1"># ----------- #</span>
@@ -150,14 +147,14 @@
 <span class="sd">    initial weights must be picked carefully.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="Initializer.create_variables"><a class="viewcode-back" href="../../../stateful/initializers/Initializer.html#ivy.stateful.initializers.Initializer.create_variables">[docs]</a>    <span class="nd">abc</span><span class="o">.</span><span class="n">abstractmethod</span>
+<div class="viewcode-block" id="Initializer.create_variables"><a class="viewcode-back" href="../../../stateful/initializers/Initializer.html#ivy.stateful.initializers.Initializer.create_variables">[docs]</a>    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
     <span class="k">def</span> <span class="nf">create_variables</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">var_shape</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">],</span>
         <span class="n">device</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Device</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeDevice</span><span class="p">],</span>
-        <span class="n">fan_out</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="n">fan_in</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="n">dtype</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Dtype</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeDtype</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">fan_out</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">fan_in</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">dtype</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Dtype</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeDtype</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Create internal variables for the layer</span>
@@ -186,7 +183,7 @@
 
 
 <div class="viewcode-block" id="Constant"><a class="viewcode-back" href="../../../stateful/initializers/Constant.html#ivy.stateful.initializers.Constant">[docs]</a><span class="k">class</span> <span class="nc">Constant</span><span class="p">(</span><span class="n">Initializer</span><span class="p">):</span>
-<div class="viewcode-block" id="Constant.__init__"><a class="viewcode-back" href="../../../stateful/initializers/Constant.html#ivy.stateful.initializers.Constant.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">constant</span><span class="p">:</span> <span class="nb">float</span><span class="p">):</span>
+<div class="viewcode-block" id="Constant.__init__"><a class="viewcode-back" href="../../../stateful/initializers/Constant.html#ivy.stateful.initializers.Constant.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">constant</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Constant initializer, will fill in all values with the value of `constant`.</span>
 
@@ -201,9 +198,9 @@
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">var_shape</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">],</span>
         <span class="n">device</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Device</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeDevice</span><span class="p">],</span>
-        <span class="n">fan_out</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="n">fan_in</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="n">dtype</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Dtype</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeDtype</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">fan_out</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">fan_in</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">dtype</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Dtype</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeDtype</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">ivy</span><span class="o">.</span><span class="n">variable</span><span class="p">(</span>
             <span class="n">ivy</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="n">var_shape</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_constant</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">),</span>
