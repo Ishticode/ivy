@@ -128,8 +128,332 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="container">
-<h1>Container<a class="headerlink" href="#container" title="Permalink to this heading"></a></h1>
+  <section id="module-ivy.container.container">
+<span id="container"></span><h1>Container<a class="headerlink" href="#module-ivy.container.container" title="Permalink to this heading"></a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="ivy.container.container.Container">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ivy.container.container.</span></span><span class="sig-name descname"><span class="pre">Container</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dict_in</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">queues</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">queue_load_sizes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">container_combine_method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'list_join'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">queue_timeout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">print_limit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key_length_limit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">print_indent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">4</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">print_line_spacing</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ivyh</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default_key_color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'green'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keyword_color_dict</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rebuild_child_containers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">types_to_iteratively_nest</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alphabetical_keys</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ivy/container/container.html#Container"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ivy.container.container.Container" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="activations/ContainerWithActivations.html#ivy.container.activations.ContainerWithActivations" title="ivy.container.activations.ContainerWithActivations"><code class="xref py py-class docutils literal notranslate"><span class="pre">ContainerWithActivations</span></code></a>, <a class="reference internal" href="conversions/ContainerWithConversions.html#ivy.container.conversions.ContainerWithConversions" title="ivy.container.conversions.ContainerWithConversions"><code class="xref py py-class docutils literal notranslate"><span class="pre">ContainerWithConversions</span></code></a>, <a class="reference internal" href="creation/ContainerWithCreation.html#ivy.container.creation.ContainerWithCreation" title="ivy.container.creation.ContainerWithCreation"><code class="xref py py-class docutils literal notranslate"><span class="pre">ContainerWithCreation</span></code></a>, <a class="reference internal" href="data_type/ContainerWithDataTypes.html#ivy.container.data_type.ContainerWithDataTypes" title="ivy.container.data_type.ContainerWithDataTypes"><code class="xref py py-class docutils literal notranslate"><span class="pre">ContainerWithDataTypes</span></code></a>, <a class="reference internal" href="device/ContainerWithDevice.html#ivy.container.device.ContainerWithDevice" title="ivy.container.device.ContainerWithDevice"><code class="xref py py-class docutils literal notranslate"><span class="pre">ContainerWithDevice</span></code></a>, <a class="reference internal" href="elementwise/ContainerWithElementwise.html#ivy.container.elementwise.ContainerWithElementwise" title="ivy.container.elementwise.ContainerWithElementwise"><code class="xref py py-class docutils literal notranslate"><span class="pre">ContainerWithElementwise</span></code></a>, <a class="reference internal" href="general/ContainerWithGeneral.html#ivy.container.general.ContainerWithGeneral" title="ivy.container.general.ContainerWithGeneral"><code class="xref py py-class docutils literal notranslate"><span class="pre">ContainerWithGeneral</span></code></a>, <a class="reference internal" href="gradients/ContainerWithGradients.html#ivy.container.gradients.ContainerWithGradients" title="ivy.container.gradients.ContainerWithGradients"><code class="xref py py-class docutils literal notranslate"><span class="pre">ContainerWithGradients</span></code></a>, <a class="reference internal" href="image/ContainerWithImage.html#ivy.container.image.ContainerWithImage" title="ivy.container.image.ContainerWithImage"><code class="xref py py-class docutils literal notranslate"><span class="pre">ContainerWithImage</span></code></a>, <a class="reference internal" href="layers/ContainerWithLayers.html#ivy.container.layers.ContainerWithLayers" title="ivy.container.layers.ContainerWithLayers"><code class="xref py py-class docutils literal notranslate"><span class="pre">ContainerWithLayers</span></code></a>, <a class="reference internal" href="linalg/ContainerWithLinalg.html#ivy.container.linalg.ContainerWithLinalg" title="ivy.container.linalg.ContainerWithLinalg"><code class="xref py py-class docutils literal notranslate"><span class="pre">ContainerWithLinalg</span></code></a>, <a class="reference internal" href="losses/ContainerWithLosses.html#ivy.container.losses.ContainerWithLosses" title="ivy.container.losses.ContainerWithLosses"><code class="xref py py-class docutils literal notranslate"><span class="pre">ContainerWithLosses</span></code></a>, <a class="reference internal" href="manipulation/ContainerWithManipulation.html#ivy.container.manipulation.ContainerWithManipulation" title="ivy.container.manipulation.ContainerWithManipulation"><code class="xref py py-class docutils literal notranslate"><span class="pre">ContainerWithManipulation</span></code></a>, <a class="reference internal" href="norms/ContainerWithNorms.html#ivy.container.norms.ContainerWithNorms" title="ivy.container.norms.ContainerWithNorms"><code class="xref py py-class docutils literal notranslate"><span class="pre">ContainerWithNorms</span></code></a>, <a class="reference internal" href="random/ContainerWithRandom.html#ivy.container.random.ContainerWithRandom" title="ivy.container.random.ContainerWithRandom"><code class="xref py py-class docutils literal notranslate"><span class="pre">ContainerWithRandom</span></code></a>, <a class="reference internal" href="searching/ContainerWithSearching.html#ivy.container.searching.ContainerWithSearching" title="ivy.container.searching.ContainerWithSearching"><code class="xref py py-class docutils literal notranslate"><span class="pre">ContainerWithSearching</span></code></a>, <a class="reference internal" href="set/ContainerWithSet.html#ivy.container.set.ContainerWithSet" title="ivy.container.set.ContainerWithSet"><code class="xref py py-class docutils literal notranslate"><span class="pre">ContainerWithSet</span></code></a>, <a class="reference internal" href="sorting/ContainerWithSorting.html#ivy.container.sorting.ContainerWithSorting" title="ivy.container.sorting.ContainerWithSorting"><code class="xref py py-class docutils literal notranslate"><span class="pre">ContainerWithSorting</span></code></a>, <a class="reference internal" href="statistical/ContainerWithStatistical.html#ivy.container.statistical.ContainerWithStatistical" title="ivy.container.statistical.ContainerWithStatistical"><code class="xref py py-class docutils literal notranslate"><span class="pre">ContainerWithStatistical</span></code></a>, <a class="reference internal" href="utility/ContainerWithUtility.html#ivy.container.utility.ContainerWithUtility" title="ivy.container.utility.ContainerWithUtility"><code class="xref py py-class docutils literal notranslate"><span class="pre">ContainerWithUtility</span></code></a>, <a class="reference internal" href="experimental/activations/ContainerWithActivationExperimental.html#ivy.container.experimental.activations.ContainerWithActivationExperimental" title="ivy.container.experimental.activations.ContainerWithActivationExperimental"><code class="xref py py-class docutils literal notranslate"><span class="pre">ContainerWithActivationExperimental</span></code></a>, <a class="reference internal" href="experimental/conversions/ContainerWithConversionExperimental.html#ivy.container.experimental.conversions.ContainerWithConversionExperimental" title="ivy.container.experimental.conversions.ContainerWithConversionExperimental"><code class="xref py py-class docutils literal notranslate"><span class="pre">ContainerWithConversionExperimental</span></code></a>, <a class="reference internal" href="experimental/creation/ContainerWithCreationExperimental.html#ivy.container.experimental.creation.ContainerWithCreationExperimental" title="ivy.container.experimental.creation.ContainerWithCreationExperimental"><code class="xref py py-class docutils literal notranslate"><span class="pre">ContainerWithCreationExperimental</span></code></a>, <a class="reference internal" href="experimental/data_type/ContainerWithData_typeExperimental.html#ivy.container.experimental.data_type.ContainerWithData_typeExperimental" title="ivy.container.experimental.data_type.ContainerWithData_typeExperimental"><code class="xref py py-class docutils literal notranslate"><span class="pre">ContainerWithData_typeExperimental</span></code></a>, <a class="reference internal" href="experimental/device/ContainerWithDeviceExperimental.html#ivy.container.experimental.device.ContainerWithDeviceExperimental" title="ivy.container.experimental.device.ContainerWithDeviceExperimental"><code class="xref py py-class docutils literal notranslate"><span class="pre">ContainerWithDeviceExperimental</span></code></a>, <a class="reference internal" href="experimental/elementwise/ContainerWithElementWiseExperimental.html#ivy.container.experimental.elementwise.ContainerWithElementWiseExperimental" title="ivy.container.experimental.elementwise.ContainerWithElementWiseExperimental"><code class="xref py py-class docutils literal notranslate"><span class="pre">ContainerWithElementWiseExperimental</span></code></a>, <a class="reference internal" href="experimental/general/ContainerWithGeneralExperimental.html#ivy.container.experimental.general.ContainerWithGeneralExperimental" title="ivy.container.experimental.general.ContainerWithGeneralExperimental"><code class="xref py py-class docutils literal notranslate"><span class="pre">ContainerWithGeneralExperimental</span></code></a>, <a class="reference internal" href="experimental/gradients/ContainerWithGradientsExperimental.html#ivy.container.experimental.gradients.ContainerWithGradientsExperimental" title="ivy.container.experimental.gradients.ContainerWithGradientsExperimental"><code class="xref py py-class docutils literal notranslate"><span class="pre">ContainerWithGradientsExperimental</span></code></a>, <a class="reference internal" href="experimental/image/ContainerWithImageExperimental.html#ivy.container.experimental.image.ContainerWithImageExperimental" title="ivy.container.experimental.image.ContainerWithImageExperimental"><code class="xref py py-class docutils literal notranslate"><span class="pre">ContainerWithImageExperimental</span></code></a>, <a class="reference internal" href="experimental/layers/ContainerWithLayersExperimental.html#ivy.container.experimental.layers.ContainerWithLayersExperimental" title="ivy.container.experimental.layers.ContainerWithLayersExperimental"><code class="xref py py-class docutils literal notranslate"><span class="pre">ContainerWithLayersExperimental</span></code></a>, <a class="reference internal" href="experimental/linalg/ContainerWithLinalgExperimental.html#ivy.container.experimental.linalg.ContainerWithLinalgExperimental" title="ivy.container.experimental.linalg.ContainerWithLinalgExperimental"><code class="xref py py-class docutils literal notranslate"><span class="pre">ContainerWithLinalgExperimental</span></code></a>, <a class="reference internal" href="experimental/losses/ContainerWithLossesExperimental.html#ivy.container.experimental.losses.ContainerWithLossesExperimental" title="ivy.container.experimental.losses.ContainerWithLossesExperimental"><code class="xref py py-class docutils literal notranslate"><span class="pre">ContainerWithLossesExperimental</span></code></a>, <a class="reference internal" href="experimental/manipulation/ContainerWithManipulationExperimental.html#ivy.container.experimental.manipulation.ContainerWithManipulationExperimental" title="ivy.container.experimental.manipulation.ContainerWithManipulationExperimental"><code class="xref py py-class docutils literal notranslate"><span class="pre">ContainerWithManipulationExperimental</span></code></a>, <a class="reference internal" href="experimental/norms/ContainerWithNormsExperimental.html#ivy.container.experimental.norms.ContainerWithNormsExperimental" title="ivy.container.experimental.norms.ContainerWithNormsExperimental"><code class="xref py py-class docutils literal notranslate"><span class="pre">ContainerWithNormsExperimental</span></code></a>, <a class="reference internal" href="experimental/random/ContainerWithRandomExperimental.html#ivy.container.experimental.random.ContainerWithRandomExperimental" title="ivy.container.experimental.random.ContainerWithRandomExperimental"><code class="xref py py-class docutils literal notranslate"><span class="pre">ContainerWithRandomExperimental</span></code></a>, <a class="reference internal" href="experimental/searching/ContainerWithSearchingExperimental.html#ivy.container.experimental.searching.ContainerWithSearchingExperimental" title="ivy.container.experimental.searching.ContainerWithSearchingExperimental"><code class="xref py py-class docutils literal notranslate"><span class="pre">ContainerWithSearchingExperimental</span></code></a>, <a class="reference internal" href="experimental/set/ContainerWithSetExperimental.html#ivy.container.experimental.set.ContainerWithSetExperimental" title="ivy.container.experimental.set.ContainerWithSetExperimental"><code class="xref py py-class docutils literal notranslate"><span class="pre">ContainerWithSetExperimental</span></code></a>, <a class="reference internal" href="experimental/sorting/ContainerWithSortingExperimental.html#ivy.container.experimental.sorting.ContainerWithSortingExperimental" title="ivy.container.experimental.sorting.ContainerWithSortingExperimental"><code class="xref py py-class docutils literal notranslate"><span class="pre">ContainerWithSortingExperimental</span></code></a>, <a class="reference internal" href="experimental/statistical/ContainerWithStatisticalExperimental.html#ivy.container.experimental.statistical.ContainerWithStatisticalExperimental" title="ivy.container.experimental.statistical.ContainerWithStatisticalExperimental"><code class="xref py py-class docutils literal notranslate"><span class="pre">ContainerWithStatisticalExperimental</span></code></a>, <a class="reference internal" href="experimental/utility/ContainerWithUtilityExperimental.html#ivy.container.experimental.utility.ContainerWithUtilityExperimental" title="ivy.container.experimental.utility.ContainerWithUtilityExperimental"><code class="xref py py-class docutils literal notranslate"><span class="pre">ContainerWithUtilityExperimental</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="ivy.container.container.Container.__add__">
+<span class="sig-name descname"><span class="pre">__add__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ivy/container/container.html#Container.__add__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ivy.container.container.Container.__add__" title="Permalink to this definition"></a></dt>
+<dd><p>ivy.Container special method for the add operator, calling <code class="code docutils literal notranslate"><span class="pre">operator.add</span></code>
+for each of the corresponding leaves of the two containers.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>self</strong> – first input container. Should have a numeric data type.</p></li>
+<li><p><strong>other</strong> – second input array or container. Must be compatible with <code class="docutils literal notranslate"><span class="pre">self</span></code>
+(see <span class="xref std std-ref">broadcasting</span>). Should have a numeric data type.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><em>ret</em> – a container containing the element-wise sums. The returned array must have a
+data type determined by <span class="xref std std-ref">type-promotion</span>.</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<p>With <code class="code docutils literal notranslate"><span class="pre">Number</span></code> instances at the leaves:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">z</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
+<span class="go">{</span>
+<span class="go">    a: 4,</span>
+<span class="go">    b: 6</span>
+<span class="go">}</span>
+</pre></div>
+</div>
+<p>With <code class="xref py py-class docutils literal notranslate"><span class="pre">ivy.Array</span></code> instances at the leaves:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]),</span>
+<span class="gp">... </span>                  <span class="n">b</span><span class="o">=</span><span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]),</span>
+<span class="gp">... </span>                  <span class="n">b</span><span class="o">=</span><span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">]))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">z</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
+<span class="go">{</span>
+<span class="go">    a: ivy.array([5, 7, 9]),</span>
+<span class="go">    b: ivy.array([7, 9, 11])</span>
+<span class="go">}</span>
+</pre></div>
+</div>
+<p>With a mix of <code class="xref py py-class docutils literal notranslate"><span class="pre">ivy.Container</span></code> and <code class="xref py py-class docutils literal notranslate"><span class="pre">ivy.Array</span></code> instances:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">4.</span><span class="p">],</span> <span class="p">[</span><span class="mf">5.</span><span class="p">],</span> <span class="p">[</span><span class="mf">6.</span><span class="p">]]),</span>
+<span class="gp">... </span>                  <span class="n">b</span><span class="o">=</span><span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">5.</span><span class="p">],</span> <span class="p">[</span><span class="mf">6.</span><span class="p">],</span> <span class="p">[</span><span class="mf">7.</span><span class="p">]]))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">1.1</span><span class="p">,</span> <span class="mf">2.3</span><span class="p">,</span> <span class="o">-</span><span class="mf">3.6</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">z</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
+<span class="go">{</span>
+<span class="go">    a: ivy.array([[5.1, 6.3, 0.4],</span>
+<span class="go">                  [6.1, 7.3, 1.4],</span>
+<span class="go">                  [7.1, 8.3, 2.4]]),</span>
+<span class="go">    b: ivy.array([[6.1, 7.3, 1.4],</span>
+<span class="go">                  [7.1, 8.3, 2.4],</span>
+<span class="go">                  [8.1, 9.3, 3.4]])</span>
+<span class="go">}</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ivy.container.container.Container.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dict_in</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">queues</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">queue_load_sizes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">container_combine_method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'list_join'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">queue_timeout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">print_limit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key_length_limit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">print_indent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">4</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">print_line_spacing</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ivyh</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default_key_color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'green'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keyword_color_dict</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rebuild_child_containers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">types_to_iteratively_nest</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alphabetical_keys</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ivy/container/container.html#Container.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ivy.container.container.Container.__init__" title="Permalink to this definition"></a></dt>
+<dd><p>Initialize container object from input dict representation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dict_in</strong> – the dictionary the container should wrap around. Default is <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p></li>
+<li><p><strong>queues</strong> – Sequence of multiprocessing queues, each of which returns containers.
+This enables the current container to be passed around asynchronously while
+waiting for data. Default is <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p></li>
+<li><p><strong>queue_load_sizes</strong> – Size of leading dimension of the containers returned by each queue.
+Default is <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p></li>
+<li><p><strong>container_combine_method</strong> – The method to use for combining containers arriving from different queues.
+Default is ivy.Container.list_join</p></li>
+<li><p><strong>queue_timeout</strong> – The timeout when waiting for containers to arrive from the queues.
+Default is global.</p></li>
+<li><p><strong>print_limit</strong> – The total array size limit when printing the container. Default is 10.</p></li>
+<li><p><strong>key_length_limit</strong> – The maximum key length when printing the container. Default is <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p></li>
+<li><p><strong>print_indent</strong> – The number of whitespaces to use for indenting when printing the container.
+Default is 4.</p></li>
+<li><p><strong>print_line_spacing</strong> – The number of extra newlines to use between keys when printing the
+container. Default is <code class="docutils literal notranslate"><span class="pre">0</span></code>.</p></li>
+<li><p><strong>ivyh</strong> – Handle to ivy module to use for the calculations. Default is <code class="docutils literal notranslate"><span class="pre">None</span></code>, which
+results in the global ivy.</p></li>
+<li><p><strong>default_key_color</strong> – The default key color for printing the container to the terminal.
+Default is ‘green’.</p></li>
+<li><p><strong>keyword_color_dict</strong> – A dict mapping keywords to their termcolor color codes for printing the
+container. (Default value = None)</p></li>
+<li><p><strong>rebuild_child_containers</strong> – Whether to rebuild container found in dict_in with these constructor params.
+Default is <code class="docutils literal notranslate"><span class="pre">False</span></code>, in which case the original container are kept as are.</p></li>
+<li><p><strong>types_to_iteratively_nest</strong> – The data types to nest iteratively in the dict structure, each type must be
+iterable. Default is <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p></li>
+<li><p><strong>alphabetical_keys</strong> – Whether to sort the container keys alphabetically, or preserve the dict
+order. Default is <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p></li>
+<li><p><strong>kwargs</strong> – keyword arguments for dict creation. Default is <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ivy.container.container.Container.__radd__">
+<span class="sig-name descname"><span class="pre">__radd__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ivy/container/container.html#Container.__radd__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ivy.container.container.Container.__radd__" title="Permalink to this definition"></a></dt>
+<dd><p>ivy.Container reverse special method for the add operator, calling
+<code class="code docutils literal notranslate"><span class="pre">operator.add</span></code> for each of the corresponding leaves of the two containers.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>self</strong> – first input container. Should have a numeric data type.</p></li>
+<li><p><strong>other</strong> – second input array or container. Must be compatible with <code class="docutils literal notranslate"><span class="pre">self</span></code>
+(see <span class="xref std std-ref">broadcasting</span>). Should have a numeric data type.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><em>ret</em> – a container containing the element-wise sums. The returned array must have a
+data type determined by <span class="xref std std-ref">type-promotion</span>.</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">z</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
+<span class="go">{</span>
+<span class="go">    a: 4,</span>
+<span class="go">    b: 5</span>
+<span class="go">}</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ivy.container.container.Container.__rrshift__">
+<span class="sig-name descname"><span class="pre">__rrshift__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ivy/container/container.html#Container.__rrshift__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ivy.container.container.Container.__rrshift__" title="Permalink to this definition"></a></dt>
+<dd><p>ivy.Container reverse special method for the right shift operator, calling
+<code class="code docutils literal notranslate"><span class="pre">operator.rshift</span></code> for each of the corresponding leaves of the two
+containers.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>self</strong> – first input container. Should have an integer data type.</p></li>
+<li><p><strong>other</strong> – second input array or container. Must be compatible with <code class="docutils literal notranslate"><span class="pre">self</span></code>
+(see <span class="xref std std-ref">broadcasting</span>). Should have an integer data type. Each element
+must be greater than or equal to <code class="docutils literal notranslate"><span class="pre">0</span></code>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><em>ret</em> – a container containing the element-wise results. The returned array
+must have a data type determined by <span class="xref std std-ref">type-promotion</span>.</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="mi">64</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span><span class="n">a</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]),</span>
+<span class="gp">... </span>                  <span class="n">b</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">a</span> <span class="o">&gt;&gt;</span> <span class="n">b</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+<span class="go">{</span>
+<span class="go">    a: ivy.array([64, 32, 16]),</span>
+<span class="go">    b: ivy.array([8, 4, 2])</span>
+<span class="go">}</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ivy.container.container.Container.__rshift__">
+<span class="sig-name descname"><span class="pre">__rshift__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ivy/container/container.html#Container.__rshift__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ivy.container.container.Container.__rshift__" title="Permalink to this definition"></a></dt>
+<dd><p>ivy.Container special method for the right shift operator, calling
+<code class="code docutils literal notranslate"><span class="pre">operator.rshift</span></code> for each of the corresponding leaves of the
+two containers.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>self</strong> – first input container. Should have an integer data type.</p></li>
+<li><p><strong>other</strong> – second input array or container. Must be compatible with <code class="docutils literal notranslate"><span class="pre">self</span></code>
+(see <span class="xref std std-ref">broadcasting</span>). Should have an integer data type.
+Each element must be greater than or equal to <code class="docutils literal notranslate"><span class="pre">0</span></code>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><em>ret</em> – a container containing the element-wise results. The returned array
+must have a data type determined by <span class="xref std std-ref">type-promotion</span>.</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<p>With <code class="code docutils literal notranslate"><span class="pre">Number</span></code> instances at the leaves:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="mi">128</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mi">43</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">z</span> <span class="o">=</span> <span class="n">x</span> <span class="o">&gt;&gt;</span> <span class="n">y</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
+<span class="go">{</span>
+<span class="go">    a: 4,</span>
+<span class="go">    b: 5</span>
+<span class="go">}</span>
+</pre></div>
+</div>
+<p>With <code class="xref py py-class docutils literal notranslate"><span class="pre">ivy.Array</span></code> instances at the leaves:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">16</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">120</span><span class="p">]),</span>
+<span class="gp">... </span>                  <span class="n">b</span><span class="o">=</span><span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">15</span><span class="p">,</span> <span class="mi">45</span><span class="p">,</span> <span class="mi">143</span><span class="p">]))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]),</span>
+<span class="gp">... </span>                  <span class="n">b</span><span class="o">=</span><span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">z</span> <span class="o">=</span> <span class="n">x</span> <span class="o">&gt;&gt;</span> <span class="n">y</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
+<span class="go">{</span>
+<span class="go">    a: ivy.array([8, 10, 15]),</span>
+<span class="go">    b: ivy.array([15, 5, 8])</span>
+<span class="go">}</span>
+</pre></div>
+</div>
+<p>With a mix of <code class="xref py py-class docutils literal notranslate"><span class="pre">ivy.Container</span></code> and <code class="xref py py-class docutils literal notranslate"><span class="pre">ivy.Array</span></code> instances:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">16</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">120</span><span class="p">]),</span>
+<span class="gp">... </span>                  <span class="n">b</span><span class="o">=</span><span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">15</span><span class="p">,</span> <span class="mi">45</span><span class="p">,</span> <span class="mi">143</span><span class="p">]))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">z</span> <span class="o">=</span> <span class="n">x</span> <span class="o">&gt;&gt;</span> <span class="n">y</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
+<span class="go">{</span>
+<span class="go">    a: ivy.array([8, 10, 15]),</span>
+<span class="go">    b: ivy.array([7, 11, 17])</span>
+<span class="go">}</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ivy.container.container.Container.__rsub__">
+<span class="sig-name descname"><span class="pre">__rsub__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ivy/container/container.html#Container.__rsub__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ivy.container.container.Container.__rsub__" title="Permalink to this definition"></a></dt>
+<dd><p>ivy.Container reverse special method for the subtract operator, calling
+<code class="code docutils literal notranslate"><span class="pre">operator.sub</span></code> for each of the corresponding leaves of the two containers.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>self</strong> – first input container. Should have a numeric data type.</p></li>
+<li><p><strong>other</strong> – second input array or container. Must be compatible with <code class="docutils literal notranslate"><span class="pre">self</span></code>
+(see <span class="xref std std-ref">broadcasting</span>). Should have a numeric data type.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><em>ret</em> – a container containing the element-wise differences. The returned array must
+have a data type determined by <span class="xref std std-ref">type-promotion</span>.</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">z</span> <span class="o">=</span> <span class="n">x</span> <span class="o">-</span> <span class="n">y</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
+<span class="go">{</span>
+<span class="go">    a: -2,</span>
+<span class="go">    b: -3</span>
+<span class="go">}</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ivy.container.container.Container.__sub__">
+<span class="sig-name descname"><span class="pre">__sub__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ivy/container/container.html#Container.__sub__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ivy.container.container.Container.__sub__" title="Permalink to this definition"></a></dt>
+<dd><p>ivy.Container special method for the subtract operator, calling
+<code class="code docutils literal notranslate"><span class="pre">operator.sub</span></code> for each of the corresponding leaves of the two containers.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>self</strong> – first input container. Should have a numeric data type.</p></li>
+<li><p><strong>other</strong> – second input array or container. Must be compatible with <code class="docutils literal notranslate"><span class="pre">self</span></code>
+(see <span class="xref std std-ref">broadcasting</span>). Should have a numeric data type.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><em>ret</em> – a container containing the element-wise differences. The returned array must
+have a data type determined by <span class="xref std std-ref">type-promotion</span>.</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<p>With <code class="code docutils literal notranslate"><span class="pre">Number</span></code> instances at the leaves:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">z</span> <span class="o">=</span> <span class="n">x</span> <span class="o">-</span> <span class="n">y</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
+<span class="go">{</span>
+<span class="go">    a: -2,</span>
+<span class="go">    b: -2</span>
+<span class="go">}</span>
+</pre></div>
+</div>
+<p>With <code class="xref py py-class docutils literal notranslate"><span class="pre">ivy.Array</span></code> instances at the leaves:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]),</span>
+<span class="gp">... </span>                  <span class="n">b</span><span class="o">=</span><span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">]))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]),</span>
+<span class="gp">... </span>                  <span class="n">b</span><span class="o">=</span><span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">]))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">z</span> <span class="o">=</span> <span class="n">x</span> <span class="o">-</span> <span class="n">y</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
+<span class="go">{</span>
+<span class="go">    a: ivy.array([-3, -3, -3]),</span>
+<span class="go">    b: ivy.array([-2, -2, -2])</span>
+<span class="go">}</span>
+</pre></div>
+</div>
+<p>With a mix of <code class="xref py py-class docutils literal notranslate"><span class="pre">ivy.Container</span></code> and <code class="xref py py-class docutils literal notranslate"><span class="pre">ivy.Array</span></code> instances:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">4.</span><span class="p">],</span> <span class="p">[</span><span class="mf">5.</span><span class="p">],</span> <span class="p">[</span><span class="mf">6.</span><span class="p">]]),</span>
+<span class="gp">... </span>                  <span class="n">b</span><span class="o">=</span><span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">5.</span><span class="p">],</span> <span class="p">[</span><span class="mf">6.</span><span class="p">],</span> <span class="p">[</span><span class="mf">7.</span><span class="p">]]))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">1.1</span><span class="p">,</span> <span class="mf">2.3</span><span class="p">,</span> <span class="o">-</span><span class="mf">3.6</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">z</span> <span class="o">=</span> <span class="n">x</span> <span class="o">-</span> <span class="n">y</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
+<span class="go">{</span>
+<span class="go">    a: ivy.array([[2.9, 1.7, 7.6],</span>
+<span class="go">                  [3.9, 2.7, 8.6],</span>
+<span class="go">                  [4.9, 3.7, 9.6]]),</span>
+<span class="go">    b: ivy.array([[3.9, 2.7, 8.6],</span>
+<span class="go">                  [4.9, 3.7, 9.6],</span>
+<span class="go">                  [5.9, 4.7, 10.6]])</span>
+<span class="go">}</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
 <div class="toctree-wrapper compound">
 </div>
 </section>
