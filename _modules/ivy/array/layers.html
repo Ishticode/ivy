@@ -61,7 +61,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../functional/ivy/general.html">General</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../functional/ivy/gradients.html">Gradients</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../functional/ivy/layers.html">Layers</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../functional/ivy/linalg.html">Linalg</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../functional/ivy/linear_algebra.html">Linear algebra</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../functional/ivy/losses.html">Losses</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../functional/ivy/manipulation.html">Manipulation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../functional/ivy/meta.html">Meta</a></li>
@@ -208,6 +208,23 @@
             <span class="n">prob</span><span class="p">,</span>
             <span class="n">scale</span><span class="o">=</span><span class="n">scale</span><span class="p">,</span>
             <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">,</span>
+            <span class="n">out</span><span class="o">=</span><span class="n">out</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="ArrayWithLayers.dropout1d"><a class="viewcode-back" href="../../../data_classes/array/layers/ArrayWithLayers.html#ivy.array.layers.ArrayWithLayers.dropout1d">[docs]</a>    <span class="k">def</span> <span class="nf">dropout1d</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">:</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span>
+        <span class="n">prob</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+        <span class="o">/</span><span class="p">,</span>
+        <span class="o">*</span><span class="p">,</span>
+        <span class="n">training</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="n">data_format</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;NWC&quot;</span><span class="p">,</span>
+        <span class="n">out</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">ivy</span><span class="o">.</span><span class="n">dropout1d</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">,</span>
+            <span class="n">prob</span><span class="p">,</span>
+            <span class="n">training</span><span class="o">=</span><span class="n">training</span><span class="p">,</span>
+            <span class="n">data_format</span><span class="o">=</span><span class="n">data_format</span><span class="p">,</span>
             <span class="n">out</span><span class="o">=</span><span class="n">out</span><span class="p">,</span>
         <span class="p">)</span></div>
 
