@@ -81,14 +81,18 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Framework Classes</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../../stateful/layers.html">Layers</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../stateful/module.html">Module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../stateful/converters.html">Converters</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../stateful/activations.html">Activations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../stateful/layers.html">Layers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../stateful/converters.html">Converters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../stateful/module.html">Module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../stateful/initializers.html">Initializers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../stateful/sequential.html">Sequential</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../stateful/norms.html">Norms</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../stateful/optimizers.html">Optimizers</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../stateful/sequential.html">Sequential</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Nested array</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../nested_array/nested_array.html">Nested array</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Docs</span></p>
 <ul>
@@ -1192,7 +1196,7 @@
     <span class="k">return</span> <span class="n">sin_x</span><span class="p">,</span> <span class="n">cos_x</span></div>
 
 
-<div class="viewcode-block" id="value_is_nan"><a class="viewcode-back" href="../../../../functional/ivy/general/value_is_nan/value_is_nan_functional.html#ivy.functional.ivy.general.value_is_nan">[docs]</a><span class="nd">@inputs_to_native_arrays</span>
+<div class="viewcode-block" id="value_is_nan"><a class="viewcode-back" href="../../../../functional/ivy/general/value_is_nan/value_is_nan_functional.html#ivy.functional.ivy.general.value_is_nan">[docs]</a><span class="nd">@inputs_to_ivy_arrays</span>
 <span class="nd">@handle_nestable</span>
 <span class="nd">@handle_exceptions</span>
 <span class="nd">@handle_array_like</span>
@@ -1957,14 +1961,11 @@
 <span class="sd">    val</span>
 <span class="sd">        The value to set the global minimum denominator to.</span>
 
-
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
 <span class="sd">    &gt;&gt;&gt; x = ivy.get_min_denominator()</span>
 <span class="sd">    &gt;&gt;&gt; print(x)</span>
 <span class="sd">    1e-12</span>
-
-<span class="sd">    To set the minimum denominator to 1e-13</span>
 
 <span class="sd">    &gt;&gt;&gt; ivy.set_min_denominator(1e-13)</span>
 <span class="sd">    &gt;&gt;&gt; y = ivy.get_min_denominator()</span>
@@ -2005,14 +2006,11 @@
 <span class="sd">    val</span>
 <span class="sd">        The new value to set the minimum base to.</span>
 
-
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
 <span class="sd">    &gt;&gt;&gt; x = ivy.get_min_base()</span>
 <span class="sd">    &gt;&gt;&gt; print(x)</span>
 <span class="sd">    1e-05</span>
-
-<span class="sd">    To set the minimum base to 1e-04</span>
 
 <span class="sd">    &gt;&gt;&gt; ivy.set_min_base(1e-04)</span>
 <span class="sd">    &gt;&gt;&gt; y = ivy.get_min_base()</span>
@@ -2205,15 +2203,12 @@
 <span class="sd">        The timeout when waiting for containers to arrive from the queues.</span>
 <span class="sd">        To be set in seconds.</span>
 
-
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
 <span class="sd">    &gt;&gt;&gt; x = ivy.set_queue_timeout(10)</span>
 <span class="sd">    &gt;&gt;&gt; x = ivy.get_queue_timeout()</span>
 <span class="sd">    &gt;&gt;&gt; print(x)</span>
 <span class="sd">    10.0</span>
-
-<span class="sd">    To set the timeout for example 30 seconds</span>
 
 <span class="sd">    &gt;&gt;&gt; ivy.set_queue_timeout(30)</span>
 <span class="sd">    &gt;&gt;&gt; y = ivy.get_queue_timeout()</span>
@@ -2293,13 +2288,12 @@
 <span class="sd">    ----------</span>
 <span class="sd">    tmp_dr</span>
 <span class="sd">        The new directory for saving temporary files</span>
+
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
 <span class="sd">    &gt;&gt;&gt; x = ivy.get_tmp_dir()</span>
 <span class="sd">    &gt;&gt;&gt; print(x)</span>
 <span class="sd">    /tmp</span>
-
-<span class="sd">    To set the temp base to 1e-04</span>
 
 <span class="sd">    &gt;&gt;&gt; ivy.set_tmp_dir(&quot;/my_tmp&quot;)</span>
 <span class="sd">    &gt;&gt;&gt; y = ivy.get_tmp_dir()</span>
@@ -2447,10 +2441,11 @@
 
 
 <div class="viewcode-block" id="get_item"><a class="viewcode-back" href="../../../../functional/ivy/general/get_item.html#ivy.functional.ivy.general.get_item">[docs]</a><span class="nd">@to_native_arrays_and_back</span>
+<span class="nd">@handle_nestable</span>
 <span class="nd">@handle_array_like</span>
 <span class="k">def</span> <span class="nf">get_item</span><span class="p">(</span>
     <span class="n">x</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">],</span>
-    <span class="n">query</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">],</span>
+    <span class="n">query</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">],</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">     Gather slices from x according to query array, identical to x[query].</span>
@@ -2732,7 +2727,7 @@
 <span class="sd">    &gt;&gt;&gt; print(scatter)</span>
 <span class="sd">    ivy.array([ 0, 11,  0, 10,  9,  0,  0, 12])</span>
 
-<span class="sd">    scatter into an empty array, With :class:`ivy.Container` input:</span>
+<span class="sd">    With scatter into an empty array, With :class:`ivy.Container` input:</span>
 
 <span class="sd">    &gt;&gt;&gt; indices = ivy.Container(a=ivy.array([[4],[3],[6]]),</span>
 <span class="sd">    ...                         b=ivy.array([[5],[1],[2]]))</span>
@@ -2747,7 +2742,7 @@
 <span class="sd">        b: ivy.array([0, 30, 40, 0, 0, 20, 0, 0, 0, 0])</span>
 <span class="sd">    }</span>
 
-<span class="sd">    scatter into an array, With :class:`ivy.Container` and :class:`ivy.Array` input:</span>
+<span class="sd">    With :class:`ivy.Container` and :class:`ivy.Array` input:</span>
 
 <span class="sd">    &gt;&gt;&gt; indices = ivy.array([[4],[3],[1]])</span>
 <span class="sd">    &gt;&gt;&gt; updates = ivy.Container(a=ivy.array([10, 20, 30]),</span>

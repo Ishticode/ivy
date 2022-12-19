@@ -81,14 +81,18 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Framework Classes</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../stateful/layers.html">Layers</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../stateful/module.html">Module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../stateful/converters.html">Converters</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../stateful/activations.html">Activations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../stateful/layers.html">Layers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../stateful/converters.html">Converters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../stateful/module.html">Module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../stateful/initializers.html">Initializers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../stateful/sequential.html">Sequential</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../stateful/norms.html">Norms</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../stateful/optimizers.html">Optimizers</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../stateful/sequential.html">Sequential</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Nested array</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../nested_array/nested_array.html">Nested array</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Docs</span></p>
 <ul>
@@ -186,12 +190,12 @@
 <span class="sd">        &gt;&gt;&gt; y = ivy.Container.static_relu(x)</span>
 <span class="sd">        &gt;&gt;&gt; print(y)</span>
 <span class="sd">        {</span>
-<span class="sd">        a: ivy.array([1., 0.]),</span>
-<span class="sd">        b: ivy.array([0.40000001, 0.])</span>
+<span class="sd">            a: ivy.array([1., 0.]),</span>
+<span class="sd">            b: ivy.array([0.40000001, 0.])</span>
 <span class="sd">        }</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">ContainerBase</span><span class="o">.</span><span class="n">multi_map_in_static_method</span><span class="p">(</span>
+        <span class="k">return</span> <span class="n">ContainerBase</span><span class="o">.</span><span class="n">cont_multi_map_in_static_method</span><span class="p">(</span>
             <span class="s2">&quot;relu&quot;</span><span class="p">,</span>
             <span class="n">x</span><span class="p">,</span>
             <span class="n">key_chains</span><span class="o">=</span><span class="n">key_chains</span><span class="p">,</span>
@@ -247,8 +251,8 @@
 <span class="sd">        &gt;&gt;&gt; y = x.relu()</span>
 <span class="sd">        &gt;&gt;&gt; print(y)</span>
 <span class="sd">        {</span>
-<span class="sd">        a: ivy.array([1., 0.]),</span>
-<span class="sd">        b: ivy.array([0.40000001, 0.])</span>
+<span class="sd">            a: ivy.array([1., 0.]),</span>
+<span class="sd">            b: ivy.array([0.40000001, 0.])</span>
 <span class="sd">        }</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -306,15 +310,16 @@
 
 <span class="sd">        Examples</span>
 <span class="sd">        --------</span>
-<span class="sd">        &gt;&gt;&gt; x = ivy.Container(a =ivy.array([0.39, -0.85]))</span>
+<span class="sd">        &gt;&gt;&gt; x = x = ivy.Container(a=ivy.array([0.39, -0.85]), b=ivy.array([1., -0.2]))</span>
 <span class="sd">        &gt;&gt;&gt; y = ivy.Container.static_leaky_relu(x)</span>
 <span class="sd">        &gt;&gt;&gt; print(y)</span>
 <span class="sd">        {</span>
-<span class="sd">              a: ivy.array([0.39, -0.17])</span>
+<span class="sd">            a: ivy.array([0.38999999, -0.17]),</span>
+<span class="sd">            b: ivy.array([1., -0.04])</span>
 <span class="sd">        }</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">ContainerBase</span><span class="o">.</span><span class="n">multi_map_in_static_method</span><span class="p">(</span>
+        <span class="k">return</span> <span class="n">ContainerBase</span><span class="o">.</span><span class="n">cont_multi_map_in_static_method</span><span class="p">(</span>
             <span class="s2">&quot;leaky_relu&quot;</span><span class="p">,</span>
             <span class="n">x</span><span class="p">,</span>
             <span class="n">alpha</span><span class="o">=</span><span class="n">alpha</span><span class="p">,</span>
@@ -369,11 +374,12 @@
 
 <span class="sd">        Examples</span>
 <span class="sd">        --------</span>
-<span class="sd">        &gt;&gt;&gt; x = ivy.Container(a =ivy.array([0.39, -0.85]))</span>
+<span class="sd">        &gt;&gt;&gt; x = ivy.Container(a=ivy.array([0.39, -0.85]), b=ivy.array([1., -0.2]))</span>
 <span class="sd">        &gt;&gt;&gt; y = x.leaky_relu()</span>
 <span class="sd">        &gt;&gt;&gt; print(y)</span>
 <span class="sd">        {</span>
-<span class="sd">            a: ivy.array([0.39, -0.17])</span>
+<span class="sd">            a: ivy.array([0.38999999, -0.17]),</span>
+<span class="sd">            b: ivy.array([1., -0.04])</span>
 <span class="sd">        }</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -440,7 +446,7 @@
 <span class="sd">        }</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">ContainerBase</span><span class="o">.</span><span class="n">multi_map_in_static_method</span><span class="p">(</span>
+        <span class="k">return</span> <span class="n">ContainerBase</span><span class="o">.</span><span class="n">cont_multi_map_in_static_method</span><span class="p">(</span>
             <span class="s2">&quot;gelu&quot;</span><span class="p">,</span>
             <span class="n">x</span><span class="p">,</span>
             <span class="n">approximate</span><span class="o">=</span><span class="n">approximate</span><span class="p">,</span>
@@ -555,15 +561,16 @@
 
 <span class="sd">        Examples</span>
 <span class="sd">        --------</span>
-<span class="sd">        &gt;&gt;&gt; x = ivy.Container(a=ivy.array([-1., 1., 2.]))</span>
+<span class="sd">        &gt;&gt;&gt; ivy.Container(a=ivy.array([-1., 1., 2.]), b=ivy.array([0.5, 0., -0.1]))</span>
 <span class="sd">        &gt;&gt;&gt; y = ivy.Container.static_sigmoid(x)</span>
 <span class="sd">        &gt;&gt;&gt; print(y)</span>
 <span class="sd">        {</span>
-<span class="sd">            a: ivy.array([0.269, 0.731, 0.881])</span>
+<span class="sd">            a: ivy.array([0.2689414, 0.7310586, 0.88079703]),</span>
+<span class="sd">            b: ivy.array([0.62245935, 0.5, 0.4750208])</span>
 <span class="sd">        }</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">ContainerBase</span><span class="o">.</span><span class="n">multi_map_in_static_method</span><span class="p">(</span>
+        <span class="k">return</span> <span class="n">ContainerBase</span><span class="o">.</span><span class="n">cont_multi_map_in_static_method</span><span class="p">(</span>
             <span class="s2">&quot;sigmoid&quot;</span><span class="p">,</span>
             <span class="n">x</span><span class="p">,</span>
             <span class="n">key_chains</span><span class="o">=</span><span class="n">key_chains</span><span class="p">,</span>
@@ -614,13 +621,13 @@
 
 <span class="sd">        Examples</span>
 <span class="sd">        --------</span>
-<span class="sd">        &gt;&gt;&gt; x = ivy.Container(a=ivy.array([-1., 1., 2.]))</span>
+<span class="sd">        &gt;&gt;&gt; ivy.Container(a=ivy.array([-1., 1., 2.]), b=ivy.array([0.5, 0., -0.1]))</span>
 <span class="sd">        &gt;&gt;&gt; y = x.sigmoid()</span>
 <span class="sd">        &gt;&gt;&gt; print(y)</span>
 <span class="sd">        {</span>
-<span class="sd">            a: ivy.array([0.269, 0.731, 0.881])</span>
+<span class="sd">            a: ivy.array([0.2689414, 0.7310586, 0.88079703]),</span>
+<span class="sd">            b: ivy.array([0.62245935, 0.5, 0.4750208])</span>
 <span class="sd">        }</span>
-
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">static_sigmoid</span><span class="p">(</span>
             <span class="bp">self</span><span class="p">,</span>
@@ -676,15 +683,16 @@
 
 <span class="sd">        Examples</span>
 <span class="sd">        --------</span>
-<span class="sd">        &gt;&gt;&gt; x = ivy.Container(a=ivy.array([1.0, 0, 1.0]))</span>
+<span class="sd">        &gt;&gt;&gt; x = ivy.Container(a=ivy.array([1.0, 0]), b=ivy.array([1.3, 0, -1.0]))</span>
 <span class="sd">        &gt;&gt;&gt; y = ivy.Container.static_softmax(x)</span>
 <span class="sd">        &gt;&gt;&gt; print(y)</span>
 <span class="sd">        {</span>
-<span class="sd">            a: ivy.array([0.422, 0.155, 0.422])</span>
+<span class="sd">            a: ivy.array([0.7310586, 0.2689414]),</span>
+<span class="sd">            b: ivy.array([0.72844321, 0.19852395, 0.07303288])</span>
 <span class="sd">        }</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">ContainerBase</span><span class="o">.</span><span class="n">multi_map_in_static_method</span><span class="p">(</span>
+        <span class="k">return</span> <span class="n">ContainerBase</span><span class="o">.</span><span class="n">cont_multi_map_in_static_method</span><span class="p">(</span>
             <span class="s2">&quot;softmax&quot;</span><span class="p">,</span>
             <span class="n">x</span><span class="p">,</span>
             <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">,</span>
@@ -739,11 +747,12 @@
 
 <span class="sd">        Examples</span>
 <span class="sd">        --------</span>
-<span class="sd">        &gt;&gt;&gt; x = ivy.Container(a=ivy.array([1.0, 0, 1.0]))</span>
+<span class="sd">        &gt;&gt;&gt; x = ivy.Container(a=ivy.array([1.0, 0]), b=ivy.array([1.3, 0, -1.0]))</span>
 <span class="sd">        &gt;&gt;&gt; y = x.softmax()</span>
 <span class="sd">        &gt;&gt;&gt; print(y)</span>
 <span class="sd">        {</span>
-<span class="sd">            a: ivy.array([0.422, 0.155, 0.422])</span>
+<span class="sd">            a: ivy.array([0.7310586, 0.2689414]),</span>
+<span class="sd">            b: ivy.array([0.72844321, 0.19852395, 0.07303288])</span>
 <span class="sd">        }</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -805,11 +814,12 @@
 
 <span class="sd">        Examples</span>
 <span class="sd">        --------</span>
-<span class="sd">        &gt;&gt;&gt; x = ivy.Container(a=ivy.array([-0.3461, -0.6491]))</span>
+<span class="sd">        &gt;&gt;&gt; x = ivy.Container(a=ivy.array([-0.3461, -0.6491]), b=ivy.array([1., 0.]))</span>
 <span class="sd">        &gt;&gt;&gt; y = ivy.Container.static_softplus(x)</span>
 <span class="sd">        &gt;&gt;&gt; print(y)</span>
 <span class="sd">        {</span>
-<span class="sd">            a: ivy.array([0.535, 0.42])</span>
+<span class="sd">            a: ivy.array([0.53499615, 0.42036411]),</span>
+<span class="sd">            b: ivy.array([1.31326175, 0.69314718])</span>
 <span class="sd">        }</span>
 
 <span class="sd">        &gt;&gt;&gt; x = ivy.Container(a=ivy.array([-1., 2., 4.]))</span>
@@ -819,7 +829,7 @@
 <span class="sd">            a: ivy.array([0.948, 2.63, 4.25])</span>
 <span class="sd">        }</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">ContainerBase</span><span class="o">.</span><span class="n">multi_map_in_static_method</span><span class="p">(</span>
+        <span class="k">return</span> <span class="n">ContainerBase</span><span class="o">.</span><span class="n">cont_multi_map_in_static_method</span><span class="p">(</span>
             <span class="s2">&quot;softplus&quot;</span><span class="p">,</span>
             <span class="n">x</span><span class="p">,</span>
             <span class="n">beta</span><span class="o">=</span><span class="n">beta</span><span class="p">,</span>
@@ -963,7 +973,7 @@
 <span class="sd">            b: ivy.array([-0.371, -1.17])</span>
 <span class="sd">        }</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">ContainerBase</span><span class="o">.</span><span class="n">multi_map_in_static_method</span><span class="p">(</span>
+        <span class="k">return</span> <span class="n">ContainerBase</span><span class="o">.</span><span class="n">cont_multi_map_in_static_method</span><span class="p">(</span>
             <span class="s2">&quot;log_softmax&quot;</span><span class="p">,</span>
             <span class="n">x</span><span class="p">,</span>
             <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">,</span>

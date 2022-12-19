@@ -81,14 +81,18 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Framework Classes</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../../stateful/layers.html">Layers</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../stateful/module.html">Module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../stateful/converters.html">Converters</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../stateful/activations.html">Activations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../stateful/layers.html">Layers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../stateful/converters.html">Converters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../stateful/module.html">Module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../stateful/initializers.html">Initializers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../stateful/sequential.html">Sequential</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../stateful/norms.html">Norms</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../stateful/optimizers.html">Optimizers</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../stateful/sequential.html">Sequential</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Nested array</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../nested_array/nested_array.html">Nested array</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Docs</span></p>
 <ul>
@@ -130,6 +134,7 @@
   <h1>Source code for ivy.container.experimental.elementwise</h1><div class="highlight"><pre>
 <span></span><span class="c1"># global</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Union</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Tuple</span>
+<span class="kn">from</span> <span class="nn">numbers</span> <span class="kn">import</span> <span class="n">Number</span>
 
 <span class="c1"># local</span>
 <span class="kn">import</span> <span class="nn">ivy</span>
@@ -191,7 +196,7 @@
 <span class="sd">            b: ivy.array([-0.090, 0.070, -0.057])</span>
 <span class="sd">        }</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">ContainerBase</span><span class="o">.</span><span class="n">multi_map_in_static_method</span><span class="p">(</span>
+        <span class="k">return</span> <span class="n">ContainerBase</span><span class="o">.</span><span class="n">cont_multi_map_in_static_method</span><span class="p">(</span>
             <span class="s2">&quot;sinc&quot;</span><span class="p">,</span>
             <span class="n">x</span><span class="p">,</span>
             <span class="n">key_chains</span><span class="o">=</span><span class="n">key_chains</span><span class="p">,</span>
@@ -307,7 +312,7 @@
 <span class="sd">        }</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">ContainerBase</span><span class="o">.</span><span class="n">multi_map_in_static_method</span><span class="p">(</span>
+        <span class="k">return</span> <span class="n">ContainerBase</span><span class="o">.</span><span class="n">cont_multi_map_in_static_method</span><span class="p">(</span>
             <span class="s2">&quot;lcm&quot;</span><span class="p">,</span>
             <span class="n">x1</span><span class="p">,</span>
             <span class="n">x2</span><span class="p">,</span>
@@ -414,7 +419,7 @@
 <span class="sd">            b: ivy.array([ nan,  nan,  nan])</span>
 <span class="sd">        }</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">ContainerBase</span><span class="o">.</span><span class="n">multi_map_in_static_method</span><span class="p">(</span>
+        <span class="k">return</span> <span class="n">ContainerBase</span><span class="o">.</span><span class="n">cont_multi_map_in_static_method</span><span class="p">(</span>
             <span class="s2">&quot;fmod&quot;</span><span class="p">,</span>
             <span class="n">x1</span><span class="p">,</span>
             <span class="n">x2</span><span class="p">,</span>
@@ -507,7 +512,7 @@
 <span class="sd">            b: ivy.array([ 0,  0,  nan])</span>
 <span class="sd">        }</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">ContainerBase</span><span class="o">.</span><span class="n">multi_map_in_static_method</span><span class="p">(</span>
+        <span class="k">return</span> <span class="n">ContainerBase</span><span class="o">.</span><span class="n">cont_multi_map_in_static_method</span><span class="p">(</span>
             <span class="s2">&quot;fmax&quot;</span><span class="p">,</span>
             <span class="n">x1</span><span class="p">,</span>
             <span class="n">x2</span><span class="p">,</span>
@@ -600,7 +605,7 @@
 <span class="sd">            b: ivy.array([1, 1])</span>
 <span class="sd">        }</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">ContainerBase</span><span class="o">.</span><span class="n">multi_map_in_static_method</span><span class="p">(</span>
+        <span class="k">return</span> <span class="n">ContainerBase</span><span class="o">.</span><span class="n">cont_multi_map_in_static_method</span><span class="p">(</span>
             <span class="s2">&quot;float_power&quot;</span><span class="p">,</span>
             <span class="n">x1</span><span class="p">,</span>
             <span class="n">x2</span><span class="p">,</span>
@@ -689,7 +694,7 @@
 <span class="sd">            b: ivy.array([32., 64., 128.])</span>
 <span class="sd">        }</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">ContainerBase</span><span class="o">.</span><span class="n">multi_map_in_static_method</span><span class="p">(</span>
+        <span class="k">return</span> <span class="n">ContainerBase</span><span class="o">.</span><span class="n">cont_multi_map_in_static_method</span><span class="p">(</span>
             <span class="s2">&quot;exp2&quot;</span><span class="p">,</span>
             <span class="n">x</span><span class="p">,</span>
             <span class="n">key_chains</span><span class="o">=</span><span class="n">key_chains</span><span class="p">,</span>
@@ -733,6 +738,109 @@
 <span class="sd">        }</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">static_exp2</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">out</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="ContainerWithElementWiseExperimental.static_copysign"><a class="viewcode-back" href="../../../../data_classes/container/experimental.html#ivy.container.experimental.ContainerWithElementWiseExperimental.static_copysign">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">static_copysign</span><span class="p">(</span>
+        <span class="n">x1</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">,</span> <span class="n">Number</span><span class="p">],</span>
+        <span class="n">x2</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">,</span> <span class="n">Number</span><span class="p">],</span>
+        <span class="o">/</span><span class="p">,</span>
+        <span class="o">*</span><span class="p">,</span>
+        <span class="n">key_chains</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">to_apply</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="n">prune_unapplied</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">map_sequences</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">out</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        ivy.Container static method variant of ivy.copysign. This method simply wraps</span>
+<span class="sd">        the function, and so the docstring for ivy.copysign also applies to this</span>
+<span class="sd">        method with minimal changes.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        x1</span>
+<span class="sd">            Container, Array, or scalar to change the sign of</span>
+<span class="sd">        x2</span>
+<span class="sd">            Container, Array, or scalar from which the new signs are applied</span>
+<span class="sd">            Unsigned zeroes are considered positive.</span>
+<span class="sd">        out</span>
+<span class="sd">            optional output Container, for writing the result to.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        ret</span>
+<span class="sd">            x1 with the signs of x2.</span>
+<span class="sd">            This is a scalar if both x1 and x2 are scalars.</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        &gt;&gt;&gt; x1 = ivy.Container(a=ivy.array([0,1,2]), b=ivy.array(-1))</span>
+<span class="sd">        &gt;&gt;&gt; x2 = ivy.Container(a=-1, b=ivy.array(10))</span>
+<span class="sd">        &gt;&gt;&gt; ivy.Container.static_copysign(x1, x2)</span>
+<span class="sd">        {</span>
+<span class="sd">            a: ivy.array([-0., -1., -2.]),</span>
+<span class="sd">            b: ivy.array(1.)</span>
+<span class="sd">        }</span>
+<span class="sd">        &gt;&gt;&gt; ivy.Container.static_copysign(23, x1)</span>
+<span class="sd">        {</span>
+<span class="sd">            a: ivy.array([23., 23., 23.]),</span>
+<span class="sd">            b: ivy.array(-23.)</span>
+<span class="sd">        }</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">ContainerBase</span><span class="o">.</span><span class="n">cont_multi_map_in_static_method</span><span class="p">(</span>
+            <span class="s2">&quot;copysign&quot;</span><span class="p">,</span>
+            <span class="n">x1</span><span class="p">,</span>
+            <span class="n">x2</span><span class="p">,</span>
+            <span class="n">key_chains</span><span class="o">=</span><span class="n">key_chains</span><span class="p">,</span>
+            <span class="n">to_apply</span><span class="o">=</span><span class="n">to_apply</span><span class="p">,</span>
+            <span class="n">prune_unapplied</span><span class="o">=</span><span class="n">prune_unapplied</span><span class="p">,</span>
+            <span class="n">map_sequences</span><span class="o">=</span><span class="n">map_sequences</span><span class="p">,</span>
+            <span class="n">out</span><span class="o">=</span><span class="n">out</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="ContainerWithElementWiseExperimental.copysign"><a class="viewcode-back" href="../../../../data_classes/container/experimental.html#ivy.container.experimental.ContainerWithElementWiseExperimental.copysign">[docs]</a>    <span class="k">def</span> <span class="nf">copysign</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">:</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">,</span>
+        <span class="n">x2</span><span class="p">:</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">,</span>
+        <span class="o">/</span><span class="p">,</span>
+        <span class="o">*</span><span class="p">,</span>
+        <span class="n">out</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;ivy.Container instance method variant of ivy.copysign. This method simply</span>
+<span class="sd">        wraps the function, and so the docstring for ivy.copysign also applies to</span>
+<span class="sd">        this method with minimal changes.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        self</span>
+<span class="sd">            Container to change the sign of</span>
+<span class="sd">        x2</span>
+<span class="sd">            Container from which the new signs are applied</span>
+<span class="sd">            Unsigned zeroes are considered positive.</span>
+<span class="sd">        out</span>
+<span class="sd">            optional output Container, for writing the result to.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        ret</span>
+<span class="sd">            x1 with the signs of x2.</span>
+<span class="sd">            This is a scalar if both x1 and x2 are scalars.</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        &gt;&gt;&gt; x1 = ivy.Container(a=ivy.array([0,1,2]), b=ivy.array(-1))</span>
+<span class="sd">        &gt;&gt;&gt; x2 = ivy.Container(a=-1, b=ivy.array(10))</span>
+<span class="sd">        &gt;&gt;&gt; x1.copysign(x2)</span>
+<span class="sd">        {</span>
+<span class="sd">            a: ivy.array([-0., -1., -2.]),</span>
+<span class="sd">            b: ivy.array(1.)</span>
+<span class="sd">        }</span>
+<span class="sd">        &gt;&gt;&gt; x1.copysign(-1)</span>
+<span class="sd">        {</span>
+<span class="sd">            a: ivy.array([-0., -1., -2.]),</span>
+<span class="sd">            b: ivy.array(-1.)</span>
+<span class="sd">        }</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">static_copysign</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">out</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="ContainerWithElementWiseExperimental.static_count_nonzero"><a class="viewcode-back" href="../../../../data_classes/container/experimental.html#ivy.container.experimental.ContainerWithElementWiseExperimental.static_count_nonzero">[docs]</a>    <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">static_count_nonzero</span><span class="p">(</span>
@@ -812,7 +920,7 @@
 <span class="sd">            b: ivy.array([[[3, 4]]])</span>
 <span class="sd">        }</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">ContainerBase</span><span class="o">.</span><span class="n">multi_map_in_static_method</span><span class="p">(</span>
+        <span class="k">return</span> <span class="n">ContainerBase</span><span class="o">.</span><span class="n">cont_multi_map_in_static_method</span><span class="p">(</span>
             <span class="s2">&quot;count_nonzero&quot;</span><span class="p">,</span>
             <span class="n">a</span><span class="p">,</span>
             <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">,</span>
@@ -933,7 +1041,7 @@
 <span class="sd">        ivy.Container static method variant of ivy.nansum. This method simply wraps</span>
 <span class="sd">        the function, and so the docstring for ivy.nansum also applies to this method</span>
 <span class="sd">        with minimal changes.</span>
-<span class="sd">        </span>
+
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        x</span>
@@ -950,13 +1058,13 @@
 <span class="sd">        out</span>
 <span class="sd">            Alternate output array in which to place the result.</span>
 <span class="sd">            The default is None.</span>
-<span class="sd">        </span>
+
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">        ret</span>
 <span class="sd">            A new array holding the result is returned unless out is specified,</span>
 <span class="sd">            in which it is returned.</span>
-<span class="sd">        </span>
+
 <span class="sd">        Examples</span>
 <span class="sd">        --------</span>
 <span class="sd">        With one :class:`ivy.Container` input:</span>
@@ -978,7 +1086,7 @@
 <span class="sd">            b: ivy.array([7., 0.])</span>
 <span class="sd">        }</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">ContainerBase</span><span class="o">.</span><span class="n">multi_map_in_static_method</span><span class="p">(</span>
+        <span class="k">return</span> <span class="n">ContainerBase</span><span class="o">.</span><span class="n">cont_multi_map_in_static_method</span><span class="p">(</span>
             <span class="s2">&quot;nansum&quot;</span><span class="p">,</span>
             <span class="n">x</span><span class="p">,</span>
             <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">,</span>
@@ -1004,7 +1112,7 @@
 <span class="sd">        ivy.Container instance method variant of ivy.nansum. This method simply</span>
 <span class="sd">        wraps the function, and so the docstring for ivy.nansum also applies to this</span>
 <span class="sd">        method with minimal changes.</span>
-<span class="sd">        </span>
+
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        self</span>
@@ -1021,13 +1129,13 @@
 <span class="sd">        out</span>
 <span class="sd">            Alternate output array in which to place the result.</span>
 <span class="sd">            The default is None.</span>
-<span class="sd">        </span>
+
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">        ret</span>
 <span class="sd">            A new array holding the result is returned unless out is specified,</span>
 <span class="sd">            in which it is returned.</span>
-<span class="sd">        </span>
+
 <span class="sd">        Examples</span>
 <span class="sd">        --------</span>
 <span class="sd">        With one :class:`ivy.Container` input:</span>
@@ -1091,7 +1199,7 @@
 <span class="sd">            b: ivy.array([1., 2., 1.])</span>
 <span class="sd">        }</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">ContainerBase</span><span class="o">.</span><span class="n">multi_map_in_static_method</span><span class="p">(</span>
+        <span class="k">return</span> <span class="n">ContainerBase</span><span class="o">.</span><span class="n">cont_multi_map_in_static_method</span><span class="p">(</span>
             <span class="s2">&quot;gcd&quot;</span><span class="p">,</span>
             <span class="n">x1</span><span class="p">,</span>
             <span class="n">x2</span><span class="p">,</span>
@@ -1227,7 +1335,7 @@
 <span class="sd">            b: ivy.array([True, True])</span>
 <span class="sd">        }</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">ContainerBase</span><span class="o">.</span><span class="n">multi_map_in_static_method</span><span class="p">(</span>
+        <span class="k">return</span> <span class="n">ContainerBase</span><span class="o">.</span><span class="n">cont_multi_map_in_static_method</span><span class="p">(</span>
             <span class="s2">&quot;isclose&quot;</span><span class="p">,</span>
             <span class="n">a</span><span class="p">,</span>
             <span class="n">b</span><span class="p">,</span>
@@ -1380,7 +1488,7 @@
 <span class="sd">            b: ivy.array([False, True, True])</span>
 <span class="sd">        }</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">ContainerBase</span><span class="o">.</span><span class="n">multi_map_in_static_method</span><span class="p">(</span>
+        <span class="k">return</span> <span class="n">ContainerBase</span><span class="o">.</span><span class="n">cont_multi_map_in_static_method</span><span class="p">(</span>
             <span class="s2">&quot;isposinf&quot;</span><span class="p">,</span>
             <span class="n">x</span><span class="p">,</span>
             <span class="n">key_chains</span><span class="o">=</span><span class="n">key_chains</span><span class="p">,</span>
@@ -1469,7 +1577,7 @@
 <span class="sd">            b: ivy.array([False, True, True])</span>
 <span class="sd">        }</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">ContainerBase</span><span class="o">.</span><span class="n">multi_map_in_static_method</span><span class="p">(</span>
+        <span class="k">return</span> <span class="n">ContainerBase</span><span class="o">.</span><span class="n">cont_multi_map_in_static_method</span><span class="p">(</span>
             <span class="s2">&quot;isneginf&quot;</span><span class="p">,</span>
             <span class="n">x</span><span class="p">,</span>
             <span class="n">key_chains</span><span class="o">=</span><span class="n">key_chains</span><span class="p">,</span>
@@ -1516,6 +1624,124 @@
 <span class="sd">        }</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">static_isneginf</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">out</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="ContainerWithElementWiseExperimental.static_angle"><a class="viewcode-back" href="../../../../data_classes/container/experimental.html#ivy.container.experimental.ContainerWithElementWiseExperimental.static_angle">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">static_angle</span><span class="p">(</span>
+        <span class="n">z</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">],</span>
+        <span class="o">/</span><span class="p">,</span>
+        <span class="o">*</span><span class="p">,</span>
+        <span class="n">key_chains</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">to_apply</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="n">prune_unapplied</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">map_sequences</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">deg</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">out</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        ivy.Container static method variant of ivy.angle. This method simply wraps</span>
+<span class="sd">        the function, and so the docstring for ivy.angle also applies to this</span>
+<span class="sd">        method with minimal changes.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        z</span>
+<span class="sd">            Array-like input.</span>
+<span class="sd">        deg</span>
+<span class="sd">            optional bool.</span>
+<span class="sd">        out</span>
+<span class="sd">            optional output array, for writing the result to.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        ret</span>
+<span class="sd">            Returns an array of angles for each complex number in the input.</span>
+<span class="sd">            If def is False(default), angle is calculated in radian and if</span>
+<span class="sd">            def is True, then angle is calculated in degrees.</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        &gt;&gt;&gt; ivy.set_backend(&#39;tensorflow&#39;)</span>
+<span class="sd">        &gt;&gt;&gt; x = ivy.Container(a=ivy.array([-2.25 + 4.75j, 3.25 + 5.75j]),</span>
+<span class="sd">                                b=ivy.array([-2.25 + 4.75j, 3.25 + 5.75j]))</span>
+<span class="sd">        &gt;&gt;&gt; x</span>
+<span class="sd">        {</span>
+<span class="sd">            a: ivy.array([-2.25+4.75j, 3.25+5.75j]),</span>
+<span class="sd">            b: ivy.array([-2.25+4.75j, 3.25+5.75j])</span>
+<span class="sd">        }</span>
+<span class="sd">        &gt;&gt;&gt; ivy.Container.static_angle(x)</span>
+<span class="sd">        {</span>
+<span class="sd">            a: ivy.array([2.01317055, 1.05634501]),</span>
+<span class="sd">            b: ivy.array([2.01317055, 1.05634501])</span>
+<span class="sd">        }</span>
+<span class="sd">        &gt;&gt;&gt; ivy.set_backend(&#39;numpy&#39;)</span>
+<span class="sd">        &gt;&gt;&gt; ivy.Container.static_angle(x,deg=True)</span>
+<span class="sd">        {</span>
+<span class="sd">            a: ivy.array([115.3461759, 60.524111]),</span>
+<span class="sd">            b: ivy.array([115.3461759, 60.524111])</span>
+<span class="sd">        }</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">ContainerBase</span><span class="o">.</span><span class="n">cont_multi_map_in_static_method</span><span class="p">(</span>
+            <span class="s2">&quot;angle&quot;</span><span class="p">,</span>
+            <span class="n">z</span><span class="p">,</span>
+            <span class="n">key_chains</span><span class="o">=</span><span class="n">key_chains</span><span class="p">,</span>
+            <span class="n">to_apply</span><span class="o">=</span><span class="n">to_apply</span><span class="p">,</span>
+            <span class="n">prune_unapplied</span><span class="o">=</span><span class="n">prune_unapplied</span><span class="p">,</span>
+            <span class="n">map_sequences</span><span class="o">=</span><span class="n">map_sequences</span><span class="p">,</span>
+            <span class="n">deg</span><span class="o">=</span><span class="n">deg</span><span class="p">,</span>
+            <span class="n">out</span><span class="o">=</span><span class="n">out</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="ContainerWithElementWiseExperimental.angle"><a class="viewcode-back" href="../../../../data_classes/container/experimental.html#ivy.container.experimental.ContainerWithElementWiseExperimental.angle">[docs]</a>    <span class="k">def</span> <span class="nf">angle</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">:</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">,</span>
+        <span class="o">/</span><span class="p">,</span>
+        <span class="o">*</span><span class="p">,</span>
+        <span class="n">deg</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">out</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        ivy.Container instance method variant of ivy.angle. This method simply</span>
+<span class="sd">        wraps the function, and so the docstring for ivy.angle also applies to</span>
+<span class="sd">        this method with minimal changes.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        z</span>
+<span class="sd">            Array-like input.</span>
+<span class="sd">        deg</span>
+<span class="sd">            optional bool.</span>
+<span class="sd">        out</span>
+<span class="sd">            optional output array, for writing the result to.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        ret</span>
+<span class="sd">            Returns an array of angles for each complex number in the input.</span>
+<span class="sd">            If def is False(default), angle is calculated in radian and if</span>
+<span class="sd">            def is True, then angle is calculated in degrees.</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        &gt;&gt;&gt; ivy.set_backend(&#39;tensorflow&#39;)</span>
+<span class="sd">        &gt;&gt;&gt; x = ivy.Container(a=ivy.array([-2.25 + 4.75j, 3.25 + 5.75j]),</span>
+<span class="sd">                                b=ivy.array([-2.25 + 4.75j, 3.25 + 5.75j]))</span>
+<span class="sd">        &gt;&gt;&gt; x</span>
+<span class="sd">        {</span>
+<span class="sd">            a: ivy.array([-2.25+4.75j, 3.25+5.75j]),</span>
+<span class="sd">            b: ivy.array([-2.25+4.75j, 3.25+5.75j])</span>
+<span class="sd">        }</span>
+<span class="sd">        &gt;&gt;&gt; x.angle()</span>
+<span class="sd">        {</span>
+<span class="sd">            a: ivy.array([2.01317055, 1.05634501]),</span>
+<span class="sd">            b: ivy.array([2.01317055, 1.05634501])</span>
+<span class="sd">        }</span>
+<span class="sd">        &gt;&gt;&gt; ivy.set_backend(&#39;numpy&#39;)</span>
+<span class="sd">        &gt;&gt;&gt; x.angle(deg=True)</span>
+<span class="sd">        {</span>
+<span class="sd">            a: ivy.array([115.3461759, 60.524111]),</span>
+<span class="sd">            b: ivy.array([115.3461759, 60.524111])</span>
+<span class="sd">        }</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">static_angle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">deg</span><span class="o">=</span><span class="n">deg</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">out</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="ContainerWithElementWiseExperimental.static_nan_to_num"><a class="viewcode-back" href="../../../../data_classes/container/experimental.html#ivy.container.experimental.ContainerWithElementWiseExperimental.static_nan_to_num">[docs]</a>    <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">static_nan_to_num</span><span class="p">(</span>
@@ -1573,7 +1799,7 @@
 <span class="sd">            b: ivy.array([1., 2., 1.,  5e+100])</span>
 <span class="sd">        }</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">ContainerBase</span><span class="o">.</span><span class="n">multi_map_in_static_method</span><span class="p">(</span>
+        <span class="k">return</span> <span class="n">ContainerBase</span><span class="o">.</span><span class="n">cont_multi_map_in_static_method</span><span class="p">(</span>
             <span class="s2">&quot;nan_to_num&quot;</span><span class="p">,</span>
             <span class="n">x</span><span class="p">,</span>
             <span class="n">key_chains</span><span class="o">=</span><span class="n">key_chains</span><span class="p">,</span>
@@ -1629,12 +1855,14 @@
 
 <span class="sd">        Examples</span>
 <span class="sd">        --------</span>
-<span class="sd">        &gt;&gt;&gt; x = ivy.Container(a=ivy.array([1, 2, 3, nan]),\</span>
-<span class="sd">                               b=ivy.array([1, 2, 3, inf]))</span>
-<span class="sd">        &gt;&gt;&gt; x.nan_to_num(posinf=5e+100)</span>
+<span class="sd">        &gt;&gt;&gt; a = ivy.array([1., 2, 3, ivy.nan], dtype=&quot;float64&quot;)</span>
+<span class="sd">        &gt;&gt;&gt; b = ivy.array([1., 2, 3, ivy.inf], dtype=&quot;float64&quot;)</span>
+<span class="sd">        &gt;&gt;&gt; x = ivy.Container(a=a, b=b)</span>
+<span class="sd">        &gt;&gt;&gt; ret = x.nan_to_num(posinf=5e+100)</span>
+<span class="sd">        &gt;&gt;&gt; print(ret)</span>
 <span class="sd">        {</span>
-<span class="sd">            a: ivy.array([1.,  1.,  3.,  0.0])</span>
-<span class="sd">            b: ivy.array([1., 2., 1.,  5e+100])</span>
+<span class="sd">            a: ivy.array([1., 2., 3., 0.]),</span>
+<span class="sd">            b: ivy.array([1.e+000, 2.e+000, 3.e+000, 5.e+100])</span>
 <span class="sd">        }</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">static_nan_to_num</span><span class="p">(</span>
@@ -1684,7 +1912,7 @@
 <span class="sd">            b: ivy.array([5.08746284, 5.169925  , 5.32192809])</span>
 <span class="sd">        }</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">ContainerBase</span><span class="o">.</span><span class="n">multi_map_in_static_method</span><span class="p">(</span>
+        <span class="k">return</span> <span class="n">ContainerBase</span><span class="o">.</span><span class="n">cont_multi_map_in_static_method</span><span class="p">(</span>
             <span class="s2">&quot;logaddexp2&quot;</span><span class="p">,</span>
             <span class="n">x1</span><span class="p">,</span>
             <span class="n">x2</span><span class="p">,</span>
@@ -1772,7 +2000,7 @@
 <span class="sd">            b: ivy.array([True])</span>
 <span class="sd">        }</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">ContainerBase</span><span class="o">.</span><span class="n">multi_map_in_static_method</span><span class="p">(</span>
+        <span class="k">return</span> <span class="n">ContainerBase</span><span class="o">.</span><span class="n">cont_multi_map_in_static_method</span><span class="p">(</span>
             <span class="s2">&quot;signbit&quot;</span><span class="p">,</span>
             <span class="n">x</span><span class="p">,</span>
             <span class="n">key_chains</span><span class="o">=</span><span class="n">key_chains</span><span class="p">,</span>
@@ -1879,8 +2107,8 @@
 <span class="sd">        &gt;&gt;&gt; y = ivy.Container.static_allclose(x1, x2)</span>
 <span class="sd">        &gt;&gt;&gt; print(y)</span>
 <span class="sd">        {</span>
-<span class="sd">            a: true,</span>
-<span class="sd">            b: true</span>
+<span class="sd">            a: ivy.array(True),</span>
+<span class="sd">            b: ivy.array(True)</span>
 <span class="sd">        }</span>
 
 <span class="sd">        &gt;&gt;&gt; x1 = ivy.Container(a=ivy.array([1., 2., 3.]),\</span>
@@ -1890,11 +2118,11 @@
 <span class="sd">        &gt;&gt;&gt; y = ivy.Container.static_allclose(x1, x2, rtol=1e-3)</span>
 <span class="sd">        &gt;&gt;&gt; print(y)</span>
 <span class="sd">        {</span>
-<span class="sd">            a: true,</span>
-<span class="sd">            b: true</span>
+<span class="sd">            a: ivy.array(True),</span>
+<span class="sd">            b: ivy.array(True)</span>
 <span class="sd">        }</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">ContainerBase</span><span class="o">.</span><span class="n">multi_map_in_static_method</span><span class="p">(</span>
+        <span class="k">return</span> <span class="n">ContainerBase</span><span class="o">.</span><span class="n">cont_multi_map_in_static_method</span><span class="p">(</span>
             <span class="s2">&quot;allclose&quot;</span><span class="p">,</span>
             <span class="n">x1</span><span class="p">,</span>
             <span class="n">x2</span><span class="p">,</span>
@@ -1963,15 +2191,13 @@
 
 <span class="sd">        Examples</span>
 <span class="sd">        --------</span>
-<span class="sd">        &gt;&gt;&gt; x1 = ivy.Container(a=ivy.array([1., 2., 3.]),\</span>
-<span class="sd">        ...                         b=ivy.array([1., 2., 3.]))</span>
-<span class="sd">        &gt;&gt;&gt; x2 = ivy.Container(a=ivy.array([1., 2., 3.]),\</span>
-<span class="sd">        ...                         b=ivy.array([1., 2., 3.]))</span>
+<span class="sd">        &gt;&gt;&gt; x1 = ivy.Container(a=ivy.array([1., 2., 3.]), b=ivy.array([1., 2., 3.]))</span>
+<span class="sd">        &gt;&gt;&gt; x2 = ivy.Container(a=ivy.array([1., 2., 3.]), b=ivy.array([1., 2., 3.]))</span>
 <span class="sd">        &gt;&gt;&gt; y = x1.allclose(x2)</span>
 <span class="sd">        &gt;&gt;&gt; print(y)</span>
 <span class="sd">        {</span>
-<span class="sd">            a: true,</span>
-<span class="sd">            b: true</span>
+<span class="sd">            a: ivy.array(True),</span>
+<span class="sd">            b: ivy.array(True)</span>
 <span class="sd">        }</span>
 
 <span class="sd">        &gt;&gt;&gt; x1 = ivy.Container(a=ivy.array([1., 2., 3.]),\</span>
@@ -1981,8 +2207,8 @@
 <span class="sd">        &gt;&gt;&gt; y = x1.allclose(x2, rtol=1e-3)</span>
 <span class="sd">        &gt;&gt;&gt; print(y)</span>
 <span class="sd">        {</span>
-<span class="sd">            a: true,</span>
-<span class="sd">            b: true</span>
+<span class="sd">            a: ivy.array(True),</span>
+<span class="sd">            b: ivy.array(True)</span>
 <span class="sd">        }</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">static_allclose</span><span class="p">(</span>
@@ -2018,7 +2244,6 @@
 <span class="sd">        ----------</span>
 <span class="sd">        x</span>
 <span class="sd">            input container with array-like items.</span>
-<span class="sd">        </span>
 <span class="sd">        out</span>
 <span class="sd">            optional output container, for writing the result to.</span>
 
@@ -2038,7 +2263,7 @@
 <span class="sd">            b: ivy.array([ 1,  2,  3, -7])</span>
 <span class="sd">        }</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">ContainerBase</span><span class="o">.</span><span class="n">multi_map_in_static_method</span><span class="p">(</span>
+        <span class="k">return</span> <span class="n">ContainerBase</span><span class="o">.</span><span class="n">cont_multi_map_in_static_method</span><span class="p">(</span>
             <span class="s2">&quot;diff&quot;</span><span class="p">,</span>
             <span class="n">x</span><span class="p">,</span>
             <span class="n">key_chains</span><span class="o">=</span><span class="n">key_chains</span><span class="p">,</span>
@@ -2062,7 +2287,6 @@
 <span class="sd">        ----------</span>
 <span class="sd">        self</span>
 <span class="sd">            input container with array-like items.</span>
-<span class="sd">        </span>
 <span class="sd">        out</span>
 <span class="sd">            optional output container, for writing the result to.</span>
 
@@ -2123,7 +2347,7 @@
 <span class="sd">            b: ivy.array([ 3.0 ])</span>
 <span class="sd">        }</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">ContainerBase</span><span class="o">.</span><span class="n">multi_map_in_static_method</span><span class="p">(</span>
+        <span class="k">return</span> <span class="n">ContainerBase</span><span class="o">.</span><span class="n">cont_multi_map_in_static_method</span><span class="p">(</span>
             <span class="s2">&quot;fix&quot;</span><span class="p">,</span>
             <span class="n">x</span><span class="p">,</span>
             <span class="n">key_chains</span><span class="o">=</span><span class="n">key_chains</span><span class="p">,</span>
@@ -2224,7 +2448,7 @@
 <span class="sd">            b: ivy.array([5.5e-30])</span>
 <span class="sd">        }</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">ContainerBase</span><span class="o">.</span><span class="n">multi_map_in_static_method</span><span class="p">(</span>
+        <span class="k">return</span> <span class="n">ContainerBase</span><span class="o">.</span><span class="n">cont_multi_map_in_static_method</span><span class="p">(</span>
             <span class="s2">&quot;nextafter&quot;</span><span class="p">,</span>
             <span class="n">x1</span><span class="p">,</span>
             <span class="n">x2</span><span class="p">,</span>
@@ -2355,7 +2579,7 @@
 <span class="sd">            b: ivy.array([0.0006, 0.0244])</span>
 <span class="sd">        }</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">ContainerBase</span><span class="o">.</span><span class="n">multi_map_in_static_method</span><span class="p">(</span>
+        <span class="k">return</span> <span class="n">ContainerBase</span><span class="o">.</span><span class="n">cont_multi_map_in_static_method</span><span class="p">(</span>
             <span class="s2">&quot;zeta&quot;</span><span class="p">,</span>
             <span class="n">x</span><span class="p">,</span>
             <span class="n">q</span><span class="p">,</span>
@@ -2443,7 +2667,7 @@
         <span class="n">edge_order</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
         <span class="n">axis</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">list</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">ContainerBase</span><span class="o">.</span><span class="n">multi_map_in_static_method</span><span class="p">(</span>
+        <span class="k">return</span> <span class="n">ContainerBase</span><span class="o">.</span><span class="n">cont_multi_map_in_static_method</span><span class="p">(</span>
             <span class="s2">&quot;gradient&quot;</span><span class="p">,</span>
             <span class="n">x</span><span class="p">,</span>
             <span class="n">key_chains</span><span class="o">=</span><span class="n">key_chains</span><span class="p">,</span>

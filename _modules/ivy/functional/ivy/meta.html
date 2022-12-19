@@ -81,14 +81,18 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Framework Classes</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../../stateful/layers.html">Layers</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../stateful/module.html">Module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../stateful/converters.html">Converters</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../stateful/activations.html">Activations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../stateful/layers.html">Layers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../stateful/converters.html">Converters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../stateful/module.html">Module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../stateful/initializers.html">Initializers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../stateful/sequential.html">Sequential</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../stateful/norms.html">Norms</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../stateful/optimizers.html">Optimizers</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../stateful/sequential.html">Sequential</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Nested array</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../nested_array/nested_array.html">Nested array</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Docs</span></p>
 <ul>
@@ -158,22 +162,22 @@
     <span class="k">if</span> <span class="n">order</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
         <span class="n">cost</span><span class="p">,</span> <span class="n">inner_grads</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">execute_with_gradients</span><span class="p">(</span>
             <span class="k">lambda</span> <span class="n">v</span><span class="p">:</span> <span class="n">cost_fn</span><span class="p">(</span>
-                <span class="n">batch</span><span class="p">,</span> <span class="n">v</span><span class="o">=</span><span class="n">variables</span><span class="o">.</span><span class="n">set_at_key_chains</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="k">if</span> <span class="n">unique_outer</span> <span class="k">else</span> <span class="n">v</span>
+                <span class="n">batch</span><span class="p">,</span> <span class="n">v</span><span class="o">=</span><span class="n">variables</span><span class="o">.</span><span class="n">cont_set_at_key_chains</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="k">if</span> <span class="n">unique_outer</span> <span class="k">else</span> <span class="n">v</span>
             <span class="p">),</span>
-            <span class="n">variables</span><span class="o">.</span><span class="n">at_key_chains</span><span class="p">(</span><span class="n">outer_v</span><span class="p">,</span> <span class="n">ignore_none</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="n">variables</span><span class="o">.</span><span class="n">cont_at_key_chains</span><span class="p">(</span><span class="n">outer_v</span><span class="p">,</span> <span class="n">ignore_none</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">keep_outer_v</span>
-            <span class="k">else</span> <span class="n">variables</span><span class="o">.</span><span class="n">prune_key_chains</span><span class="p">(</span><span class="n">outer_v</span><span class="p">,</span> <span class="n">ignore_none</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+            <span class="k">else</span> <span class="n">variables</span><span class="o">.</span><span class="n">cont_prune_key_chains</span><span class="p">(</span><span class="n">outer_v</span><span class="p">,</span> <span class="n">ignore_none</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
             <span class="n">retain_grads</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
         <span class="p">)</span>
         <span class="n">var</span> <span class="o">=</span> <span class="p">(</span>
-            <span class="n">variables</span><span class="o">.</span><span class="n">at_key_chains</span><span class="p">(</span><span class="n">outer_v</span><span class="p">,</span> <span class="n">ignore_none</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="n">variables</span><span class="o">.</span><span class="n">cont_at_key_chains</span><span class="p">(</span><span class="n">outer_v</span><span class="p">,</span> <span class="n">ignore_none</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">keep_outer_v</span>
-            <span class="k">else</span> <span class="n">variables</span><span class="o">.</span><span class="n">prune_key_chains</span><span class="p">(</span><span class="n">outer_v</span><span class="p">,</span> <span class="n">ignore_none</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="k">else</span> <span class="n">variables</span><span class="o">.</span><span class="n">cont_prune_key_chains</span><span class="p">(</span><span class="n">outer_v</span><span class="p">,</span> <span class="n">ignore_none</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
         <span class="p">)</span>
         <span class="n">inner_grads</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span>
             <span class="p">{</span>
                 <span class="n">k</span><span class="p">:</span> <span class="n">ivy</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="k">if</span> <span class="n">k</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">inner_grads</span> <span class="k">else</span> <span class="n">inner_grads</span><span class="p">[</span><span class="n">k</span><span class="p">]</span>
-                <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">var</span><span class="o">.</span><span class="n">to_iterator</span><span class="p">()</span>
+                <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">var</span><span class="o">.</span><span class="n">cont_to_iterator</span><span class="p">()</span>
             <span class="p">}</span>
         <span class="p">)</span>
         <span class="k">if</span> <span class="n">batched</span><span class="p">:</span>
@@ -219,24 +223,25 @@
         <span class="c1"># compute inner gradient for update the inner variables</span>
         <span class="n">cost</span><span class="p">,</span> <span class="n">inner_update_grads</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">execute_with_gradients</span><span class="p">(</span>
             <span class="k">lambda</span> <span class="n">v</span><span class="p">:</span> <span class="n">inner_cost_fn</span><span class="p">(</span>
-                <span class="n">inner_batch</span><span class="p">,</span> <span class="n">v</span><span class="o">=</span><span class="n">variables</span><span class="o">.</span><span class="n">set_at_key_chains</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="k">if</span> <span class="n">unique_inner</span> <span class="k">else</span> <span class="n">v</span>
+                <span class="n">inner_batch</span><span class="p">,</span>
+                <span class="n">v</span><span class="o">=</span><span class="n">variables</span><span class="o">.</span><span class="n">cont_set_at_key_chains</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="k">if</span> <span class="n">unique_inner</span> <span class="k">else</span> <span class="n">v</span><span class="p">,</span>
             <span class="p">),</span>
-            <span class="n">variables</span><span class="o">.</span><span class="n">at_key_chains</span><span class="p">(</span><span class="n">inner_v</span><span class="p">,</span> <span class="n">ignore_none</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="n">variables</span><span class="o">.</span><span class="n">cont_at_key_chains</span><span class="p">(</span><span class="n">inner_v</span><span class="p">,</span> <span class="n">ignore_none</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">keep_innver_v</span>
-            <span class="k">else</span> <span class="n">variables</span><span class="o">.</span><span class="n">prune_key_chains</span><span class="p">(</span><span class="n">inner_v</span><span class="p">,</span> <span class="n">ignore_none</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+            <span class="k">else</span> <span class="n">variables</span><span class="o">.</span><span class="n">cont_prune_key_chains</span><span class="p">(</span><span class="n">inner_v</span><span class="p">,</span> <span class="n">ignore_none</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
             <span class="n">retain_grads</span><span class="o">=</span><span class="n">order</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">,</span>
         <span class="p">)</span>
         <span class="n">var</span> <span class="o">=</span> <span class="p">(</span>
-            <span class="n">variables</span><span class="o">.</span><span class="n">at_key_chains</span><span class="p">(</span><span class="n">inner_v</span><span class="p">,</span> <span class="n">ignore_none</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="n">variables</span><span class="o">.</span><span class="n">cont_at_key_chains</span><span class="p">(</span><span class="n">inner_v</span><span class="p">,</span> <span class="n">ignore_none</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">keep_innver_v</span>
-            <span class="k">else</span> <span class="n">variables</span><span class="o">.</span><span class="n">prune_key_chains</span><span class="p">(</span><span class="n">inner_v</span><span class="p">,</span> <span class="n">ignore_none</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="k">else</span> <span class="n">variables</span><span class="o">.</span><span class="n">cont_prune_key_chains</span><span class="p">(</span><span class="n">inner_v</span><span class="p">,</span> <span class="n">ignore_none</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
         <span class="p">)</span>
         <span class="n">inner_update_grads</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span>
             <span class="p">{</span>
                 <span class="n">k</span><span class="p">:</span> <span class="n">ivy</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
                 <span class="k">if</span> <span class="n">k</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">inner_update_grads</span>
                 <span class="k">else</span> <span class="n">inner_update_grads</span><span class="p">[</span><span class="n">k</span><span class="p">]</span>
-                <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">var</span><span class="o">.</span><span class="n">to_iterator</span><span class="p">()</span>
+                <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">var</span><span class="o">.</span><span class="n">cont_to_iterator</span><span class="p">()</span>
             <span class="p">}</span>
         <span class="p">)</span>
         <span class="k">if</span> <span class="n">batched</span><span class="p">:</span>
@@ -263,11 +268,11 @@
         <span class="c1"># update cost and update parameters</span>
         <span class="n">total_cost</span> <span class="o">=</span> <span class="n">total_cost</span> <span class="o">+</span> <span class="n">cost</span>
         <span class="k">if</span> <span class="n">unique_inner</span><span class="p">:</span>
-            <span class="n">variables</span> <span class="o">=</span> <span class="n">variables</span><span class="o">.</span><span class="n">set_at_key_chains</span><span class="p">(</span>
+            <span class="n">variables</span> <span class="o">=</span> <span class="n">variables</span><span class="o">.</span><span class="n">cont_set_at_key_chains</span><span class="p">(</span>
                 <span class="n">inner_optimization_step</span><span class="p">(</span>
-                    <span class="n">variables</span><span class="o">.</span><span class="n">at_key_chains</span><span class="p">(</span><span class="n">inner_v</span><span class="p">)</span>
+                    <span class="n">variables</span><span class="o">.</span><span class="n">cont_at_key_chains</span><span class="p">(</span><span class="n">inner_v</span><span class="p">)</span>
                     <span class="k">if</span> <span class="n">keep_innver_v</span>
-                    <span class="k">else</span> <span class="n">variables</span><span class="o">.</span><span class="n">prune_key_chains</span><span class="p">(</span><span class="n">inner_v</span><span class="p">),</span>
+                    <span class="k">else</span> <span class="n">variables</span><span class="o">.</span><span class="n">cont_prune_key_chains</span><span class="p">(</span><span class="n">inner_v</span><span class="p">),</span>
                     <span class="n">inner_update_grads</span><span class="p">,</span>
                     <span class="n">inner_learning_rate</span><span class="p">,</span>
                     <span class="n">stop_gradients</span><span class="o">=</span><span class="n">stop_gradients</span><span class="p">,</span>
@@ -411,7 +416,7 @@
         <span class="n">outer_v_seq</span> <span class="o">=</span> <span class="kc">True</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">outer_v_seq</span> <span class="o">=</span> <span class="kc">False</span>
-    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">sub_batch</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">batch</span><span class="o">.</span><span class="n">unstack_conts</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="n">num_tasks</span><span class="p">)):</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">sub_batch</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">batch</span><span class="o">.</span><span class="n">cont_unstack_conts</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="n">num_tasks</span><span class="p">)):</span>
         <span class="k">if</span> <span class="n">inner_sub_batch_fn</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">inner_sub_batch</span> <span class="o">=</span> <span class="n">inner_sub_batch_fn</span><span class="p">(</span><span class="n">sub_batch</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
@@ -613,7 +618,7 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">num_tasks</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">num_tasks</span> <span class="o">=</span> <span class="n">batch</span><span class="o">.</span><span class="n">shared_shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">num_tasks</span> <span class="o">=</span> <span class="n">batch</span><span class="o">.</span><span class="n">cont_shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
     <span class="n">rets</span> <span class="o">=</span> <span class="n">_train_tasks</span><span class="p">(</span>
         <span class="n">batch</span><span class="p">,</span>
         <span class="n">inner_batch_fn</span><span class="p">,</span>
@@ -700,7 +705,7 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">num_tasks</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">num_tasks</span> <span class="o">=</span> <span class="n">batch</span><span class="o">.</span><span class="n">shared_shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">num_tasks</span> <span class="o">=</span> <span class="n">batch</span><span class="o">.</span><span class="n">cont_shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
     <span class="c1"># noinspection PyTypeChecker</span>
     <span class="n">rets</span> <span class="o">=</span> <span class="n">_train_tasks</span><span class="p">(</span>
         <span class="n">batch</span><span class="p">,</span>
@@ -824,7 +829,7 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">num_tasks</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">num_tasks</span> <span class="o">=</span> <span class="n">batch</span><span class="o">.</span><span class="n">shared_shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">num_tasks</span> <span class="o">=</span> <span class="n">batch</span><span class="o">.</span><span class="n">cont_shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
     <span class="n">unique_outer</span> <span class="o">=</span> <span class="n">outer_v</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
     <span class="n">func_ret</span><span class="p">,</span> <span class="n">grads</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">execute_with_gradients</span><span class="p">(</span>
         <span class="k">lambda</span> <span class="n">v</span><span class="p">:</span> <span class="n">_train_tasks</span><span class="p">(</span>
@@ -833,7 +838,7 @@
             <span class="n">outer_batch_fn</span><span class="p">,</span>
             <span class="n">inner_cost_fn</span><span class="p">,</span>
             <span class="n">outer_cost_fn</span><span class="p">,</span>
-            <span class="n">variables</span><span class="o">.</span><span class="n">set_at_key_chains</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="k">if</span> <span class="n">unique_outer</span> <span class="k">else</span> <span class="n">v</span><span class="p">,</span>
+            <span class="n">variables</span><span class="o">.</span><span class="n">cont_set_at_key_chains</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="k">if</span> <span class="n">unique_outer</span> <span class="k">else</span> <span class="n">v</span><span class="p">,</span>
             <span class="n">inner_grad_steps</span><span class="p">,</span>
             <span class="n">inner_learning_rate</span><span class="p">,</span>
             <span class="n">inner_optimization_step</span><span class="p">,</span>
@@ -848,9 +853,9 @@
             <span class="n">num_tasks</span><span class="p">,</span>
             <span class="kc">False</span><span class="p">,</span>
         <span class="p">),</span>
-        <span class="n">variables</span><span class="o">.</span><span class="n">at_key_chains</span><span class="p">(</span><span class="n">outer_v</span><span class="p">,</span> <span class="n">ignore_none</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">variables</span><span class="o">.</span><span class="n">cont_at_key_chains</span><span class="p">(</span><span class="n">outer_v</span><span class="p">,</span> <span class="n">ignore_none</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">keep_outer_v</span>
-        <span class="k">else</span> <span class="n">variables</span><span class="o">.</span><span class="n">prune_key_chains</span><span class="p">(</span><span class="n">outer_v</span><span class="p">,</span> <span class="n">ignore_none</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+        <span class="k">else</span> <span class="n">variables</span><span class="o">.</span><span class="n">cont_prune_key_chains</span><span class="p">(</span><span class="n">outer_v</span><span class="p">,</span> <span class="n">ignore_none</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
     <span class="p">)</span>
     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">func_ret</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">):</span>
         <span class="n">grads</span> <span class="o">=</span> <span class="n">grads</span><span class="p">[</span><span class="s2">&quot;0&quot;</span><span class="p">]</span> <span class="k">if</span> <span class="s2">&quot;0&quot;</span> <span class="ow">in</span> <span class="n">grads</span> <span class="k">else</span> <span class="n">grads</span>

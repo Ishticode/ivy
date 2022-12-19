@@ -22,7 +22,7 @@
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="cholesky" href="linear_algebra/cholesky.html" />
-    <link rel="prev" title="fft" href="layers/fft.html" /> 
+    <link rel="prev" title="get_x_data_format" href="layers/get_x_data_format.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -69,6 +69,7 @@
 <li class="toctree-l2"><a class="reference internal" href="linear_algebra/cross.html">cross</a></li>
 <li class="toctree-l2"><a class="reference internal" href="linear_algebra/det.html">det</a></li>
 <li class="toctree-l2"><a class="reference internal" href="linear_algebra/diagonal.html">diagonal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linear_algebra/eig.html">eig</a></li>
 <li class="toctree-l2"><a class="reference internal" href="linear_algebra/eigh.html">eigh</a></li>
 <li class="toctree-l2"><a class="reference internal" href="linear_algebra/eigvalsh.html">eigvalsh</a></li>
 <li class="toctree-l2"><a class="reference internal" href="linear_algebra/inner.html">inner</a></li>
@@ -86,6 +87,7 @@
 <li class="toctree-l2"><a class="reference internal" href="linear_algebra/svd.html">svd</a></li>
 <li class="toctree-l2"><a class="reference internal" href="linear_algebra/svdvals.html">svdvals</a></li>
 <li class="toctree-l2"><a class="reference internal" href="linear_algebra/tensordot.html">tensordot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linear_algebra/tensorsolve.html">tensorsolve</a></li>
 <li class="toctree-l2"><a class="reference internal" href="linear_algebra/trace.html">trace</a></li>
 <li class="toctree-l2"><a class="reference internal" href="linear_algebra/vecdot.html">vecdot</a></li>
 <li class="toctree-l2"><a class="reference internal" href="linear_algebra/vector_norm.html">vector_norm</a></li>
@@ -113,14 +115,18 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Framework Classes</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../stateful/layers.html">Layers</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../stateful/module.html">Module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../stateful/converters.html">Converters</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../stateful/activations.html">Activations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../stateful/layers.html">Layers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../stateful/converters.html">Converters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../stateful/module.html">Module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../stateful/initializers.html">Initializers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../stateful/sequential.html">Sequential</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../stateful/norms.html">Norms</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../stateful/optimizers.html">Optimizers</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../stateful/sequential.html">Sequential</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Nested array</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../nested_array/nested_array.html">Nested array</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Docs</span></p>
 <ul>
@@ -647,6 +653,54 @@ instances in place of any of the arguments.</p>
 </dd></dl>
 
 <dl class="py function">
+<dt class="sig sig-object py" id="ivy.functional.ivy.linear_algebra.eig">
+<span class="sig-prename descclassname">ivy.</span></span><span class="sig-name descname"><span class="pre">eig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">/</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ivy/functional/ivy/linear_algebra.html#eig"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ivy.functional.ivy.linear_algebra.eig" title="Permalink to this definition"></a></dt>
+<dd><p>Returns an eigendecomposition x = QLQᵀ of a symmetric matrix (or a stack of
+symmetric matrices) <code class="docutils literal notranslate"><span class="pre">x</span></code>, where <code class="docutils literal notranslate"><span class="pre">Q</span></code> is an orthogonal matrix (or a stack of
+matrices) and <code class="docutils literal notranslate"><span class="pre">L</span></code> is a vector (or a stack of vectors).</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The function <code class="docutils literal notranslate"><span class="pre">eig</span></code> currently behaves like <code class="docutils literal notranslate"><span class="pre">eigh</span></code>, as
+it requires complex number support, once complex numbers are supported,
+x does not need to be a complex Hermitian or real symmetric matrix.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>x</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<a class="reference internal" href="../../data_classes/array/array/Array.html#ivy.array.array.Array" title="ivy.array.array.Array"><code class="xref py py-class docutils literal notranslate"><span class="pre">Array</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">NativeArray</span></code>]) – input array having shape <code class="docutils literal notranslate"><span class="pre">(...,</span> <span class="pre">M,</span> <span class="pre">M)</span></code> and whose innermost two dimensions form
+square matrices. Must have a floating-point data type.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<a class="reference internal" href="../../data_classes/array/array/Array.html#ivy.array.array.Array" title="ivy.array.array.Array"><code class="xref py py-class docutils literal notranslate"><span class="pre">Array</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">NativeArray</span></code>]]</p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><ul class="simple">
+<li><p><em>ret</em> – a namedtuple (<code class="docutils literal notranslate"><span class="pre">eigenvalues</span></code>, <code class="docutils literal notranslate"><span class="pre">eigenvectors</span></code>) whose</p>
+<ul>
+<li><p>first element must have the field name <code class="docutils literal notranslate"><span class="pre">eigenvalues</span></code> (corresponding to
+<code class="docutils literal notranslate"><span class="pre">L</span></code> above) and must be an array consisting of computed eigenvalues. The
+array containing the eigenvalues must have shape <code class="docutils literal notranslate"><span class="pre">(...,</span> <span class="pre">M)</span></code>.</p></li>
+<li><p>second element have have the field name <code class="docutils literal notranslate"><span class="pre">eigenvectors</span></code> (corresponding to
+<code class="docutils literal notranslate"><span class="pre">Q</span></code> above) and must be an array where the columns of the inner most
+matrices contain the computed eigenvectors. These matrices must be
+orthogonal. The array containing the eigenvectors must have shape
+<code class="docutils literal notranslate"><span class="pre">(...,</span> <span class="pre">M,</span> <span class="pre">M)</span></code>.</p></li>
+<li><p>Each returned array must have the same floating-point data type as <code class="docutils literal notranslate"><span class="pre">x</span></code>.</p></li>
+</ul>
+</li>
+<li><p><em>.. note::</em> – Eigenvalue sort order is left unspecified and is thus implementation-dependent.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+<p>This function conforms to the <a class="reference external" href="https://data-apis.org/array-api/latest/">Array API Standard</a>. This docstring is an extension of the
+<a class="reference external" href="https://data-apis.org/array-api/latest/extensions/generated/signatures.linalg.eigh.html">docstring</a> 
+in the standard.</p>
+<p>Both the description and the type hints above assumes an array input for simplicity,
+but this function is <em>nestable</em>, and therefore also accepts <code class="xref py py-class docutils literal notranslate"><span class="pre">ivy.Container</span></code>
+instances in place of any of the arguments.</p>
+</dd></dl>
+
+<dl class="py function">
 <dt class="sig sig-object py" id="ivy.functional.ivy.linear_algebra.eigh">
 <span class="sig-prename descclassname">ivy.</span></span><span class="sig-name descname"><span class="pre">eigh</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">/</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">UPLO</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'L'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ivy/functional/ivy/linear_algebra.html#eigh"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ivy.functional.ivy.linear_algebra.eigh" title="Permalink to this definition"></a></dt>
 <dd><p>Returns an eigendecomposition x = QLQᵀ of a symmetric matrix (or a stack of
@@ -747,7 +801,6 @@ instances in place of any of the arguments.</p>
 <span class="go">ivy.array([[-1.,  3.]])</span>
 </pre></div>
 </div>
-<p>Using out</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([[[</span><span class="mf">3.0</span><span class="p">,</span><span class="mf">2.0</span><span class="p">],[</span><span class="mf">2.0</span><span class="p">,</span><span class="mf">3.0</span><span class="p">]]])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">ivy</span><span class="o">.</span><span class="n">eigvalsh</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">y</span><span class="p">)</span>
@@ -761,7 +814,6 @@ instances in place of any of the arguments.</p>
 <span class="go">ivy.array([[1., 5.]])</span>
 </pre></div>
 </div>
-<p>Using UPLO</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([[[</span><span class="mf">2.0</span><span class="p">,</span><span class="mf">3.0</span><span class="p">,</span><span class="mf">6.0</span><span class="p">],[</span><span class="mf">3.0</span><span class="p">,</span><span class="mf">4.0</span><span class="p">,</span><span class="mf">5.0</span><span class="p">],[</span><span class="mf">6.0</span><span class="p">,</span><span class="mf">5.0</span><span class="p">,</span><span class="mf">9.0</span><span class="p">]],</span>
 <span class="gp">... </span><span class="p">[[</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">],[</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">2.0</span><span class="p">,</span><span class="mf">2.0</span><span class="p">],[</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">2.0</span><span class="p">,</span><span class="mf">2.0</span><span class="p">]]])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">eigvalsh</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">UPLO</span><span class="o">=</span><span class="s2">&quot;U&quot;</span><span class="p">)</span>
@@ -857,14 +909,12 @@ instances in place of any of the arguments.</p>
 <span class="go">ivy.array([[-2., 1.],[1.5, -0.5]])</span>
 </pre></div>
 </div>
-<p>Using inplace</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">],</span> <span class="p">[</span><span class="mf">5.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">]])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">ivy</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">x</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 <span class="go">ivy.array([[-1., 0.4],[1., -0.2]])</span>
 </pre></div>
 </div>
-<p>Inverses of several matrices can be computed at once:</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([[[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">],[</span><span class="mf">3.0</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">]],</span>
 <span class="gp">... </span>               <span class="p">[[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">],</span> <span class="p">[</span><span class="mf">3.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">]]])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
@@ -1193,6 +1243,58 @@ in the standard.</p>
 <p>Both the description and the type hints above assumes an array input for simplicity,
 but this function is <em>nestable</em>, and therefore also accepts <code class="xref py py-class docutils literal notranslate"><span class="pre">ivy.Container</span></code>
 instances in place of any of the arguments.</p>
+<p class="rubric">Examples</p>
+<p>With :code: ‘ivy.Array’ inputs:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">2.</span><span class="p">],</span> <span class="p">[</span><span class="mf">3.</span><span class="p">,</span> <span class="mf">4.</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ivy</span><span class="o">.</span><span class="n">matrix_power</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="go">ivy.array([[1., 2.],</span>
+<span class="go">           [3., 4.]])</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">3.</span><span class="p">,</span> <span class="mf">2.</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mf">5.</span><span class="p">,</span> <span class="o">-</span><span class="mf">3.</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ivy</span><span class="o">.</span><span class="n">matrix_power</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="go">ivy.array([[-3., -2.],</span>
+<span class="go">           [ 5.,  3.]])</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">4.</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">2.</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ivy</span><span class="o">.</span><span class="n">matrix_power</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+<span class="go">ivy.array([[1., 0.],</span>
+<span class="go">           [0., 1.]])</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">2.</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ivy</span><span class="o">.</span><span class="n">matrix_power</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
+<span class="go">ivy.array([[ 1., 10.],</span>
+<span class="go">           [ 0.,  1.]])</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="mf">0.</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ivy</span><span class="o">.</span><span class="n">matrix_power</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span>
+<span class="go">ivy.array([[4., 0.],</span>
+<span class="go">           [0., 9.]])</span>
+</pre></div>
+</div>
+<p>With :code: ‘ivy.NativeArray’ inputs:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">native_array</span><span class="p">([[</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">2.</span><span class="p">,</span> <span class="mf">3.</span><span class="p">],</span> <span class="p">[</span><span class="mf">6.</span><span class="p">,</span> <span class="mf">5.</span><span class="p">,</span> <span class="mf">4.</span><span class="p">],</span> <span class="p">[</span><span class="mf">7.</span><span class="p">,</span> <span class="mf">8.</span><span class="p">,</span> <span class="mf">9.</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ivy</span><span class="o">.</span><span class="n">matrix_power</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="go">ivy.array([[ 34.,  36.,  38.],</span>
+<span class="go">           [ 64.,  69.,  74.],</span>
+<span class="go">           [118., 126., 134.]])</span>
+</pre></div>
+</div>
+<p>With :code: ‘ivy.Container’ inputs:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span><span class="n">a</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">2.</span><span class="p">],</span> <span class="p">[</span><span class="mf">3.</span><span class="p">,</span> <span class="mf">4.</span><span class="p">]]),</span>
+<span class="go">                      b = ivy.array([[1., 0.], [0., 0.]]))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ivy</span><span class="o">.</span><span class="n">matrix_power</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<span class="go">{</span>
+<span class="go">    a: ivy.array([[37., 54.],</span>
+<span class="go">                  [81., 118.]]),</span>
+<span class="go">    b: ivy.array([[1., 0.],</span>
+<span class="go">                  [0., 0.]])</span>
+<span class="go">}</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="py function">
@@ -1543,39 +1645,56 @@ instances in place of any of the arguments.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="ivy.functional.ivy.linear_algebra.slogdet">
 <span class="sig-prename descclassname">ivy.</span></span><span class="sig-name descname"><span class="pre">slogdet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">/</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ivy/functional/ivy/linear_algebra.html#slogdet"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ivy.functional.ivy.linear_algebra.slogdet" title="Permalink to this definition"></a></dt>
-<dd><p>Computes the sign and natural logarithm of the determinant of an array.</p>
+<dd><p>Returns the sign and the natural logarithm of the absolute value of the determinant of a square matrix (or a stack of square matrices) <code class="docutils literal notranslate"><span class="pre">x</span></code>.
+.. note:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>The purpose of this function is to calculate the determinant more accurately when the determinant is either very small or very large, as calling ``det`` may overflow or underflow.
+</pre></div>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>x</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<a class="reference internal" href="../../data_classes/array/array/Array.html#ivy.array.array.Array" title="ivy.array.array.Array"><code class="xref py py-class docutils literal notranslate"><span class="pre">Array</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">NativeArray</span></code>]) – input array having shape (…, M, M) and whose innermost two dimensions form
-square matrices. Should have a floating-point data type.</p>
+<dd class="field-odd"><p><strong>x</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<a class="reference internal" href="../../data_classes/array/array/Array.html#ivy.array.array.Array" title="ivy.array.array.Array"><code class="xref py py-class docutils literal notranslate"><span class="pre">Array</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">NativeArray</span></code>]) – input array having shape <code class="docutils literal notranslate"><span class="pre">(...,</span> <span class="pre">M,</span> <span class="pre">M)</span></code> and whose innermost two dimensions form square matrices. Should have a real-valued floating-point data type.</p>
 </dd>
 <dt class="field-even">Return type</dt>
 <dd class="field-even"><p><code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<a class="reference internal" href="../../data_classes/array/array/Array.html#ivy.array.array.Array" title="ivy.array.array.Array"><code class="xref py py-class docutils literal notranslate"><span class="pre">Array</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">NativeArray</span></code>], <code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<a class="reference internal" href="../../data_classes/array/array/Array.html#ivy.array.array.Array" title="ivy.array.array.Array"><code class="xref py py-class docutils literal notranslate"><span class="pre">Array</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">NativeArray</span></code>]]</p>
 </dd>
 <dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p><p><em>ret</em> –</p>
-<dl>
-<dt>This function returns NamedTuple with two values -</dt><dd><p>sign:
-An array containing a number representing the sign of the determinant
-for each square matrix.</p>
-<p>logabsdet:
-An array containing natural log of the absolute determinant of each
-square matrix.</p>
-</dd>
-</dl>
+<dd class="field-odd"><p><ul>
+<li><p><em>ret</em> – a namedtuple (<code class="docutils literal notranslate"><span class="pre">sign</span></code>, <code class="docutils literal notranslate"><span class="pre">logabsdet</span></code>) whose
+-   first element must have the field name <code class="docutils literal notranslate"><span class="pre">sign</span></code> and must be an array containing a number representing the sign of the determinant for each square matrix.
+-   second element must have the field name <code class="docutils literal notranslate"><span class="pre">logabsdet</span></code> and must be an array containing the determinant for each square matrix.
+For a real matrix, the sign of the determinant must be either <code class="docutils literal notranslate"><span class="pre">1</span></code>, <code class="docutils literal notranslate"><span class="pre">0</span></code>, or <code class="docutils literal notranslate"><span class="pre">-1</span></code>.
+Each returned array must have shape <code class="docutils literal notranslate"><span class="pre">shape(x)[:-2]</span></code> and a real-valued floating-point data type determined by <span class="xref std std-ref">type-promotion</span>.
+.. note:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>If a determinant is zero, then the corresponding ``sign`` should be ``0`` and ``logabsdet`` should be ``-infinity``; however, depending on the underlying algorithm, the returned result may differ. In all cases, the determinant should be equal to ``sign * exp(logsabsdet)`` (although, again, the result may be subject to numerical precision errors).
+</pre></div>
+</div>
+</li>
+<li><p>This function conforms to the <a href="#id33"><span class="problematic" id="id34">`</span></a>Array API Standard</p></li>
+<li><p><strong>&lt;https</strong> (//data-apis.org/array-api/latest/&gt;`_. This docstring is an extension of the)</p></li>
+<li><p><strong>`docstring &lt;https</strong> (//data-apis.org/array-api/latest/extensions/generated/        signatures.linalg.slogdet.html&gt;`_ )</p></li>
+<li><p><em>in the standard.</em></p></li>
+<li><p><em>Both the description and the type hints above assumes an array input for simplicity,</em></p></li>
+<li><p>but this function is <em>nestable</em>, and therefore also accepts <code class="xref py py-class docutils literal notranslate"><span class="pre">ivy.Container</span></code></p></li>
+<li><p><em>instances in place of any of the arguments.</em></p></li>
+</ul>
 </p>
 </dd>
 </dl>
-<p>Both the description and the type hints above assumes an array input for simplicity,
-but this function is <em>nestable</em>, and therefore also accepts <code class="xref py py-class docutils literal notranslate"><span class="pre">ivy.Container</span></code>
-instances in place of any of the arguments.</p>
-<p class="rubric">Examples</p>
+<p class="rubric">Functional Examples</p>
 <p>With <code class="xref py py-class docutils literal notranslate"><span class="pre">ivy.Array</span></code> input:</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">],</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">],</span>
 <span class="gp">... </span>               <span class="p">[</span><span class="mf">3.0</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">]])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">slogdet</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
-<span class="go">slogdet(sign=ivy.array(-1.), logabsdet=ivy.array(0.6931472))</span>
+<span class="go">slogdet(sign=ivy.array(1.), logabsdet=ivy.array(1.609438))</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">1.2</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mf">3.1</span><span class="p">],</span>
+<span class="gp">... </span>               <span class="p">[</span><span class="mf">6.0</span><span class="p">,</span> <span class="mf">5.2</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">],</span>
+<span class="gp">... </span>               <span class="p">[</span><span class="mf">9.0</span><span class="p">,</span> <span class="mf">8.0</span><span class="p">,</span> <span class="mf">7.0</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">slogdet</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+<span class="go">slogdet(sign=ivy.array(-1.), logabsdet=ivy.array(1.098611))</span>
 </pre></div>
 </div>
 <p>With <code class="xref py py-class docutils literal notranslate"><span class="pre">ivy.Container</span></code> input:</p>
@@ -1586,17 +1705,17 @@ instances in place of any of the arguments.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">slogdet</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
 <span class="go">{</span>
-<span class="go">    a: (list[2], &lt;class ivy.array.array.Array&gt; shape=[]),</span>
-<span class="go">    b: (list[2], &lt;class ivy.array.array.Array&gt; shape=[])</span>
+<span class="go">    a: [</span>
+<span class="go">        sign = ivy.array(-1.),</span>
+<span class="go">        logabsdet = ivy.array(0.6931472)</span>
+<span class="go">    ],</span>
+<span class="go">    b: [</span>
+<span class="go">        sign = ivy.array(-1.),</span>
+<span class="go">        logabsdet = ivy.array(1.0986123)</span>
+<span class="go">    ]</span>
 <span class="go">}</span>
 </pre></div>
 </div>
-<p>This function conforms to the <a class="reference external" href="https://data-apis.org/array-api/latest/">Array API Standard</a>. This docstring is an extension of the
-<a class="reference external" href="https://data-apis.org/array-api/latest/extensions/generated/signatures.linalg.slogdet.html">docstring</a> 
-in the standard.</p>
-<p>Both the description and the type hints above assumes an array input for simplicity,
-but this function is <em>nestable</em>, and therefore also accepts <code class="xref py py-class docutils literal notranslate"><span class="pre">ivy.Container</span></code>
-instances in place of any of the arguments.</p>
 </dd></dl>
 
 <dl class="py function">
@@ -1712,7 +1831,7 @@ instances in place of any of the arguments.</p>
 <span class="go">(9, 9) (6,) (6, 6)</span>
 </pre></div>
 </div>
-<p>Reconstruction from SVD, result is numerically close to x</p>
+<p>With reconstruction from SVD, result is numerically close to x</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">reconstructed_x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">U</span><span class="p">[:,:</span><span class="mi">6</span><span class="p">]</span> <span class="o">*</span> <span class="n">S</span><span class="p">,</span> <span class="n">Vh</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">((</span><span class="n">reconstructed_x</span> <span class="o">-</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="mf">1e-3</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
 <span class="go">ivy.array(0)</span>
@@ -1721,13 +1840,6 @@ instances in place of any of the arguments.</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">U</span><span class="p">,</span> <span class="n">S</span><span class="p">,</span> <span class="n">Vh</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">svd</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">full_matrices</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">U</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">S</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">Vh</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 <span class="go">(9, 6) (6,) (6, 6)</span>
-</pre></div>
-</div>
-<p>With <code class="xref py py-class docutils literal notranslate"><span class="pre">ivy.NativeArray</span></code> input:</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">native_array</span><span class="p">([[</span><span class="mf">3.4</span><span class="p">,</span><span class="o">-</span><span class="mf">0.7</span><span class="p">,</span><span class="mf">0.9</span><span class="p">],[</span><span class="mf">6.</span><span class="p">,</span><span class="o">-</span><span class="mf">7.4</span><span class="p">,</span><span class="mf">0.</span><span class="p">],[</span><span class="o">-</span><span class="mf">8.5</span><span class="p">,</span><span class="mi">92</span><span class="p">,</span><span class="mf">7.</span><span class="p">]])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">U</span><span class="p">,</span> <span class="n">S</span><span class="p">,</span> <span class="n">Vh</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">svd</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">U</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">S</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">Vh</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-<span class="go">(3, 3) (3,) (3, 3)</span>
 </pre></div>
 </div>
 <p>With <code class="xref py py-class docutils literal notranslate"><span class="pre">ivy.Container</span></code> input:</p>
@@ -1789,7 +1901,7 @@ instances in place of any of the arguments.</p>
 <span class="go">(2,)</span>
 </pre></div>
 </div>
-<p>Compare the singular value S by ivy.svdvals() with the result by ivy.svd().</p>
+<p>With comparison of the singular value S ivy.svdvals() by the result ivy.svd().</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">_</span><span class="p">,</span> <span class="n">SS</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">svd</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">SS</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 <span class="go">(2,)</span>
@@ -1817,7 +1929,7 @@ instances in place of any of the arguments.</p>
 <span class="go">ivy.array([10.3, 1.16, 0.615])</span>
 </pre></div>
 </div>
-<p>Compare the singular value S by ivy.svdvals() with the result by ivy.svd().</p>
+<p>with comparison of singular value S ivy.svdvals() by the result ivy.svd().</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">error</span> <span class="o">=</span> <span class="p">(</span><span class="n">SS</span> <span class="o">-</span> <span class="n">S</span><span class="p">)</span><span class="o">.</span><span class="n">abs</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">error</span><span class="p">)</span>
 <span class="go">ivy.array([0., 0., 0.])</span>
@@ -1926,6 +2038,16 @@ instances in place of any of the arguments.</p>
 <span class="go">}</span>
 </pre></div>
 </div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ivy.functional.ivy.linear_algebra.tensorsolve">
+<span class="sig-prename descclassname">ivy.</span></span><span class="sig-name descname"><span class="pre">tensorsolve</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x2</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">/</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ivy/functional/ivy/linear_algebra.html#tensorsolve"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ivy.functional.ivy.linear_algebra.tensorsolve" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="../../data_classes/array/array/Array.html#ivy.array.array.Array" title="ivy.array.array.Array"><code class="xref py py-class docutils literal notranslate"><span class="pre">Array</span></code></a></p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
@@ -2152,13 +2274,13 @@ instances in place of any of the arguments.</p>
 vector norms. If an n-tuple, <code class="docutils literal notranslate"><span class="pre">axis</span></code> specifies the axes (dimensions) along
 which to compute batched vector norms. If <code class="docutils literal notranslate"><span class="pre">None</span></code>, the vector norm must be
 computed over all array values (i.e., equivalent to computing the vector norm of
-a flattened array). Negative indices must be supported. Default: <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p></li>
+a flattened array). Negative indices are also supported. Default: <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p></li>
 <li><p><strong>keepdims</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>) – If <code class="docutils literal notranslate"><span class="pre">True</span></code>, the axes (dimensions) specified by <code class="docutils literal notranslate"><span class="pre">axis</span></code> must be included in the (default: <code class="docutils literal notranslate"><span class="pre">False</span></code>)
 result as singleton dimensions, and, accordingly, the result must be compatible
 with the input array (see <span class="xref std std-ref">broadcasting</span>). Otherwise, if <code class="docutils literal notranslate"><span class="pre">False</span></code>, the
 axes (dimensions) specified by <code class="docutils literal notranslate"><span class="pre">axis</span></code> must not be included in the result.
 Default: <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p></li>
-<li><p><strong>ord</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>, <code class="xref py py-data docutils literal notranslate"><span class="pre">Literal</span></code>[inf, -inf]]) – <p>order of the norm. The following mathematical norms must be supported: (default: <code class="docutils literal notranslate"><span class="pre">2</span></code>)</p>
+<li><p><strong>ord</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>, <code class="xref py py-data docutils literal notranslate"><span class="pre">Literal</span></code>[inf, -inf]]) – <p>order of the norm. The following mathematical norms are supported: (default: <code class="docutils literal notranslate"><span class="pre">2</span></code>)</p>
 <table class="docutils align-default">
 <colgroup>
 <col style="width: 39%" />
@@ -2184,7 +2306,7 @@ Default: <code class="docutils literal notranslate"><span class="pre">False</spa
 </tr>
 </tbody>
 </table>
-<p>The following non-mathematical “norms” must be supported:</p>
+<p>The following non-mathematical “norms” are also supported:</p>
 <table class="docutils align-default">
 <colgroup>
 <col style="width: 36%" />
@@ -2198,12 +2320,6 @@ Default: <code class="docutils literal notranslate"><span class="pre">False</spa
 <tbody>
 <tr class="row-even"><td><p>0</p></td>
 <td><p>sum(a != 0)</p></td>
-</tr>
-<tr class="row-odd"><td><p>-1</p></td>
-<td><p>1./sum(1./abs(a))</p></td>
-</tr>
-<tr class="row-even"><td><p>-2</p></td>
-<td><p>1./sqrt(sum(1./abs(a)**2))</p></td>
 </tr>
 <tr class="row-odd"><td><p>-inf</p></td>
 <td><p>min(abs(a))</p></td>
@@ -2243,7 +2359,7 @@ instances in place of any of the arguments.</p>
 <dt class="sig sig-object py" id="ivy.functional.ivy.linear_algebra.vector_to_skew_symmetric_matrix">
 <span class="sig-prename descclassname">ivy.</span></span><span class="sig-name descname"><span class="pre">vector_to_skew_symmetric_matrix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vector</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">/</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ivy/functional/ivy/linear_algebra.html#vector_to_skew_symmetric_matrix"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ivy.functional.ivy.linear_algebra.vector_to_skew_symmetric_matrix" title="Permalink to this definition"></a></dt>
 <dd><dl class="simple">
-<dt>Given vector, return the associated <a href="#id45"><span class="problematic" id="id46">`</span></a>Skew-symmetric matrix</dt><dd><p>&lt;<a class="reference external" href="https://en.wikipedia.org/wiki/Skew-symmetric_matrix#Cross_product/">https://en.wikipedia.org/wiki/Skew-symmetric_matrix#Cross_product/</a>&gt;`_.</p>
+<dt>Given vector, return the associated <a href="#id47"><span class="problematic" id="id48">`</span></a>Skew-symmetric matrix</dt><dd><p>&lt;<a class="reference external" href="https://en.wikipedia.org/wiki/Skew-symmetric_matrix#Cross_product/">https://en.wikipedia.org/wiki/Skew-symmetric_matrix#Cross_product/</a>&gt;`_.</p>
 </dd>
 </dl>
 <dl class="field-list simple">
@@ -2275,7 +2391,7 @@ instances in place of any of the arguments.</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="layers/fft.html" class="btn btn-neutral float-left" title="fft" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="layers/get_x_data_format.html" class="btn btn-neutral float-left" title="get_x_data_format" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="linear_algebra/cholesky.html" class="btn btn-neutral float-right" title="cholesky" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

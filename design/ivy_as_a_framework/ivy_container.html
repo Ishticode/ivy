@@ -109,14 +109,18 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Framework Classes</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../stateful/layers.html">Layers</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../stateful/module.html">Module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../stateful/converters.html">Converters</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../stateful/activations.html">Activations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../stateful/layers.html">Layers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../stateful/converters.html">Converters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../stateful/module.html">Module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../stateful/initializers.html">Initializers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../stateful/sequential.html">Sequential</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../stateful/norms.html">Norms</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../stateful/optimizers.html">Optimizers</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../stateful/sequential.html">Sequential</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Nested array</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../nested_array/nested_array.html">Nested array</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Docs</span></p>
 <ul>
@@ -384,15 +388,15 @@ This is not possible with Dicts.</p>
                    <span class="s1">&#39;w&#39;</span><span class="p">:</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">1.5</span><span class="p">,</span> <span class="mf">2.3</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">]])}})</span>
 
 <span class="c1"># save and load as hdf5</span>
-<span class="n">weights</span><span class="o">.</span><span class="n">to_disk_as_hdf5</span><span class="p">(</span><span class="s1">&#39;weights.hdf5&#39;</span><span class="p">)</span>
-<span class="n">loaded</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="o">.</span><span class="n">from_disk_as_hdf5</span><span class="p">(</span><span class="s1">&#39;weights.hdf5&#39;</span><span class="p">)</span>
-<span class="k">assert</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="o">.</span><span class="n">identical</span><span class="p">(</span>
+<span class="n">weights</span><span class="o">.</span><span class="n">cont_to_disk_as_hdf5</span><span class="p">(</span><span class="s1">&#39;weights.hdf5&#39;</span><span class="p">)</span>
+<span class="n">loaded</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="o">.</span><span class="n">cont_from_disk_as_hdf5</span><span class="p">(</span><span class="s1">&#39;weights.hdf5&#39;</span><span class="p">)</span>
+<span class="k">assert</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="o">.</span><span class="n">cont_identical</span><span class="p">(</span>
        <span class="p">[</span><span class="n">loaded</span><span class="p">,</span> <span class="n">weights</span><span class="p">],</span> <span class="n">same_arrays</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
 <span class="c1"># save and load as pickled</span>
-<span class="n">weights</span><span class="o">.</span><span class="n">to_disk_as_pickled</span><span class="p">(</span><span class="s1">&#39;weights.pickled&#39;</span><span class="p">)</span>
-<span class="n">loaded</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="o">.</span><span class="n">from_disk_as_pickled</span><span class="p">(</span><span class="s1">&#39;weights.pickled&#39;</span><span class="p">)</span>
-<span class="k">assert</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="o">.</span><span class="n">identical</span><span class="p">(</span>
+<span class="n">weights</span><span class="o">.</span><span class="n">cont_to_disk_as_pickled</span><span class="p">(</span><span class="s1">&#39;weights.pickled&#39;</span><span class="p">)</span>
+<span class="n">loaded</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="o">.</span><span class="n">cont_from_disk_as_pickled</span><span class="p">(</span><span class="s1">&#39;weights.pickled&#39;</span><span class="p">)</span>
+<span class="k">assert</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="o">.</span><span class="n">cont_identical</span><span class="p">(</span>
        <span class="p">[</span><span class="n">loaded</span><span class="p">,</span> <span class="n">weights</span><span class="p">],</span> <span class="n">same_arrays</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -405,7 +409,7 @@ This is not possible with Dicts.</p>
                      <span class="s1">&#39;optim&#39;</span><span class="p">:</span> <span class="s1">&#39;ADAM&#39;</span><span class="p">}})</span>
 
 <span class="c1"># save and load as json</span>
-<span class="n">config</span><span class="o">.</span><span class="n">to_disk_as_json</span><span class="p">(</span><span class="s1">&#39;config.json&#39;</span><span class="p">)</span>
+<span class="n">config</span><span class="o">.</span><span class="n">cont_to_disk_as_json</span><span class="p">(</span><span class="s1">&#39;config.json&#39;</span><span class="p">)</span>
 
 <span class="c1"># config.json contents -------------#</span>
 <span class="c1"># {                                 #</span>
@@ -421,8 +425,8 @@ This is not possible with Dicts.</p>
 <span class="c1"># }                                 #</span>
 <span class="c1"># ----------------------------------#</span>
 
-<span class="n">loaded</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="o">.</span><span class="n">from_disk_as_json</span><span class="p">(</span><span class="s1">&#39;config.json&#39;</span><span class="p">)</span>
-<span class="k">assert</span> <span class="p">(</span><span class="n">config</span> <span class="o">==</span> <span class="n">loaded</span><span class="p">)</span><span class="o">.</span><span class="n">all_true</span><span class="p">()</span>
+<span class="n">loaded</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="o">.</span><span class="n">cont_from_disk_as_json</span><span class="p">(</span><span class="s1">&#39;config.json&#39;</span><span class="p">)</span>
+<span class="k">assert</span> <span class="p">(</span><span class="n">config</span> <span class="o">==</span> <span class="n">loaded</span><span class="p">)</span><span class="o">.</span><span class="n">cont_all_true</span><span class="p">()</span>
 </pre></div>
 </div>
 </section>
@@ -434,10 +438,10 @@ For example, consider a case where two containers of arrays should be identical 
 We can then very quickly find conflicting leaves.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">cnt0</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">({</span><span class="s1">&#39;a&#39;</span><span class="p">:</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.</span><span class="p">]),</span>
                   <span class="s1">&#39;b&#39;</span><span class="p">:</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.</span><span class="p">])})</span>
-<span class="n">cnt1</span> <span class="o">=</span> <span class="n">cnt0</span><span class="o">.</span><span class="n">deep_copy</span><span class="p">()</span>
+<span class="n">cnt1</span> <span class="o">=</span> <span class="n">cnt0</span><span class="o">.</span><span class="n">cont_deep_copy</span><span class="p">()</span>
 <span class="n">cnt1</span><span class="o">.</span><span class="n">b</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.</span><span class="p">])</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">cnt0</span><span class="p">,</span> <span class="n">cnt1</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="o">.</span><span class="n">cont_diff</span><span class="p">(</span><span class="n">cnt0</span><span class="p">,</span> <span class="n">cnt1</span><span class="p">))</span>
 
 <span class="p">{</span>
     <span class="n">a</span><span class="p">:</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.</span><span class="p">]),</span>
@@ -449,7 +453,7 @@ We can then very quickly find conflicting leaves.</p>
 </pre></div>
 </div>
 <p>Or perhaps we saved JSON configuration files to disk for two different experiment runs, and then want to quickly see their differences.
-The <code class="xref py py-meth docutils literal notranslate"><span class="pre">ivy.Container.diff()</span></code> method will also detect differences in the hierarchical structure and key name differences.</p>
+The <code class="xref py py-meth docutils literal notranslate"><span class="pre">ivy.Container.cont_diff()</span></code> method will also detect differences in the hierarchical structure and key name differences.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">config0</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span>
        <span class="p">{</span><span class="s1">&#39;batch_size&#39;</span><span class="p">:</span> <span class="mi">8</span><span class="p">,</span>
         <span class="s1">&#39;lr&#39;</span><span class="p">:</span> <span class="mf">0.1</span><span class="p">,</span>
@@ -460,7 +464,7 @@ The <code class="xref py py-meth docutils literal notranslate"><span class="pre"
         <span class="s1">&#39;dropout&#39;</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span>
         <span class="s1">&#39;lr&#39;</span><span class="p">:</span> <span class="mf">0.1</span><span class="p">})</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">config0</span><span class="p">,</span> <span class="n">config1</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="o">.</span><span class="n">cont_diff</span><span class="p">(</span><span class="n">config0</span><span class="p">,</span> <span class="n">config1</span><span class="p">))</span>
 
 <span class="p">{</span>
     <span class="n">batch_size</span><span class="p">:</span> <span class="p">{</span>
@@ -477,7 +481,7 @@ The <code class="xref py py-meth docutils literal notranslate"><span class="pre"
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>The <code class="xref py py-meth docutils literal notranslate"><span class="pre">ivy.Container.diff()</span></code> method can be applied to arbitrarily many containers at once in a single call, not just two as in the examples above.</p>
+<p>The <code class="xref py py-meth docutils literal notranslate"><span class="pre">ivy.Container.cont_diff()</span></code> method can be applied to arbitrarily many containers at once in a single call, not just two as in the examples above.</p>
 </section>
 <section id="customized-representations">
 <h2>Customized Representations<a class="headerlink" href="#customized-representations" title="Permalink to this heading"></a></h2>
@@ -510,7 +514,7 @@ Consider the following nested structure.</p>
 </div>
 <p>We can clip the depth of the printed container in order to make the structure of the root keys clearer.
 All nested structures below this depth are truncated into single keys with a “__” delimiter appending all keys below this depth.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">weights</span><span class="o">.</span><span class="n">flatten_key_chains</span><span class="p">(</span><span class="n">above_height</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">weights</span><span class="o">.</span><span class="n">cont_flatten_key_chains</span><span class="p">(</span><span class="n">above_height</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
 <span class="p">{</span>
     <span class="n">decoder__l0</span><span class="p">:</span> <span class="p">{</span>
@@ -542,7 +546,7 @@ All nested structures below this depth are truncated into single keys with a “
 </div>
 <p>Likewise, we can clip the height of the printed container in order to make the structure of the leaf keys clearer.
 All nested structures above this height are truncated into single keys with a “__” delimiter appending all keys above this height.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">weights</span><span class="o">.</span><span class="n">flatten_key_chains</span><span class="p">(</span><span class="n">below_depth</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">weights</span><span class="o">.</span><span class="n">cont_flatten_key_chains</span><span class="p">(</span><span class="n">below_depth</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
 <span class="p">{</span>
     <span class="n">decoder</span><span class="p">:</span> <span class="p">{</span>
@@ -569,7 +573,7 @@ All nested structures above this height are truncated into single keys with a �
 </pre></div>
 </div>
 <p>These are very useful methods when stepping through code and debugging complex nested structures such as the weights of a network.</p>
-<p>There are also methods: <code class="code docutils literal notranslate"><span class="pre">with_print_limit</span></code> for controlling the printable size of arrays before the shape is instead displayed, <code class="code docutils literal notranslate"><span class="pre">with_key_length_limit</span></code> for setting the maximum key length before string clipping, <code class="code docutils literal notranslate"><span class="pre">with_print_indent</span></code> for controlling the nested indent, and many more.
+<p>There are also methods: <code class="code docutils literal notranslate"><span class="pre">cont_with_print_limit</span></code> for controlling the printable size of arrays before the shape is instead displayed, <code class="code docutils literal notranslate"><span class="pre">cont_with_key_length_limit</span></code> for setting the maximum key length before string clipping, <code class="code docutils literal notranslate"><span class="pre">cont_with_print_indent</span></code> for controlling the nested indent, and many more.
 Check out the <a class="reference external" href="https://lets-unify.ai/ivy/core/container.html">docs</a> for more details!</p>
 </section>
 <section id="use-cases">
@@ -647,7 +651,7 @@ However the recursive methods of the Ivy Container make things even more conveni
 </section>
 <section id="configuration">
 <h2>Configuration<a class="headerlink" href="#configuration" title="Permalink to this heading"></a></h2>
-<p>As briefly alluded to when explaining the <code class="xref py py-meth docutils literal notranslate"><span class="pre">ivy.Container.diff()</span></code> method, the container class is also the ideal data type for storing experiment configurations.
+<p>As briefly alluded to when explaining the <code class="xref py py-meth docutils literal notranslate"><span class="pre">ivy.Container.cont_diff()</span></code> method, the container class is also the ideal data type for storing experiment configurations.
 Configurations can either first be stored to disk as a JSON file and then loaded into the <code class="xref py py-class docutils literal notranslate"><span class="pre">ivy.Container</span></code> for recursive comparisons to see differences between experiments, or the config can be specified in the code and then saved to disk as a JSON to keep a permanent log afterwards.</p>
 </section>
 <section id="data-loading">
@@ -668,17 +672,17 @@ This is useful if we need to recursively unroll the entire batch in the time dim
         <span class="bp">self</span><span class="o">.</span><span class="n">_count</span> <span class="o">=</span> <span class="mi">0</span>
 
     <span class="k">def</span> <span class="fm">__next__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">cnt</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cnt</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="n">cnt</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cnt</span><span class="o">.</span><span class="n">cont_copy</span><span class="p">()</span>
 
         <span class="c1"># image filenames</span>
-        <span class="n">img_fnames</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="o">.</span><span class="n">list_stack</span><span class="p">(</span>
-            <span class="p">[</span><span class="n">cnt</span><span class="o">.</span><span class="n">imgs</span><span class="o">.</span><span class="n">map</span><span class="p">(</span>
+        <span class="n">img_fnames</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="o">.</span><span class="n">cont_list_stack</span><span class="p">(</span>
+            <span class="p">[</span><span class="n">cnt</span><span class="o">.</span><span class="n">imgs</span><span class="o">.</span><span class="n">cont_map</span><span class="p">(</span>
                 <span class="k">lambda</span> <span class="n">fname</span><span class="p">,</span> <span class="n">_</span><span class="p">:</span> <span class="n">fname</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_count</span> <span class="o">+</span> <span class="n">i</span><span class="p">)</span>
             <span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_batch_size</span><span class="p">)],</span> <span class="mi">0</span>
         <span class="p">)</span>
 
         <span class="c1"># load from disk</span>
-        <span class="n">loaded_imgs</span> <span class="o">=</span> <span class="n">img_fnames</span><span class="o">.</span><span class="n">map</span><span class="p">(</span>
+        <span class="n">loaded_imgs</span> <span class="o">=</span> <span class="n">img_fnames</span><span class="o">.</span><span class="n">cont_map</span><span class="p">(</span>
             <span class="k">lambda</span> <span class="n">fnames</span><span class="p">,</span> <span class="n">_</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span>
                 <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">expand_dims</span><span class="p">(</span><span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="mi">0</span><span class="p">)</span>
                  <span class="k">for</span> <span class="n">fname</span> <span class="ow">in</span> <span class="n">fnames</span><span class="p">],</span> <span class="mi">0</span>

@@ -81,14 +81,18 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Framework Classes</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../../stateful/layers.html">Layers</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../stateful/module.html">Module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../stateful/converters.html">Converters</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../stateful/activations.html">Activations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../stateful/layers.html">Layers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../stateful/converters.html">Converters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../stateful/module.html">Module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../stateful/initializers.html">Initializers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../stateful/sequential.html">Sequential</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../stateful/norms.html">Norms</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../stateful/optimizers.html">Optimizers</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../stateful/sequential.html">Sequential</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Nested array</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../nested_array/nested_array.html">Nested array</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Docs</span></p>
 <ul>
@@ -210,9 +214,8 @@
 <span class="sd">    y,but this function is *nestable*, and therefore also accepts :class:`ivy.Container`</span>
 <span class="sd">    instances in place of any of the arguments.</span>
 
-<span class="sd">    Functional Examples</span>
-<span class="sd">    -------------------</span>
-
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
 <span class="sd">    With :class:`ivy.Array` input:</span>
 
 <span class="sd">    &gt;&gt;&gt; x = ivy.array([1, 2, 3])</span>
@@ -226,22 +229,15 @@
 <span class="sd">    &gt;&gt;&gt; print(a)</span>
 <span class="sd">    ivy.array([[False]])</span>
 
-<span class="sd">    &gt;&gt;&gt; x=ivy.array(False)</span>
-<span class="sd">    &gt;&gt;&gt; y=ivy.all(ivy.array([[0, 4],[1, 5]]), axis=(0,1), out=x, keepdims=False)</span>
+<span class="sd">    &gt;&gt;&gt; x = ivy.array(False)</span>
+<span class="sd">    &gt;&gt;&gt; y = ivy.all(ivy.array([[0, 4],[1, 5]]), axis=(0,1), out=x, keepdims=False)</span>
 <span class="sd">    &gt;&gt;&gt; print(y)</span>
 <span class="sd">    ivy.array(False)</span>
 
-<span class="sd">    &gt;&gt;&gt; x=ivy.array(False)</span>
-<span class="sd">    &gt;&gt;&gt; y=ivy.all(ivy.array([[[0],[1]],[[1],[1]]]),axis=(0,1,2), out=x, keepdims=False)</span>
+<span class="sd">    &gt;&gt;&gt; x = ivy.array(False)</span>
+<span class="sd">    &gt;&gt;&gt; y = ivy.all(ivy.array([[[0],[1]],[[1],[1]]]),axis=(0,1,2), out=x, keepdims=False)</span>
 <span class="sd">    &gt;&gt;&gt; print(y)</span>
 <span class="sd">    ivy.array(False)</span>
-
-<span class="sd">    With :class:`ivy.NativeArray` input:</span>
-
-<span class="sd">    &gt;&gt;&gt; x = ivy.native_array([1, 2, 3])</span>
-<span class="sd">    &gt;&gt;&gt; y = ivy.all(x)</span>
-<span class="sd">    &gt;&gt;&gt; print(y)</span>
-<span class="sd">    ivy.array(True)</span>
 
 <span class="sd">    With :class:`ivy.Container` input:</span>
 
@@ -328,9 +324,8 @@
 <span class="sd">    y,but this function is *nestable*, and therefore also accepts :class:`ivy.Container`</span>
 <span class="sd">    instances in place of any of the arguments.</span>
 
-<span class="sd">    Functional Examples</span>
-<span class="sd">    -------------------</span>
-
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
 <span class="sd">    With :class:`ivy.Array` input:</span>
 
 <span class="sd">    &gt;&gt;&gt; x = ivy.array([2, 3, 4])</span>
@@ -354,13 +349,6 @@
 <span class="sd">    &gt;&gt;&gt; print(y)</span>
 <span class="sd">    ivy.array(True)</span>
 
-<span class="sd">    With :class:`ivy.NativeArray` input:</span>
-
-<span class="sd">    &gt;&gt;&gt; x = ivy.native_array([2, 3, 4])</span>
-<span class="sd">    &gt;&gt;&gt; y = ivy.any(x)</span>
-<span class="sd">    &gt;&gt;&gt; print(y)</span>
-<span class="sd">    ivy.array(True)</span>
-
 <span class="sd">    With :class:`ivy.Container` input:</span>
 
 <span class="sd">    &gt;&gt;&gt; x = ivy.Container(a=ivy.array([0, 1, 2]), b=ivy.array([3, 4, 5]))</span>
@@ -370,20 +358,8 @@
 <span class="sd">        a: ivy.array(True),</span>
 <span class="sd">        b: ivy.array(True)</span>
 <span class="sd">    }</span>
-
-<span class="sd">    &gt;&gt;&gt; x = ivy.Container(a=ivy.array([0, 1, 2]), b=ivy.array([3, 4, 5]))</span>
-<span class="sd">    &gt;&gt;&gt; y = x.any()</span>
-<span class="sd">    &gt;&gt;&gt; print(y)</span>
-<span class="sd">    {</span>
-<span class="sd">        a: ivy.array(True),</span>
-<span class="sd">        b: ivy.array(True)</span>
-<span class="sd">    }</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">ivy</span><span class="o">.</span><span class="n">current_backend</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="n">keepdims</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">out</span><span class="p">)</span></div>
-
-
-<span class="c1"># Extra #</span>
-<span class="c1"># ------#</span>
 </pre></div>
 
            </div>

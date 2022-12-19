@@ -81,14 +81,18 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Framework Classes</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../../stateful/layers.html">Layers</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../stateful/module.html">Module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../stateful/converters.html">Converters</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../stateful/activations.html">Activations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../stateful/layers.html">Layers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../stateful/converters.html">Converters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../stateful/module.html">Module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../stateful/initializers.html">Initializers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../stateful/sequential.html">Sequential</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../stateful/norms.html">Norms</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../stateful/optimizers.html">Optimizers</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../stateful/sequential.html">Sequential</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Nested array</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../nested_array/nested_array.html">Nested array</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Docs</span></p>
 <ul>
@@ -131,6 +135,7 @@
 <span></span><span class="c1"># global</span>
 <span class="kn">import</span> <span class="nn">abc</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Union</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">List</span>
+<span class="kn">from</span> <span class="nn">numbers</span> <span class="kn">import</span> <span class="n">Number</span>
 
 <span class="c1"># local</span>
 <span class="kn">import</span> <span class="nn">ivy</span>
@@ -404,6 +409,44 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">ivy</span><span class="o">.</span><span class="n">exp2</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">out</span><span class="p">)</span></div>
 
+<div class="viewcode-block" id="ArrayWithElementWiseExperimental.copysign"><a class="viewcode-back" href="../../../../data_classes/array/experimental.html#ivy.array.experimental.ArrayWithElementWiseExperimental.copysign">[docs]</a>    <span class="k">def</span> <span class="nf">copysign</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">,</span> <span class="n">Number</span><span class="p">],</span>
+        <span class="n">x2</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">,</span> <span class="n">Number</span><span class="p">],</span>
+        <span class="o">/</span><span class="p">,</span>
+        <span class="o">*</span><span class="p">,</span>
+        <span class="n">out</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;ivy.Array instance method variant of ivy.copysign. This method simply</span>
+<span class="sd">        wraps the function, and so the docstring for ivy.copysign also applies to</span>
+<span class="sd">        this method with minimal changes.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        x1</span>
+<span class="sd">            Array or scalar to change the sign of</span>
+<span class="sd">        x2</span>
+<span class="sd">            Array or scalar from which the new signs are applied</span>
+<span class="sd">            Unsigned zeroes are considered positive.</span>
+<span class="sd">        out</span>
+<span class="sd">            optional output array, for writing the result to.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        ret</span>
+<span class="sd">            x1 with the signs of x2.</span>
+<span class="sd">            This is a scalar if both x1 and x2 are scalars.</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        &gt;&gt;&gt; x1 = ivy.array([0, 1, 2, 3])</span>
+<span class="sd">        &gt;&gt;&gt; x2 = ivy.array([-1, 1, -2, 2])</span>
+<span class="sd">        &gt;&gt;&gt; x1.copysign(x2)</span>
+<span class="sd">        ivy.array([-0.,  1., -2.,  3.])</span>
+<span class="sd">        &gt;&gt;&gt; x2.copysign(-1)</span>
+<span class="sd">        ivy.array([-1., -1., -2., -2.])</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">ivy</span><span class="o">.</span><span class="n">copysign</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">out</span><span class="p">)</span></div>
+
 <div class="viewcode-block" id="ArrayWithElementWiseExperimental.count_nonzero"><a class="viewcode-back" href="../../../../data_classes/array/experimental.html#ivy.array.experimental.ArrayWithElementWiseExperimental.count_nonzero">[docs]</a>    <span class="k">def</span> <span class="nf">count_nonzero</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">:</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span>
         <span class="o">/</span><span class="p">,</span>
@@ -674,6 +717,48 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">ivy</span><span class="o">.</span><span class="n">isneginf</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">out</span><span class="p">)</span></div>
 
+<div class="viewcode-block" id="ArrayWithElementWiseExperimental.angle"><a class="viewcode-back" href="../../../../data_classes/array/experimental.html#ivy.array.experimental.ArrayWithElementWiseExperimental.angle">[docs]</a>    <span class="k">def</span> <span class="nf">angle</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">:</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span>
+        <span class="o">/</span><span class="p">,</span>
+        <span class="o">*</span><span class="p">,</span>
+        <span class="n">deg</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">out</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        ivy.Array instance method variant of ivy.angle. This method simply</span>
+<span class="sd">        wraps the function, and so the docstring for ivy.angle also applies to</span>
+<span class="sd">        this method with minimal changes.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        z</span>
+<span class="sd">            Array-like input.</span>
+<span class="sd">        deg</span>
+<span class="sd">            optional bool.</span>
+<span class="sd">        out</span>
+<span class="sd">            optional output array, for writing the result to.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        ret</span>
+<span class="sd">            Returns an array of angles for each complex number in the input.</span>
+<span class="sd">            If def is False(default), angle is calculated in radian and if</span>
+<span class="sd">            def is True, then angle is calculated in degrees.</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        &gt;&gt;&gt; ivy.set_backend(&#39;tensorflow&#39;)</span>
+<span class="sd">        &gt;&gt;&gt; z = ivy.array([-1 + 1j, -2 + 2j, 3 - 3j])</span>
+<span class="sd">        &gt;&gt;&gt; z</span>
+<span class="sd">        ivy.array([-1.+1.j, -2.+2.j,  3.-3.j])</span>
+<span class="sd">        &gt;&gt;&gt; ivy.angle(z)</span>
+<span class="sd">        ivy.array([ 2.35619449,  2.35619449, -0.78539816])</span>
+<span class="sd">        &gt;&gt;&gt; ivy.set_backend(&#39;numpy&#39;)</span>
+<span class="sd">        &gt;&gt;&gt; ivy.angle(z,deg=True)</span>
+<span class="sd">        ivy.array([135., 135., -45.])</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">ivy</span><span class="o">.</span><span class="n">angle</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">,</span> <span class="n">deg</span><span class="o">=</span><span class="n">deg</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">out</span><span class="p">)</span></div>
+
 <div class="viewcode-block" id="ArrayWithElementWiseExperimental.nan_to_num"><a class="viewcode-back" href="../../../../data_classes/array/experimental.html#ivy.array.experimental.ArrayWithElementWiseExperimental.nan_to_num">[docs]</a>    <span class="k">def</span> <span class="nf">nan_to_num</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">:</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span>
         <span class="o">/</span><span class="p">,</span>
@@ -837,19 +922,19 @@
 <span class="sd">        &gt;&gt;&gt; x2 = ivy.array([1.00001e10, 1e-8])</span>
 <span class="sd">        &gt;&gt;&gt; y = x1.allclose(x2)</span>
 <span class="sd">        &gt;&gt;&gt; print(y)</span>
-<span class="sd">        False</span>
+<span class="sd">        ivy.array(False)</span>
 
 <span class="sd">        &gt;&gt;&gt; x1 = ivy.array([1.0, ivy.nan])</span>
 <span class="sd">        &gt;&gt;&gt; x2 = ivy.array([1.0, ivy.nan])</span>
 <span class="sd">        &gt;&gt;&gt; y = x1.allclose(x2, equal_nan=True)</span>
 <span class="sd">        &gt;&gt;&gt; print(y)</span>
-<span class="sd">        True</span>
+<span class="sd">        ivy.array(True)</span>
 
 <span class="sd">        &gt;&gt;&gt; x1 = ivy.array([1e-10, 1e-10])</span>
 <span class="sd">        &gt;&gt;&gt; x2 = ivy.array([1.00001e-10, 1e-10])</span>
 <span class="sd">        &gt;&gt;&gt; y = x1.allclose(x2, rtol=0.005, atol=0.0)</span>
 <span class="sd">        &gt;&gt;&gt; print(y)</span>
-
+<span class="sd">        ivy.array(True)</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">ivy</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">rtol</span><span class="o">=</span><span class="n">rtol</span><span class="p">,</span> <span class="n">atol</span><span class="o">=</span><span class="n">atol</span><span class="p">,</span> <span class="n">equal_nan</span><span class="o">=</span><span class="n">equal_nan</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">out</span>
