@@ -4023,6 +4023,30 @@
     <span class="p">)</span></div>
 
 
+<div class="viewcode-block" id="broadcast_shapes"><a class="viewcode-back" href="../../../../functional/ivy/experimental/broadcast_shapes.html#ivy.functional.ivy.experimental.broadcast_shapes">[docs]</a><span class="nd">@handle_exceptions</span>
+<span class="k">def</span> <span class="nf">broadcast_shapes</span><span class="p">(</span><span class="o">*</span><span class="n">shapes</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Broadcasts shapes.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    shapes</span>
+<span class="sd">        The shapes to broadcast.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    ret</span>
+<span class="sd">        The broadcasted shape.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; print(ivy.broadcast_shapes((2, 3),(3, 1)))</span>
+<span class="sd">    (3, 3)</span>
+<span class="sd">    &gt;&gt;&gt; print(ivy.broadcast_shapes((2, 3),(3, 1),(1, 3)))</span>
+<span class="sd">    (3, 3)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">ivy</span><span class="o">.</span><span class="n">current_backend</span><span class="p">()</span><span class="o">.</span><span class="n">broadcast_shapes</span><span class="p">(</span><span class="o">*</span><span class="n">shapes</span><span class="p">)</span></div>
+
+
 <span class="c1"># local</span>
 <span class="kn">import</span> <span class="nn">ivy</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Union</span>

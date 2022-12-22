@@ -114,6 +114,7 @@
 <li class="toctree-l2"><a class="reference internal" href="experimental/atleast_3d.html">atleast_3d</a></li>
 <li class="toctree-l2"><a class="reference internal" href="experimental/take_along_axis.html">take_along_axis</a></li>
 <li class="toctree-l2"><a class="reference internal" href="experimental/hsplit.html">hsplit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="experimental/broadcast_shapes.html">broadcast_shapes</a></li>
 <li class="toctree-l2"><a class="reference internal" href="experimental/binary_cross_entropy_with_logits.html">binary_cross_entropy_with_logits</a></li>
 <li class="toctree-l2"><a class="reference internal" href="experimental/isin.html">isin</a></li>
 <li class="toctree-l2"><a class="reference internal" href="experimental/msort.html">msort</a></li>
@@ -760,6 +761,27 @@ that the inputs broadcast to.</p></li>
 <span class="go">{</span>
 <span class="go">    a: ivy.array([0.024, 3.822, 0.263])</span>
 <span class="go">}</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ivy.functional.ivy.experimental.broadcast_shapes">
+<span class="sig-prename descclassname">ivy.</span></span><span class="sig-name descname"><span class="pre">broadcast_shapes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">shapes</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ivy/functional/ivy/experimental.html#broadcast_shapes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ivy.functional.ivy.experimental.broadcast_shapes" title="Permalink to this definition"></a></dt>
+<dd><p>Broadcasts shapes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>shapes</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code>) – The shapes to broadcast.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><em>ret</em> – The broadcasted shape.</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">ivy</span><span class="o">.</span><span class="n">broadcast_shapes</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">),(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">)))</span>
+<span class="go">(3, 3)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">ivy</span><span class="o">.</span><span class="n">broadcast_shapes</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">),(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">),(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">)))</span>
+<span class="go">(3, 3)</span>
 </pre></div>
 </div>
 </dd></dl>
