@@ -387,3 +387,11 @@ def convolution(
     )
 
     return output
+
+
+@to_ivy_arrays_and_back
+def embedding_lookup(params, ids, max_norm=None, name=None):
+    ret = ivy.gather(params, ids, axis=0)
+    if max_norm is not None:
+        ret = ivy.clip_vector_norm(ret, max_norm)
+    return ret
