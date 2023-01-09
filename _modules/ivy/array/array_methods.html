@@ -11995,6 +11995,32 @@
 <span class="sd">    ivy.Array instance method variant of ivy.zero_pad. This method simply</span>
 <span class="sd">    wraps the function, and so the docstring for ivy.zero_pad also applies</span>
 <span class="sd">    to this method with minimal changes.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    self</span>
+<span class="sd">        Input array to pad.</span>
+<span class="sd">    pad_width</span>
+<span class="sd">        Number of values padded to the edges of each axis. Specified as</span>
+<span class="sd">        ((before_1, after_1), … (before_N, after_N)),</span>
+<span class="sd">        where N is number of axes of x.</span>
+<span class="sd">    out</span>
+<span class="sd">        optional output array, for writing the result to.</span>
+<span class="sd">        It must have a shape that the inputs broadcast to.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    ret</span>
+<span class="sd">        Padded array of rank equal to x with shape increased according to pad_width.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    With :class:`ivy.Array` input:</span>
+
+<span class="sd">    &gt;&gt;&gt; x = ivy.array([1., 2., 3.,4, 5, 6])</span>
+<span class="sd">    &gt;&gt;&gt; y = x.zero_pad(pad_width = [[2, 3]])</span>
+<span class="sd">    &gt;&gt;&gt; print(y)</span>
+<span class="sd">    ivy.array([0., 0., 1., 2., 3., 4., 5., 6., 0., 0., 0.])</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">ivy</span><span class="o">.</span><span class="n">zero_pad</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">,</span> <span class="n">pad_width</span><span class="o">=</span><span class="n">pad_width</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">out</span><span class="p">)</span></div>
 
@@ -12015,8 +12041,8 @@
     <span class="n">normalized_idxs</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span>
     <span class="o">/</span><span class="p">,</span>
     <span class="o">*</span><span class="p">,</span>
-    <span class="n">weight</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="n">bias</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">scale</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">b</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">epsilon</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">_MIN_BASE</span><span class="p">,</span>
     <span class="n">new_std</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span>
     <span class="n">out</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -12032,10 +12058,10 @@
 <span class="sd">        Input array</span>
 <span class="sd">    normalized_idxs</span>
 <span class="sd">        Indices to apply the normalization to.</span>
-<span class="sd">    weight</span>
+<span class="sd">    scale</span>
 <span class="sd">        Learnable gamma variables for elementwise post-multiplication,</span>
 <span class="sd">        default is ``None``.</span>
-<span class="sd">    bias</span>
+<span class="sd">    b</span>
 <span class="sd">        Learnable beta variables for elementwise post-addition, default is ``None``.</span>
 <span class="sd">    epsilon</span>
 <span class="sd">        small constant to add to the denominator, use global ivy._MIN_BASE by</span>
@@ -12057,7 +12083,7 @@
 <span class="sd">    ...                   [0.1047,  0.5886,  1.2732],</span>
 <span class="sd">    ...                   [0.7696, -1.7024, -2.2518]])</span>
 <span class="sd">    &gt;&gt;&gt; norm = x.layer_norm([0, 1], epsilon=0.001,</span>
-<span class="sd">    ...                     new_std=1.5, weight=0.5, bias=[0.5, 0.02, 0.1])</span>
+<span class="sd">    ...                     new_std=1.5, scale=0.5, b=[0.5, 0.02, 0.1])</span>
 <span class="sd">    &gt;&gt;&gt; print(norm)</span>
 <span class="sd">    ivy.array([[ 0.826, -0.178, 0.981 ],</span>
 <span class="sd">               [ 0.831,  0.421, 0.981 ],</span>
@@ -12066,8 +12092,8 @@
     <span class="k">return</span> <span class="n">ivy</span><span class="o">.</span><span class="n">layer_norm</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">normalized_idxs</span><span class="p">,</span>
-        <span class="n">weight</span><span class="o">=</span><span class="n">weight</span><span class="p">,</span>
-        <span class="n">bias</span><span class="o">=</span><span class="n">bias</span><span class="p">,</span>
+        <span class="n">scale</span><span class="o">=</span><span class="n">scale</span><span class="p">,</span>
+        <span class="n">b</span><span class="o">=</span><span class="n">b</span><span class="p">,</span>
         <span class="n">epsilon</span><span class="o">=</span><span class="n">epsilon</span><span class="p">,</span>
         <span class="n">new_std</span><span class="o">=</span><span class="n">new_std</span><span class="p">,</span>
         <span class="n">out</span><span class="o">=</span><span class="n">out</span><span class="p">,</span>

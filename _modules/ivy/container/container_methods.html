@@ -37610,6 +37610,46 @@
 <span class="sd">    ivy.Container static method variant of ivy.zero_pad. This method simply</span>
 <span class="sd">    wraps the function, and so the docstring for ivy.zero_pad also applies to</span>
 <span class="sd">    this method with minimal changes.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    x</span>
+<span class="sd">        Input array to pad.</span>
+<span class="sd">    pad_width</span>
+<span class="sd">        Number of values padded to the edges of each axis. Specified as</span>
+<span class="sd">        ((before_1, after_1), … (before_N, after_N)),</span>
+<span class="sd">        where N is number of axes of x.</span>
+<span class="sd">    key_chains</span>
+<span class="sd">        The key-chains to apply or not apply the method to. Default is ``None``.</span>
+<span class="sd">    to_apply</span>
+<span class="sd">        If True, the method will be applied to key_chains, otherwise key_chains</span>
+<span class="sd">        will be skipped. Default is ``True``.</span>
+<span class="sd">    prune_unapplied</span>
+<span class="sd">        Whether to prune key_chains for which the function was not applied.</span>
+<span class="sd">        Default is ``False``.</span>
+<span class="sd">    map_sequences</span>
+<span class="sd">        Whether to also map method to sequences (lists, tuples).</span>
+<span class="sd">        Default is ``False``.</span>
+<span class="sd">    out</span>
+<span class="sd">        optional output array, for writing the result to.</span>
+<span class="sd">        It must have a shape that the inputs broadcast to.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    ret</span>
+<span class="sd">        Padded array of rank equal to x with shape increased according to pad_width.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    With :class:`ivy.Container` input:</span>
+
+<span class="sd">    &gt;&gt;&gt; x = ivy.Container(a = ivy.array([1., 2., 3.]), b = ivy.array([3., 4., 5.]))</span>
+<span class="sd">    &gt;&gt;&gt; y = ivy.zero_pad(x, pad_width = [[2, 3]])</span>
+<span class="sd">    &gt;&gt;&gt; print(y)</span>
+<span class="sd">    {</span>
+<span class="sd">        a: ivy.array([0., 0., 1., 2., 3., 0., 0., 0.]),</span>
+<span class="sd">        b: ivy.array([0., 0., 3., 4., 5., 0., 0., 0.])</span>
+<span class="sd">    }</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">ContainerBase</span><span class="o">.</span><span class="n">cont_multi_map_in_function</span><span class="p">(</span>
         <span class="s2">&quot;zero_pad&quot;</span><span class="p">,</span>
@@ -37638,6 +37678,46 @@
 <span class="sd">    ivy.Container instance method variant of ivy.zero_pad. This method simply wraps</span>
 <span class="sd">    the function, and so the docstring for ivy.zero_pad also applies to this method</span>
 <span class="sd">    with minimal changes.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    self</span>
+<span class="sd">        Input array to pad.</span>
+<span class="sd">    pad_width</span>
+<span class="sd">        Number of values padded to the edges of each axis. Specified as</span>
+<span class="sd">        ((before_1, after_1), … (before_N, after_N)),</span>
+<span class="sd">        where N is number of axes of x.</span>
+<span class="sd">    key_chains</span>
+<span class="sd">        The key-chains to apply or not apply the method to. Default is ``None``.</span>
+<span class="sd">    to_apply</span>
+<span class="sd">        If True, the method will be applied to key_chains, otherwise key_chains</span>
+<span class="sd">        will be skipped. Default is ``True``.</span>
+<span class="sd">    prune_unapplied</span>
+<span class="sd">        Whether to prune key_chains for which the function was not applied.</span>
+<span class="sd">        Default is ``False``.</span>
+<span class="sd">    map_sequences</span>
+<span class="sd">        Whether to also map method to sequences (lists, tuples).</span>
+<span class="sd">        Default is ``False``.</span>
+<span class="sd">    out</span>
+<span class="sd">        optional output array, for writing the result to.</span>
+<span class="sd">        It must have a shape that the inputs broadcast to.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    ret</span>
+<span class="sd">        Padded array of rank equal to x with shape increased according to pad_width.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    With :class:`ivy.Container` input:</span>
+
+<span class="sd">    &gt;&gt;&gt; x = ivy.Container(a = ivy.array([1., 2., 3.]), b = ivy.array([3., 4., 5.]))</span>
+<span class="sd">    &gt;&gt;&gt; y = x.zero_pad(pad_width = [[2, 3]])</span>
+<span class="sd">    &gt;&gt;&gt; print(y)</span>
+<span class="sd">    {</span>
+<span class="sd">        a: ivy.array([0., 0., 1., 2., 3., 0., 0., 0.]),</span>
+<span class="sd">        b: ivy.array([0., 0., 3., 4., 5., 0., 0., 0.])</span>
+<span class="sd">    }</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">static_zero_pad</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
@@ -38099,8 +38179,8 @@
     <span class="n">normalized_idxs</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span>
     <span class="o">/</span><span class="p">,</span>
     <span class="o">*</span><span class="p">,</span>
-    <span class="n">weight</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="n">bias</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">scale</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">b</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">epsilon</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">_MIN_BASE</span><span class="p">,</span>
     <span class="n">new_std</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span>
     <span class="n">out</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -38116,10 +38196,10 @@
 <span class="sd">        Input container</span>
 <span class="sd">    normalized_idxs</span>
 <span class="sd">        Indices to apply the normalization to.</span>
-<span class="sd">    weight</span>
+<span class="sd">    scale</span>
 <span class="sd">        Learnable gamma variables for elementwise post-multiplication,</span>
 <span class="sd">        default is ``None``.</span>
-<span class="sd">    bias</span>
+<span class="sd">    b</span>
 <span class="sd">        Learnable beta variables for elementwise post-addition, default is ``None``.</span>
 <span class="sd">    epsilon</span>
 <span class="sd">        small constant to add to the denominator, use global ivy._MIN_BASE by</span>
@@ -38141,7 +38221,7 @@
 <span class="sd">    &gt;&gt;&gt; x = ivy.Container({&#39;a&#39;: ivy.array([7., 10., 12.]),</span>
 <span class="sd">    ...                    &#39;b&#39;: ivy.array([[1., 2., 3.], [4., 5., 6.]])})</span>
 <span class="sd">    &gt;&gt;&gt; normalized_idxs = [0]</span>
-<span class="sd">    &gt;&gt;&gt; norm = x.layer_norm(normalized_idxs, epsilon=1.25, weight=0.3)</span>
+<span class="sd">    &gt;&gt;&gt; norm = x.layer_norm(normalized_idxs, epsilon=1.25, scale=0.3)</span>
 <span class="sd">    &gt;&gt;&gt; print(norm)</span>
 <span class="sd">    {</span>
 <span class="sd">        a: ivy.array([-0.342, 0.0427, 0.299]),</span>
@@ -38155,7 +38235,7 @@
 <span class="sd">    &gt;&gt;&gt; normalized_idxs = ivy.Container({&#39;a&#39;: [0], &#39;b&#39;: [1]})</span>
 <span class="sd">    &gt;&gt;&gt; new_std = ivy.Container({&#39;a&#39;: 1.25, &#39;b&#39;: 1.5})</span>
 <span class="sd">    &gt;&gt;&gt; bias = ivy.Container({&#39;a&#39;: [0.2, 0.5, 0.7], &#39;b&#39;: 0.3})</span>
-<span class="sd">    &gt;&gt;&gt; norm = x.layer_norm(normalized_idxs, new_std=new_std, bias=bias)</span>
+<span class="sd">    &gt;&gt;&gt; norm = x.layer_norm(normalized_idxs, new_std=new_std, b=b)</span>
 <span class="sd">    &gt;&gt;&gt; print(norm)</span>
 <span class="sd">    {</span>
 <span class="sd">        a: ivy.array([-1.62, 0.203, 1.42]),</span>
@@ -38166,8 +38246,8 @@
     <span class="k">return</span> <span class="n">ivy</span><span class="o">.</span><span class="n">layer_norm</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">normalized_idxs</span><span class="p">,</span>
-        <span class="n">weight</span><span class="o">=</span><span class="n">weight</span><span class="p">,</span>
-        <span class="n">bias</span><span class="o">=</span><span class="n">bias</span><span class="p">,</span>
+        <span class="n">scale</span><span class="o">=</span><span class="n">scale</span><span class="p">,</span>
+        <span class="n">b</span><span class="o">=</span><span class="n">b</span><span class="p">,</span>
         <span class="n">epsilon</span><span class="o">=</span><span class="n">epsilon</span><span class="p">,</span>
         <span class="n">new_std</span><span class="o">=</span><span class="n">new_std</span><span class="p">,</span>
         <span class="n">out</span><span class="o">=</span><span class="n">out</span><span class="p">,</span>
