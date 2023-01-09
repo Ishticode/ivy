@@ -391,7 +391,19 @@ def convolution(
 
 @to_ivy_arrays_and_back
 def embedding_lookup(params, ids, max_norm=None, name=None):
-    ret = ivy.gather(params, ids, axis=0)
     if max_norm is not None:
-        ret = ivy.clip_vector_norm(ret, max_norm)
+        # loop throw rows
+        for i in range(params.shape[0]):
+            # get row
+            row = params[i]
+            # calculate l2 norm
+            norm = ivy.vector_norm(row)
+            # calculate desired l2 norm
+            desired = ivy.minimum(norm, max_norm)
+            # calculate scaling factor
+            row = row * (desired / (norm + 1e-6))
+            # store back in original array
+            params[i] = row
+
+    ret = ivy.gather(params, ids, axis=0)
     return ret
