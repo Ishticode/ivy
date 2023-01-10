@@ -1786,6 +1786,30 @@
 <span class="sd">    ret</span>
 <span class="sd">        Tensor of zeros with the same shape and type as a, unless dtype provided</span>
 <span class="sd">        which overrides.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    With :class:`ivy.Array` inputs:</span>
+
+<span class="sd">    &gt;&gt;&gt; x = ivy.array([3, 1])</span>
+<span class="sd">    &gt;&gt;&gt; y = 5</span>
+<span class="sd">    &gt;&gt;&gt; z = x.one_hot(5)</span>
+<span class="sd">    &gt;&gt;&gt; print(z)</span>
+<span class="sd">    ivy.array([[0., 0., 0., 1., 0.],</span>
+<span class="sd">    ...    [0., 1., 0., 0., 0.]])</span>
+
+<span class="sd">    &gt;&gt;&gt; x = ivy.array([0])</span>
+<span class="sd">    &gt;&gt;&gt; y = 5</span>
+<span class="sd">    &gt;&gt;&gt; ivy.one_hot(x, y)</span>
+<span class="sd">    ivy.array([[1., 0., 0., 0., 0.]])</span>
+
+<span class="sd">    &gt;&gt;&gt; x = ivy.array([0])</span>
+<span class="sd">    &gt;&gt;&gt; y = 5</span>
+<span class="sd">    &gt;&gt;&gt; ivy.one_hot(x, 5, out=z)</span>
+<span class="sd">    ivy.array([[1., 0., 0., 0., 0.]])</span>
+
+<span class="sd">    &gt;&gt;&gt; print(z)</span>
+<span class="sd">    ivy.array([[1., 0., 0., 0., 0.]])</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">ivy</span><span class="o">.</span><span class="n">one_hot</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
@@ -5416,6 +5440,119 @@
     <span class="p">)</span></div>
 
 
+<div class="viewcode-block" id="fft"><a class="viewcode-back" href="../../../functional/ivy/experimental/fft/fft_array.html#ivy.array.array_methods.fft">[docs]</a><span class="k">def</span> <span class="nf">fft</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">:</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span>
+        <span class="n">dim</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="o">/</span><span class="p">,</span>
+        <span class="o">*</span><span class="p">,</span>
+        <span class="n">norm</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;backward&quot;</span><span class="p">,</span>
+        <span class="n">n</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">out</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;ivy.Array instance method variant of ivy.ifft. This method simply</span>
+<span class="sd">    wraps the function, and so the docstring for ivy.ifft also applies to</span>
+<span class="sd">    this method with minimal changes.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    self</span>
+<span class="sd">        Input volume *[...,d_in,...]*,</span>
+<span class="sd">        where d_in indicates the dimension that needs FFT.</span>
+<span class="sd">    dim</span>
+<span class="sd">        The dimension along which to take the one dimensional FFT.</span>
+<span class="sd">    norm</span>
+<span class="sd">        Optional argument, &quot;backward&quot;, &quot;ortho&quot; or &quot;forward&quot;. Defaults to be</span>
+<span class="sd">        &quot;backward&quot;.</span>
+<span class="sd">        &quot;backward&quot; indicates no normalization.</span>
+<span class="sd">        &quot;ortho&quot; indicates normalization by 1/sqrt(n).</span>
+<span class="sd">        &quot;forward&quot; indicates normalization by 1/n.</span>
+<span class="sd">    n</span>
+<span class="sd">        Optional argument indicating the sequence length, if given, the input</span>
+<span class="sd">        would be padded with zero or truncated to length n before performing FFT.</span>
+<span class="sd">        Should be a integer greater than 1.</span>
+<span class="sd">    out</span>
+<span class="sd">        Optional output array, for writing the result to. It must have a shape</span>
+<span class="sd">        that the inputs broadcast to.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    ret</span>
+<span class="sd">        Array containing the transformed input.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; a = ivy.array((np.exp(2j * np.pi * np.arange(8) / 8)))</span>
+<span class="sd">    &gt;&gt;&gt; a.fft(0)</span>
+<span class="sd">    ivy.array([-3.44509285e-16+1.14423775e-17j,  8.00000000e+00-8.11483250e-16j,</span>
+<span class="sd">                2.33486982e-16+1.22464680e-16j,  0.00000000e+00+1.22464680e-16j,</span>
+<span class="sd">                9.95799250e-17+2.33486982e-16j,  0.00000000e+00+7.66951701e-17j,</span>
+<span class="sd">                1.14423775e-17+1.22464680e-16j,  0.00000000e+00+1.22464680e-16j])</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">ivy</span><span class="o">.</span><span class="n">fft</span><span class="p">(</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">,</span>
+        <span class="n">dim</span><span class="p">,</span>
+        <span class="n">norm</span><span class="o">=</span><span class="n">norm</span><span class="p">,</span>
+        <span class="n">n</span><span class="o">=</span><span class="n">n</span><span class="p">,</span>
+        <span class="n">out</span><span class="o">=</span><span class="n">out</span><span class="p">,</span>
+    <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="ifft"><a class="viewcode-back" href="../../../functional/ivy/experimental/ifft/ifft_array.html#ivy.array.array_methods.ifft">[docs]</a><span class="k">def</span> <span class="nf">ifft</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">:</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span>
+    <span class="n">dim</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="o">*</span><span class="p">,</span>
+    <span class="n">norm</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;backward&quot;</span><span class="p">,</span>
+    <span class="n">n</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">out</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;ivy.Array instance method variant of ivy.ifft. This method simply</span>
+<span class="sd">    wraps the function, and so the docstring for ivy.ifft also applies to</span>
+<span class="sd">    this method with minimal changes.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    self</span>
+<span class="sd">        Input volume *[...,d_in,...]*,</span>
+<span class="sd">        where d_in indicates the dimension that needs IFFT.</span>
+<span class="sd">    dim</span>
+<span class="sd">        The dimension along which to take the one dimensional IFFT.</span>
+<span class="sd">    norm</span>
+<span class="sd">        Optional argument, &quot;backward&quot;, &quot;ortho&quot; or &quot;forward&quot;. Defaults to be</span>
+<span class="sd">        &quot;backward&quot;.</span>
+<span class="sd">        &quot;backward&quot; indicates no normalization.</span>
+<span class="sd">        &quot;ortho&quot; indicates normalization by 1/sqrt(n).</span>
+<span class="sd">        &quot;forward&quot; indicates normalization by 1/n.</span>
+<span class="sd">    n</span>
+<span class="sd">        Optional argument indicating the sequence length, if given, the input</span>
+<span class="sd">        would be padded with zero or truncated to length n before performing IFFT.</span>
+<span class="sd">        Should be a integer greater than 1.</span>
+<span class="sd">    out</span>
+<span class="sd">        Optional output array, for writing the result to. It must have a shape that</span>
+<span class="sd">        the inputs broadcast to.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    ret</span>
+<span class="sd">        Array containing the transformed input.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; a = ivy.array((np.exp(2j * np.pi * np.arange(8) / 8)))</span>
+<span class="sd">    &gt;&gt;&gt; a.ifft(0)</span>
+<span class="sd">    ivy.array([-4.30636606e-17+1.43029718e-18j,  0.00000000e+00+1.53080850e-17j,</span>
+<span class="sd">                1.43029718e-18+1.53080850e-17j,  0.00000000e+00+9.58689626e-18j,</span>
+<span class="sd">                1.24474906e-17+2.91858728e-17j,  0.00000000e+00+1.53080850e-17j,</span>
+<span class="sd">                2.91858728e-17+1.53080850e-17j,  1.00000000e+00-1.01435406e-16j])</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">ivy</span><span class="o">.</span><span class="n">ifft</span><span class="p">(</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">,</span>
+        <span class="n">dim</span><span class="p">,</span>
+        <span class="n">norm</span><span class="o">=</span><span class="n">norm</span><span class="p">,</span>
+        <span class="n">n</span><span class="o">=</span><span class="n">n</span><span class="p">,</span>
+        <span class="n">out</span><span class="o">=</span><span class="n">out</span><span class="p">,</span>
+    <span class="p">)</span></div>
+
+
 <div class="viewcode-block" id="dirichlet"><a class="viewcode-back" href="../../../functional/ivy/experimental/dirichlet/dirichlet_array.html#ivy.array.array_methods.dirichlet">[docs]</a><span class="k">def</span> <span class="nf">dirichlet</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">:</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span>
     <span class="o">/</span><span class="p">,</span>
@@ -7646,6 +7783,44 @@
 <span class="sd">    ivy.array([135., 135., -45.])</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">ivy</span><span class="o">.</span><span class="n">angle</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">,</span> <span class="n">deg</span><span class="o">=</span><span class="n">deg</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">out</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="imag"><a class="viewcode-back" href="../../../functional/ivy/experimental/imag/imag_array.html#ivy.array.array_methods.imag">[docs]</a><span class="k">def</span> <span class="nf">imag</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">:</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span>
+    <span class="o">/</span><span class="p">,</span>
+    <span class="o">*</span><span class="p">,</span>
+    <span class="n">out</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    ivy.Array instance method variant of ivy.imag. This method simply</span>
+<span class="sd">    wraps the function, and so the docstring for ivy.imag also applies to</span>
+<span class="sd">    this method with minimal changes.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    val</span>
+<span class="sd">        Array-like input.</span>
+<span class="sd">    out</span>
+<span class="sd">        optional output array, for writing the result to.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    ret</span>
+<span class="sd">        Returns an array with the imaginary part of complex numbers.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; b = ivy.array(np.array([1+2j, 3+4j, 5+6j]))</span>
+<span class="sd">    &gt;&gt;&gt; b</span>
+<span class="sd">    ivy.array([1.+2.j, 3.+4.j, 5.+6.j])</span>
+
+<span class="sd">    &gt;&gt;&gt; ivy.imag(b)</span>
+<span class="sd">    ivy.array([2., 4., 6.])</span>
+
+<span class="sd">    &gt;&gt;&gt; b.imag()</span>
+<span class="sd">    ivy.array([2., 4., 6.])</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">ivy</span><span class="o">.</span><span class="n">imag</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">out</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="nan_to_num"><a class="viewcode-back" href="../../../functional/ivy/experimental/nan_to_num/nan_to_num_array.html#ivy.array.array_methods.nan_to_num">[docs]</a><span class="k">def</span> <span class="nf">nan_to_num</span><span class="p">(</span>
