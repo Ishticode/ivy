@@ -873,7 +873,8 @@
                     <span class="n">dtype</span><span class="o">=</span><span class="n">ivy</span><span class="o">.</span><span class="n">as_ivy_dtype</span><span class="p">(</span><span class="n">weights</span><span class="o">.</span><span class="n">dtype</span><span class="p">),</span>
                     <span class="n">device</span><span class="o">=</span><span class="n">ret_dev</span><span class="p">)</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">ivy</span><span class="o">.</span><span class="n">is_ivy_array</span><span class="p">(</span><span class="n">indices</span><span class="p">):</span>
-        <span class="n">indices</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">indices</span><span class="p">)</span>
+        <span class="n">indices</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">indices</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">ivy</span><span class="o">.</span><span class="n">int32</span><span class="p">)</span>
+
     <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">ivy</span><span class="o">.</span><span class="n">ndenumerate</span><span class="p">(</span><span class="n">indices</span><span class="p">):</span>
 
         <span class="k">if</span> <span class="n">ivy</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">max_norm</span><span class="p">):</span>
