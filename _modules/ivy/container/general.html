@@ -186,6 +186,17 @@
 <span class="sd">        -------</span>
 <span class="sd">        ret</span>
 <span class="sd">            Boolean, whether or not x is a native array.</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        &gt;&gt;&gt; x = ivy.Container(a=ivy.array([1]), b=ivy.native_array([2, 3]))</span>
+<span class="sd">        &gt;&gt;&gt; y = ivy.Container.static_is_native_array(x)</span>
+<span class="sd">        &gt;&gt;&gt; print(y)</span>
+<span class="sd">        {</span>
+<span class="sd">            a: false,</span>
+<span class="sd">            b: true</span>
+<span class="sd">        }</span>
+
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">ContainerBase</span><span class="o">.</span><span class="n">cont_multi_map_in_function</span><span class="p">(</span>
             <span class="s2">&quot;is_native_array&quot;</span><span class="p">,</span>
@@ -235,6 +246,16 @@
 <span class="sd">        -------</span>
 <span class="sd">        ret</span>
 <span class="sd">            Boolean, whether or not x is a native array.</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        &gt;&gt;&gt; x = ivy.Container(a=ivy.array([1]), b=ivy.native_array([2, 3]))</span>
+<span class="sd">        &gt;&gt;&gt; y = x.is_native_array()</span>
+<span class="sd">        &gt;&gt;&gt; print(y)</span>
+<span class="sd">        {</span>
+<span class="sd">            a: false,</span>
+<span class="sd">            b: true</span>
+<span class="sd">        }</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">static_is_native_array</span><span class="p">(</span>
             <span class="bp">self</span><span class="p">,</span>
@@ -284,6 +305,14 @@
 <span class="sd">        -------</span>
 <span class="sd">        ret</span>
 <span class="sd">            Boolean, whether or not x is an array.</span>
+
+<span class="sd">        &gt;&gt;&gt; x = ivy.Container(a=ivy.array([1]), b=ivy.native_array([2, 3]))</span>
+<span class="sd">        &gt;&gt;&gt; y = ivy.Container.static_is_ivy_array(x)</span>
+<span class="sd">        &gt;&gt;&gt; print(y)</span>
+<span class="sd">        {</span>
+<span class="sd">            a: true,</span>
+<span class="sd">            b: false</span>
+<span class="sd">        }</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">ContainerBase</span><span class="o">.</span><span class="n">cont_multi_map_in_function</span><span class="p">(</span>
             <span class="s2">&quot;is_ivy_array&quot;</span><span class="p">,</span>
@@ -333,6 +362,14 @@
 <span class="sd">        -------</span>
 <span class="sd">        ret</span>
 <span class="sd">            Boolean, whether or not x is an array.</span>
+
+<span class="sd">        &gt;&gt;&gt; x = ivy.Container(a=ivy.array([1]), b=ivy.native_array([2, 3]))</span>
+<span class="sd">        &gt;&gt;&gt; y = x.is_ivy_array()</span>
+<span class="sd">        &gt;&gt;&gt; print(y)</span>
+<span class="sd">        {</span>
+<span class="sd">            a: true,</span>
+<span class="sd">            b: false</span>
+<span class="sd">        }</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">static_is_ivy_array</span><span class="p">(</span>
             <span class="bp">self</span><span class="p">,</span>
@@ -385,6 +422,16 @@
 <span class="sd">        -------</span>
 <span class="sd">        ret</span>
 <span class="sd">            Boolean, whether or not x is an array.</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        &gt;&gt;&gt; x = ivy.Container(a=ivy.array([1]), b=ivy.native_array([2, 3]))</span>
+<span class="sd">        &gt;&gt;&gt; y = ivy.Container.static_is_array(x)</span>
+<span class="sd">        &gt;&gt;&gt; print(y)</span>
+<span class="sd">        {</span>
+<span class="sd">            a: true,</span>
+<span class="sd">            b: true</span>
+<span class="sd">        }</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">ContainerBase</span><span class="o">.</span><span class="n">cont_multi_map_in_function</span><span class="p">(</span>
             <span class="s2">&quot;is_array&quot;</span><span class="p">,</span>
@@ -434,6 +481,16 @@
 <span class="sd">        -------</span>
 <span class="sd">        ret</span>
 <span class="sd">            Boolean, whether or not x is an array.</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        &gt;&gt;&gt; x = ivy.Container(a=ivy.array([1]), b=ivy.native_array([2, 3]))</span>
+<span class="sd">        &gt;&gt;&gt; y = x.is_array()</span>
+<span class="sd">        &gt;&gt;&gt; print(y)</span>
+<span class="sd">        {</span>
+<span class="sd">            a: true,</span>
+<span class="sd">            b: true</span>
+<span class="sd">        }</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">static_is_array</span><span class="p">(</span>
             <span class="bp">self</span><span class="p">,</span>
@@ -1201,17 +1258,17 @@
 <span class="sd">        &gt;&gt;&gt; y = x1.all_equal(x2, equality_matrix= False)</span>
 <span class="sd">        &gt;&gt;&gt; print(y)</span>
 <span class="sd">        {</span>
-<span class="sd">            a: true,</span>
-<span class="sd">            b: false</span>
+<span class="sd">            a: True,</span>
+<span class="sd">            b: False</span>
 <span class="sd">        }</span>
 
 <span class="sd">        &gt;&gt;&gt; x1 = ivy.Container(a=ivy.array([1, 0, 1, 1]), b=ivy.array([1, -1, 0, 0]))</span>
 <span class="sd">        &gt;&gt;&gt; x2 = ivy.array([1, 0, 1, 1])</span>
-<span class="sd">        &gt;&gt;&gt; y = ivy.Container.static_all_equal(x1, x2, equality_matrix= False)</span>
+<span class="sd">        &gt;&gt;&gt; y = x1.all_equal(x2, equality_matrix= False)</span>
 <span class="sd">        &gt;&gt;&gt; print(y)</span>
 <span class="sd">        {</span>
-<span class="sd">            a: true,</span>
-<span class="sd">            b: false</span>
+<span class="sd">            a: True,</span>
+<span class="sd">            b: False</span>
 <span class="sd">        }</span>
 
 <span class="sd">        With multiple :class:`ivy.Container` instances:</span>
@@ -1223,19 +1280,19 @@
 <span class="sd">        &gt;&gt;&gt; y = x1.all_equal(x2, equality_matrix= False)</span>
 <span class="sd">        &gt;&gt;&gt; print(y)</span>
 <span class="sd">        {</span>
-<span class="sd">            a: false,</span>
-<span class="sd">            b: true</span>
+<span class="sd">            a: False,</span>
+<span class="sd">            b: True</span>
 <span class="sd">        }</span>
 
 <span class="sd">        &gt;&gt;&gt; x1 = ivy.Container(a=ivy.native_array([1, 0, 0]),</span>
 <span class="sd">        ...                    b=ivy.array([1, 2, 3]))</span>
 <span class="sd">        &gt;&gt;&gt; x2 = ivy.Container(a=ivy.native_array([1, 0, 1]),</span>
 <span class="sd">        ...                    b=ivy.array([1, 2, 3]))</span>
-<span class="sd">        &gt;&gt;&gt; y = ivy.Container.static_all_equal(x1, x2, equality_matrix= False)</span>
+<span class="sd">        &gt;&gt;&gt; y = x1.all_equal(x2, equality_matrix= False)</span>
 <span class="sd">        &gt;&gt;&gt; print(y)</span>
 <span class="sd">        {</span>
-<span class="sd">            a: false,</span>
-<span class="sd">            b: true</span>
+<span class="sd">            a: False,</span>
+<span class="sd">            b: True</span>
 <span class="sd">        }</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -1305,7 +1362,7 @@
 <span class="sd">        &gt;&gt;&gt; x = ivy.Container(a = ivy.array([1,2]),</span>
 <span class="sd">        ...                   b = ivy.array([3,4]))</span>
 <span class="sd">        &gt;&gt;&gt; y = 1.5</span>
-<span class="sd">        &gt;&gt;&gt; z = ivy.Container.static_fourier_encode(x,y)</span>
+<span class="sd">        &gt;&gt;&gt; z = ivy.Container.static_fourier_encode(x, y)</span>
 <span class="sd">        &gt;&gt;&gt; print(z)</span>
 <span class="sd">        {</span>
 <span class="sd">            a: (&lt;classivy.array.array.Array&gt;shape=[2,9]),</span>
@@ -1315,7 +1372,7 @@
 <span class="sd">        &gt;&gt;&gt; x = ivy.Container(a = ivy.array([3,10]),</span>
 <span class="sd">        ...                   b = ivy.array([4,8]))</span>
 <span class="sd">        &gt;&gt;&gt; y = 2.5</span>
-<span class="sd">        &gt;&gt;&gt; z = ivy.Container.static_fourier_encode(x,y,num_bands=3)</span>
+<span class="sd">        &gt;&gt;&gt; z = ivy.Container.static_fourier_encode(x, y, num_bands=3)</span>
 <span class="sd">        &gt;&gt;&gt; print(z)</span>
 <span class="sd">        {</span>
 <span class="sd">            a: ivy.array([[ 3.0000000e+00, 3.6739404e-16, 3.6739404e-16,</span>
@@ -1629,6 +1686,15 @@
 <span class="sd">            Whether the container has any nans, applied either leafwise or across the</span>
 <span class="sd">            entire container.</span>
 
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        &gt;&gt;&gt; x = ivy.container(a=ivy.array([1, 2]), b=ivy.array([float(&#39;nan&#39;), 2]))</span>
+<span class="sd">        &gt;&gt;&gt; y = ivy.Container.static_has_nans(x)</span>
+<span class="sd">        &gt;&gt;&gt; print(y)</span>
+<span class="sd">        {</span>
+<span class="sd">            a: false,</span>
+<span class="sd">            b: true</span>
+<span class="sd">        }</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">ContainerBase</span><span class="o">.</span><span class="n">cont_multi_map_in_function</span><span class="p">(</span>
             <span class="s2">&quot;has_nans&quot;</span><span class="p">,</span>
@@ -1662,6 +1728,17 @@
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">            Whether the container has any nans, applied across the entire container.</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        &gt;&gt;&gt; x = ivy.container(a=ivy.array([1, 2]), b=ivy.array([float(&#39;nan&#39;), 2]))</span>
+<span class="sd">        &gt;&gt;&gt; y = x.has_nans(x)</span>
+<span class="sd">        &gt;&gt;&gt; print(y)</span>
+<span class="sd">        {</span>
+<span class="sd">            a: false,</span>
+<span class="sd">            b: true</span>
+<span class="sd">        }</span>
+
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">static_has_nans</span><span class="p">(</span>
             <span class="bp">self</span><span class="p">,</span>
@@ -2464,8 +2541,8 @@
 <span class="sd">        &gt;&gt;&gt; y = ivy.Container.static_value_is_nan(x)</span>
 <span class="sd">        &gt;&gt;&gt; print(y)</span>
 <span class="sd">        {</span>
-<span class="sd">            a: false,</span>
-<span class="sd">            b: true</span>
+<span class="sd">            a: False,</span>
+<span class="sd">            b: True</span>
 <span class="sd">        }</span>
 
 <span class="sd">        With :class:`ivy.Container` input:</span>
@@ -2474,8 +2551,8 @@
 <span class="sd">        &gt;&gt;&gt; y = ivy.Container.static_value_is_nan(x)</span>
 <span class="sd">        &gt;&gt;&gt; print(y)</span>
 <span class="sd">        {</span>
-<span class="sd">            a: true,</span>
-<span class="sd">            b: false</span>
+<span class="sd">            a: True,</span>
+<span class="sd">            b: False</span>
 <span class="sd">        }</span>
 
 <span class="sd">        With :class:`ivy.Container` input:</span>
@@ -2484,8 +2561,8 @@
 <span class="sd">        &gt;&gt;&gt; y = ivy.Container.static_value_is_nan(x, include_infs=False)</span>
 <span class="sd">        &gt;&gt;&gt; print(y)</span>
 <span class="sd">        {</span>
-<span class="sd">            a: false,</span>
-<span class="sd">            b: false</span>
+<span class="sd">            a: False,</span>
+<span class="sd">            b: False</span>
 <span class="sd">        }</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">ContainerBase</span><span class="o">.</span><span class="n">cont_multi_map_in_function</span><span class="p">(</span>
@@ -2543,24 +2620,24 @@
 <span class="sd">        &gt;&gt;&gt; y = x.value_is_nan()</span>
 <span class="sd">        &gt;&gt;&gt; print(y)</span>
 <span class="sd">        {</span>
-<span class="sd">            a: false,</span>
-<span class="sd">            b: true</span>
+<span class="sd">            a: False,</span>
+<span class="sd">            b: True</span>
 <span class="sd">        }</span>
 
 <span class="sd">        &gt;&gt;&gt; x = ivy.Container(a=ivy.array([float(&#39;inf&#39;)]), b=ivy.array([0]))</span>
 <span class="sd">        &gt;&gt;&gt; y = x.value_is_nan()</span>
 <span class="sd">        &gt;&gt;&gt; print(y)</span>
 <span class="sd">        {</span>
-<span class="sd">            a: true,</span>
-<span class="sd">            b: false</span>
+<span class="sd">            a: True,</span>
+<span class="sd">            b: False</span>
 <span class="sd">        }</span>
 
 <span class="sd">        &gt;&gt;&gt; x = ivy.Container(a=ivy.array([float(&#39;inf&#39;)]), b=ivy.array([22]))</span>
 <span class="sd">        &gt;&gt;&gt; y = x.value_is_nan(include_infs=False)</span>
 <span class="sd">        &gt;&gt;&gt; print(y)</span>
 <span class="sd">        {</span>
-<span class="sd">            a: false,</span>
-<span class="sd">            b: false</span>
+<span class="sd">            a: False,</span>
+<span class="sd">            b: False</span>
 <span class="sd">        }</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">static_value_is_nan</span><span class="p">(</span>
@@ -2870,12 +2947,11 @@
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">        ret</span>
-<span class="sd">            A list representation of the input array ``x``.</span>
+<span class="sd">            A container with list representation of the leave arrays.</span>
 
 <span class="sd">        Examples</span>
 <span class="sd">        --------</span>
 <span class="sd">        With one :class:`ivy.Container` inputs:</span>
-
 
 <span class="sd">        &gt;&gt;&gt; x = ivy.Container(a=ivy.array([0, 1, 2]))</span>
 <span class="sd">        &gt;&gt;&gt; y = ivy.Container.static_to_list(x)</span>
@@ -2925,7 +3001,7 @@
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">        ret</span>
-<span class="sd">            A list representation of the input array ``x``.</span>
+<span class="sd">            A container with list representation of the leave arrays.</span>
 
 <span class="sd">        Examples</span>
 <span class="sd">        --------</span>
@@ -3858,6 +3934,138 @@
         <span class="k">return</span> <span class="n">ContainerWithGeneral</span><span class="o">.</span><span class="n">static_get_num_dims</span><span class="p">(</span>
             <span class="bp">self</span><span class="p">,</span>
             <span class="n">as_array</span><span class="o">=</span><span class="n">as_array</span><span class="p">,</span>
+            <span class="n">key_chains</span><span class="o">=</span><span class="n">key_chains</span><span class="p">,</span>
+            <span class="n">to_apply</span><span class="o">=</span><span class="n">to_apply</span><span class="p">,</span>
+            <span class="n">prune_unapplied</span><span class="o">=</span><span class="n">prune_unapplied</span><span class="p">,</span>
+            <span class="n">map_sequences</span><span class="o">=</span><span class="n">map_sequences</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="ContainerWithGeneral.static_array_equal"><a class="viewcode-back" href="../../../data_classes/container/general/ContainerWithGeneral.html#ivy.container.general.ContainerWithGeneral.static_array_equal">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">static_array_equal</span><span class="p">(</span>
+        <span class="n">x0</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">],</span>
+        <span class="n">x1</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">],</span>
+        <span class="o">/</span><span class="p">,</span>
+        <span class="o">*</span><span class="p">,</span>
+        <span class="n">key_chains</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">to_apply</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="n">prune_unapplied</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">map_sequences</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        ivy.Container instance method variant of ivy.array_equal. This method</span>
+<span class="sd">        simply wraps the function, and so the docstring for ivy.array_equal</span>
+<span class="sd">        also applies to this method with minimal changes.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        x0</span>
+<span class="sd">            The first input container to compare.</span>
+<span class="sd">        x1</span>
+<span class="sd">            The second input container to compare.</span>
+<span class="sd">        key_chains</span>
+<span class="sd">            The key-chains to apply or not apply the method to. Default is ``None``.</span>
+<span class="sd">        to_apply</span>
+<span class="sd">            If True, the method will be applied to key_chains, otherwise key_chains</span>
+<span class="sd">            will be skipped. Default is ``True``.</span>
+<span class="sd">        prune_unapplied</span>
+<span class="sd">            Whether to prune key_chains for which the function was not applied.</span>
+<span class="sd">            Default is ``False``.</span>
+<span class="sd">        map_sequences</span>
+<span class="sd">            Whether to also map method to sequences (lists, tuples).</span>
+<span class="sd">            Default is ``False``.</span>
+
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        ret</span>
+<span class="sd">            A boolean container indicating whether the two containers are</span>
+<span class="sd">            equal at each level.</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        &gt;&gt;&gt; a = ivy.array([[0., 1.], [1. ,0.]])</span>
+<span class="sd">        &gt;&gt;&gt; b = ivy.array([[-2., 1.], [1. ,2.]])</span>
+<span class="sd">        &gt;&gt;&gt; c = ivy.array([[0., 1.], [1. ,0.]])</span>
+<span class="sd">        &gt;&gt;&gt; d = ivy.array([[2., 1.], [1. ,2.]])</span>
+<span class="sd">        &gt;&gt;&gt; a0 = ivy.Container(a = a, b = b)</span>
+<span class="sd">        &gt;&gt;&gt; a1 = ivy.Container(a = c, b = d)</span>
+<span class="sd">        &gt;&gt;&gt; y = ivy.Container.static_array_equal(a0, a1)</span>
+<span class="sd">        &gt;&gt;&gt; print(y)</span>
+<span class="sd">        {</span>
+<span class="sd">            a: true,</span>
+<span class="sd">            b: false</span>
+<span class="sd">        }</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">ContainerBase</span><span class="o">.</span><span class="n">cont_multi_map_in_function</span><span class="p">(</span>
+            <span class="s2">&quot;array_equal&quot;</span><span class="p">,</span>
+            <span class="n">x0</span><span class="p">,</span>
+            <span class="n">x1</span><span class="p">,</span>
+            <span class="n">key_chains</span><span class="o">=</span><span class="n">key_chains</span><span class="p">,</span>
+            <span class="n">to_apply</span><span class="o">=</span><span class="n">to_apply</span><span class="p">,</span>
+            <span class="n">prune_unapplied</span><span class="o">=</span><span class="n">prune_unapplied</span><span class="p">,</span>
+            <span class="n">map_sequences</span><span class="o">=</span><span class="n">map_sequences</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="ContainerWithGeneral.array_equal"><a class="viewcode-back" href="../../../data_classes/container/general/ContainerWithGeneral.html#ivy.container.general.ContainerWithGeneral.array_equal">[docs]</a>    <span class="k">def</span> <span class="nf">array_equal</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">],</span>
+        <span class="n">x</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">],</span>
+        <span class="o">/</span><span class="p">,</span>
+        <span class="o">*</span><span class="p">,</span>
+        <span class="n">key_chains</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">to_apply</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="n">prune_unapplied</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">map_sequences</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        ivy.Container instance method variant of ivy.array_equal. This method</span>
+<span class="sd">        simply wraps the function, and so the docstring for ivy.array_equal</span>
+<span class="sd">        also applies to this method with minimal changes.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        self</span>
+<span class="sd">            The first input container to compare.</span>
+<span class="sd">        x</span>
+<span class="sd">            The second input container to compare.</span>
+<span class="sd">        key_chains</span>
+<span class="sd">            The key-chains to apply or not apply the method to. Default is ``None``.</span>
+<span class="sd">        to_apply</span>
+<span class="sd">            If True, the method will be applied to key_chains, otherwise key_chains</span>
+<span class="sd">            will be skipped. Default is ``True``.</span>
+<span class="sd">        prune_unapplied</span>
+<span class="sd">            Whether to prune key_chains for which the function was not applied.</span>
+<span class="sd">            Default is ``False``.</span>
+<span class="sd">        map_sequences</span>
+<span class="sd">            Whether to also map method to sequences (lists, tuples).</span>
+<span class="sd">            Default is ``False``.</span>
+
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        ret</span>
+<span class="sd">            A boolean container indicating whether the two containers are</span>
+<span class="sd">            equal at each level.</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        &gt;&gt;&gt; a = ivy.array([[0., 1.], [1. ,0.]])</span>
+<span class="sd">        &gt;&gt;&gt; b = ivy.array([[-2., 1.], [1. ,2.]])</span>
+<span class="sd">        &gt;&gt;&gt; c = ivy.array([[0., 1.], [1. ,0.]])</span>
+<span class="sd">        &gt;&gt;&gt; d = ivy.array([[2., 1.], [1. ,2.]])</span>
+<span class="sd">        &gt;&gt;&gt; a0 = ivy.Container(a = a, b = b)</span>
+<span class="sd">        &gt;&gt;&gt; a1 = ivy.Container(a = c, b = d)</span>
+<span class="sd">        &gt;&gt;&gt; y = a0.array_equal(a1)</span>
+<span class="sd">        &gt;&gt;&gt; print(y)</span>
+<span class="sd">        {</span>
+<span class="sd">            a: true,</span>
+<span class="sd">            b: false</span>
+<span class="sd">        }</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">ContainerWithGeneral</span><span class="o">.</span><span class="n">static_array_equal</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="n">x</span><span class="p">,</span>
             <span class="n">key_chains</span><span class="o">=</span><span class="n">key_chains</span><span class="p">,</span>
             <span class="n">to_apply</span><span class="o">=</span><span class="n">to_apply</span><span class="p">,</span>
             <span class="n">prune_unapplied</span><span class="o">=</span><span class="n">prune_unapplied</span><span class="p">,</span>

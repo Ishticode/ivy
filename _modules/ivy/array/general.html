@@ -170,6 +170,18 @@
 <span class="sd">        -------</span>
 <span class="sd">        ret</span>
 <span class="sd">            Boolean, whether or not x is a native array.</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        &gt;&gt;&gt; x = ivy.array([0, 1, 2])</span>
+<span class="sd">        &gt;&gt;&gt; ret = x.is_native_array()</span>
+<span class="sd">        &gt;&gt;&gt; print(ret)</span>
+<span class="sd">        False</span>
+
+<span class="sd">        &gt;&gt;&gt; x = ivy.native_array([9.1, -8.3])</span>
+<span class="sd">        &gt;&gt;&gt; ret = x.is_native_array(exclusive=True)</span>
+<span class="sd">        &gt;&gt;&gt; print(ret)</span>
+<span class="sd">        True</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">ivy</span><span class="o">.</span><span class="n">is_native_array</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">exclusive</span><span class="o">=</span><span class="n">exclusive</span><span class="p">)</span></div>
 
@@ -192,6 +204,18 @@
 <span class="sd">        ret</span>
 <span class="sd">            Boolean, whether or not x is an ivy array.</span>
 
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        &gt;&gt;&gt; x = ivy.array([0, 1, 2])</span>
+<span class="sd">        &gt;&gt;&gt; ret = x.is_ivy_array()</span>
+<span class="sd">        &gt;&gt;&gt; print(ret)</span>
+<span class="sd">        True</span>
+
+<span class="sd">        &gt;&gt;&gt; x = ivy.native_array([9.1, -8.3])</span>
+<span class="sd">        &gt;&gt;&gt; ret = x.is_ivy_array(exclusive=True)</span>
+<span class="sd">        &gt;&gt;&gt; print(ret)</span>
+<span class="sd">        False</span>
+
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">ivy</span><span class="o">.</span><span class="n">is_ivy_array</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">exclusive</span><span class="o">=</span><span class="n">exclusive</span><span class="p">)</span></div>
 
@@ -213,6 +237,17 @@
 <span class="sd">        -------</span>
 <span class="sd">        ret</span>
 <span class="sd">            Boolean, whether or not x is an array.</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        &gt;&gt;&gt; x = ivy.array([0, 1, 2])</span>
+<span class="sd">        &gt;&gt;&gt; print(x.is_array())</span>
+<span class="sd">        True</span>
+
+<span class="sd">        &gt;&gt;&gt; x = ivy.native_array([9.1, -8.3, 2.8, 3.0])</span>
+<span class="sd">        &gt;&gt;&gt; print(x.is_array(exclusive=True))</span>
+<span class="sd">        True</span>
+
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">ivy</span><span class="o">.</span><span class="n">is_array</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">exclusive</span><span class="o">=</span><span class="n">exclusive</span><span class="p">)</span></div>
 
@@ -231,6 +266,12 @@
 <span class="sd">        -------</span>
 <span class="sd">        ret</span>
 <span class="sd">            Boolean, whether or not x is an ivy container.</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        &gt;&gt;&gt; x = ivy.array([0, 1, 2])</span>
+<span class="sd">        &gt;&gt;&gt; print(x.is_ivy_container())</span>
+<span class="sd">        False</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">ivy</span><span class="o">.</span><span class="n">is_ivy_container</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
 
@@ -258,6 +299,22 @@
 <span class="sd">            Boolean, whether or not the inputs are equal, or matrix array of booleans if</span>
 <span class="sd">            equality_matrix=True is set.</span>
 
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        &gt;&gt;&gt; x1 = ivy.array([1, 1, 0, 0, 1, -1])</span>
+<span class="sd">        &gt;&gt;&gt; x2 = ivy.array([1, 1, 0, 0, 1, -1])</span>
+<span class="sd">        &gt;&gt;&gt; y = x1.all_equal(x2)</span>
+<span class="sd">        &gt;&gt;&gt; print(y)</span>
+<span class="sd">        True</span>
+
+<span class="sd">        &gt;&gt;&gt; x1 = ivy.array([0, 0])</span>
+<span class="sd">        &gt;&gt;&gt; x2 = ivy.array([0, 0])</span>
+<span class="sd">        &gt;&gt;&gt; x3 = ivy.array([1, 0])</span>
+<span class="sd">        &gt;&gt;&gt; y = x1.all_equal(x2, x3, equality_matrix=True)</span>
+<span class="sd">        &gt;&gt;&gt; print(y)</span>
+<span class="sd">        ivy.array([[ True,  True, False],</span>
+<span class="sd">           [ True,  True, False],</span>
+<span class="sd">           [False, False,  True]])</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">arrays</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">x2</span><span class="p">]</span>
         <span class="k">return</span> <span class="n">ivy</span><span class="o">.</span><span class="n">all_equal</span><span class="p">(</span><span class="o">*</span><span class="n">arrays</span><span class="p">,</span> <span class="n">equality_matrix</span><span class="o">=</span><span class="n">equality_matrix</span><span class="p">)</span></div>
@@ -836,6 +893,20 @@
 <span class="sd">        ret</span>
 <span class="sd">            Boolean, whether or not the input arrays are equal</span>
 
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        &gt;&gt;&gt; x = ivy.array([-1,0])</span>
+<span class="sd">        &gt;&gt;&gt; y = ivy.array([1,0])</span>
+<span class="sd">        &gt;&gt;&gt; z = x.array_equal(y)</span>
+<span class="sd">        &gt;&gt;&gt; print(z)</span>
+<span class="sd">        False</span>
+
+<span class="sd">        &gt;&gt;&gt; a = ivy.array([1, 2])</span>
+<span class="sd">        &gt;&gt;&gt; b = ivy.array([1, 2])</span>
+<span class="sd">        &gt;&gt;&gt; c = a.array_equal(b)</span>
+<span class="sd">        &gt;&gt;&gt; print(c)</span>
+<span class="sd">        True</span>
+
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array_equal</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span></div>
 
@@ -927,7 +998,7 @@
 
 <span class="sd">        Examples</span>
 <span class="sd">        --------</span>
-<span class="sd">        &gt;&gt;&gt; x = ivy.array([1,2,3])</span>
+<span class="sd">        &gt;&gt;&gt; x = ivy.array([1, 2, 3])</span>
 <span class="sd">        &gt;&gt;&gt; y = 1.5</span>
 <span class="sd">        &gt;&gt;&gt; z = x.fourier_encode(y)</span>
 <span class="sd">        &gt;&gt;&gt; print(z)</span>
@@ -941,9 +1012,9 @@
 <span class="sd">                     0.0000000e+00, -1.0000000e+00, 1.0000000e+00, 1.0000000e+00,</span>
 <span class="sd">                     1.0000000e+00]])</span>
 
-<span class="sd">        &gt;&gt;&gt; x = ivy.array([3,10])</span>
+<span class="sd">        &gt;&gt;&gt; x = ivy.array([3, 10])</span>
 <span class="sd">        &gt;&gt;&gt; y = 2.5</span>
-<span class="sd">        &gt;&gt;&gt; z = x.fourier_encode(y,num_bands=3)</span>
+<span class="sd">        &gt;&gt;&gt; z = x.fourier_encode(y, num_bands=3)</span>
 <span class="sd">        &gt;&gt;&gt; print(z)</span>
 <span class="sd">        ivy.array([[ 3.0000000e+00,  3.6739404e-16,  3.6739404e-16,  3.6739404e-16,</span>
 <span class="sd">                    -1.0000000e+00, -1.0000000e+00, -1.0000000e+00],</span>
@@ -1018,6 +1089,18 @@
 <span class="sd">        -------</span>
 <span class="sd">        ret</span>
 <span class="sd">            True if x is not None, else False.</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        &gt;&gt;&gt; x = ivy.array([1, 2, 3, 1.2])</span>
+<span class="sd">        &gt;&gt;&gt; y = x.exists()</span>
+<span class="sd">        &gt;&gt;&gt; print(y)</span>
+<span class="sd">        True</span>
+
+<span class="sd">        &gt;&gt;&gt; x = ivy.array(None)</span>
+<span class="sd">        &gt;&gt;&gt; y = x.exists()</span>
+<span class="sd">        &gt;&gt;&gt; print(y)</span>
+<span class="sd">        True</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">ivy</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
 
@@ -1053,6 +1136,13 @@
 <span class="sd">        -------</span>
 <span class="sd">        ret</span>
 <span class="sd">            x if x exists (is not None), else default.</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        &gt;&gt;&gt; x = ivy.array([1, 2, 3, 1.2])</span>
+<span class="sd">        &gt;&gt;&gt; y = x.default(0)</span>
+<span class="sd">        &gt;&gt;&gt; print(y)</span>
+<span class="sd">        ivy.array([1. , 2. , 3. , 1.2])</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">ivy</span><span class="o">.</span><span class="n">default</span><span class="p">(</span>
