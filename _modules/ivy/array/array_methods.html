@@ -1788,7 +1788,12 @@
     <span class="k">return</span> <span class="n">ivy</span><span class="o">.</span><span class="n">from_dlpack</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">out</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="copy_array"><a class="viewcode-back" href="../../../functional/ivy/creation/copy_array/copy_array_array.html#ivy.array.array_methods.copy_array">[docs]</a><span class="k">def</span> <span class="nf">copy_array</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">out</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">:</span>
+<div class="viewcode-block" id="copy_array"><a class="viewcode-back" href="../../../functional/ivy/creation/copy_array/copy_array_array.html#ivy.array.array_methods.copy_array">[docs]</a><span class="k">def</span> <span class="nf">copy_array</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">:</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> 
+    <span class="o">*</span><span class="p">,</span> 
+    <span class="n">to_ivy_array</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> 
+    <span class="n">out</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    ivy.Array instance method variant of ivy.copy_array. This method simply wraps</span>
 <span class="sd">    the function, and so the docstring for ivy.copy_array also applies to this</span>
@@ -1798,6 +1803,10 @@
 <span class="sd">    ----------</span>
 <span class="sd">    self</span>
 <span class="sd">        input array</span>
+<span class="sd">    to_ivy_array</span>
+<span class="sd">        boolean, if True the returned array will be an ivy.Array object otherwise </span>
+<span class="sd">        returns an ivy.NativeArray object (i.e. a torch.tensor, np.array, etc., </span>
+<span class="sd">        depending on the backend), defaults to True.</span>
 <span class="sd">    out</span>
 <span class="sd">        optional output array, for writing the result to. It must have a shape that</span>
 <span class="sd">        the inputs broadcast to.</span>
@@ -1807,7 +1816,7 @@
 <span class="sd">    ret</span>
 <span class="sd">        a copy of the input array ``x``.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="n">ivy</span><span class="o">.</span><span class="n">copy_array</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">out</span><span class="p">)</span></div>
+    <span class="k">return</span> <span class="n">ivy</span><span class="o">.</span><span class="n">copy_array</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">to_ivy_array</span><span class="o">=</span><span class="n">to_ivy_array</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">out</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="native_array"><a class="viewcode-back" href="../../../functional/ivy/creation/native_array/native_array_array.html#ivy.array.array_methods.native_array">[docs]</a><span class="k">def</span> <span class="nf">native_array</span><span class="p">(</span>
@@ -10208,9 +10217,9 @@
     <span class="o">/</span><span class="p">,</span>
     <span class="o">*</span><span class="p">,</span>
     <span class="n">scale</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
-    <span class="n">dtype</span><span class="p">:</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Dtype</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="n">training_mode</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
-    <span class="n">seed</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">dtype</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Dtype</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeDtype</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">training</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="n">seed</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">out</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
@@ -10229,6 +10238,11 @@
 <span class="sd">    dtype</span>
 <span class="sd">        output array data type. If dtype is None, the output array data type</span>
 <span class="sd">        must be inferred from x. Default: ``None``.</span>
+<span class="sd">    training</span>
+<span class="sd">        Turn on dropout if training, turn off otherwise. Default is ``True``.</span>
+<span class="sd">    seed</span>
+<span class="sd">        Set a default seed for random number generating (for</span>
+<span class="sd">        reproducibility).Default is ``None``.</span>
 <span class="sd">    out</span>
 <span class="sd">        optional output array, for writing the result to. It must have</span>
 <span class="sd">        a shape that the inputs broadcast to.</span>
@@ -10257,7 +10271,7 @@
 <span class="sd">    ...                [4., 5., 6.],</span>
 <span class="sd">    ...                [7., 8., 9.],</span>
 <span class="sd">    ...                [10., 11., 12.]])</span>
-<span class="sd">    &gt;&gt;&gt; y = x.dropout(0.3, scale=Flase)</span>
+<span class="sd">    &gt;&gt;&gt; y = x.dropout(0.3, scale=False)</span>
 <span class="sd">    &gt;&gt;&gt; print(y)</span>
 <span class="sd">    ivy.array([[ 1.,  2., 3.],</span>
 <span class="sd">               [ 4.,  5., 0.],</span>
@@ -10269,7 +10283,7 @@
         <span class="n">prob</span><span class="p">,</span>
         <span class="n">scale</span><span class="o">=</span><span class="n">scale</span><span class="p">,</span>
         <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">,</span>
-        <span class="n">training_mode</span><span class="o">=</span><span class="n">training_mode</span><span class="p">,</span>
+        <span class="n">training</span><span class="o">=</span><span class="n">training</span><span class="p">,</span>
         <span class="n">seed</span><span class="o">=</span><span class="n">seed</span><span class="p">,</span>
         <span class="n">out</span><span class="o">=</span><span class="n">out</span><span class="p">,</span>
     <span class="p">)</span></div>
