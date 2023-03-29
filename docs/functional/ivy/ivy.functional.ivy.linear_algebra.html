@@ -46,8 +46,8 @@
     <link rel="icon" href="https://github.com/unifyai/unifyai.github.io/blob/master/img/externally_linked/ivy_logo_only.png?raw=true"/>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="Losses" href="ivy.functional.ivy.losses.html" />
-    <link rel="prev" title="Layers" href="ivy.functional.ivy.layers.html" />
+    <link rel="next" title="cholesky" href="linear_algebra/ivy.functional.ivy.linear_algebra.cholesky.html" />
+    <link rel="prev" title="scaled_dot_product_attention" href="layers/ivy.functional.ivy.layers.scaled_dot_product_attention.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -301,6 +301,36 @@ document.write(`
 <li class="toctree-l1"><a class="reference internal" href="ivy.functional.ivy.gradients.html">Gradients</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ivy.functional.ivy.layers.html">Layers</a></li>
 <li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Linear algebra</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="linear_algebra/ivy.functional.ivy.linear_algebra.cholesky.html">cholesky</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linear_algebra/ivy.functional.ivy.linear_algebra.cross.html">cross</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linear_algebra/ivy.functional.ivy.linear_algebra.det.html">det</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linear_algebra/ivy.functional.ivy.linear_algebra.diag.html">diag</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linear_algebra/ivy.functional.ivy.linear_algebra.diagonal.html">diagonal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linear_algebra/ivy.functional.ivy.linear_algebra.eig.html">eig</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linear_algebra/ivy.functional.ivy.linear_algebra.eigh.html">eigh</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linear_algebra/ivy.functional.ivy.linear_algebra.eigvalsh.html">eigvalsh</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linear_algebra/ivy.functional.ivy.linear_algebra.inner.html">inner</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linear_algebra/ivy.functional.ivy.linear_algebra.inv.html">inv</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linear_algebra/ivy.functional.ivy.linear_algebra.lu_factor.html">lu_factor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linear_algebra/ivy.functional.ivy.linear_algebra.matmul.html">matmul</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linear_algebra/ivy.functional.ivy.linear_algebra.matrix_norm.html">matrix_norm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linear_algebra/ivy.functional.ivy.linear_algebra.matrix_power.html">matrix_power</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linear_algebra/ivy.functional.ivy.linear_algebra.matrix_rank.html">matrix_rank</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linear_algebra/ivy.functional.ivy.linear_algebra.matrix_transpose.html">matrix_transpose</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linear_algebra/ivy.functional.ivy.linear_algebra.outer.html">outer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linear_algebra/ivy.functional.ivy.linear_algebra.pinv.html">pinv</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linear_algebra/ivy.functional.ivy.linear_algebra.qr.html">qr</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linear_algebra/ivy.functional.ivy.linear_algebra.slogdet.html">slogdet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linear_algebra/ivy.functional.ivy.linear_algebra.solve.html">solve</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linear_algebra/ivy.functional.ivy.linear_algebra.svd.html">svd</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linear_algebra/ivy.functional.ivy.linear_algebra.svdvals.html">svdvals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linear_algebra/ivy.functional.ivy.linear_algebra.tensordot.html">tensordot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linear_algebra/ivy.functional.ivy.linear_algebra.tensorsolve.html">tensorsolve</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linear_algebra/ivy.functional.ivy.linear_algebra.trace.html">trace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linear_algebra/ivy.functional.ivy.linear_algebra.vander.html">vander</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linear_algebra/ivy.functional.ivy.linear_algebra.vecdot.html">vecdot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linear_algebra/ivy.functional.ivy.linear_algebra.vector_norm.html">vector_norm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linear_algebra/ivy.functional.ivy.linear_algebra.vector_to_skew_symmetric_matrix.html">vector_to_skew_symmetric_matrix</a></li>
 
 
 
@@ -496,9 +526,9 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section id="module-ivy.functional.ivy.linear_algebra">
-<span id="linear-algebra"></span><h1>Linear algebra<a class="headerlink" href="#module-ivy.functional.ivy.linear_algebra" title="Permalink to this heading">#</a></h1>
-<dl class="py function">
+  <section id="linear-algebra">
+<h1>Linear algebra<a class="headerlink" href="#linear-algebra" title="Permalink to this heading">#</a></h1>
+<span class="target" id="module-ivy.functional.ivy.linear_algebra"></span><dl class="py function">
 <dt class="sig sig-object py" id="ivy.functional.ivy.linear_algebra.cholesky">
 <span class="sig-prename descclassname"><span class="pre">ivy.</span></span><span class="sig-name descname"><span class="pre">cholesky</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">/</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">upper</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/ivy/functional/ivy/linear_algebra.html#cholesky"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ivy.functional.ivy.linear_algebra.cholesky" title="Permalink to this definition">#</a></dt>
 <dd><p>Computes the cholesky decomposition of the x matrix.</p>
@@ -1279,7 +1309,7 @@ instances in place of any of the arguments.</p>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>A</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<a class="reference internal" href="../../data_classes/ivy.data_classes.array.html#ivy.data_classes.array.array.Array" title="ivy.data_classes.array.array.Array"><code class="xref py py-class docutils literal notranslate"><span class="pre">Array</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">NativeArray</span></code>]) – tensor of shape (<a href="#id17"><span class="problematic" id="id18">*</span></a>, m, n) where * is zero or more batch dimensions.</p></li>
+<li><p><strong>A</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<a class="reference internal" href="../../data_classes/ivy.data_classes.array.html#ivy.data_classes.array.array.Array" title="ivy.data_classes.array.array.Array"><code class="xref py py-class docutils literal notranslate"><span class="pre">Array</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">NativeArray</span></code>]) – tensor of shape (<a href="#id19"><span class="problematic" id="id20">*</span></a>, m, n) where * is zero or more batch dimensions.</p></li>
 <li><p><strong>pivot</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>) – Whether to compute the LU decomposition with partial pivoting, or the regular LU (default: <code class="docutils literal notranslate"><span class="pre">True</span></code>)
 decomposition. pivot = False not supported on CPU. Default: True.</p></li>
 <li><p><strong>out</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<a class="reference internal" href="../../data_classes/ivy.data_classes.array.html#ivy.data_classes.array.array.Array" title="ivy.data_classes.array.array.Array"><code class="xref py py-class docutils literal notranslate"><span class="pre">Array</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">NativeArray</span></code>]]) – tuple of two tensors to write the output to. Ignored if None. Default: None. (default: <code class="docutils literal notranslate"><span class="pre">None</span></code>)</p></li>
@@ -2017,7 +2047,7 @@ Each returned array must have shape <code class="docutils literal notranslate"><
 </pre></div>
 </div>
 </li>
-<li><p>This function conforms to the <a href="#id35"><span class="problematic" id="id36">`</span></a>Array API Standard</p></li>
+<li><p>This function conforms to the <a href="#id37"><span class="problematic" id="id38">`</span></a>Array API Standard</p></li>
 <li><p><strong>&lt;https</strong> (//data-apis.org/array-api/latest/&gt;`_. This docstring is an extension of the)</p></li>
 <li><p><strong>`docstring &lt;https</strong> (//data-apis.org/array-api/latest/extensions/generated/        signatures.linalg.slogdet.html&gt;`_ # noqa)</p></li>
 <li><p><em>in the standard.</em></p></li>
@@ -2752,7 +2782,7 @@ instances in place of any of the arguments.</p>
 <dt class="sig sig-object py" id="ivy.functional.ivy.linear_algebra.vector_to_skew_symmetric_matrix">
 <span class="sig-prename descclassname"><span class="pre">ivy.</span></span><span class="sig-name descname"><span class="pre">vector_to_skew_symmetric_matrix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vector</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">/</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/ivy/functional/ivy/linear_algebra.html#vector_to_skew_symmetric_matrix"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ivy.functional.ivy.linear_algebra.vector_to_skew_symmetric_matrix" title="Permalink to this definition">#</a></dt>
 <dd><dl class="simple">
-<dt>Given vector, return the associated <a href="#id49"><span class="problematic" id="id50">`</span></a>Skew-symmetric matrix</dt><dd><p>&lt;<a class="reference external" href="https://en.wikipedia.org/wiki/Skew-symmetric_matrix#Cross_product/">https://en.wikipedia.org/wiki/Skew-symmetric_matrix#Cross_product/</a>&gt;`_.</p>
+<dt>Given vector, return the associated <a href="#id51"><span class="problematic" id="id52">`</span></a>Skew-symmetric matrix</dt><dd><p>&lt;<a class="reference external" href="https://en.wikipedia.org/wiki/Skew-symmetric_matrix#Cross_product/">https://en.wikipedia.org/wiki/Skew-symmetric_matrix#Cross_product/</a>&gt;`_.</p>
 </dd>
 </dl>
 <dl class="field-list simple">
@@ -2787,20 +2817,20 @@ instances in place of any of the arguments.</p>
                   <!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="ivy.functional.ivy.layers.html"
+       href="layers/ivy.functional.ivy.layers.scaled_dot_product_attention.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Layers</p>
+        <p class="prev-next-title">scaled_dot_product_attention</p>
       </div>
     </a>
     <a class="right-next"
-       href="ivy.functional.ivy.losses.html"
+       href="linear_algebra/ivy.functional.ivy.linear_algebra.cholesky.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Losses</p>
+        <p class="prev-next-title">cholesky</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -2812,12 +2842,6 @@ instances in place of any of the arguments.</p>
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-  <div class="sidebar-secondary-item"><nav class="bd-docs-nav bd-links"
-     aria-label="Section Navigation">
-  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
-  <div class="bd-toc-item navbar-nav"></div>
-</nav></div>
 
   <div class="sidebar-secondary-item">
   <div class="page-toc tocsection onthispage">

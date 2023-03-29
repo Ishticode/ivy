@@ -523,7 +523,7 @@ In the reverse direction: we can take pre-written pure PyTorch code, replace eac
 <p>For this example it’s very simple, the differences are only syntactic, but the above process works for <strong>any</strong> function.
 If there are semantic differences then these will be captured (a) in the wrapped frontend code which expresses the frontend method as a composition of Ivy functions, and (b) in the wrapped backend code which expressed the Ivy functions as compositions of backend methods.</p>
 <p>Let’s take a more complex example and convert PyTorch method <code class="xref py py-func docutils literal notranslate"><span class="pre">torch.nn.functional.one_hot()</span></code> into NumPy code.
-The frontend is implemented by wrapping a single Ivy method <code class="xref py py-func docutils literal notranslate"><span class="pre">ivy.one_hot()</span></code> as follows:</p>
+The frontend is implemented by wrapping a single Ivy method <a class="reference internal" href="../../docs/functional/ivy/creation/ivy.functional.ivy.creation.one_hot.html#ivy.one_hot" title="ivy.one_hot"><code class="xref py py-func docutils literal notranslate"><span class="pre">ivy.one_hot()</span></code></a> as follows:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># ivy/functional/frontends/torch/nn/sparse_functions.py</span>
 <span class="k">def</span> <span class="nf">one_hot</span><span class="p">(</span><span class="n">tensor</span><span class="p">,</span> <span class="n">num_classes</span><span class="o">=-</span><span class="mi">1</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">ivy</span><span class="o">.</span><span class="n">one_hot</span><span class="p">(</span><span class="n">tensor</span><span class="p">,</span> <span class="n">num_classes</span><span class="p">)</span>
@@ -549,7 +549,7 @@ The frontend is implemented by wrapping a single Ivy method <code class="xref py
 </pre></div>
 </div>
 <p>Let’s take one more example and convert TensorFlow method <code class="xref py py-func docutils literal notranslate"><span class="pre">tf.cumprod()</span></code> into PyTorch code.
-This time, the frontend is implemented by wrapping two Ivy methods <code class="xref py py-func docutils literal notranslate"><span class="pre">ivy.cumprod()</span></code>, and <code class="xref py py-func docutils literal notranslate"><span class="pre">ivy.flip()</span></code> as follows:</p>
+This time, the frontend is implemented by wrapping two Ivy methods <a class="reference internal" href="../../docs/functional/ivy/statistical/ivy.functional.ivy.statistical.cumprod.html#ivy.cumprod" title="ivy.cumprod"><code class="xref py py-func docutils literal notranslate"><span class="pre">ivy.cumprod()</span></code></a>, and <a class="reference internal" href="../../docs/functional/ivy/manipulation/ivy.functional.ivy.manipulation.flip.html#ivy.flip" title="ivy.flip"><code class="xref py py-func docutils literal notranslate"><span class="pre">ivy.flip()</span></code></a> as follows:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># ivy/functional/frontends/tensorflow/math.py</span>
 <span class="k">def</span> <span class="nf">cumprod</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">exclusive</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="n">ret</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">cumprod</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">axis</span><span class="p">,</span> <span class="n">exclusive</span><span class="p">)</span>
@@ -750,23 +750,6 @@ This is in keeping with the rest of the documentation.</p>
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-  <div class="sidebar-secondary-item"><nav class="bd-docs-nav bd-links"
-     aria-label="Section Navigation">
-  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
-  <div class="bd-toc-item navbar-nav"><p aria-level="2" class="caption" role="heading"><span class="caption-text">Design</span></p>
-<ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="building_blocks.html">Building Blocks</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Ivy as a Transpiler</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="ivy_as_a_framework.html">Ivy as a Framework</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="ivy_as_a_framework/ivy_container.html">Ivy Container</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ivy_as_a_framework/ivy_stateful_api.html">Ivy Stateful API</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ivy_as_a_framework/ivy_array.html">Ivy Array</a></li>
-</ul>
-</li>
-</ul>
-</div>
-</nav></div>
 
   <div class="sidebar-secondary-item">
   <div class="page-toc tocsection onthispage">

@@ -621,9 +621,19 @@ Otherwise if eps is defined, x is clamped to [eps, 1 - eps]</p></li>
 <dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Container</span></code></p>
 </dd>
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p><em>Container with Log-sigmoid applied to the leaves.</em></p>
+<dd class="field-odd"><p><em>ret</em> – Container with Log-sigmoid applied to the leaves.</p>
 </dd>
 </dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.2</span><span class="p">]),</span> <span class="n">b</span><span class="o">=</span><span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.4</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.2</span><span class="p">]))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">logsigmoid</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+<span class="go">{</span>
+<span class="go">    a: ivy.array([-0.31326163, -1.46328258]),</span>
+<span class="go">    b: ivy.array([-0.51301527, -0.79813886])</span>
+<span class="go">}</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="py method">
@@ -685,6 +695,47 @@ applied element-wise.</p>
 <span class="go">{</span>
 <span class="go">    a: ivy.array([0., 0., 0., 0., 1., 2., 3., 4., 5.]),</span>
 <span class="go">    b: ivy.array([1., 2., 3., 4., 5., 6., 6., 6., 6.])</span>
+<span class="go">}</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ivy.data_classes.container.experimental.activations._ContainerWithActivationExperimental.selu">
+<span class="sig-name descname"><span class="pre">selu</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key_chains</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">to_apply</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prune_unapplied</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">map_sequences</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/ivy/data_classes/container/experimental/activations.html#_ContainerWithActivationExperimental.selu"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ivy.data_classes.container.experimental.activations._ContainerWithActivationExperimental.selu" title="Permalink to this definition">#</a></dt>
+<dd><p>ivy.Container instance method variant of ivy.selu.
+This method simply wraps the function, and so the docstring
+for ivy.selu also applies to this method with minimal changes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>self</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Container</span></code>) – input container.</p></li>
+<li><p><strong>key_chains</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>], <code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]]]) – The key-chains to apply or not apply the method to. Default is <code class="docutils literal notranslate"><span class="pre">None</span></code>. (default: <code class="docutils literal notranslate"><span class="pre">None</span></code>)</p></li>
+<li><p><strong>to_apply</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>) – If True, the method will be applied to key_chains, otherwise key_chains (default: <code class="docutils literal notranslate"><span class="pre">True</span></code>)
+will be skipped. Default is <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p></li>
+<li><p><strong>prune_unapplied</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>) – Whether to prune key_chains for which the function was not applied. (default: <code class="docutils literal notranslate"><span class="pre">False</span></code>)
+Default is <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p></li>
+<li><p><strong>map_sequences</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>) – Whether to also map method to sequences (lists, tuples). (default: <code class="docutils literal notranslate"><span class="pre">False</span></code>)
+Default is <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p></li>
+<li><p><strong>out</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Container</span></code>]) – optional output container, for writing the result to. It must have a shape (default: <code class="docutils literal notranslate"><span class="pre">None</span></code>)
+that the inputs broadcast to.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Container</span></code></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><em>ret</em> – a container with the scaled exponential linear unit activation function
+applied element-wise.</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.2</span><span class="p">]),</span> <span class="n">b</span><span class="o">=</span><span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.4</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.2</span><span class="p">]))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">selu</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+<span class="go">{</span>
+<span class="go">    a: ivy.array([1.05070102, -1.22856998]),</span>
+<span class="go">    b: ivy.array([0.42028043, -0.31868932])</span>
 <span class="go">}</span>
 </pre></div>
 </div>
@@ -886,6 +937,47 @@ applied element-wise.</p>
 <span class="go">{</span>
 <span class="go">    a: ivy.array([0., 0., 0., 0., 1., 2., 3., 4., 5.]),</span>
 <span class="go">    b: ivy.array([1., 2., 3., 4., 5., 6., 6., 6., 6.])</span>
+<span class="go">}</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ivy.data_classes.container.experimental.activations._ContainerWithActivationExperimental.static_selu">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">static_selu</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">/</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key_chains</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">to_apply</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prune_unapplied</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">map_sequences</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/ivy/data_classes/container/experimental/activations.html#_ContainerWithActivationExperimental.static_selu"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ivy.data_classes.container.experimental.activations._ContainerWithActivationExperimental.static_selu" title="Permalink to this definition">#</a></dt>
+<dd><p>ivy.Container static method variant of ivy.selu.
+This method simply wraps the function, and so the docstring
+for ivy.selu also applies to this method with minimal changes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Array</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">NativeArray</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">Container</span></code>]) – input container.</p></li>
+<li><p><strong>key_chains</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>], <code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]]]) – The key-chains to apply or not apply the method to. Default is <code class="docutils literal notranslate"><span class="pre">None</span></code>. (default: <code class="docutils literal notranslate"><span class="pre">None</span></code>)</p></li>
+<li><p><strong>to_apply</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>) – If True, the method will be applied to key_chains, otherwise key_chains (default: <code class="docutils literal notranslate"><span class="pre">True</span></code>)
+will be skipped. Default is <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p></li>
+<li><p><strong>prune_unapplied</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>) – Whether to prune key_chains for which the function was not applied. (default: <code class="docutils literal notranslate"><span class="pre">False</span></code>)
+Default is <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p></li>
+<li><p><strong>map_sequences</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>) – Whether to also map method to sequences (lists, tuples). (default: <code class="docutils literal notranslate"><span class="pre">False</span></code>)
+Default is <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p></li>
+<li><p><strong>out</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Container</span></code>]) – optional output container, for writing the result to. It must have a shape (default: <code class="docutils literal notranslate"><span class="pre">None</span></code>)
+that the inputs broadcast to.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Container</span></code></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><em>ret</em> – a container with the scaled exponential linear unit activation function
+applied element-wise.</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.2</span><span class="p">]),</span> <span class="n">b</span><span class="o">=</span><span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.4</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.2</span><span class="p">]))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="o">.</span><span class="n">static_selu</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+<span class="go">{</span>
+<span class="go">    a: ivy.array([1.05070102, -1.22856998]),</span>
+<span class="go">    b: ivy.array([0.42028043, -0.31868932])</span>
 <span class="go">}</span>
 </pre></div>
 </div>
@@ -8227,6 +8319,75 @@ type will be the default floating-point data type. Default <code class="docutils
 <span class="sig-name descname"><span class="pre">_abc_impl</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;_abc_data</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#ivy.data_classes.container.experimental.searching._ContainerWithSearchingExperimental._abc_impl" title="Permalink to this definition">#</a></dt>
 <dd></dd></dl>
 
+<dl class="py method">
+<dt class="sig sig-object py" id="ivy.data_classes.container.experimental.searching._ContainerWithSearchingExperimental.static_unravel_index">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">static_unravel_index</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">indices</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shape</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">/</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key_chains</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">to_apply</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prune_unapplied</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">map_sequences</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/ivy/data_classes/container/experimental/searching.html#_ContainerWithSearchingExperimental.static_unravel_index"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ivy.data_classes.container.experimental.searching._ContainerWithSearchingExperimental.static_unravel_index" title="Permalink to this definition">#</a></dt>
+<dd><p>ivy.Container static method variant of ivy.unravel_index.
+This method simply wraps the function, and so the docstring
+for ivy.unravel_index also applies to this method with minimal
+changes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>indices</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Container</span></code>) – Input container including arrays.</p></li>
+<li><p><strong>shape</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>]) – The shape of the array to use for unraveling indices.</p></li>
+<li><p><strong>out</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Array</span></code>]) – optional output array, for writing the result to. (default: <code class="docutils literal notranslate"><span class="pre">None</span></code>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Container</span></code></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><em>ret</em> – Container with tuples that have arrays with the same shape as
+the arrays in the input container.</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<p>With one <code class="xref py py-class docutils literal notranslate"><span class="pre">ivy.Container</span></code> input:
+&gt;&gt;&gt; indices = ivy.Container(a=ivy.array([22, 41, 37])), b=ivy.array([30, 2]))
+&gt;&gt;&gt; ivy.Container.static_unravel_index(indices, (7,6))
+{</p>
+<blockquote>
+<div><p>a: (ivy.array([3, 6, 6]), ivy.array([4, 5, 1]))
+b: (ivy.array([5, 0], ivy.array([0, 2])))</p>
+</div></blockquote>
+<p>}</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ivy.data_classes.container.experimental.searching._ContainerWithSearchingExperimental.unravel_index">
+<span class="sig-name descname"><span class="pre">unravel_index</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shape</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">/</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/ivy/data_classes/container/experimental/searching.html#_ContainerWithSearchingExperimental.unravel_index"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ivy.data_classes.container.experimental.searching._ContainerWithSearchingExperimental.unravel_index" title="Permalink to this definition">#</a></dt>
+<dd><p>ivy.Container instance method variant of ivy.unravel_index.
+This method simply wraps the function, and so the docstring for
+ivy.unravel_index also applies to this method with minimal changes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>self</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Container</span></code>) – Input container including arrays.</p></li>
+<li><p><strong>shape</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>]) – The shape of the array to use for unraveling indices.</p></li>
+<li><p><strong>out</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Container</span></code>]) – optional output array, for writing the result to. (default: <code class="docutils literal notranslate"><span class="pre">None</span></code>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Container</span></code></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><em>ret</em> – Container with tuples that have arrays with the same shape as
+the arrays in the input container.</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<p>With one <code class="xref py py-class docutils literal notranslate"><span class="pre">ivy.Container</span></code> input:
+&gt;&gt;&gt; indices = ivy.Container(a=ivy.array([22, 41, 37])), b=ivy.array([30, 2]))
+&gt;&gt;&gt; indices.unravel_index((7, 6))
+{</p>
+<blockquote>
+<div><p>a: (ivy.array([3, 6, 6]), ivy.array([4, 5, 1]))
+b: (ivy.array([5, 0], ivy.array([0, 2])))</p>
+</div></blockquote>
+<p>}</p>
+</dd></dl>
+
 </dd></dl>
 
 <span class="target" id="module-ivy.data_classes.container.experimental.set"></span><dl class="py class">
@@ -8984,75 +9145,6 @@ first rank(q) dimensions index quantiles for different values of q.</p>
 </div>
 </dd></dl>
 
-<dl class="py method">
-<dt class="sig sig-object py" id="ivy.data_classes.container.experimental.statistical._ContainerWithStatisticalExperimental.static_unravel_index">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">static_unravel_index</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">indices</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shape</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">/</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key_chains</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">to_apply</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prune_unapplied</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">map_sequences</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/ivy/data_classes/container/experimental/statistical.html#_ContainerWithStatisticalExperimental.static_unravel_index"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ivy.data_classes.container.experimental.statistical._ContainerWithStatisticalExperimental.static_unravel_index" title="Permalink to this definition">#</a></dt>
-<dd><p>ivy.Container static method variant of ivy.unravel_index.
-This method simply wraps the function, and so the docstring
-for ivy.unravel_index also applies to this method with minimal
-changes.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>indices</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Container</span></code>) – Input container including arrays.</p></li>
-<li><p><strong>shape</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>]) – The shape of the array to use for unraveling indices.</p></li>
-<li><p><strong>out</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Array</span></code>]) – optional output array, for writing the result to. (default: <code class="docutils literal notranslate"><span class="pre">None</span></code>)</p></li>
-</ul>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Container</span></code></p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p><em>ret</em> – Container with tuples that have arrays with the same shape as
-the arrays in the input container.</p>
-</dd>
-</dl>
-<p class="rubric">Examples</p>
-<p>With one <code class="xref py py-class docutils literal notranslate"><span class="pre">ivy.Container</span></code> input:
-&gt;&gt;&gt; indices = ivy.Container(a=ivy.array([22, 41, 37])), b=ivy.array([30, 2]))
-&gt;&gt;&gt; ivy.Container.static_unravel_index(indices, (7,6))
-{</p>
-<blockquote>
-<div><p>a: (ivy.array([3, 6, 6]), ivy.array([4, 5, 1]))
-b: (ivy.array([5, 0], ivy.array([0, 2])))</p>
-</div></blockquote>
-<p>}</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="ivy.data_classes.container.experimental.statistical._ContainerWithStatisticalExperimental.unravel_index">
-<span class="sig-name descname"><span class="pre">unravel_index</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shape</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">/</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/ivy/data_classes/container/experimental/statistical.html#_ContainerWithStatisticalExperimental.unravel_index"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ivy.data_classes.container.experimental.statistical._ContainerWithStatisticalExperimental.unravel_index" title="Permalink to this definition">#</a></dt>
-<dd><p>ivy.Container instance method variant of ivy.unravel_index.
-This method simply wraps the function, and so the docstring for
-ivy.unravel_index also applies to this method with minimal changes.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>self</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Container</span></code>) – Input container including arrays.</p></li>
-<li><p><strong>shape</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>]) – The shape of the array to use for unraveling indices.</p></li>
-<li><p><strong>out</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Container</span></code>]) – optional output array, for writing the result to. (default: <code class="docutils literal notranslate"><span class="pre">None</span></code>)</p></li>
-</ul>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Container</span></code></p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p><em>ret</em> – Container with tuples that have arrays with the same shape as
-the arrays in the input container.</p>
-</dd>
-</dl>
-<p class="rubric">Examples</p>
-<p>With one <code class="xref py py-class docutils literal notranslate"><span class="pre">ivy.Container</span></code> input:
-&gt;&gt;&gt; indices = ivy.Container(a=ivy.array([22, 41, 37])), b=ivy.array([30, 2]))
-&gt;&gt;&gt; indices.unravel_index((7, 6))
-{</p>
-<blockquote>
-<div><p>a: (ivy.array([3, 6, 6]), ivy.array([4, 5, 1]))
-b: (ivy.array([5, 0], ivy.array([0, 2])))</p>
-</div></blockquote>
-<p>}</p>
-</dd></dl>
-
 </dd></dl>
 
 <span class="target" id="module-ivy.data_classes.container.experimental.utility"></span><dl class="py class">
@@ -9102,37 +9194,6 @@ b: (ivy.array([5, 0], ivy.array([0, 2])))</p>
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
-  <div class="sidebar-secondary-item"><nav class="bd-docs-nav bd-links"
-     aria-label="Section Navigation">
-  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
-  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="ivy.data_classes.container.activations.html">Activations</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ivy.data_classes.container.base.html">Base</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ivy.data_classes.container.conversions.html">Conversions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ivy.data_classes.container.creation.html">Creation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ivy.data_classes.container.data_type.html">Data type</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ivy.data_classes.container.device.html">Device</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ivy.data_classes.container.elementwise.html">Elementwise</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Experimental</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ivy.data_classes.container.general.html">General</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ivy.data_classes.container.gradients.html">Gradients</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ivy.data_classes.container.image.html">Image</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ivy.data_classes.container.layers.html">Layers</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ivy.data_classes.container.linear_algebra.html">Linear algebra</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ivy.data_classes.container.losses.html">Losses</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ivy.data_classes.container.manipulation.html">Manipulation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ivy.data_classes.container.norms.html">Norms</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ivy.data_classes.container.random.html">Random</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ivy.data_classes.container.searching.html">Searching</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ivy.data_classes.container.set.html">Set</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ivy.data_classes.container.sorting.html">Sorting</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ivy.data_classes.container.statistical.html">Statistical</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ivy.data_classes.container.utility.html">Utility</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ivy.data_classes.container.wrapping.html">Wrapping</a></li>
-</ul>
-</div>
-</nav></div>
-
   <div class="sidebar-secondary-item">
   <div class="page-toc tocsection onthispage">
     <i class="fa-solid fa-list"></i> On this page
@@ -9146,11 +9207,13 @@ b: (ivy.array([5, 0], ivy.array([0, 2])))</p>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ivy.data_classes.container.experimental.activations._ContainerWithActivationExperimental.logsigmoid"><code class="docutils literal notranslate"><span class="pre">_ContainerWithActivationExperimental.logsigmoid()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ivy.data_classes.container.experimental.activations._ContainerWithActivationExperimental.prelu"><code class="docutils literal notranslate"><span class="pre">_ContainerWithActivationExperimental.prelu()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ivy.data_classes.container.experimental.activations._ContainerWithActivationExperimental.relu6"><code class="docutils literal notranslate"><span class="pre">_ContainerWithActivationExperimental.relu6()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ivy.data_classes.container.experimental.activations._ContainerWithActivationExperimental.selu"><code class="docutils literal notranslate"><span class="pre">_ContainerWithActivationExperimental.selu()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ivy.data_classes.container.experimental.activations._ContainerWithActivationExperimental.static_batch_norm"><code class="docutils literal notranslate"><span class="pre">_ContainerWithActivationExperimental.static_batch_norm()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ivy.data_classes.container.experimental.activations._ContainerWithActivationExperimental.static_logit"><code class="docutils literal notranslate"><span class="pre">_ContainerWithActivationExperimental.static_logit()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ivy.data_classes.container.experimental.activations._ContainerWithActivationExperimental.static_logsigmoid"><code class="docutils literal notranslate"><span class="pre">_ContainerWithActivationExperimental.static_logsigmoid()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ivy.data_classes.container.experimental.activations._ContainerWithActivationExperimental.static_prelu"><code class="docutils literal notranslate"><span class="pre">_ContainerWithActivationExperimental.static_prelu()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ivy.data_classes.container.experimental.activations._ContainerWithActivationExperimental.static_relu6"><code class="docutils literal notranslate"><span class="pre">_ContainerWithActivationExperimental.static_relu6()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ivy.data_classes.container.experimental.activations._ContainerWithActivationExperimental.static_selu"><code class="docutils literal notranslate"><span class="pre">_ContainerWithActivationExperimental.static_selu()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ivy.data_classes.container.experimental.activations._ContainerWithActivationExperimental.static_thresholded_relu"><code class="docutils literal notranslate"><span class="pre">_ContainerWithActivationExperimental.static_thresholded_relu()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ivy.data_classes.container.experimental.activations._ContainerWithActivationExperimental.thresholded_relu"><code class="docutils literal notranslate"><span class="pre">_ContainerWithActivationExperimental.thresholded_relu()</span></code></a></li>
 </ul>
@@ -9395,6 +9458,8 @@ b: (ivy.array([5, 0], ivy.array([0, 2])))</p>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ivy.data_classes.container.experimental.searching._ContainerWithSearchingExperimental"><code class="docutils literal notranslate"><span class="pre">_ContainerWithSearchingExperimental</span></code></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ivy.data_classes.container.experimental.searching._ContainerWithSearchingExperimental._abc_impl"><code class="docutils literal notranslate"><span class="pre">_ContainerWithSearchingExperimental._abc_impl</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ivy.data_classes.container.experimental.searching._ContainerWithSearchingExperimental.static_unravel_index"><code class="docutils literal notranslate"><span class="pre">_ContainerWithSearchingExperimental.static_unravel_index()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ivy.data_classes.container.experimental.searching._ContainerWithSearchingExperimental.unravel_index"><code class="docutils literal notranslate"><span class="pre">_ContainerWithSearchingExperimental.unravel_index()</span></code></a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ivy.data_classes.container.experimental.set._ContainerWithSetExperimental"><code class="docutils literal notranslate"><span class="pre">_ContainerWithSetExperimental</span></code></a><ul class="nav section-nav flex-column">
@@ -9423,8 +9488,6 @@ b: (ivy.array([5, 0], ivy.array([0, 2])))</p>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ivy.data_classes.container.experimental.statistical._ContainerWithStatisticalExperimental.static_nanmean"><code class="docutils literal notranslate"><span class="pre">_ContainerWithStatisticalExperimental.static_nanmean()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ivy.data_classes.container.experimental.statistical._ContainerWithStatisticalExperimental.static_nanmedian"><code class="docutils literal notranslate"><span class="pre">_ContainerWithStatisticalExperimental.static_nanmedian()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ivy.data_classes.container.experimental.statistical._ContainerWithStatisticalExperimental.static_quantile"><code class="docutils literal notranslate"><span class="pre">_ContainerWithStatisticalExperimental.static_quantile()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ivy.data_classes.container.experimental.statistical._ContainerWithStatisticalExperimental.static_unravel_index"><code class="docutils literal notranslate"><span class="pre">_ContainerWithStatisticalExperimental.static_unravel_index()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ivy.data_classes.container.experimental.statistical._ContainerWithStatisticalExperimental.unravel_index"><code class="docutils literal notranslate"><span class="pre">_ContainerWithStatisticalExperimental.unravel_index()</span></code></a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ivy.data_classes.container.experimental.utility._ContainerWithUtilityExperimental"><code class="docutils literal notranslate"><span class="pre">_ContainerWithUtilityExperimental</span></code></a><ul class="nav section-nav flex-column">

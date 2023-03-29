@@ -701,6 +701,45 @@ of each element in input.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="ivy.data_classes.array.experimental.activations._ArrayWithActivationsExperimental.selu">
+<span class="sig-name descname"><span class="pre">selu</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/ivy/data_classes/array/experimental/activations.html#_ArrayWithActivationsExperimental.selu"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ivy.data_classes.array.experimental.activations._ArrayWithActivationsExperimental.selu" title="Permalink to this definition">#</a></dt>
+<dd><p>Applies the scaled exponential linear unit function element-wise.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>self</strong> – input array</p></li>
+<li><p><strong>out</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Array</span></code>]) – optional output array, for writing the result to. (default: <code class="docutils literal notranslate"><span class="pre">None</span></code>)
+It must have a shape that the inputs broadcast to.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Array</span></code></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><em>ret</em> – an array containing the scaled exponential linear unit activation
+of each element in input.</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<p>With <code class="xref py py-class docutils literal notranslate"><span class="pre">ivy.Array</span></code> input:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mf">1.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">,</span>  <span class="mf">1.</span><span class="p">,</span>  <span class="mf">2.</span><span class="p">,</span>  <span class="mf">3.</span><span class="p">,</span>  <span class="mf">4.</span><span class="p">,</span>  <span class="mf">5.</span><span class="p">,</span>  <span class="mf">6.</span><span class="p">,</span>  <span class="mf">7.</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">selu</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+<span class="go">ivy.array([-1.11133075,  0.,  1.05070102,  2.10140204,  3.15210295,</span>
+<span class="go">            4.20280409,  5.25350523,  6.30420589,  7.35490704])</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mf">1.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">,</span>  <span class="mf">1.</span><span class="p">,</span>  <span class="mf">2.</span><span class="p">,</span>  <span class="mf">3.</span><span class="p">,</span>  <span class="mf">4.</span><span class="p">,</span>  <span class="mf">5.</span><span class="p">,</span>  <span class="mf">6.</span><span class="p">,</span>  <span class="mf">7.</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">9</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span><span class="o">.</span><span class="n">selu</span><span class="p">(</span><span class="n">out</span> <span class="o">=</span> <span class="n">y</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+<span class="go">ivy.array([-1.11133075,  0.,  1.05070102,  2.10140204,  3.15210295,</span>
+<span class="go">            4.20280409,  5.25350523,  6.30420589,  7.35490704])</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="ivy.data_classes.array.experimental.activations._ArrayWithActivationsExperimental.thresholded_relu">
 <span class="sig-name descname"><span class="pre">thresholded_relu</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/ivy/data_classes/array/experimental/activations.html#_ArrayWithActivationsExperimental.thresholded_relu"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ivy.data_classes.array.experimental.activations._ArrayWithActivationsExperimental.thresholded_relu" title="Permalink to this definition">#</a></dt>
 <dd><p>ivy.Array instance method variant of ivy.thresholded_relu.
@@ -3847,6 +3886,35 @@ the inputs broadcast to.</p></li>
 <span class="sig-name descname"><span class="pre">_abc_impl</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;_abc_data</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#ivy.data_classes.array.experimental.searching._ArrayWithSearchingExperimental._abc_impl" title="Permalink to this definition">#</a></dt>
 <dd></dd></dl>
 
+<dl class="py method">
+<dt class="sig sig-object py" id="ivy.data_classes.array.experimental.searching._ArrayWithSearchingExperimental.unravel_index">
+<span class="sig-name descname"><span class="pre">unravel_index</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shape</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">/</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/ivy/data_classes/array/experimental/searching.html#_ArrayWithSearchingExperimental.unravel_index"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ivy.data_classes.array.experimental.searching._ArrayWithSearchingExperimental.unravel_index" title="Permalink to this definition">#</a></dt>
+<dd><p>ivy.Array instance method variant of ivy.unravel_index. This method simply
+wraps the function, and so the docstring for ivy.unravel_index also applies to
+this method with minimal changes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>self</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Array</span></code>) – Input array.</p></li>
+<li><p><strong>shape</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>]) – The shape of the array to use for unraveling indices.</p></li>
+<li><p><strong>out</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Array</span></code>]) – optional output array, for writing the result to. (default: <code class="docutils literal notranslate"><span class="pre">None</span></code>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Array</span></code>]</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><em>ret</em> – Tuple with arrays that have the same shape as the indices array.</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">indices</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">22</span><span class="p">,</span> <span class="mi">41</span><span class="p">,</span> <span class="mi">37</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">indices</span><span class="o">.</span><span class="n">unravel_index</span><span class="p">((</span><span class="mi">7</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+<span class="go">(ivy.array([3, 6, 6]), ivy.array([4, 5, 1]))</span>
+</pre></div>
+</div>
+</dd></dl>
+
 </dd></dl>
 
 <span class="target" id="module-ivy.data_classes.array.experimental.set"></span><dl class="py class">
@@ -4206,35 +4274,6 @@ quantiles for different values of q.</p>
 </div>
 </dd></dl>
 
-<dl class="py method">
-<dt class="sig sig-object py" id="ivy.data_classes.array.experimental.statistical._ArrayWithStatisticalExperimental.unravel_index">
-<span class="sig-name descname"><span class="pre">unravel_index</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shape</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">/</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/ivy/data_classes/array/experimental/statistical.html#_ArrayWithStatisticalExperimental.unravel_index"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ivy.data_classes.array.experimental.statistical._ArrayWithStatisticalExperimental.unravel_index" title="Permalink to this definition">#</a></dt>
-<dd><p>ivy.Array instance method variant of ivy.unravel_index. This method simply
-wraps the function, and so the docstring for ivy.unravel_index also applies to
-this method with minimal changes.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>self</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Array</span></code>) – Input array.</p></li>
-<li><p><strong>shape</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>]) – The shape of the array to use for unraveling indices.</p></li>
-<li><p><strong>out</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Array</span></code>]) – optional output array, for writing the result to. (default: <code class="docutils literal notranslate"><span class="pre">None</span></code>)</p></li>
-</ul>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Array</span></code></p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p><em>ret</em> – Tuple with arrays that have the same shape as the indices array.</p>
-</dd>
-</dl>
-<p class="rubric">Examples</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">indices</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">22</span><span class="p">,</span> <span class="mi">41</span><span class="p">,</span> <span class="mi">37</span><span class="p">])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">indices</span><span class="o">.</span><span class="n">unravel_index</span><span class="p">((</span><span class="mi">7</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
-<span class="go">(ivy.array([3, 6, 6]), ivy.array([4, 5, 1]))</span>
-</pre></div>
-</div>
-</dd></dl>
-
 </dd></dl>
 
 <span class="target" id="module-ivy.data_classes.array.experimental.utility"></span><dl class="py class">
@@ -4284,36 +4323,6 @@ this method with minimal changes.</p>
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
-  <div class="sidebar-secondary-item"><nav class="bd-docs-nav bd-links"
-     aria-label="Section Navigation">
-  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
-  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="ivy.data_classes.array.activations.html">Activations</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ivy.data_classes.array.conversions.html">Conversions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ivy.data_classes.array.creation.html">Creation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ivy.data_classes.array.data_type.html">Data type</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ivy.data_classes.array.device.html">Device</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ivy.data_classes.array.elementwise.html">Elementwise</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Experimental</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ivy.data_classes.array.general.html">General</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ivy.data_classes.array.gradients.html">Gradients</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ivy.data_classes.array.image.html">Image</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ivy.data_classes.array.layers.html">Layers</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ivy.data_classes.array.linear_algebra.html">Linear algebra</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ivy.data_classes.array.losses.html">Losses</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ivy.data_classes.array.manipulation.html">Manipulation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ivy.data_classes.array.norms.html">Norms</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ivy.data_classes.array.random.html">Random</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ivy.data_classes.array.searching.html">Searching</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ivy.data_classes.array.set.html">Set</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ivy.data_classes.array.sorting.html">Sorting</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ivy.data_classes.array.statistical.html">Statistical</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ivy.data_classes.array.utility.html">Utility</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ivy.data_classes.array.wrapping.html">Wrapping</a></li>
-</ul>
-</div>
-</nav></div>
-
   <div class="sidebar-secondary-item">
   <div class="page-toc tocsection onthispage">
     <i class="fa-solid fa-list"></i> On this page
@@ -4327,6 +4336,7 @@ this method with minimal changes.</p>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ivy.data_classes.array.experimental.activations._ArrayWithActivationsExperimental.logsigmoid"><code class="docutils literal notranslate"><span class="pre">_ArrayWithActivationsExperimental.logsigmoid()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ivy.data_classes.array.experimental.activations._ArrayWithActivationsExperimental.prelu"><code class="docutils literal notranslate"><span class="pre">_ArrayWithActivationsExperimental.prelu()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ivy.data_classes.array.experimental.activations._ArrayWithActivationsExperimental.relu6"><code class="docutils literal notranslate"><span class="pre">_ArrayWithActivationsExperimental.relu6()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ivy.data_classes.array.experimental.activations._ArrayWithActivationsExperimental.selu"><code class="docutils literal notranslate"><span class="pre">_ArrayWithActivationsExperimental.selu()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ivy.data_classes.array.experimental.activations._ArrayWithActivationsExperimental.thresholded_relu"><code class="docutils literal notranslate"><span class="pre">_ArrayWithActivationsExperimental.thresholded_relu()</span></code></a></li>
 </ul>
 </li>
@@ -4472,6 +4482,7 @@ this method with minimal changes.</p>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ivy.data_classes.array.experimental.searching._ArrayWithSearchingExperimental"><code class="docutils literal notranslate"><span class="pre">_ArrayWithSearchingExperimental</span></code></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ivy.data_classes.array.experimental.searching._ArrayWithSearchingExperimental._abc_impl"><code class="docutils literal notranslate"><span class="pre">_ArrayWithSearchingExperimental._abc_impl</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ivy.data_classes.array.experimental.searching._ArrayWithSearchingExperimental.unravel_index"><code class="docutils literal notranslate"><span class="pre">_ArrayWithSearchingExperimental.unravel_index()</span></code></a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ivy.data_classes.array.experimental.set._ArrayWithSetExperimental"><code class="docutils literal notranslate"><span class="pre">_ArrayWithSetExperimental</span></code></a><ul class="nav section-nav flex-column">
@@ -4492,7 +4503,6 @@ this method with minimal changes.</p>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ivy.data_classes.array.experimental.statistical._ArrayWithStatisticalExperimental.nanmean"><code class="docutils literal notranslate"><span class="pre">_ArrayWithStatisticalExperimental.nanmean()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ivy.data_classes.array.experimental.statistical._ArrayWithStatisticalExperimental.nanmedian"><code class="docutils literal notranslate"><span class="pre">_ArrayWithStatisticalExperimental.nanmedian()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ivy.data_classes.array.experimental.statistical._ArrayWithStatisticalExperimental.quantile"><code class="docutils literal notranslate"><span class="pre">_ArrayWithStatisticalExperimental.quantile()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ivy.data_classes.array.experimental.statistical._ArrayWithStatisticalExperimental.unravel_index"><code class="docutils literal notranslate"><span class="pre">_ArrayWithStatisticalExperimental.unravel_index()</span></code></a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ivy.data_classes.array.experimental.utility._ArrayWithUtilityExperimental"><code class="docutils literal notranslate"><span class="pre">_ArrayWithUtilityExperimental</span></code></a><ul class="nav section-nav flex-column">

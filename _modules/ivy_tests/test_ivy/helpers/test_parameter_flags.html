@@ -198,10 +198,6 @@ document.write(`
   
 
   
-    <label class="sidebar-toggle secondary-toggle" for="__secondary">
-      <span class="fa-solid fa-outdent"></span>
-    </label>
-  
 </div>
 
     </nav>
@@ -500,6 +496,13 @@ document.write(`
     <span class="k">return</span> <span class="n">draw</span><span class="p">(</span><span class="n">st</span><span class="o">.</span><span class="n">lists</span><span class="p">(</span><span class="n">st</span><span class="o">.</span><span class="n">booleans</span><span class="p">(),</span> <span class="n">min_size</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">max_size</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
 
 
+<span class="nd">@st</span><span class="o">.</span><span class="n">composite</span>
+<span class="k">def</span> <span class="nf">_compile_strategy</span><span class="p">(</span><span class="n">draw</span><span class="p">):</span>  <span class="c1"># TODO remove later when paddle is supported</span>
+    <span class="k">if</span> <span class="n">test_globals</span><span class="o">.</span><span class="n">CURRENT_BACKEND</span><span class="p">()</span><span class="o">.</span><span class="n">backend</span> <span class="o">==</span> <span class="s2">&quot;paddle&quot;</span><span class="p">:</span>
+        <span class="n">draw</span><span class="p">(</span><span class="n">st</span><span class="o">.</span><span class="n">just</span><span class="p">(</span><span class="kc">False</span><span class="p">))</span>
+    <span class="n">draw</span><span class="p">(</span><span class="n">st</span><span class="o">.</span><span class="n">booleans</span><span class="p">())</span>
+
+
 <span class="n">BuiltNativeArrayStrategy</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">lists</span><span class="p">(</span><span class="n">st</span><span class="o">.</span><span class="n">booleans</span><span class="p">(),</span> <span class="n">min_size</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">max_size</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">BuiltAsVariableStrategy</span> <span class="o">=</span> <span class="n">_as_varaible_strategy</span><span class="p">()</span>
 <span class="n">BuiltContainerStrategy</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">lists</span><span class="p">(</span><span class="n">st</span><span class="o">.</span><span class="n">booleans</span><span class="p">(),</span> <span class="n">min_size</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">max_size</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
@@ -507,7 +510,7 @@ document.write(`
 <span class="n">BuiltInplaceStrategy</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">just</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
 <span class="n">BuiltGradientStrategy</span> <span class="o">=</span> <span class="n">_gradient_strategy</span><span class="p">()</span>
 <span class="n">BuiltWithOutStrategy</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">booleans</span><span class="p">()</span>
-<span class="n">BuiltCompileStrategy</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">booleans</span><span class="p">()</span>
+<span class="n">BuiltCompileStrategy</span> <span class="o">=</span> <span class="n">_compile_strategy</span><span class="p">()</span>
 <span class="n">BuiltFrontendArrayStrategy</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">booleans</span><span class="p">()</span>
 
 
@@ -660,7 +663,6 @@ document.write(`
             <span class="sa">f</span><span class="s2">&quot;native_arrays=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">native_arrays</span><span class="si">}</span><span class="s2">. &quot;</span>
             <span class="sa">f</span><span class="s2">&quot;as_variable=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">as_variable</span><span class="si">}</span><span class="s2">. &quot;</span>
             <span class="sa">f</span><span class="s2">&quot;generate_frontend_arrays=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">generate_frontend_arrays</span><span class="si">}</span><span class="s2">. &quot;</span>
-
         <span class="p">)</span>
 
     <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -686,7 +688,7 @@ document.write(`
             <span class="n">inplace</span><span class="o">=</span><span class="n">inplace</span><span class="p">,</span>
             <span class="n">as_variable</span><span class="o">=</span><span class="n">as_variable</span><span class="p">,</span>
             <span class="n">native_arrays</span><span class="o">=</span><span class="n">native_arrays</span><span class="p">,</span>
-            <span class="n">generate_frontend_arrays</span><span class="o">=</span><span class="n">generate_frontend_arrays</span>
+            <span class="n">generate_frontend_arrays</span><span class="o">=</span><span class="n">generate_frontend_arrays</span><span class="p">,</span>
         <span class="p">)</span>
     <span class="p">)</span></div>
 
@@ -864,16 +866,6 @@ document.write(`
             </div>
             
             
-              
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-  <div class="sidebar-secondary-item"><nav class="bd-docs-nav bd-links"
-     aria-label="Section Navigation">
-  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
-  <div class="bd-toc-item navbar-nav"></div>
-</nav></div>
-
-</div></div>
               
             
           </div>

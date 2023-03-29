@@ -198,10 +198,6 @@ document.write(`
   
 
   
-    <label class="sidebar-toggle secondary-toggle" for="__secondary">
-      <span class="fa-solid fa-outdent"></span>
-    </label>
-  
 </div>
 
     </nav>
@@ -473,7 +469,7 @@ document.write(`
 <span class="p">)</span>
 
 
-<div class="viewcode-block" id="IfElse"><a class="viewcode-back" href="../../../../docs/functional/ivy/ivy.functional.ivy.control_flow_ops.html#ivy.functional.ivy.control_flow_ops.IfElse">[docs]</a><span class="k">def</span> <span class="nf">IfElse</span><span class="p">(</span><span class="n">cond</span><span class="p">,</span> <span class="n">body_fn</span><span class="p">,</span> <span class="n">orelse_fn</span><span class="p">,</span> <span class="nb">vars</span><span class="p">):</span>
+<div class="viewcode-block" id="IfElse"><a class="viewcode-back" href="../../../../docs/functional/ivy/ivy.functional.ivy.control_flow_ops.html#ivy.IfElse">[docs]</a><span class="k">def</span> <span class="nf">IfElse</span><span class="p">(</span><span class="n">cond</span><span class="p">,</span> <span class="n">body_fn</span><span class="p">,</span> <span class="n">orelse_fn</span><span class="p">,</span> <span class="nb">vars</span><span class="p">):</span>
 
     <span class="n">body_fn</span> <span class="o">=</span> <span class="n">to_ivy_arrays_and_back</span><span class="p">(</span><span class="n">body_fn</span><span class="p">)</span>
     <span class="n">orelse_fn</span> <span class="o">=</span> <span class="n">to_ivy_arrays_and_back</span><span class="p">(</span><span class="n">orelse_fn</span><span class="p">)</span>
@@ -481,13 +477,13 @@ document.write(`
     <span class="k">return</span> <span class="n">if_else</span><span class="p">(</span><span class="n">cond</span><span class="p">,</span> <span class="n">body_fn</span><span class="p">,</span> <span class="n">orelse_fn</span><span class="p">,</span> <span class="nb">vars</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="if_else"><a class="viewcode-back" href="../../../../docs/functional/ivy/ivy.functional.ivy.control_flow_ops.html#ivy.functional.ivy.control_flow_ops.if_else">[docs]</a><span class="nd">@to_native_arrays_and_back</span>
+<div class="viewcode-block" id="if_else"><a class="viewcode-back" href="../../../../docs/functional/ivy/ivy.functional.ivy.control_flow_ops.html#ivy.if_else">[docs]</a><span class="nd">@to_native_arrays_and_back</span>
 <span class="nd">@handle_array_like_without_promotion</span>
 <span class="k">def</span> <span class="nf">if_else</span><span class="p">(</span><span class="n">cond</span><span class="p">,</span> <span class="n">body_fn</span><span class="p">,</span> <span class="n">orelse_fn</span><span class="p">,</span> <span class="nb">vars</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">current_backend</span><span class="p">()</span><span class="o">.</span><span class="n">if_else</span><span class="p">(</span><span class="n">cond</span><span class="p">,</span> <span class="n">body_fn</span><span class="p">,</span> <span class="n">orelse_fn</span><span class="p">,</span> <span class="nb">vars</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="WhileLoop"><a class="viewcode-back" href="../../../../docs/functional/ivy/ivy.functional.ivy.control_flow_ops.html#ivy.functional.ivy.control_flow_ops.WhileLoop">[docs]</a><span class="k">def</span> <span class="nf">WhileLoop</span><span class="p">(</span><span class="n">test_fn</span><span class="p">,</span> <span class="n">body_fn</span><span class="p">,</span> <span class="nb">vars</span><span class="p">):</span>
+<div class="viewcode-block" id="WhileLoop"><a class="viewcode-back" href="../../../../docs/functional/ivy/ivy.functional.ivy.control_flow_ops.html#ivy.WhileLoop">[docs]</a><span class="k">def</span> <span class="nf">WhileLoop</span><span class="p">(</span><span class="n">test_fn</span><span class="p">,</span> <span class="n">body_fn</span><span class="p">,</span> <span class="nb">vars</span><span class="p">):</span>
 
     <span class="n">test_fn</span> <span class="o">=</span> <span class="n">to_ivy_arrays_and_back</span><span class="p">(</span><span class="n">test_fn</span><span class="p">)</span>
     <span class="n">body_fn</span> <span class="o">=</span> <span class="n">to_ivy_arrays_and_back</span><span class="p">(</span><span class="n">body_fn</span><span class="p">)</span>
@@ -495,7 +491,7 @@ document.write(`
     <span class="k">return</span> <span class="n">while_loop</span><span class="p">(</span><span class="n">test_fn</span><span class="p">,</span> <span class="n">body_fn</span><span class="p">,</span> <span class="nb">vars</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="while_loop"><a class="viewcode-back" href="../../../../docs/functional/ivy/ivy.functional.ivy.control_flow_ops.html#ivy.functional.ivy.control_flow_ops.while_loop">[docs]</a><span class="nd">@to_native_arrays_and_back</span>
+<div class="viewcode-block" id="while_loop"><a class="viewcode-back" href="../../../../docs/functional/ivy/ivy.functional.ivy.control_flow_ops.html#ivy.while_loop">[docs]</a><span class="nd">@to_native_arrays_and_back</span>
 <span class="nd">@handle_array_like_without_promotion</span>
 <span class="k">def</span> <span class="nf">while_loop</span><span class="p">(</span><span class="n">test_fn</span><span class="p">,</span> <span class="n">body_fn</span><span class="p">,</span> <span class="nb">vars</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">current_backend</span><span class="p">()</span><span class="o">.</span><span class="n">while_loop</span><span class="p">(</span><span class="n">test_fn</span><span class="p">,</span> <span class="n">body_fn</span><span class="p">,</span> <span class="nb">vars</span><span class="p">)</span></div>
@@ -514,16 +510,6 @@ document.write(`
             </div>
             
             
-              
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-  <div class="sidebar-secondary-item"><nav class="bd-docs-nav bd-links"
-     aria-label="Section Navigation">
-  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
-  <div class="bd-toc-item navbar-nav"></div>
-</nav></div>
-
-</div></div>
               
             
           </div>

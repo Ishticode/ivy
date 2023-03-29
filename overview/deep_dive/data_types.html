@@ -315,6 +315,7 @@ document.write(`
 <li class="toctree-l3"><a class="reference internal" href="ivy_frontends_tests.html">Ivy Frontend Tests</a></li>
 <li class="toctree-l3"><a class="reference internal" href="exception_handling.html">Exception Handling</a></li>
 <li class="toctree-l3"><a class="reference internal" href="continuous_integration.html">Continuous Integration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gradients.html">Gradients</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../contributing/open_tasks.html">Open Tasks</a></li>
@@ -351,6 +352,7 @@ document.write(`
 <li class="toctree-l2"><a class="reference internal" href="ivy_frontends_tests.html">Ivy Frontend Tests</a></li>
 <li class="toctree-l2"><a class="reference internal" href="exception_handling.html">Exception Handling</a></li>
 <li class="toctree-l2"><a class="reference internal" href="continuous_integration.html">Continuous Integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gradients.html">Gradients</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
@@ -583,7 +585,7 @@ This is <a class="reference external" href="https://github.com/unifyai/ivy/blob/
 <section id="data-type-module">
 <h2>Data Type Module<a class="headerlink" href="#data-type-module" title="Permalink to this heading">#</a></h2>
 <p>The <a class="reference external" href="https://github.com/unifyai/ivy/blob/8482eb3fcadd0721f339a1a55c3f3b9f5c86d8ba/ivy/functional/ivy/data_type.py">data_type.py</a> module provides a variety of functions for working with data types.
-A few examples include <code class="xref py py-func docutils literal notranslate"><span class="pre">ivy.astype()</span></code> which copies an array to a specified data type, <code class="xref py py-func docutils literal notranslate"><span class="pre">ivy.broadcast_to()</span></code> which broadcasts an array to a specified shape, and <code class="xref py py-func docutils literal notranslate"><span class="pre">ivy.result_type()</span></code> which returns the dtype that results from applying the type promotion rules to the arguments.</p>
+A few examples include <a class="reference internal" href="../../docs/functional/ivy/data_type/ivy.functional.ivy.data_type.astype.html#ivy.astype" title="ivy.astype"><code class="xref py py-func docutils literal notranslate"><span class="pre">ivy.astype()</span></code></a> which copies an array to a specified data type, <a class="reference internal" href="../../docs/functional/ivy/data_type/ivy.functional.ivy.data_type.broadcast_to.html#ivy.broadcast_to" title="ivy.broadcast_to"><code class="xref py py-func docutils literal notranslate"><span class="pre">ivy.broadcast_to()</span></code></a> which broadcasts an array to a specified shape, and <a class="reference internal" href="../../docs/functional/ivy/data_type/ivy.functional.ivy.data_type.result_type.html#ivy.result_type" title="ivy.result_type"><code class="xref py py-func docutils literal notranslate"><span class="pre">ivy.result_type()</span></code></a> which returns the dtype that results from applying the type promotion rules to the arguments.</p>
 <p>Many functions in the <code class="xref py py-mod docutils literal notranslate"><span class="pre">data_type.py</span></code> module are <em>convenience</em> functions, which means that they do not directly modify arrays, as explained in the <a class="reference internal" href="function_types.html#function-types"><span class="std std-ref">Function Types</span></a> section.</p>
 <p>For example, the following are all convenience functions:
 <a class="reference external" href="https://github.com/unifyai/ivy/blob/8482eb3fcadd0721f339a1a55c3f3b9f5c86d8ba/ivy/functional/ivy/data_type.py#L246">ivy.can_cast</a>, which determines if one data type can be cast to another data type according to type-promotion rules, <a class="reference external" href="https://github.com/unifyai/ivy/blob/8482eb3fcadd0721f339a1a55c3f3b9f5c86d8ba/ivy/functional/ivy/data_type.py#L1096">ivy.dtype</a>, which gets the data type for the input array, <a class="reference external" href="https://github.com/unifyai/ivy/blob/8482eb3fcadd0721f339a1a55c3f3b9f5c86d8ba/ivy/functional/ivy/data_type.py#L1555">ivy.set_default_dtype</a>, which sets the global default data dtype, and <a class="reference external" href="https://github.com/unifyai/ivy/blob/8482eb3fcadd0721f339a1a55c3f3b9f5c86d8ba/ivy/functional/ivy/data_type.py#L879">ivy.default_dtype</a>, which returns the correct data type to use.</p>
@@ -598,7 +600,7 @@ These rules build directly on top of the <a class="reference external" href="htt
 which is the union of the Array API Standard <a class="reference external" href="https://github.com/unifyai/ivy/blob/db96e50860802b2944ed9dabacd8198608699c7c/ivy/__init__.py#L223">promotion table</a> and an extra <a class="reference external" href="https://github.com/unifyai/ivy/blob/db96e50860802b2944ed9dabacd8198608699c7c/ivy/__init__.py#L292">promotion table</a>.</p>
 <p>In order to ensure adherence to this promotion table, many backend functions make use of the functions <a class="reference external" href="https://github.com/unifyai/ivy/blob/db96e50860802b2944ed9dabacd8198608699c7c/ivy/functional/ivy/data_type.py#L1804">ivy.promote_types</a>, <a class="reference external" href="https://github.com/unifyai/ivy/blob/db96e50860802b2944ed9dabacd8198608699c7c/ivy/functional/ivy/data_type.py#L1940">ivy.type_promote_arrays</a>, or <a class="reference external" href="https://github.com/unifyai/ivy/blob/db96e50860802b2944ed9dabacd8198608699c7c/ivy/functional/ivy/data_type.py#L2085">ivy.promote_types_of_inputs</a>.
 These functions: promote data types in the inputs and return the new data types, promote the data types of the arrays in the input and return new arrays, and promote the data types of the numeric or array values inputs and return new type promoted values, respectively.</p>
-<p>For an example of how some of these functions are used, the implementations for <code class="xref py py-func docutils literal notranslate"><span class="pre">ivy.add()</span></code> in each backend framework are as follows:</p>
+<p>For an example of how some of these functions are used, the implementations for <a class="reference internal" href="../../docs/functional/ivy/elementwise/ivy.functional.ivy.elementwise.add.html#ivy.add" title="ivy.add"><code class="xref py py-func docutils literal notranslate"><span class="pre">ivy.add()</span></code></a> in each backend framework are as follows:</p>
 <p>JAX:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">add</span><span class="p">(</span>
     <span class="n">x1</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="n">JaxArray</span><span class="p">],</span>
@@ -669,7 +671,7 @@ Therefore, Ivy does not upcast specific values to improve the stability or preci
 <h2>Arguments in other Functions<a class="headerlink" href="#arguments-in-other-functions" title="Permalink to this heading">#</a></h2>
 <p>All <code class="docutils literal notranslate"><span class="pre">dtype</span></code> arguments are keyword-only.
 All creation functions include the <code class="docutils literal notranslate"><span class="pre">dtype</span></code> argument, for specifying the data type of the created array.
-Some other non-creation functions also support the <code class="docutils literal notranslate"><span class="pre">dtype</span></code> argument, such as <code class="xref py py-func docutils literal notranslate"><span class="pre">ivy.prod()</span></code> and <code class="xref py py-func docutils literal notranslate"><span class="pre">ivy.sum()</span></code>, but most functions do not include it.
+Some other non-creation functions also support the <code class="docutils literal notranslate"><span class="pre">dtype</span></code> argument, such as <a class="reference internal" href="../../docs/functional/ivy/statistical/ivy.functional.ivy.statistical.prod.html#ivy.prod" title="ivy.prod"><code class="xref py py-func docutils literal notranslate"><span class="pre">ivy.prod()</span></code></a> and <a class="reference internal" href="../../docs/functional/ivy/statistical/ivy.functional.ivy.statistical.sum.html#ivy.sum" title="ivy.sum"><code class="xref py py-func docutils literal notranslate"><span class="pre">ivy.sum()</span></code></a>, but most functions do not include it.
 The non-creation functions which do support it are generally functions that involve a compounding reduction across the array, which could result in overflows, and so an explicit <code class="docutils literal notranslate"><span class="pre">dtype</span></code> argument is useful to handling such cases.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">dtype</span></code> argument is handled in the <a class="reference external" href="https://github.com/unifyai/ivy/blob/1eb841cdf595e2bb269fce084bd50fb79ce01a69/ivy/func_wrapper.py#L249">infer_dtype</a> wrapper, for all functions which have the decorator <code class="code docutils literal notranslate"><span class="pre">&#64;infer_dtype</span></code>.
 This function calls <a class="reference external" href="https://github.com/unifyai/ivy/blob/8482eb3fcadd0721f339a1a55c3f3b9f5c86d8ba/ivy/functional/ivy/data_type.py#L879">ivy.default_dtype</a> in order to determine the correct data type.
@@ -678,17 +680,17 @@ As discussed in the <a class="reference internal" href="function_wrapping.html#f
 <ol class="arabic simple">
 <li><p>if the <code class="docutils literal notranslate"><span class="pre">dtype</span></code> argument is provided, use this directly</p></li>
 <li><p>otherwise, if an array is present in the arguments, set <code class="docutils literal notranslate"><span class="pre">arr</span></code> to this array.
-This will then be used to infer the data type by calling <code class="xref py py-func docutils literal notranslate"><span class="pre">ivy.dtype()</span></code> on the array</p></li>
-<li><p>otherwise, if a <em>relevant</em> scalar is present in the arguments, set <code class="docutils literal notranslate"><span class="pre">arr</span></code> to this scalar and derive the data type from this by calling either <code class="xref py py-func docutils literal notranslate"><span class="pre">ivy.default_int_dtype()</span></code> or <code class="xref py py-func docutils literal notranslate"><span class="pre">ivy.default_float_dtype()</span></code> depending on whether the scalar is an int or float.
-This will either return the globally set default int data type or globally set default float data type (settable via <code class="xref py py-func docutils literal notranslate"><span class="pre">ivy.set_default_int_dtype()</span></code> and <code class="xref py py-func docutils literal notranslate"><span class="pre">ivy.set_default_float_dtype()</span></code> respectively).
-An example of a <em>relevant</em> scalar is <code class="docutils literal notranslate"><span class="pre">start</span></code> in the function <code class="xref py py-func docutils literal notranslate"><span class="pre">ivy.arange()</span></code>, which is used to set the starting value of the returned array.
+This will then be used to infer the data type by calling <a class="reference internal" href="../../docs/functional/ivy/data_type/ivy.functional.ivy.data_type.dtype.html#ivy.dtype" title="ivy.dtype"><code class="xref py py-func docutils literal notranslate"><span class="pre">ivy.dtype()</span></code></a> on the array</p></li>
+<li><p>otherwise, if a <em>relevant</em> scalar is present in the arguments, set <code class="docutils literal notranslate"><span class="pre">arr</span></code> to this scalar and derive the data type from this by calling either <a class="reference internal" href="../../docs/functional/ivy/data_type/ivy.functional.ivy.data_type.default_int_dtype.html#ivy.default_int_dtype" title="ivy.default_int_dtype"><code class="xref py py-func docutils literal notranslate"><span class="pre">ivy.default_int_dtype()</span></code></a> or <a class="reference internal" href="../../docs/functional/ivy/data_type/ivy.functional.ivy.data_type.default_float_dtype.html#ivy.default_float_dtype" title="ivy.default_float_dtype"><code class="xref py py-func docutils literal notranslate"><span class="pre">ivy.default_float_dtype()</span></code></a> depending on whether the scalar is an int or float.
+This will either return the globally set default int data type or globally set default float data type (settable via <a class="reference internal" href="../../docs/functional/ivy/data_type/ivy.functional.ivy.data_type.set_default_int_dtype.html#ivy.set_default_int_dtype" title="ivy.set_default_int_dtype"><code class="xref py py-func docutils literal notranslate"><span class="pre">ivy.set_default_int_dtype()</span></code></a> and <a class="reference internal" href="../../docs/functional/ivy/data_type/ivy.functional.ivy.data_type.set_default_float_dtype.html#ivy.set_default_float_dtype" title="ivy.set_default_float_dtype"><code class="xref py py-func docutils literal notranslate"><span class="pre">ivy.set_default_float_dtype()</span></code></a> respectively).
+An example of a <em>relevant</em> scalar is <code class="docutils literal notranslate"><span class="pre">start</span></code> in the function <a class="reference internal" href="../../docs/functional/ivy/creation/ivy.functional.ivy.creation.arange.html#ivy.arange" title="ivy.arange"><code class="xref py py-func docutils literal notranslate"><span class="pre">ivy.arange()</span></code></a>, which is used to set the starting value of the returned array.
 Examples of <em>irrelevant</em> scalars which should <strong>not</strong> be used for determining the data type are <code class="docutils literal notranslate"><span class="pre">axis</span></code>, <code class="docutils literal notranslate"><span class="pre">axes</span></code>, <code class="docutils literal notranslate"><span class="pre">dims</span></code> etc. which must be integers, and control other configurations of the function being called, with no bearing at all on the data types used by that function.</p></li>
 <li><p>otherwise, if no arrays or relevant scalars are present in the arguments, then use the global default data type, which can either be an int or float data type.
-This is settable via <code class="xref py py-func docutils literal notranslate"><span class="pre">ivy.set_default_dtype()</span></code>.</p></li>
+This is settable via <a class="reference internal" href="../../docs/functional/ivy/data_type/ivy.functional.ivy.data_type.set_default_dtype.html#ivy.set_default_dtype" title="ivy.set_default_dtype"><code class="xref py py-func docutils literal notranslate"><span class="pre">ivy.set_default_dtype()</span></code></a>.</p></li>
 </ol>
 <p>For the majority of functions which defer to <a class="reference external" href="https://github.com/unifyai/ivy/blob/1eb841cdf595e2bb269fce084bd50fb79ce01a69/ivy/func_wrapper.py#L249">infer_dtype</a> for handling the data type, these steps will have been followed and the <code class="docutils literal notranslate"><span class="pre">dtype</span></code> argument will be populated with the correct value before the backend-specific implementation is even entered into.
 Therefore, whereas the <code class="docutils literal notranslate"><span class="pre">dtype</span></code> argument is listed as optional in the ivy API at <code class="xref py py-mod docutils literal notranslate"><span class="pre">ivy/functional/ivy/category_name.py</span></code>, the argument is listed as required in the backend-specific implementations at <code class="xref py py-mod docutils literal notranslate"><span class="pre">ivy/functional/backends/backend_name/category_name.py</span></code>.</p>
-<p>Let’s take a look at the function <code class="xref py py-func docutils literal notranslate"><span class="pre">ivy.zeros()</span></code> as an example.</p>
+<p>Let’s take a look at the function <a class="reference internal" href="../../docs/functional/ivy/creation/ivy.functional.ivy.creation.zeros.html#ivy.zeros" title="ivy.zeros"><code class="xref py py-func docutils literal notranslate"><span class="pre">ivy.zeros()</span></code></a> as an example.</p>
 <p>The implementation in <code class="xref py py-mod docutils literal notranslate"><span class="pre">ivy/functional/ivy/creation.py</span></code> has the following signature:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@outputs_to_ivy_arrays</span>
 <span class="nd">@handle_out_argument</span>
@@ -744,7 +746,7 @@ all list <code class="docutils literal notranslate"><span class="pre">dtype</spa
 <p>However, the <code class="docutils literal notranslate"><span class="pre">dtype</span></code> argument for functions which don’t have the <code class="code docutils literal notranslate"><span class="pre">&#64;infer_dtype</span></code> decorator are <strong>not</strong> handled by <a class="reference external" href="https://github.com/unifyai/ivy/blob/1eb841cdf595e2bb269fce084bd50fb79ce01a69/ivy/func_wrapper.py#L249">infer_dtype</a>, and so these defaults must be handled by the backend-specific implementations themselves.</p>
 <p>One reason for not adding <code class="code docutils literal notranslate"><span class="pre">&#64;infer_dtype</span></code> to a function is because it includes <em>relevant</em> scalar arguments for inferring the data type from.
 <a class="reference external" href="https://github.com/unifyai/ivy/blob/1eb841cdf595e2bb269fce084bd50fb79ce01a69/ivy/func_wrapper.py#L249">infer_dtype</a> is not able to correctly handle such cases, and so the dtype handling is delegated to the backend-specific implementations.</p>
-<p>For example <code class="xref py py-func docutils literal notranslate"><span class="pre">ivy.full()</span></code> doesn’t have the <code class="code docutils literal notranslate"><span class="pre">&#64;infer_dtype</span></code> decorator even though it has a <code class="docutils literal notranslate"><span class="pre">dtype</span></code> argument because of the <em>relevant</em> <code class="docutils literal notranslate"><span class="pre">fill_value</span></code> which cannot be correctly handled by <a class="reference external" href="https://github.com/unifyai/ivy/blob/1eb841cdf595e2bb269fce084bd50fb79ce01a69/ivy/func_wrapper.py#L249">infer_dtype</a>.</p>
+<p>For example <a class="reference internal" href="../../docs/functional/ivy/creation/ivy.functional.ivy.creation.full.html#ivy.full" title="ivy.full"><code class="xref py py-func docutils literal notranslate"><span class="pre">ivy.full()</span></code></a> doesn’t have the <code class="code docutils literal notranslate"><span class="pre">&#64;infer_dtype</span></code> decorator even though it has a <code class="docutils literal notranslate"><span class="pre">dtype</span></code> argument because of the <em>relevant</em> <code class="docutils literal notranslate"><span class="pre">fill_value</span></code> which cannot be correctly handled by <a class="reference external" href="https://github.com/unifyai/ivy/blob/1eb841cdf595e2bb269fce084bd50fb79ce01a69/ivy/func_wrapper.py#L249">infer_dtype</a>.</p>
 <p>The PyTorch-specific implementation is as follows:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">full</span><span class="p">(</span>
     <span class="n">shape</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">int</span><span class="p">]],</span>
@@ -761,7 +763,7 @@ all list <code class="docutils literal notranslate"><span class="pre">dtype</spa
     <span class="p">)</span>
 </pre></div>
 </div>
-<p>The implementations for all other backends follow a similar pattern to this PyTorch implementation, where the <code class="docutils literal notranslate"><span class="pre">dtype</span></code> argument is optional and <code class="xref py py-func docutils literal notranslate"><span class="pre">ivy.default_dtype()</span></code> is called inside the backend-specific implementation.</p>
+<p>The implementations for all other backends follow a similar pattern to this PyTorch implementation, where the <code class="docutils literal notranslate"><span class="pre">dtype</span></code> argument is optional and <a class="reference internal" href="../../docs/functional/ivy/data_type/ivy.functional.ivy.data_type.default_dtype.html#ivy.default_dtype" title="ivy.default_dtype"><code class="xref py py-func docutils literal notranslate"><span class="pre">ivy.default_dtype()</span></code></a> is called inside the backend-specific implementation.</p>
 </section>
 <section id="supported-and-unsupported-data-types">
 <h2>Supported and Unsupported Data Types<a class="headerlink" href="#supported-and-unsupported-data-types" title="Permalink to this heading">#</a></h2>
@@ -802,7 +804,7 @@ So it is suggested to explore it both ways.</p>
 <p>Sometimes, it might be possible to support a natively unsupported data type by either
 casting to a supported data type and then casting back, or explicitly handling these
 data types without deferring to a backend function at all.</p>
-<p>An example of the former is <code class="xref py py-func docutils literal notranslate"><span class="pre">ivy.logical_not()</span></code> with a tensorflow backend:</p>
+<p>An example of the former is <a class="reference internal" href="../../docs/functional/ivy/elementwise/ivy.functional.ivy.elementwise.logical_not.html#ivy.logical_not" title="ivy.logical_not"><code class="xref py py-func docutils literal notranslate"><span class="pre">ivy.logical_not()</span></code></a> with a tensorflow backend:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">logical_not</span><span class="p">(</span>
     <span class="n">x</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">tf</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">],</span>
     <span class="o">/</span><span class="p">,</span>
@@ -812,7 +814,7 @@ data types without deferring to a backend function at all.</p>
     <span class="k">return</span> <span class="n">tf</span><span class="o">.</span><span class="n">logical_not</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">tf</span><span class="o">.</span><span class="n">bool</span><span class="p">))</span>
 </pre></div>
 </div>
-<p>An example of the latter is <code class="xref py py-func docutils literal notranslate"><span class="pre">ivy.abs()</span></code> with a tensorflow backend:</p>
+<p>An example of the latter is <a class="reference internal" href="../../docs/functional/ivy/elementwise/ivy.functional.ivy.elementwise.abs.html#ivy.abs" title="ivy.abs"><code class="xref py py-func docutils literal notranslate"><span class="pre">ivy.abs()</span></code></a> with a tensorflow backend:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">abs</span><span class="p">(</span>
     <span class="n">x</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="n">tf</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">],</span>
     <span class="o">/</span><span class="p">,</span>
@@ -829,7 +831,7 @@ data types without deferring to a backend function at all.</p>
 For example, in many cases casting to another data type will result in a loss of precision, input range, or both.
 In such cases, the best solution is to simply add the data type to the <code class="xref py py-attr docutils literal notranslate"><span class="pre">&#64;with_unsupported_dtypes</span></code> decorator, rather than trying to implement a long and complex patch to achieve the desired behaviour.</p>
 <p>Some cases where a data type is not supported are very subtle.
-For example, <code class="docutils literal notranslate"><span class="pre">uint8</span></code> is not supported for <code class="xref py py-func docutils literal notranslate"><span class="pre">ivy.prod()</span></code> with a torch backend, despite <code class="xref py py-func docutils literal notranslate"><span class="pre">torch.prod()</span></code> handling <code class="docutils literal notranslate"><span class="pre">torch.uint8</span></code> types in the input totally fine.</p>
+For example, <code class="docutils literal notranslate"><span class="pre">uint8</span></code> is not supported for <a class="reference internal" href="../../docs/functional/ivy/statistical/ivy.functional.ivy.statistical.prod.html#ivy.prod" title="ivy.prod"><code class="xref py py-func docutils literal notranslate"><span class="pre">ivy.prod()</span></code></a> with a torch backend, despite <code class="xref py py-func docutils literal notranslate"><span class="pre">torch.prod()</span></code> handling <code class="docutils literal notranslate"><span class="pre">torch.uint8</span></code> types in the input totally fine.</p>
 <p>The reason for this is that the <a class="reference external" href="https://data-apis.org/array-api/latest/">Array API Standard</a> mandates that <code class="xref py py-func docutils literal notranslate"><span class="pre">prod()</span></code> upcasts the unsigned integer return to have the same number of bits as the default integer data type.
 By default, the default integer data type in Ivy is <code class="docutils literal notranslate"><span class="pre">int32</span></code>, and so we should return an array of type <code class="docutils literal notranslate"><span class="pre">uint32</span></code> despite the input arrays being of type <code class="docutils literal notranslate"><span class="pre">uint8</span></code>.
 However, torch does not support <code class="docutils literal notranslate"><span class="pre">uint32</span></code>, and so we cannot fully adhere to the requirements of the standard for <code class="docutils literal notranslate"><span class="pre">uint8</span></code> inputs.
@@ -934,44 +936,6 @@ src="https://www.youtube.com/embed/2qOBzQdLXn4" class="video">
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-  <div class="sidebar-secondary-item"><nav class="bd-docs-nav bd-links"
-     aria-label="Section Navigation">
-  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
-  <div class="bd-toc-item navbar-nav"><p aria-level="2" class="caption" role="heading"><span class="caption-text">Contributing</span></p>
-<ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../contributing/setting_up.html">Setting Up</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../contributing/the_basics.html">The Basics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../contributing/building_the_docs.html">Building the Docs</a></li>
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="../deep_dive.html">Deep Dive</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="navigating_the_code.html">Navigating the Code</a></li>
-<li class="toctree-l2"><a class="reference internal" href="function_types.html">Function Types</a></li>
-<li class="toctree-l2"><a class="reference internal" href="superset_behaviour.html">Superset Behaviour</a></li>
-<li class="toctree-l2"><a class="reference internal" href="backend_setting.html">Backend Setting</a></li>
-<li class="toctree-l2"><a class="reference internal" href="arrays.html">Arrays</a></li>
-<li class="toctree-l2"><a class="reference internal" href="containers.html">Containers</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Data Types</a></li>
-<li class="toctree-l2"><a class="reference internal" href="devices.html">Devices</a></li>
-<li class="toctree-l2"><a class="reference internal" href="inplace_updates.html">Inplace Updates</a></li>
-<li class="toctree-l2"><a class="reference internal" href="function_wrapping.html">Function Wrapping</a></li>
-<li class="toctree-l2"><a class="reference internal" href="formatting.html">Formatting</a></li>
-<li class="toctree-l2"><a class="reference internal" href="function_arguments.html">Function Arguments</a></li>
-<li class="toctree-l2"><a class="reference internal" href="docstrings.html">Docstrings</a></li>
-<li class="toctree-l2"><a class="reference internal" href="docstring_examples.html">Docstring Examples</a></li>
-<li class="toctree-l2"><a class="reference internal" href="array_api_tests.html">Array API Tests</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ivy_tests.html">Ivy Tests</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ivy_frontends.html">Ivy Frontends</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ivy_frontends_tests.html">Ivy Frontend Tests</a></li>
-<li class="toctree-l2"><a class="reference internal" href="exception_handling.html">Exception Handling</a></li>
-<li class="toctree-l2"><a class="reference internal" href="continuous_integration.html">Continuous Integration</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../contributing/open_tasks.html">Open Tasks</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../contributing/applied_libraries.html">Applied Libraries</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../contributing/helpful_resources.html">Helpful Resources</a></li>
-</ul>
-</div>
-</nav></div>
 
   <div class="sidebar-secondary-item">
   <div class="page-toc tocsection onthispage">

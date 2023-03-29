@@ -317,6 +317,7 @@ document.write(`
 <li class="toctree-l3"><a class="reference internal" href="ivy_frontends_tests.html">Ivy Frontend Tests</a></li>
 <li class="toctree-l3"><a class="reference internal" href="exception_handling.html">Exception Handling</a></li>
 <li class="toctree-l3"><a class="reference internal" href="continuous_integration.html">Continuous Integration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gradients.html">Gradients</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../contributing/open_tasks.html">Open Tasks</a></li>
@@ -355,6 +356,7 @@ document.write(`
 <li class="toctree-l2"><a class="reference internal" href="ivy_frontends_tests.html">Ivy Frontend Tests</a></li>
 <li class="toctree-l2"><a class="reference internal" href="exception_handling.html">Exception Handling</a></li>
 <li class="toctree-l2"><a class="reference internal" href="continuous_integration.html">Continuous Integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gradients.html">Gradients</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
@@ -561,15 +563,15 @@ The Ivy function then entails the <em>superset</em> of all backend features.
 However, this is not always totally possible, and in some cases certain framework-specific features must be sacrificed, but usually it’s possible to implement a very generalized function which covers most of the unique features among the corresponding functions in each framework.</p>
 <p>We strive to implement the superset for primary, compositional and mixed functions.
 In many cases compositional functions do not actually have corresponding backend-specific functions, but this is not always the case.
-For example, <code class="xref py py-func docutils literal notranslate"><span class="pre">ivy.linear()</span></code> is a fully compositional function, but <code class="xref py py-func docutils literal notranslate"><span class="pre">torch.nn.functional.linear()</span></code> also exists.
-We should therefore make sure the compositional <code class="xref py py-func docutils literal notranslate"><span class="pre">ivy.linear()</span></code> function includes all behaviours supported by <code class="xref py py-func docutils literal notranslate"><span class="pre">torch.nn.functional.linear()</span></code>.</p>
+For example, <a class="reference internal" href="../../docs/functional/ivy/layers/ivy.functional.ivy.layers.linear.html#ivy.linear" title="ivy.linear"><code class="xref py py-func docutils literal notranslate"><span class="pre">ivy.linear()</span></code></a> is a fully compositional function, but <code class="xref py py-func docutils literal notranslate"><span class="pre">torch.nn.functional.linear()</span></code> also exists.
+We should therefore make sure the compositional <a class="reference internal" href="../../docs/functional/ivy/layers/ivy.functional.ivy.layers.linear.html#ivy.linear" title="ivy.linear"><code class="xref py py-func docutils literal notranslate"><span class="pre">ivy.linear()</span></code></a> function includes all behaviours supported by <code class="xref py py-func docutils literal notranslate"><span class="pre">torch.nn.functional.linear()</span></code>.</p>
 </section>
 <section id="a-non-duplicate-superset">
 <h2>A Non-Duplicate Superset<a class="headerlink" href="#a-non-duplicate-superset" title="Permalink to this heading">#</a></h2>
 <p>It would be easy to assume that implementing the superset simply means adding all arguments from all related functions into the Ivy function.
 However, this is <strong>not</strong> the case for a few reasons.
 Firstly, different functions might have different argument names for the same behaviour.
-Looking at the functions <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.concatenate.html">numpy.concatenate</a> and <a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.cat.html">torch.cat</a>, we of course do not want to add both of the arguments <code class="code docutils literal notranslate"><span class="pre">axis</span></code> and <code class="code docutils literal notranslate"><span class="pre">dim</span></code> to <code class="xref py py-func docutils literal notranslate"><span class="pre">ivy.concat()</span></code>, as these both represent exactly the same thing: the dimemsion/axis along which to concatenate.
+Looking at the functions <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.concatenate.html">numpy.concatenate</a> and <a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.cat.html">torch.cat</a>, we of course do not want to add both of the arguments <code class="code docutils literal notranslate"><span class="pre">axis</span></code> and <code class="code docutils literal notranslate"><span class="pre">dim</span></code> to <a class="reference internal" href="../../docs/functional/ivy/manipulation/ivy.functional.ivy.manipulation.concat.html#ivy.concat" title="ivy.concat"><code class="xref py py-func docutils literal notranslate"><span class="pre">ivy.concat()</span></code></a>, as these both represent exactly the same thing: the dimemsion/axis along which to concatenate.
 In this case, the argument is <a class="reference external" href="https://data-apis.org/array-api/latest/API_specification/generated/signatures.manipulation_functions.concat.html">covered</a> in the <a class="reference external" href="https://data-apis.org/array-api/latest/">Array API Standard</a> and so we opt for <code class="code docutils literal notranslate"><span class="pre">axis</span></code>.
 In cases where there are differences between the backend argument names, and the function or argument is not in the standard, then it is up to us to determine which argument name to use.</p>
 </section>
@@ -601,7 +603,7 @@ However, as is discussed below, we always strive to implement Ivy functions such
 This inclusion of this feature in NumPy is totally understandable, compositions of NumPy functions are never compiled into computation graphs which span multiple operations, and therefore a good way to maximize efficiency of NumPy code is to minimize the number of unique NumPy functions which are called, each of which are implemented with very high efficiency in <code class="code docutils literal notranslate"><span class="pre">C</span></code>.
 In this case, the inclusion of <code class="code docutils literal notranslate"><span class="pre">where</span></code> as an argument also prevents unnecessary values from being computed in the first place, only to then be masked out in the immediately subsequent operation.
 For these reasons, calling <code class="code docutils literal notranslate"><span class="pre">np.absolute(x,</span> <span class="pre">where=mask)</span></code> is much more efficient than calling <code class="code docutils literal notranslate"><span class="pre">np.where(mask,</span> <span class="pre">np.absolute(x),</span> <span class="pre">np.empty_like(x))</span></code> in NumPy.
-<code class="xref py py-func docutils literal notranslate"><span class="pre">ivy.logical_and()</span></code> is another example where the superset is too much, as we explain in the extra examples given at the end of this section.</p>
+<a class="reference internal" href="../../docs/functional/ivy/elementwise/ivy.functional.ivy.elementwise.logical_and.html#ivy.logical_and" title="ivy.logical_and"><code class="xref py py-func docutils literal notranslate"><span class="pre">ivy.logical_and()</span></code></a> is another example where the superset is too much, as we explain in the extra examples given at the end of this section.</p>
 <p>However, other frameworks are able to compile compositions of python operations directly to computation graphs in low-level languages, and are also able to intelligently fuse operations into combined kernels, via libraries such as <a class="reference external" href="https://github.com/NVIDIA/TensorRT">TensorRT</a>.
 This removes the need for highly general function signatures such as those found in NumPy.
 Instead, a compositional approach is preferred, where each function in Python generally serves a particular and non-overlapping purpose.
@@ -664,6 +666,27 @@ All Ivy code should be graph compiled for efficiency, and in this case all the <
 This new implementation will be compiled to a graph of either one, three, four or six functions depending on the values of <code class="code docutils literal notranslate"><span class="pre">beta</span></code> and <code class="code docutils literal notranslate"><span class="pre">threshold</span></code>, while the previous implementation would <em>always</em> compile to six functions.</p>
 <p>This does mean we do not adopt the default values used by PyTorch, but that’s okay.
 Implementing the superset does not mean adopting the same default values for arguments, it simply means equipping the Ivy function with the capabilities to execute the superset of behaviours.</p>
+</section>
+<section id="more-examples">
+<h2>More Examples<a class="headerlink" href="#more-examples" title="Permalink to this heading">#</a></h2>
+<p>We now take a look at some examples, and explain our rational for deciding upon the function signature that we should use in Ivy.
+The first three examples are more-or-less superset examples, while the last example involves a deliberate decision to not implement the full superset, for some of the reasons explained above.</p>
+<p><strong>ivy.linspace</strong></p>
+<p>When looking at the <code class="xref py py-func docutils literal notranslate"><span class="pre">linspace()</span></code> (or closest equivalent) implementations for <a class="reference external" href="https://lets-unify.ai/ivy/functional/ivy/creation/linspace/linspace_functional.html">Ivy</a>, <a class="reference external" href="https://jax.readthedocs.io/en/latest/_autosummary/jax.numpy.linspace.html">JAX</a>, <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.linspace.html">NumPy</a>, <a class="reference external" href="https://www.tensorflow.org/api_docs/python/tf/linspace">TensorFlow</a>, and <a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.linspace.html">PyTorch</a>, we can see that torch does not support arrays for the <code class="code docutils literal notranslate"><span class="pre">start</span></code> and <code class="code docutils literal notranslate"><span class="pre">end</span></code> arguments, while JAX, numpy and tensorflow all do.
+Likewise, Ivy also supports arrays for the <code class="code docutils literal notranslate"><span class="pre">start</span></code> and <code class="code docutils literal notranslate"><span class="pre">stop</span></code> arguments, and in doing so provides the generalized superset implementation among the backend frameworks.</p>
+<p><strong>ivy.eye</strong></p>
+<p>When looking at the <code class="xref py py-func docutils literal notranslate"><span class="pre">eye()</span></code> (or closest equivalent) implementations for <a class="reference external" href="https://lets-unify.ai/ivy/functional/ivy/creation/eye/eye_functional.html">Ivy</a>, <a class="reference external" href="https://jax.readthedocs.io/en/latest/_autosummary/jax.numpy.eye.html">JAX</a>, <a class="reference external" href="https://numpy.org/devdocs/reference/generated/numpy.eye.html">NumPy</a>, <a class="reference external" href="https://www.tensorflow.org/api_docs/python/tf/eye">TensorFlow</a>, and <a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.eye.html">PyTorch</a>, we can see that tensorflow is the only framework which supports a <code class="code docutils literal notranslate"><span class="pre">batch_shape</span></code> argument.
+Likewise, Ivy also supports a <code class="code docutils literal notranslate"><span class="pre">batch_shape</span></code> argument, and in doing so provides the generalized superset implementation among the backend frameworks.</p>
+<p><strong>ivy.scatter_nd</strong></p>
+<p>When looking at the <code class="xref py py-func docutils literal notranslate"><span class="pre">scatter_nd()</span></code> (or closest equivalent) implementations for <a class="reference external" href="https://lets-unify.ai/ivy/functional/ivy/general/scatter_nd/scatter_nd_functional.html">Ivy</a>, <a class="reference external" href="https://jax.readthedocs.io/en/latest/_autosummary/jax.numpy.ndarray.at.html#jax.numpy.ndarray.at">JAX</a>, <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ufunc.at.html">NumPy</a>, <a class="reference external" href="https://www.tensorflow.org/api_docs/python/tf/scatter_nd">TensorFlow</a>, and <a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.scatter.html">PyTorch</a>, we can see that torch only supports scattering along a single dimension, while all other frameworks support scattering across multiple dimensions at once.
+Likewise, Ivy also supports scattering across multiple dimensions at once, and in doing so provides the generalized superset implementation among the backend frameworks.</p>
+<p><strong>ivy.logical_and</strong></p>
+<p>When looking at the <code class="xref py py-func docutils literal notranslate"><span class="pre">logical_and()</span></code> (or closest equivalent) implementations for <a class="reference external" href="https://lets-unify.ai/ivy/functional/ivy/elementwise/logical_and/logical_and_functional.html">Ivy</a>, <a class="reference external" href="https://jax.readthedocs.io/en/latest/_autosummary/jax.numpy.logical_and.html">JAX</a>, <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.logical_and.html">NumPy</a>, <a class="reference external" href="https://www.tensorflow.org/api_docs/python/tf/math/logical_and">TensorFlow</a>, and <a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.logical_and.html">PyTorch</a>, we can see that numpy and torch support the <code class="code docutils literal notranslate"><span class="pre">out</span></code> argument for performing inplace updates, while JAX and tensorflow do not.
+With regards to the supported data types, JAX, numpy and torch support numeric arrays, while tensorflow supports only boolean arrays.
+With regards to both of these points, Ivy provides the generalized superset implementation among the backend frameworks, with support for the <code class="code docutils literal notranslate"><span class="pre">out</span></code> argument and also support for both numeric and boolean arrays in the input.</p>
+<p>However, as discussed above, <code class="xref py py-func docutils literal notranslate"><span class="pre">np.logical_and()</span></code> also supports the <code class="code docutils literal notranslate"><span class="pre">where</span></code> argument, which we opt to <strong>not</strong> support in Ivy.
+This is because the behaviour can easily be created as a composition like so <code class="code docutils literal notranslate"><span class="pre">ivy.where(mask,</span> <span class="pre">ivy.logical_and(x,</span> <span class="pre">y),</span> <span class="pre">ivy.zeros_like(mask))</span></code>, and we prioritize the simplicity, clarity, and function uniqueness in Ivy’s API in this case, which comes at the cost of reduced runtime efficiency for some functions when using a NumPy backend.
+However, in future releases our automatic graph compilation and graph simplification processes will alleviate these minor inefficiencies entirely from the final computation graph, by fusing multiple operations into one at the API level where possible.</p>
 </section>
 <section id="maximizing-usage-of-native-functionality">
 <h2>Maximizing Usage of Native Functionality<a class="headerlink" href="#maximizing-usage-of-native-functionality" title="Permalink to this heading">#</a></h2>
@@ -738,27 +761,6 @@ This will make sure that we don’t introduce any inefficiencies and also avoid 
 <p>The <code class="code docutils literal notranslate"><span class="pre">&#64;handle_mixed_function</span></code> accepts a function as an input that receives the arguments and keyword arguments passed to the backend-specific implementation.
 The input function is expected to be a boolean function where we’d use the backend-specific implementation if <code class="code docutils literal notranslate"><span class="pre">True</span></code> and the compositional implementation if <code class="code docutils literal notranslate"><span class="pre">False</span></code>.
 This provides the flexibility to add any custom logic based on the use-case for maximal use of framework-specific implementations while achieving superset generalization.</p>
-</section>
-<section id="more-examples">
-<h2>More Examples<a class="headerlink" href="#more-examples" title="Permalink to this heading">#</a></h2>
-<p>We now take a look at some examples, and explain our rational for deciding upon the function signature that we should use in Ivy.
-The first three examples are more-or-less superset examples, while the last example involves a deliberate decision to not implement the full superset, for some of the reasons explained above.</p>
-<p><strong>ivy.linspace</strong></p>
-<p>When looking at the <code class="xref py py-func docutils literal notranslate"><span class="pre">linspace()</span></code> (or closest equivalent) implementations for <a class="reference external" href="https://lets-unify.ai/ivy/functional/ivy/creation/linspace/linspace_functional.html">Ivy</a>, <a class="reference external" href="https://jax.readthedocs.io/en/latest/_autosummary/jax.numpy.linspace.html">JAX</a>, <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.linspace.html">NumPy</a>, <a class="reference external" href="https://www.tensorflow.org/api_docs/python/tf/linspace">TensorFlow</a>, and <a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.linspace.html">PyTorch</a>, we can see that torch does not support arrays for the <code class="code docutils literal notranslate"><span class="pre">start</span></code> and <code class="code docutils literal notranslate"><span class="pre">end</span></code> arguments, while JAX, numpy and tensorflow all do.
-Likewise, Ivy also supports arrays for the <code class="code docutils literal notranslate"><span class="pre">start</span></code> and <code class="code docutils literal notranslate"><span class="pre">stop</span></code> arguments, and in doing so provides the generalized superset implementation among the backend frameworks.</p>
-<p><strong>ivy.eye</strong></p>
-<p>When looking at the <code class="xref py py-func docutils literal notranslate"><span class="pre">eye()</span></code> (or closest equivalent) implementations for <a class="reference external" href="https://lets-unify.ai/ivy/functional/ivy/creation/eye/eye_functional.html">Ivy</a>, <a class="reference external" href="https://jax.readthedocs.io/en/latest/_autosummary/jax.numpy.eye.html">JAX</a>, <a class="reference external" href="https://numpy.org/devdocs/reference/generated/numpy.eye.html">NumPy</a>, <a class="reference external" href="https://www.tensorflow.org/api_docs/python/tf/eye">TensorFlow</a>, and <a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.eye.html">PyTorch</a>, we can see that tensorflow is the only framework which supports a <code class="code docutils literal notranslate"><span class="pre">batch_shape</span></code> argument.
-Likewise, Ivy also supports a <code class="code docutils literal notranslate"><span class="pre">batch_shape</span></code> argument, and in doing so provides the generalized superset implementation among the backend frameworks.</p>
-<p><strong>ivy.scatter_nd</strong></p>
-<p>When looking at the <code class="xref py py-func docutils literal notranslate"><span class="pre">scatter_nd()</span></code> (or closest equivalent) implementations for <a class="reference external" href="https://lets-unify.ai/ivy/functional/ivy/general/scatter_nd/scatter_nd_functional.html">Ivy</a>, <a class="reference external" href="https://jax.readthedocs.io/en/latest/_autosummary/jax.numpy.ndarray.at.html#jax.numpy.ndarray.at">JAX</a>, <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ufunc.at.html">NumPy</a>, <a class="reference external" href="https://www.tensorflow.org/api_docs/python/tf/scatter_nd">TensorFlow</a>, and <a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.scatter.html">PyTorch</a>, we can see that torch only supports scattering along a single dimension, while all other frameworks support scattering across multiple dimensions at once.
-Likewise, Ivy also supports scattering across multiple dimensions at once, and in doing so provides the generalized superset implementation among the backend frameworks.</p>
-<p><strong>ivy.logical_and</strong></p>
-<p>When looking at the <code class="xref py py-func docutils literal notranslate"><span class="pre">logical_and()</span></code> (or closest equivalent) implementations for <a class="reference external" href="https://lets-unify.ai/ivy/functional/ivy/elementwise/logical_and/logical_and_functional.html">Ivy</a>, <a class="reference external" href="https://jax.readthedocs.io/en/latest/_autosummary/jax.numpy.logical_and.html">JAX</a>, <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.logical_and.html">NumPy</a>, <a class="reference external" href="https://www.tensorflow.org/api_docs/python/tf/math/logical_and">TensorFlow</a>, and <a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.logical_and.html">PyTorch</a>, we can see that numpy and torch support the <code class="code docutils literal notranslate"><span class="pre">out</span></code> argument for performing inplace updates, while JAX and tensorflow do not.
-With regards to the supported data types, JAX, numpy and torch support numeric arrays, while tensorflow supports only boolean arrays.
-With regards to both of these points, Ivy provides the generalized superset implementation among the backend frameworks, with support for the <code class="code docutils literal notranslate"><span class="pre">out</span></code> argument and also support for both numeric and boolean arrays in the input.</p>
-<p>However, as discussed above, <code class="xref py py-func docutils literal notranslate"><span class="pre">np.logical_and()</span></code> also supports the <code class="code docutils literal notranslate"><span class="pre">where</span></code> argument, which we opt to <strong>not</strong> support in Ivy.
-This is because the behaviour can easily be created as a composition like so <code class="code docutils literal notranslate"><span class="pre">ivy.where(mask,</span> <span class="pre">ivy.logical_and(x,</span> <span class="pre">y),</span> <span class="pre">ivy.zeros_like(mask))</span></code>, and we prioritize the simplicity, clarity, and function uniqueness in Ivy’s API in this case, which comes at the cost of reduced runtime efficiency for some functions when using a NumPy backend.
-However, in future releases our automatic graph compilation and graph simplification processes will alleviate these minor inefficiencies entirely from the final computation graph, by fusing multiple operations into one at the API level where possible.</p>
 <p><strong>Round Up</strong></p>
 <p>This should have hopefully given you a good feel what should and should not be included when deciding how to design a new Ivy function.
 In many cases, there is not a clear right and wrong answer, and we arrive at the final decision via open discussion.
@@ -805,44 +807,6 @@ src="https://www.youtube.com/embed/_D6xER3H4NU" class="video">
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
-  <div class="sidebar-secondary-item"><nav class="bd-docs-nav bd-links"
-     aria-label="Section Navigation">
-  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
-  <div class="bd-toc-item navbar-nav"><p aria-level="2" class="caption" role="heading"><span class="caption-text">Contributing</span></p>
-<ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../contributing/setting_up.html">Setting Up</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../contributing/the_basics.html">The Basics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../contributing/building_the_docs.html">Building the Docs</a></li>
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="../deep_dive.html">Deep Dive</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="navigating_the_code.html">Navigating the Code</a></li>
-<li class="toctree-l2"><a class="reference internal" href="function_types.html">Function Types</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Superset Behaviour</a></li>
-<li class="toctree-l2"><a class="reference internal" href="backend_setting.html">Backend Setting</a></li>
-<li class="toctree-l2"><a class="reference internal" href="arrays.html">Arrays</a></li>
-<li class="toctree-l2"><a class="reference internal" href="containers.html">Containers</a></li>
-<li class="toctree-l2"><a class="reference internal" href="data_types.html">Data Types</a></li>
-<li class="toctree-l2"><a class="reference internal" href="devices.html">Devices</a></li>
-<li class="toctree-l2"><a class="reference internal" href="inplace_updates.html">Inplace Updates</a></li>
-<li class="toctree-l2"><a class="reference internal" href="function_wrapping.html">Function Wrapping</a></li>
-<li class="toctree-l2"><a class="reference internal" href="formatting.html">Formatting</a></li>
-<li class="toctree-l2"><a class="reference internal" href="function_arguments.html">Function Arguments</a></li>
-<li class="toctree-l2"><a class="reference internal" href="docstrings.html">Docstrings</a></li>
-<li class="toctree-l2"><a class="reference internal" href="docstring_examples.html">Docstring Examples</a></li>
-<li class="toctree-l2"><a class="reference internal" href="array_api_tests.html">Array API Tests</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ivy_tests.html">Ivy Tests</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ivy_frontends.html">Ivy Frontends</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ivy_frontends_tests.html">Ivy Frontend Tests</a></li>
-<li class="toctree-l2"><a class="reference internal" href="exception_handling.html">Exception Handling</a></li>
-<li class="toctree-l2"><a class="reference internal" href="continuous_integration.html">Continuous Integration</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../contributing/open_tasks.html">Open Tasks</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../contributing/applied_libraries.html">Applied Libraries</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../contributing/helpful_resources.html">Helpful Resources</a></li>
-</ul>
-</div>
-</nav></div>
-
   <div class="sidebar-secondary-item">
   <div class="page-toc tocsection onthispage">
     <i class="fa-solid fa-list"></i> On this page
@@ -855,8 +819,8 @@ src="https://www.youtube.com/embed/_D6xER3H4NU" class="video">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-not-the-superset">What is not the Superset?</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#when-the-superset-is-too-much">When the Superset is Too Much</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#balancing-generalization-with-efficiency">Balancing Generalization with Efficiency</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#maximizing-usage-of-native-functionality">Maximizing Usage of Native Functionality</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#more-examples">More Examples</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#maximizing-usage-of-native-functionality">Maximizing Usage of Native Functionality</a></li>
 </ul>
   </nav></div>
 

@@ -314,6 +314,7 @@ document.write(`
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="continuous_integration.html">Continuous Integration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gradients.html">Gradients</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../contributing/open_tasks.html">Open Tasks</a></li>
@@ -349,6 +350,7 @@ document.write(`
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="continuous_integration.html">Continuous Integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gradients.html">Gradients</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
@@ -586,13 +588,13 @@ This is to reduce repetition and the creation of similar exception classes.</p>
 </section>
 <section id="configurable-mode-for-stack-trace">
 <h2>Configurable Mode for Stack Trace<a class="headerlink" href="#configurable-mode-for-stack-trace" title="Permalink to this heading">#</a></h2>
-<p>Due to the transpilation nature of Ivy, user can code in the frontend framework
-which they are familiar with, then run their code with another backend
-framework. For instance, someone who is familiar with NumPy can run their code
-with a JAX backend via Ivy’s NumPy frontend. Given their total lack of
-familiarity of certain backend frameworks (which is JAX in the above scenario),
-they might not want to see stack traces which go right down through Ivy
-functions and through JAX functions.</p>
+<p>Ivy’s transpilation nature allows users to write code in their preferred frontend
+framework and then execute it with a different backend framework. For example, a
+user who is comfortable with NumPy can use Ivy’s NumPy frontend to run their code
+with a JAX backend. However, since they may have no prior experience with JAX or
+other backend frameworks, they may not want to encounter stack traces that traverse
+Ivy and JAX functions. In such cases, it may be preferable for the user to avoid
+encountering stack traces that extend through Ivy and JAX functions.</p>
 <p>Therefore, options are made available for the stack traces to either truncate
 at the frontend or ivy level, or in other cases, no truncation at all.</p>
 <p>Let’s look at the 3 different modes with example of <code class="code docutils literal notranslate"><span class="pre">ivy.all</span></code> below!</p>
@@ -847,7 +849,7 @@ IvyError: jax: all: axis 2 is out of bounds for array of dimension 1
 </pre></div>
 </div>
 <p>The decorator is then added to each function for wrapping.
-Let’s look at an example of <code class="xref py py-func docutils literal notranslate"><span class="pre">ivy.all()</span></code>.</p>
+Let’s look at an example of <a class="reference internal" href="../../docs/functional/ivy/utility/ivy.functional.ivy.utility.all.html#ivy.all" title="ivy.all"><code class="xref py py-func docutils literal notranslate"><span class="pre">ivy.all()</span></code></a>.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># in ivy/functional/ivy/utility.py</span>
 <span class="nd">@handle_exceptions</span>
 <span class="k">def</span> <span class="nf">all</span><span class="p">(</span>
@@ -985,44 +987,6 @@ src="https://www.youtube.com/embed/eTc24eG9P_s" class="video">
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-  <div class="sidebar-secondary-item"><nav class="bd-docs-nav bd-links"
-     aria-label="Section Navigation">
-  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
-  <div class="bd-toc-item navbar-nav"><p aria-level="2" class="caption" role="heading"><span class="caption-text">Contributing</span></p>
-<ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../contributing/setting_up.html">Setting Up</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../contributing/the_basics.html">The Basics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../contributing/building_the_docs.html">Building the Docs</a></li>
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="../deep_dive.html">Deep Dive</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="navigating_the_code.html">Navigating the Code</a></li>
-<li class="toctree-l2"><a class="reference internal" href="function_types.html">Function Types</a></li>
-<li class="toctree-l2"><a class="reference internal" href="superset_behaviour.html">Superset Behaviour</a></li>
-<li class="toctree-l2"><a class="reference internal" href="backend_setting.html">Backend Setting</a></li>
-<li class="toctree-l2"><a class="reference internal" href="arrays.html">Arrays</a></li>
-<li class="toctree-l2"><a class="reference internal" href="containers.html">Containers</a></li>
-<li class="toctree-l2"><a class="reference internal" href="data_types.html">Data Types</a></li>
-<li class="toctree-l2"><a class="reference internal" href="devices.html">Devices</a></li>
-<li class="toctree-l2"><a class="reference internal" href="inplace_updates.html">Inplace Updates</a></li>
-<li class="toctree-l2"><a class="reference internal" href="function_wrapping.html">Function Wrapping</a></li>
-<li class="toctree-l2"><a class="reference internal" href="formatting.html">Formatting</a></li>
-<li class="toctree-l2"><a class="reference internal" href="function_arguments.html">Function Arguments</a></li>
-<li class="toctree-l2"><a class="reference internal" href="docstrings.html">Docstrings</a></li>
-<li class="toctree-l2"><a class="reference internal" href="docstring_examples.html">Docstring Examples</a></li>
-<li class="toctree-l2"><a class="reference internal" href="array_api_tests.html">Array API Tests</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ivy_tests.html">Ivy Tests</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ivy_frontends.html">Ivy Frontends</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ivy_frontends_tests.html">Ivy Frontend Tests</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Exception Handling</a></li>
-<li class="toctree-l2"><a class="reference internal" href="continuous_integration.html">Continuous Integration</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../contributing/open_tasks.html">Open Tasks</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../contributing/applied_libraries.html">Applied Libraries</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../contributing/helpful_resources.html">Helpful Resources</a></li>
-</ul>
-</div>
-</nav></div>
 
   <div class="sidebar-secondary-item">
   <div class="page-toc tocsection onthispage">

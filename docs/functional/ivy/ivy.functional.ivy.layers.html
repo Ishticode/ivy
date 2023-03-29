@@ -46,8 +46,8 @@
     <link rel="icon" href="https://github.com/unifyai/unifyai.github.io/blob/master/img/externally_linked/ivy_logo_only.png?raw=true"/>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="Linear algebra" href="ivy.functional.ivy.linear_algebra.html" />
-    <link rel="prev" title="Gradients" href="ivy.functional.ivy.gradients.html" />
+    <link rel="next" title="_deconv_length" href="layers/ivy.functional.ivy.layers._deconv_length.html" />
+    <link rel="prev" title="with_grads" href="gradients/ivy.functional.ivy.gradients.with_grads.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -300,6 +300,24 @@ document.write(`
 <li class="toctree-l1"><a class="reference internal" href="ivy.functional.ivy.general.html">General</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ivy.functional.ivy.gradients.html">Gradients</a></li>
 <li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Layers</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="layers/ivy.functional.ivy.layers._deconv_length.html">_deconv_length</a></li>
+<li class="toctree-l2"><a class="reference internal" href="layers/ivy.functional.ivy.layers._get_x_data_format.html">_get_x_data_format</a></li>
+<li class="toctree-l2"><a class="reference internal" href="layers/ivy.functional.ivy.layers._handle_padding.html">_handle_padding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="layers/ivy.functional.ivy.layers.conv.html">conv</a></li>
+<li class="toctree-l2"><a class="reference internal" href="layers/ivy.functional.ivy.layers.conv1d.html">conv1d</a></li>
+<li class="toctree-l2"><a class="reference internal" href="layers/ivy.functional.ivy.layers.conv1d_transpose.html">conv1d_transpose</a></li>
+<li class="toctree-l2"><a class="reference internal" href="layers/ivy.functional.ivy.layers.conv2d.html">conv2d</a></li>
+<li class="toctree-l2"><a class="reference internal" href="layers/ivy.functional.ivy.layers.conv2d_transpose.html">conv2d_transpose</a></li>
+<li class="toctree-l2"><a class="reference internal" href="layers/ivy.functional.ivy.layers.conv3d.html">conv3d</a></li>
+<li class="toctree-l2"><a class="reference internal" href="layers/ivy.functional.ivy.layers.conv3d_transpose.html">conv3d_transpose</a></li>
+<li class="toctree-l2"><a class="reference internal" href="layers/ivy.functional.ivy.layers.conv_general_dilated.html">conv_general_dilated</a></li>
+<li class="toctree-l2"><a class="reference internal" href="layers/ivy.functional.ivy.layers.conv_general_transpose.html">conv_general_transpose</a></li>
+<li class="toctree-l2"><a class="reference internal" href="layers/ivy.functional.ivy.layers.depthwise_conv2d.html">depthwise_conv2d</a></li>
+<li class="toctree-l2"><a class="reference internal" href="layers/ivy.functional.ivy.layers.dropout.html">dropout</a></li>
+<li class="toctree-l2"><a class="reference internal" href="layers/ivy.functional.ivy.layers.linear.html">linear</a></li>
+<li class="toctree-l2"><a class="reference internal" href="layers/ivy.functional.ivy.layers.lstm_update.html">lstm_update</a></li>
+<li class="toctree-l2"><a class="reference internal" href="layers/ivy.functional.ivy.layers.multi_head_attention.html">multi_head_attention</a></li>
+<li class="toctree-l2"><a class="reference internal" href="layers/ivy.functional.ivy.layers.scaled_dot_product_attention.html">scaled_dot_product_attention</a></li>
 
 
 
@@ -481,9 +499,9 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section id="module-ivy.functional.ivy.layers">
-<span id="layers"></span><h1>Layers<a class="headerlink" href="#module-ivy.functional.ivy.layers" title="Permalink to this heading">#</a></h1>
-<p>Collection of Ivy neural network layers in functional form.</p>
+  <section id="layers">
+<h1>Layers<a class="headerlink" href="#layers" title="Permalink to this heading">#</a></h1>
+<span class="target" id="module-ivy.functional.ivy.layers"></span><p>Collection of Ivy neural network layers in functional form.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="ivy.functional.ivy.layers.conv">
 <span class="sig-prename descclassname"><span class="pre">ivy.</span></span><span class="sig-name descname"><span class="pre">conv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filters</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">strides</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">padding</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">/</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transpose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dims</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_shape</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'channel_last'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">feature_group_count</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_dilations</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dilations</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bias</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/ivy/functional/ivy/layers.html#conv"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ivy.functional.ivy.layers.conv" title="Permalink to this definition">#</a></dt>
@@ -1843,20 +1861,20 @@ The shape of output array is <em>[batch_shape,num_queries,feat_dim]</em> .</p></
                   <!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="ivy.functional.ivy.gradients.html"
+       href="gradients/ivy.functional.ivy.gradients.with_grads.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Gradients</p>
+        <p class="prev-next-title">with_grads</p>
       </div>
     </a>
     <a class="right-next"
-       href="ivy.functional.ivy.linear_algebra.html"
+       href="layers/ivy.functional.ivy.layers._deconv_length.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Linear algebra</p>
+        <p class="prev-next-title">_deconv_length</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -1868,12 +1886,6 @@ The shape of output array is <em>[batch_shape,num_queries,feat_dim]</em> .</p></
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-  <div class="sidebar-secondary-item"><nav class="bd-docs-nav bd-links"
-     aria-label="Section Navigation">
-  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
-  <div class="bd-toc-item navbar-nav"></div>
-</nav></div>
 
   <div class="sidebar-secondary-item">
   <div class="page-toc tocsection onthispage">

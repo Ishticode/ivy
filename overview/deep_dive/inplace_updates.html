@@ -311,6 +311,7 @@ document.write(`
 <li class="toctree-l3"><a class="reference internal" href="ivy_frontends_tests.html">Ivy Frontend Tests</a></li>
 <li class="toctree-l3"><a class="reference internal" href="exception_handling.html">Exception Handling</a></li>
 <li class="toctree-l3"><a class="reference internal" href="continuous_integration.html">Continuous Integration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gradients.html">Gradients</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../contributing/open_tasks.html">Open Tasks</a></li>
@@ -343,6 +344,7 @@ document.write(`
 <li class="toctree-l2"><a class="reference internal" href="ivy_frontends_tests.html">Ivy Frontend Tests</a></li>
 <li class="toctree-l2"><a class="reference internal" href="exception_handling.html">Exception Handling</a></li>
 <li class="toctree-l2"><a class="reference internal" href="continuous_integration.html">Continuous Integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gradients.html">Gradients</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
@@ -536,9 +538,9 @@ document.write(`
 <p>Inplace updates enable users to overwrite the contents of existing arrays with new data.
 This enables much more control over the memory-efficiency of the program, preventing old unused arrays from being kept in memory for any longer than is strictly necessary.</p>
 <p>The function <a class="reference external" href="https://github.com/unifyai/ivy/blob/3a21a6bef52b93989f2fa2fa90e3b0f08cc2eb1b/ivy/functional/ivy/general.py#L1137">ivy.inplace_update</a> enables explicit inplace updates.
-<code class="xref py py-func docutils literal notranslate"><span class="pre">ivy.inplace_update()</span></code> is a <em>primary</em> function, and the backend-specific implementations for each backend are presented below.
+<a class="reference internal" href="../../docs/functional/ivy/general/ivy.functional.ivy.general.inplace_update.html#ivy.inplace_update" title="ivy.inplace_update"><code class="xref py py-func docutils literal notranslate"><span class="pre">ivy.inplace_update()</span></code></a> is a <em>primary</em> function, and the backend-specific implementations for each backend are presented below.
 We also explain the rational for why each implementation is the way it is, and the important differences.</p>
-<p>This is one particular area of the Ivy code where, technically speaking, the function <code class="xref py py-func docutils literal notranslate"><span class="pre">ivy.inplace_update()</span></code> will result in subtly different behaviour for each backend, unless the <code class="code docutils literal notranslate"><span class="pre">ensure_in_backend</span></code> flag is set to <code class="code docutils literal notranslate"><span class="pre">True</span></code>.</p>
+<p>This is one particular area of the Ivy code where, technically speaking, the function <a class="reference internal" href="../../docs/functional/ivy/general/ivy.functional.ivy.general.inplace_update.html#ivy.inplace_update" title="ivy.inplace_update"><code class="xref py py-func docutils literal notranslate"><span class="pre">ivy.inplace_update()</span></code></a> will result in subtly different behaviour for each backend, unless the <code class="code docutils literal notranslate"><span class="pre">ensure_in_backend</span></code> flag is set to <code class="code docutils literal notranslate"><span class="pre">True</span></code>.</p>
 <p>While <code class="xref py py-class docutils literal notranslate"><span class="pre">ivy.Array</span></code> instances will always be inplace updated consistently, in some cases it is simply not possible to also inplace update the <code class="xref py py-class docutils literal notranslate"><span class="pre">ivy.NativeArray</span></code> which <code class="xref py py-class docutils literal notranslate"><span class="pre">ivy.Array</span></code> wraps, due to design choices made by each backend.</p>
 <p><strong>JAX</strong>:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">inplace_update</span><span class="p">(</span>
@@ -618,7 +620,7 @@ Irrespective of whether the native array is a <code class="xref py py-class docu
 </div>
 <p>PyTorch <strong>does</strong> natively support inplace updates, and so <code class="code docutils literal notranslate"><span class="pre">x_native</span></code> is updated inplace with <code class="code docutils literal notranslate"><span class="pre">val_native</span></code>.
 Following this, an inplace update is then also performed on the <code class="xref py py-class docutils literal notranslate"><span class="pre">ivy.Array</span></code> instance, if provided in the input.</p>
-<p>The function <code class="xref py py-func docutils literal notranslate"><span class="pre">ivy.inplace_update()</span></code> is also <em>nestable</em>, meaning it can accept <code class="xref py py-class docutils literal notranslate"><span class="pre">ivy.Container</span></code> instances in the input.
+<p>The function <a class="reference internal" href="../../docs/functional/ivy/general/ivy.functional.ivy.general.inplace_update.html#ivy.inplace_update" title="ivy.inplace_update"><code class="xref py py-func docutils literal notranslate"><span class="pre">ivy.inplace_update()</span></code></a> is also <em>nestable</em>, meaning it can accept <code class="xref py py-class docutils literal notranslate"><span class="pre">ivy.Container</span></code> instances in the input.
 If an <code class="xref py py-class docutils literal notranslate"><span class="pre">ivy.Container</span></code> instance is provided for the argument <code class="code docutils literal notranslate"><span class="pre">x</span></code>, then along with the arrays at all of the leaves, the container <code class="code docutils literal notranslate"><span class="pre">x</span></code> is <strong>also</strong> inplace updated, meaning that a new <code class="xref py py-class docutils literal notranslate"><span class="pre">ivy.Container</span></code> instance is not created for the function return.</p>
 <section id="out-argument">
 <h2>out argument<a class="headerlink" href="#out-argument" title="Permalink to this heading">#</a></h2>
@@ -638,7 +640,7 @@ As explained in the <a class="reference internal" href="function_wrapping.html#f
 <p>In the case of <em>primary</em> functions, <a class="reference external" href="https://github.com/unifyai/ivy/blob/dcfec8b85de3c422dc0ca1970d67cb620cae62a4/ivy/func_wrapper.py#L340">handle_out_argument</a> does not handle the backend-specific inplace updates in cases where the backend function being wrapped supports them directly, such as <a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.tan.html">torch.tan</a> and <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.tan.html">numpy.tan</a>, which both support the <code class="code docutils literal notranslate"><span class="pre">out</span></code> argument directly.
 When implementing backend-specific functions, the attribute <code class="code docutils literal notranslate"><span class="pre">support_native_out</span></code> should be added to all functions which wrap a function in the backend supporting inplace updates directly.
 <a class="reference external" href="https://www.tensorflow.org/api_docs/python/tf/math/tan">tf.math.tan</a> and <a class="reference external" href="https://jax.readthedocs.io/en/latest/_autosummary/jax.numpy.tan.html?highlight=tan">jax.numpy.tan</a> for example do <strong>not</strong> support inplace updates, and so the <code class="code docutils literal notranslate"><span class="pre">support_native_out</span></code> attribute should <strong>not</strong> be added to the <code class="code docutils literal notranslate"><span class="pre">tan</span></code> implementations.</p>
-<p>The implementations of <code class="xref py py-func docutils literal notranslate"><span class="pre">ivy.tan()</span></code> for each backend are as follows.</p>
+<p>The implementations of <a class="reference internal" href="../../docs/functional/ivy/elementwise/ivy.functional.ivy.elementwise.tan.html#ivy.tan" title="ivy.tan"><code class="xref py py-func docutils literal notranslate"><span class="pre">ivy.tan()</span></code></a> for each backend are as follows.</p>
 <p><strong>JAX</strong> (no <code class="code docutils literal notranslate"><span class="pre">support_native_out</span></code> attribute):</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">tan</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">JaxArray</span><span class="p">,</span> <span class="o">/</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">out</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">JaxArray</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">JaxArray</span><span class="p">:</span>
     <span class="k">return</span> <span class="n">jnp</span><span class="o">.</span><span class="n">tan</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
@@ -699,8 +701,8 @@ The inplace update of this <code class="xref py py-class docutils literal notran
 </div>
 <p>Here we still have the <code class="xref py py-attr docutils literal notranslate"><span class="pre">support_native_out</span></code> attribute since we want to take advantage of the native inplace update enabled by <code class="xref py py-func docutils literal notranslate"><span class="pre">torch.linalg.cholesky()</span></code> in the first condition.
 However, in the <code class="code docutils literal notranslate"><span class="pre">else</span></code> statement, the last operation is <code class="xref py py-func docutils literal notranslate"><span class="pre">torch.transpose()</span></code> which does not support the <code class="code docutils literal notranslate"><span class="pre">out</span></code> argument, and so the native inplace update can’t be performed by torch here.
-This is why we need to call <code class="xref py py-func docutils literal notranslate"><span class="pre">ivy.inplace_update()</span></code> explicitly here, to ensure the native inplace update is performed, as well as the <code class="xref py py-class docutils literal notranslate"><span class="pre">ivy.Array</span></code> inplace update.</p>
-<p>Another case where we need to use <a href="#id1"><span class="problematic" id="id2">:func:`ivy.inplace_update`_</span></a> with a function that has <code class="xref py py-attr docutils literal notranslate"><span class="pre">support_native_out</span></code> is for the example of the <code class="code docutils literal notranslate"><span class="pre">torch</span></code> backend implementation of the <code class="xref py py-func docutils literal notranslate"><span class="pre">ivy.remainder()</span></code> function</p>
+This is why we need to call <a class="reference internal" href="../../docs/functional/ivy/general/ivy.functional.ivy.general.inplace_update.html#ivy.inplace_update" title="ivy.inplace_update"><code class="xref py py-func docutils literal notranslate"><span class="pre">ivy.inplace_update()</span></code></a> explicitly here, to ensure the native inplace update is performed, as well as the <code class="xref py py-class docutils literal notranslate"><span class="pre">ivy.Array</span></code> inplace update.</p>
+<p>Another case where we need to use <a href="#id1"><span class="problematic" id="id2">:func:`ivy.inplace_update`_</span></a> with a function that has <code class="xref py py-attr docutils literal notranslate"><span class="pre">support_native_out</span></code> is for the example of the <code class="code docutils literal notranslate"><span class="pre">torch</span></code> backend implementation of the <a class="reference internal" href="../../docs/functional/ivy/elementwise/ivy.functional.ivy.elementwise.remainder.html#ivy.remainder" title="ivy.remainder"><code class="xref py py-func docutils literal notranslate"><span class="pre">ivy.remainder()</span></code></a> function</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">remainder</span><span class="p">(</span>
     <span class="n">x1</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">],</span>
     <span class="n">x2</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">],</span>
@@ -725,7 +727,7 @@ This is why we need to call <code class="xref py py-func docutils literal notran
 </pre></div>
 </div>
 <p>Here, even though the <code class="xref py py-func docutils literal notranslate"><span class="pre">torch.round()</span></code> function natively supports the <code class="code docutils literal notranslate"><span class="pre">out</span></code> argument, in case the <code class="code docutils literal notranslate"><span class="pre">dtype</span></code> of the <code class="code docutils literal notranslate"><span class="pre">out</span></code> argument is different
-from the <code class="code docutils literal notranslate"><span class="pre">dtype</span></code> of the result of the function, we need to use <code class="xref py py-func docutils literal notranslate"><span class="pre">ivy.inplace_update()</span></code>, while still trying to utilize the native <code class="code docutils literal notranslate"><span class="pre">out</span></code> argument whenever
+from the <code class="code docutils literal notranslate"><span class="pre">dtype</span></code> of the result of the function, we need to use <a class="reference internal" href="../../docs/functional/ivy/general/ivy.functional.ivy.general.inplace_update.html#ivy.inplace_update" title="ivy.inplace_update"><code class="xref py py-func docutils literal notranslate"><span class="pre">ivy.inplace_update()</span></code></a>, while still trying to utilize the native <code class="code docutils literal notranslate"><span class="pre">out</span></code> argument whenever
 the <code class="code docutils literal notranslate"><span class="pre">dtype</span></code> is the same for maximum possible extent of the native inplace update.</p>
 <p><strong>Compositional Functions</strong></p>
 <p>For <em>compositional</em> functions, the <code class="code docutils literal notranslate"><span class="pre">out</span></code> argument should <strong>always</strong> be handled in the compositional implementation, with no wrapping applied at all.
@@ -739,7 +741,7 @@ We can maximize the memory efficiency of the function, using inplace updates in 
 <li><p>this enables us to make use of backend-specific <code class="code docutils literal notranslate"><span class="pre">out</span></code> argument handling.</p></li>
 </ol>
 <p>The second and third points are the most important points.</p>
-<p>We’ll use <code class="xref py py-func docutils literal notranslate"><span class="pre">ivy.cross_entropy()</span></code> as an example:</p>
+<p>We’ll use <a class="reference internal" href="../../docs/functional/ivy/losses/ivy.functional.ivy.losses.cross_entropy.html#ivy.cross_entropy" title="ivy.cross_entropy"><code class="xref py py-func docutils literal notranslate"><span class="pre">ivy.cross_entropy()</span></code></a> as an example:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">cross_entropy</span><span class="p">(</span>
     <span class="n">true</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">],</span>
     <span class="n">pred</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">],</span>
@@ -755,14 +757,14 @@ We can maximize the memory efficiency of the function, using inplace updates in 
 </pre></div>
 </div>
 <p>By handling the <code class="code docutils literal notranslate"><span class="pre">out</span></code> argument in the function, we are able to get the benefits outlined above.
-Firstly, the return of <code class="xref py py-func docutils literal notranslate"><span class="pre">ivy.sum()</span></code> is the same shape and type as the return of the entire function, and so we can also write this output to the <code class="code docutils literal notranslate"><span class="pre">out</span></code> argument inplace.
-We can then subsequently overwrite the contents of <code class="code docutils literal notranslate"><span class="pre">out</span></code> again with the return of the <code class="xref py py-func docutils literal notranslate"><span class="pre">ivy.negative()</span></code> function.
+Firstly, the return of <a class="reference internal" href="../../docs/functional/ivy/statistical/ivy.functional.ivy.statistical.sum.html#ivy.sum" title="ivy.sum"><code class="xref py py-func docutils literal notranslate"><span class="pre">ivy.sum()</span></code></a> is the same shape and type as the return of the entire function, and so we can also write this output to the <code class="code docutils literal notranslate"><span class="pre">out</span></code> argument inplace.
+We can then subsequently overwrite the contents of <code class="code docutils literal notranslate"><span class="pre">out</span></code> again with the return of the <a class="reference internal" href="../../docs/functional/ivy/elementwise/ivy.functional.ivy.elementwise.negative.html#ivy.negative" title="ivy.negative"><code class="xref py py-func docutils literal notranslate"><span class="pre">ivy.negative()</span></code></a> function.
 This minimizes the number of arrays created during the execution of the function, which is generally the intention when specifying the <code class="code docutils literal notranslate"><span class="pre">out</span></code> argument.
-Additionally, with a PyTorch backend, the <code class="xref py py-func docutils literal notranslate"><span class="pre">ivy.negative()</span></code> function defers to the <code class="code docutils literal notranslate"><span class="pre">out</span></code> argument of <code class="xref py py-func docutils literal notranslate"><span class="pre">torch.negative()</span></code> function directly, which is the most efficient inplace update possible, making use of backend-specific optimizations.</p>
-<p>If we had instead simply used the wrapper <a class="reference external" href="https://github.com/unifyai/ivy/blob/dcfec8b85de3c422dc0ca1970d67cb620cae62a4/ivy/func_wrapper.py#L340">handle_out_argument</a>, then we would not leverage any of these benefits, and instead simply call <code class="xref py py-func docutils literal notranslate"><span class="pre">ivy.inplace_update()</span></code> at the very end of the function call.</p>
+Additionally, with a PyTorch backend, the <a class="reference internal" href="../../docs/functional/ivy/elementwise/ivy.functional.ivy.elementwise.negative.html#ivy.negative" title="ivy.negative"><code class="xref py py-func docutils literal notranslate"><span class="pre">ivy.negative()</span></code></a> function defers to the <code class="code docutils literal notranslate"><span class="pre">out</span></code> argument of <code class="xref py py-func docutils literal notranslate"><span class="pre">torch.negative()</span></code> function directly, which is the most efficient inplace update possible, making use of backend-specific optimizations.</p>
+<p>If we had instead simply used the wrapper <a class="reference external" href="https://github.com/unifyai/ivy/blob/dcfec8b85de3c422dc0ca1970d67cb620cae62a4/ivy/func_wrapper.py#L340">handle_out_argument</a>, then we would not leverage any of these benefits, and instead simply call <a class="reference internal" href="../../docs/functional/ivy/general/ivy.functional.ivy.general.inplace_update.html#ivy.inplace_update" title="ivy.inplace_update"><code class="xref py py-func docutils literal notranslate"><span class="pre">ivy.inplace_update()</span></code></a> at the very end of the function call.</p>
 <p>For some compositional functions, the internal function which generates the final return value does not itself support the <code class="code docutils literal notranslate"><span class="pre">out</span></code> argument.
 For example, <a class="reference external" href="https://github.com/unifyai/ivy/blob/2045db570d7977830681a7498a3c1045fb5bcc79/ivy/functional/ivy/layers.py#L165">ivy.multi_head_attention</a> includes support for arbitrary functions passed in the input, including <code class="code docutils literal notranslate"><span class="pre">to_out_fn</span></code> which, if specified, is applied to the outputs before returning.
-For such functions, the inplace update should just be performed using <code class="xref py py-func docutils literal notranslate"><span class="pre">ivy.inplace_update()</span></code> at the end of the function, like <a class="reference external" href="https://github.com/unifyai/ivy/blob/2045db570d7977830681a7498a3c1045fb5bcc79/ivy/functional/ivy/layers.py#L254">so</a>.</p>
+For such functions, the inplace update should just be performed using <a class="reference internal" href="../../docs/functional/ivy/general/ivy.functional.ivy.general.inplace_update.html#ivy.inplace_update" title="ivy.inplace_update"><code class="xref py py-func docutils literal notranslate"><span class="pre">ivy.inplace_update()</span></code></a> at the end of the function, like <a class="reference external" href="https://github.com/unifyai/ivy/blob/2045db570d7977830681a7498a3c1045fb5bcc79/ivy/functional/ivy/layers.py#L254">so</a>.</p>
 <p>Technically, this could be handled using the <a class="reference external" href="https://github.com/unifyai/ivy/blob/dcfec8b85de3c422dc0ca1970d67cb620cae62a4/ivy/func_wrapper.py#L340">handle_out_argument</a> wrapping, but we opt to implement this in the compositional function itself, due to point 1 mentioned above.</p>
 <p><strong>Mixed Functions</strong></p>
 <p>As explained in the <a class="reference internal" href="function_types.html#function-types"><span class="std std-ref">Function Types</span></a> section, <em>mixed</em> functions can effectively behave as either compositional or primary functions, depending on the backend that is selected.</p>
@@ -829,44 +831,6 @@ src="https://www.youtube.com/embed/n8ko-Ig2eZ0" class="video">
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-  <div class="sidebar-secondary-item"><nav class="bd-docs-nav bd-links"
-     aria-label="Section Navigation">
-  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
-  <div class="bd-toc-item navbar-nav"><p aria-level="2" class="caption" role="heading"><span class="caption-text">Contributing</span></p>
-<ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../contributing/setting_up.html">Setting Up</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../contributing/the_basics.html">The Basics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../contributing/building_the_docs.html">Building the Docs</a></li>
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="../deep_dive.html">Deep Dive</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="navigating_the_code.html">Navigating the Code</a></li>
-<li class="toctree-l2"><a class="reference internal" href="function_types.html">Function Types</a></li>
-<li class="toctree-l2"><a class="reference internal" href="superset_behaviour.html">Superset Behaviour</a></li>
-<li class="toctree-l2"><a class="reference internal" href="backend_setting.html">Backend Setting</a></li>
-<li class="toctree-l2"><a class="reference internal" href="arrays.html">Arrays</a></li>
-<li class="toctree-l2"><a class="reference internal" href="containers.html">Containers</a></li>
-<li class="toctree-l2"><a class="reference internal" href="data_types.html">Data Types</a></li>
-<li class="toctree-l2"><a class="reference internal" href="devices.html">Devices</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Inplace Updates</a></li>
-<li class="toctree-l2"><a class="reference internal" href="function_wrapping.html">Function Wrapping</a></li>
-<li class="toctree-l2"><a class="reference internal" href="formatting.html">Formatting</a></li>
-<li class="toctree-l2"><a class="reference internal" href="function_arguments.html">Function Arguments</a></li>
-<li class="toctree-l2"><a class="reference internal" href="docstrings.html">Docstrings</a></li>
-<li class="toctree-l2"><a class="reference internal" href="docstring_examples.html">Docstring Examples</a></li>
-<li class="toctree-l2"><a class="reference internal" href="array_api_tests.html">Array API Tests</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ivy_tests.html">Ivy Tests</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ivy_frontends.html">Ivy Frontends</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ivy_frontends_tests.html">Ivy Frontend Tests</a></li>
-<li class="toctree-l2"><a class="reference internal" href="exception_handling.html">Exception Handling</a></li>
-<li class="toctree-l2"><a class="reference internal" href="continuous_integration.html">Continuous Integration</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../contributing/open_tasks.html">Open Tasks</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../contributing/applied_libraries.html">Applied Libraries</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../contributing/helpful_resources.html">Helpful Resources</a></li>
-</ul>
-</div>
-</nav></div>
 
   <div class="sidebar-secondary-item">
   <div class="page-toc tocsection onthispage">

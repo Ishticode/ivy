@@ -315,6 +315,7 @@ document.write(`
 <li class="toctree-l3"><a class="reference internal" href="ivy_frontends_tests.html">Ivy Frontend Tests</a></li>
 <li class="toctree-l3"><a class="reference internal" href="exception_handling.html">Exception Handling</a></li>
 <li class="toctree-l3"><a class="reference internal" href="continuous_integration.html">Continuous Integration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gradients.html">Gradients</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../contributing/open_tasks.html">Open Tasks</a></li>
@@ -351,6 +352,7 @@ document.write(`
 <li class="toctree-l2"><a class="reference internal" href="ivy_frontends_tests.html">Ivy Frontend Tests</a></li>
 <li class="toctree-l2"><a class="reference internal" href="exception_handling.html">Exception Handling</a></li>
 <li class="toctree-l2"><a class="reference internal" href="continuous_integration.html">Continuous Integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gradients.html">Gradients</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
@@ -577,7 +579,7 @@ document.write(`
 </section>
 <section id="submodule-design">
 <h2>Submodule Design<a class="headerlink" href="#submodule-design" title="Permalink to this heading">#</a></h2>
-<p>Ivy is designed so that all methods are called directly from the <code class="xref py py-mod docutils literal notranslate"><span class="pre">ivy</span></code> namespace, such as <code class="xref py py-func docutils literal notranslate"><span class="pre">ivy.matmul()</span></code>, and not <code class="xref py py-func docutils literal notranslate"><span class="pre">ivy.some_namespace.matmul()</span></code>.
+<p>Ivy is designed so that all methods are called directly from the <code class="xref py py-mod docutils literal notranslate"><span class="pre">ivy</span></code> namespace, such as <a class="reference internal" href="../../docs/functional/ivy/linear_algebra/ivy.functional.ivy.linear_algebra.matmul.html#ivy.matmul" title="ivy.matmul"><code class="xref py py-func docutils literal notranslate"><span class="pre">ivy.matmul()</span></code></a>, and not <code class="xref py py-func docutils literal notranslate"><span class="pre">ivy.some_namespace.matmul()</span></code>.
 Therefore, inside any of the folders <code class="xref py py-mod docutils literal notranslate"><span class="pre">ivy.functional.ivy</span></code>, <code class="xref py py-mod docutils literal notranslate"><span class="pre">ivy.functional.backends.some_backend</span></code>, <code class="xref py py-mod docutils literal notranslate"><span class="pre">ivy.functional.backends.another_backend</span></code> the functions can be moved to different files or folders without breaking anything at all.
 This makes it very simple to refactor and re-organize parts of the code structure in an ongoing manner.</p>
 <p>The <code class="code docutils literal notranslate"><span class="pre">__init__.py</span></code> inside each of the subfolders are very similar, importing each function via <code class="code docutils literal notranslate"><span class="pre">from</span> <span class="pre">.file_name</span> <span class="pre">import</span> <span class="pre">*</span></code> and also importing each file as a submodule via <code class="code docutils literal notranslate"><span class="pre">from</span> <span class="pre">.</span> <span class="pre">import</span> <span class="pre">file_name</span></code>.
@@ -835,44 +837,6 @@ src="https://www.youtube.com/embed/67UYuLcAKbY" class="video">
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-  <div class="sidebar-secondary-item"><nav class="bd-docs-nav bd-links"
-     aria-label="Section Navigation">
-  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
-  <div class="bd-toc-item navbar-nav"><p aria-level="2" class="caption" role="heading"><span class="caption-text">Contributing</span></p>
-<ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../contributing/setting_up.html">Setting Up</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../contributing/the_basics.html">The Basics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../contributing/building_the_docs.html">Building the Docs</a></li>
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="../deep_dive.html">Deep Dive</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Navigating the Code</a></li>
-<li class="toctree-l2"><a class="reference internal" href="function_types.html">Function Types</a></li>
-<li class="toctree-l2"><a class="reference internal" href="superset_behaviour.html">Superset Behaviour</a></li>
-<li class="toctree-l2"><a class="reference internal" href="backend_setting.html">Backend Setting</a></li>
-<li class="toctree-l2"><a class="reference internal" href="arrays.html">Arrays</a></li>
-<li class="toctree-l2"><a class="reference internal" href="containers.html">Containers</a></li>
-<li class="toctree-l2"><a class="reference internal" href="data_types.html">Data Types</a></li>
-<li class="toctree-l2"><a class="reference internal" href="devices.html">Devices</a></li>
-<li class="toctree-l2"><a class="reference internal" href="inplace_updates.html">Inplace Updates</a></li>
-<li class="toctree-l2"><a class="reference internal" href="function_wrapping.html">Function Wrapping</a></li>
-<li class="toctree-l2"><a class="reference internal" href="formatting.html">Formatting</a></li>
-<li class="toctree-l2"><a class="reference internal" href="function_arguments.html">Function Arguments</a></li>
-<li class="toctree-l2"><a class="reference internal" href="docstrings.html">Docstrings</a></li>
-<li class="toctree-l2"><a class="reference internal" href="docstring_examples.html">Docstring Examples</a></li>
-<li class="toctree-l2"><a class="reference internal" href="array_api_tests.html">Array API Tests</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ivy_tests.html">Ivy Tests</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ivy_frontends.html">Ivy Frontends</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ivy_frontends_tests.html">Ivy Frontend Tests</a></li>
-<li class="toctree-l2"><a class="reference internal" href="exception_handling.html">Exception Handling</a></li>
-<li class="toctree-l2"><a class="reference internal" href="continuous_integration.html">Continuous Integration</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../contributing/open_tasks.html">Open Tasks</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../contributing/applied_libraries.html">Applied Libraries</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../contributing/helpful_resources.html">Helpful Resources</a></li>
-</ul>
-</div>
-</nav></div>
 
   <div class="sidebar-secondary-item">
   <div class="page-toc tocsection onthispage">

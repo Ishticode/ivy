@@ -316,6 +316,7 @@ document.write(`
 <li class="toctree-l3"><a class="reference internal" href="ivy_frontends_tests.html">Ivy Frontend Tests</a></li>
 <li class="toctree-l3"><a class="reference internal" href="exception_handling.html">Exception Handling</a></li>
 <li class="toctree-l3"><a class="reference internal" href="continuous_integration.html">Continuous Integration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gradients.html">Gradients</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../contributing/open_tasks.html">Open Tasks</a></li>
@@ -353,6 +354,7 @@ document.write(`
 <li class="toctree-l2"><a class="reference internal" href="ivy_frontends_tests.html">Ivy Frontend Tests</a></li>
 <li class="toctree-l2"><a class="reference internal" href="exception_handling.html">Exception Handling</a></li>
 <li class="toctree-l2"><a class="reference internal" href="continuous_integration.html">Continuous Integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gradients.html">Gradients</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
@@ -578,14 +580,14 @@ Including the generated test case, the results of the function, etc.</p></li>
 <h2>Hypothesis<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h2>
 <p>Using pytest fixtures (such as the ones removed in this <a class="reference external" href="https://github.com/unifyai/ivy/commit/8e6074419c0b6ee27c52e8563374373c8bcff30f">commit</a>) cause a grid search to be performed for all combinations of parameters.
 This is great when we want the test to be very thorough, but can make the entire test suite very time consuming.
-Before the changes in this commit, there were 300+ separate tests being run in total, just for this <code class="xref py py-func docutils literal notranslate"><span class="pre">ivy.abs()</span></code> function.
+Before the changes in this commit, there were 300+ separate tests being run in total, just for this <a class="reference internal" href="../../docs/functional/ivy/elementwise/ivy.functional.ivy.elementwise.abs.html#ivy.abs" title="ivy.abs"><code class="xref py py-func docutils literal notranslate"><span class="pre">ivy.abs()</span></code></a> function.
 If we take this approach for every function, we might hit the runtime limit permitted by GitHub actions.</p>
 <p>A more elegant and efficient solution is to use the <a class="reference external" href="https://hypothesis.readthedocs.io/en/latest/">Hypothesis</a> module, which intelligently samples from all of the possible combinations within user-specified ranges, rather than grid searching all of them every single time.
 The intelligent sampling is possible because Hypothesis enables the results of previous test runs to be cached, and then the new samples on subsequent runs are selected intelligently, avoiding samples which previously passed the tests, and sampling for unexplored combinations.
 Combinations which are known to have failed on previous runs are also repeatedly tested for.
 With the <a class="reference external" href="https://github.com/unifyai/ivy/blob/0fc4a104e19266fb4a65f5ec52308ff816e85d78/.github/workflows/test-array-api-torch.yml#L30">uploading</a> and <a class="reference external" href="https://github.com/unifyai/ivy/blob/0fc4a104e19266fb4a65f5ec52308ff816e85d78/.github/workflows/test-array-api-torch.yml#L14">downloading</a> of the <code class="code docutils literal notranslate"><span class="pre">.hypothesis</span></code> cache as an <a class="reference external" href="https://docs.github.com/en/actions/using-workflows/storing-workflow-data-as-artifacts">artifact</a>, these useful properties are also true in Ivy’s GitHub Action <a class="reference external" href="https://github.com/unifyai/ivy/tree/0fc4a104e19266fb4a65f5ec52308ff816e85d78/.github/workflows">continuous integration</a> (CI) tests.</p>
 <p>Rather than making use of <code class="code docutils literal notranslate"><span class="pre">pytest.mark.parametrize</span></code>, the Ivy tests make use of Hypothesis <a class="reference external" href="https://hypothesis.readthedocs.io/en/latest/data.html">search strategies</a>.
-This reference <a class="reference external" href="https://github.com/unifyai/ivy/commit/8e6074419c0b6ee27c52e8563374373c8bcff30f">commit</a> outlines the difference between using pytest parametrizations and Hypothesis, for <code class="xref py py-func docutils literal notranslate"><span class="pre">ivy.abs()</span></code>.
+This reference <a class="reference external" href="https://github.com/unifyai/ivy/commit/8e6074419c0b6ee27c52e8563374373c8bcff30f">commit</a> outlines the difference between using pytest parametrizations and Hypothesis, for <a class="reference internal" href="../../docs/functional/ivy/elementwise/ivy.functional.ivy.elementwise.abs.html#ivy.abs" title="ivy.abs"><code class="xref py py-func docutils literal notranslate"><span class="pre">ivy.abs()</span></code></a>.
 Among other changes, all <code class="code docutils literal notranslate"><span class="pre">pytest.skip()</span></code> calls were replaced with return statements, as pytest skipping does not play nicely with Hypothesis testing.</p>
 </section>
 <section id="id3">
@@ -1125,7 +1127,7 @@ However, we should still also include <code class="xref py py-func docutils lite
 <p><code class="code docutils literal notranslate"><span class="pre">array</span></code> in the name <code class="xref py py-func docutils literal notranslate"><span class="pre">test_array_function()</span></code> simply refers to the fact that the function in question consumes arrays in the arguments.</p>
 <p>So when should <code class="xref py py-func docutils literal notranslate"><span class="pre">test_array_function()</span></code> be used?</p>
 <p>The rule is simple, if the test should not pass any arrays in the input, then we should not use the helper <code class="xref py py-func docutils literal notranslate"><span class="pre">test_array_function()</span></code>.
-For example, <code class="xref py py-func docutils literal notranslate"><span class="pre">ivy.num_gpus()</span></code> does not receive any arrays in the input, and so we should not make us of <code class="xref py py-func docutils literal notranslate"><span class="pre">test_array_function()</span></code> in the test implementation.</p>
+For example, <a class="reference internal" href="../../docs/functional/ivy/device/ivy.functional.ivy.device.num_gpus.html#ivy.num_gpus" title="ivy.num_gpus"><code class="xref py py-func docutils literal notranslate"><span class="pre">ivy.num_gpus()</span></code></a> does not receive any arrays in the input, and so we should not make us of <code class="xref py py-func docutils literal notranslate"><span class="pre">test_array_function()</span></code> in the test implementation.</p>
 </section>
 <section id="running-ivy-tests">
 <h2>Running Ivy Tests<a class="headerlink" href="#running-ivy-tests" title="Permalink to this heading">#</a></h2>
@@ -1209,44 +1211,6 @@ src="https://www.youtube.com/embed/2AwWuHIe2h8" class="video">
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-  <div class="sidebar-secondary-item"><nav class="bd-docs-nav bd-links"
-     aria-label="Section Navigation">
-  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
-  <div class="bd-toc-item navbar-nav"><p aria-level="2" class="caption" role="heading"><span class="caption-text">Contributing</span></p>
-<ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../contributing/setting_up.html">Setting Up</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../contributing/the_basics.html">The Basics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../contributing/building_the_docs.html">Building the Docs</a></li>
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="../deep_dive.html">Deep Dive</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="navigating_the_code.html">Navigating the Code</a></li>
-<li class="toctree-l2"><a class="reference internal" href="function_types.html">Function Types</a></li>
-<li class="toctree-l2"><a class="reference internal" href="superset_behaviour.html">Superset Behaviour</a></li>
-<li class="toctree-l2"><a class="reference internal" href="backend_setting.html">Backend Setting</a></li>
-<li class="toctree-l2"><a class="reference internal" href="arrays.html">Arrays</a></li>
-<li class="toctree-l2"><a class="reference internal" href="containers.html">Containers</a></li>
-<li class="toctree-l2"><a class="reference internal" href="data_types.html">Data Types</a></li>
-<li class="toctree-l2"><a class="reference internal" href="devices.html">Devices</a></li>
-<li class="toctree-l2"><a class="reference internal" href="inplace_updates.html">Inplace Updates</a></li>
-<li class="toctree-l2"><a class="reference internal" href="function_wrapping.html">Function Wrapping</a></li>
-<li class="toctree-l2"><a class="reference internal" href="formatting.html">Formatting</a></li>
-<li class="toctree-l2"><a class="reference internal" href="function_arguments.html">Function Arguments</a></li>
-<li class="toctree-l2"><a class="reference internal" href="docstrings.html">Docstrings</a></li>
-<li class="toctree-l2"><a class="reference internal" href="docstring_examples.html">Docstring Examples</a></li>
-<li class="toctree-l2"><a class="reference internal" href="array_api_tests.html">Array API Tests</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Ivy Tests</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ivy_frontends.html">Ivy Frontends</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ivy_frontends_tests.html">Ivy Frontend Tests</a></li>
-<li class="toctree-l2"><a class="reference internal" href="exception_handling.html">Exception Handling</a></li>
-<li class="toctree-l2"><a class="reference internal" href="continuous_integration.html">Continuous Integration</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../contributing/open_tasks.html">Open Tasks</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../contributing/applied_libraries.html">Applied Libraries</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../contributing/helpful_resources.html">Helpful Resources</a></li>
-</ul>
-</div>
-</nav></div>
 
   <div class="sidebar-secondary-item">
   <div class="page-toc tocsection onthispage">

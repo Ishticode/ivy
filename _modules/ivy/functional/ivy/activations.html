@@ -198,10 +198,6 @@ document.write(`
   
 
   
-    <label class="sidebar-toggle secondary-toggle" for="__secondary">
-      <span class="fa-solid fa-outdent"></span>
-    </label>
-  
 </div>
 
     </nav>
@@ -488,7 +484,7 @@ document.write(`
 <span class="c1"># ------#</span>
 
 
-<div class="viewcode-block" id="deserialize"><a class="viewcode-back" href="../../../../docs/functional/ivy/ivy.functional.ivy.activations.html#ivy.functional.ivy.activations.deserialize">[docs]</a><span class="nd">@handle_exceptions</span>
+<div class="viewcode-block" id="deserialize"><a class="viewcode-back" href="../../../../docs/functional/ivy/ivy.functional.ivy.activations.html#ivy.deserialize">[docs]</a><span class="nd">@handle_exceptions</span>
 <span class="k">def</span> <span class="nf">deserialize</span><span class="p">(</span>
     <span class="n">name</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="kc">None</span><span class="p">],</span> <span class="o">/</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">custom_objects</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Dict</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">Callable</span><span class="p">,</span> <span class="kc">None</span><span class="p">]:</span>
@@ -562,13 +558,13 @@ document.write(`
 <span class="p">]</span>
 
 
-<div class="viewcode-block" id="gelu"><a class="viewcode-back" href="../../../../docs/functional/ivy/ivy.functional.ivy.activations.html#ivy.functional.ivy.activations.gelu">[docs]</a><span class="nd">@integer_arrays_to_float</span>
+<div class="viewcode-block" id="gelu"><a class="viewcode-back" href="../../../../docs/functional/ivy/ivy.functional.ivy.activations.html#ivy.gelu">[docs]</a><span class="nd">@handle_array_function</span>
+<span class="nd">@integer_arrays_to_float</span>
 <span class="nd">@to_native_arrays_and_back</span>
 <span class="nd">@handle_out_argument</span>
+<span class="nd">@handle_array_like_without_promotion</span>
 <span class="nd">@handle_nestable</span>
 <span class="nd">@handle_exceptions</span>
-<span class="nd">@handle_array_like_without_promotion</span>
-<span class="nd">@handle_array_function</span>
 <span class="k">def</span> <span class="nf">gelu</span><span class="p">(</span>
     <span class="n">x</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">],</span>
     <span class="o">/</span><span class="p">,</span>
@@ -622,7 +618,7 @@ document.write(`
     <span class="k">return</span> <span class="n">current_backend</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">.</span><span class="n">gelu</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">approximate</span><span class="o">=</span><span class="n">approximate</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">out</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="get"><a class="viewcode-back" href="../../../../docs/functional/ivy/ivy.functional.ivy.activations.html#ivy.functional.ivy.activations.get">[docs]</a><span class="nd">@handle_exceptions</span>
+<div class="viewcode-block" id="get"><a class="viewcode-back" href="../../../../docs/functional/ivy/ivy.functional.ivy.activations.html#ivy.get">[docs]</a><span class="nd">@handle_exceptions</span>
 <span class="k">def</span> <span class="nf">get</span><span class="p">(</span>
     <span class="n">name</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="kc">None</span><span class="p">],</span> <span class="o">/</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">custom_objects</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Dict</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">Callable</span><span class="p">,</span> <span class="kc">None</span><span class="p">]:</span>
@@ -671,12 +667,12 @@ document.write(`
     <span class="k">return</span> <span class="n">ivy</span><span class="o">.</span><span class="n">deserialize</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">custom_objects</span><span class="o">=</span><span class="n">custom_objects</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="leaky_relu"><a class="viewcode-back" href="../../../../docs/functional/ivy/ivy.functional.ivy.activations.html#ivy.functional.ivy.activations.leaky_relu">[docs]</a><span class="nd">@to_native_arrays_and_back</span>
+<div class="viewcode-block" id="leaky_relu"><a class="viewcode-back" href="../../../../docs/functional/ivy/ivy.functional.ivy.activations.html#ivy.leaky_relu">[docs]</a><span class="nd">@handle_array_function</span>
+<span class="nd">@to_native_arrays_and_back</span>
 <span class="nd">@handle_out_argument</span>
+<span class="nd">@handle_array_like_without_promotion</span>
 <span class="nd">@handle_nestable</span>
 <span class="nd">@handle_exceptions</span>
-<span class="nd">@handle_array_like_without_promotion</span>
-<span class="nd">@handle_array_function</span>
 <span class="k">def</span> <span class="nf">leaky_relu</span><span class="p">(</span>
     <span class="n">x</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">],</span>
     <span class="o">/</span><span class="p">,</span>
@@ -736,12 +732,12 @@ document.write(`
     <span class="k">return</span> <span class="n">current_backend</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">.</span><span class="n">leaky_relu</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="n">alpha</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">out</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="log_softmax"><a class="viewcode-back" href="../../../../docs/functional/ivy/ivy.functional.ivy.activations.html#ivy.functional.ivy.activations.log_softmax">[docs]</a><span class="nd">@to_native_arrays_and_back</span>
+<div class="viewcode-block" id="log_softmax"><a class="viewcode-back" href="../../../../docs/functional/ivy/ivy.functional.ivy.activations.html#ivy.log_softmax">[docs]</a><span class="nd">@handle_array_function</span>
+<span class="nd">@to_native_arrays_and_back</span>
 <span class="nd">@handle_out_argument</span>
+<span class="nd">@handle_array_like_without_promotion</span>
 <span class="nd">@handle_nestable</span>
 <span class="nd">@handle_exceptions</span>
-<span class="nd">@handle_array_like_without_promotion</span>
-<span class="nd">@handle_array_function</span>
 <span class="k">def</span> <span class="nf">log_softmax</span><span class="p">(</span>
     <span class="n">x</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">],</span>
     <span class="o">/</span><span class="p">,</span>
@@ -807,12 +803,12 @@ document.write(`
     <span class="k">return</span> <span class="n">current_backend</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">.</span><span class="n">log_softmax</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">out</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="relu"><a class="viewcode-back" href="../../../../docs/functional/ivy/ivy.functional.ivy.activations.html#ivy.functional.ivy.activations.relu">[docs]</a><span class="nd">@to_native_arrays_and_back</span>
+<div class="viewcode-block" id="relu"><a class="viewcode-back" href="../../../../docs/functional/ivy/ivy.functional.ivy.activations.html#ivy.relu">[docs]</a><span class="nd">@handle_array_function</span>
+<span class="nd">@to_native_arrays_and_back</span>
 <span class="nd">@handle_out_argument</span>
+<span class="nd">@handle_array_like_without_promotion</span>
 <span class="nd">@handle_nestable</span>
 <span class="nd">@handle_exceptions</span>
-<span class="nd">@handle_array_like_without_promotion</span>
-<span class="nd">@handle_array_function</span>
 <span class="k">def</span> <span class="nf">relu</span><span class="p">(</span>
     <span class="n">x</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">],</span> <span class="o">/</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">out</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">:</span>
@@ -860,13 +856,13 @@ document.write(`
     <span class="k">return</span> <span class="n">current_backend</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">out</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="sigmoid"><a class="viewcode-back" href="../../../../docs/functional/ivy/ivy.functional.ivy.activations.html#ivy.functional.ivy.activations.sigmoid">[docs]</a><span class="nd">@integer_arrays_to_float</span>
+<div class="viewcode-block" id="sigmoid"><a class="viewcode-back" href="../../../../docs/functional/ivy/ivy.functional.ivy.activations.html#ivy.sigmoid">[docs]</a><span class="nd">@handle_array_function</span>
+<span class="nd">@integer_arrays_to_float</span>
 <span class="nd">@to_native_arrays_and_back</span>
 <span class="nd">@handle_out_argument</span>
+<span class="nd">@handle_array_like_without_promotion</span>
 <span class="nd">@handle_nestable</span>
 <span class="nd">@handle_exceptions</span>
-<span class="nd">@handle_array_like_without_promotion</span>
-<span class="nd">@handle_array_function</span>
 <span class="k">def</span> <span class="nf">sigmoid</span><span class="p">(</span>
     <span class="n">x</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">],</span> <span class="o">/</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">out</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">:</span>
@@ -910,12 +906,12 @@ document.write(`
     <span class="k">return</span> <span class="n">current_backend</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">.</span><span class="n">sigmoid</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">out</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="softmax"><a class="viewcode-back" href="../../../../docs/functional/ivy/ivy.functional.ivy.activations.html#ivy.functional.ivy.activations.softmax">[docs]</a><span class="nd">@to_native_arrays_and_back</span>
+<div class="viewcode-block" id="softmax"><a class="viewcode-back" href="../../../../docs/functional/ivy/ivy.functional.ivy.activations.html#ivy.softmax">[docs]</a><span class="nd">@handle_array_function</span>
+<span class="nd">@to_native_arrays_and_back</span>
 <span class="nd">@handle_out_argument</span>
+<span class="nd">@handle_array_like_without_promotion</span>
 <span class="nd">@handle_nestable</span>
 <span class="nd">@handle_exceptions</span>
-<span class="nd">@handle_array_like_without_promotion</span>
-<span class="nd">@handle_array_function</span>
 <span class="k">def</span> <span class="nf">softmax</span><span class="p">(</span>
     <span class="n">x</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">],</span>
     <span class="o">/</span><span class="p">,</span>
@@ -959,12 +955,12 @@ document.write(`
     <span class="k">return</span> <span class="n">current_backend</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">.</span><span class="n">softmax</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">out</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="softplus"><a class="viewcode-back" href="../../../../docs/functional/ivy/ivy.functional.ivy.activations.html#ivy.functional.ivy.activations.softplus">[docs]</a><span class="nd">@to_native_arrays_and_back</span>
+<div class="viewcode-block" id="softplus"><a class="viewcode-back" href="../../../../docs/functional/ivy/ivy.functional.ivy.activations.html#ivy.softplus">[docs]</a><span class="nd">@handle_array_function</span>
+<span class="nd">@to_native_arrays_and_back</span>
 <span class="nd">@handle_out_argument</span>
+<span class="nd">@handle_array_like_without_promotion</span>
 <span class="nd">@handle_nestable</span>
 <span class="nd">@handle_exceptions</span>
-<span class="nd">@handle_array_like_without_promotion</span>
-<span class="nd">@handle_array_function</span>
 <span class="k">def</span> <span class="nf">softplus</span><span class="p">(</span>
     <span class="n">x</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">],</span>
     <span class="o">/</span><span class="p">,</span>
@@ -1016,12 +1012,12 @@ document.write(`
     <span class="k">return</span> <span class="n">current_backend</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">.</span><span class="n">softplus</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="n">beta</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="n">threshold</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">out</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="mish"><a class="viewcode-back" href="../../../../docs/functional/ivy/ivy.functional.ivy.activations.html#ivy.functional.ivy.activations.mish">[docs]</a><span class="nd">@to_native_arrays_and_back</span>
+<div class="viewcode-block" id="mish"><a class="viewcode-back" href="../../../../docs/functional/ivy/ivy.functional.ivy.activations.html#ivy.mish">[docs]</a><span class="nd">@handle_array_function</span>
+<span class="nd">@to_native_arrays_and_back</span>
 <span class="nd">@handle_out_argument</span>
+<span class="nd">@handle_array_like_without_promotion</span>
 <span class="nd">@handle_nestable</span>
 <span class="nd">@handle_exceptions</span>
-<span class="nd">@handle_array_like_without_promotion</span>
-<span class="nd">@handle_array_function</span>
 <span class="k">def</span> <span class="nf">mish</span><span class="p">(</span>
     <span class="n">x</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">],</span> <span class="o">/</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">out</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">:</span>
@@ -1082,16 +1078,6 @@ document.write(`
             </div>
             
             
-              
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-  <div class="sidebar-secondary-item"><nav class="bd-docs-nav bd-links"
-     aria-label="Section Navigation">
-  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
-  <div class="bd-toc-item navbar-nav"></div>
-</nav></div>
-
-</div></div>
               
             
           </div>

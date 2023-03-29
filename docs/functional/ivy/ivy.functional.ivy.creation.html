@@ -47,8 +47,8 @@
     <link rel="icon" href="https://github.com/unifyai/unifyai.github.io/blob/master/img/externally_linked/ivy_logo_only.png?raw=true"/>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="Data type" href="ivy.functional.ivy.data_type.html" />
-    <link rel="prev" title="Control flow ops" href="ivy.functional.ivy.control_flow_ops.html" />
+    <link rel="next" title="_ivy_to_native" href="creation/ivy.functional.ivy.creation._ivy_to_native.html" />
+    <link rel="prev" title="while_loop" href="control_flow_ops/ivy.functional.ivy.control_flow_ops.while_loop.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -294,6 +294,31 @@ document.write(`
 <li class="toctree-l1"><a class="reference internal" href="ivy.functional.ivy.constants.html">Constants</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ivy.functional.ivy.control_flow_ops.html">Control flow ops</a></li>
 <li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Creation</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="creation/ivy.functional.ivy.creation._ivy_to_native.html">_ivy_to_native</a></li>
+<li class="toctree-l2"><a class="reference internal" href="creation/ivy.functional.ivy.creation.arange.html">arange</a></li>
+<li class="toctree-l2"><a class="reference internal" href="creation/ivy.functional.ivy.creation.array.html">array</a></li>
+<li class="toctree-l2"><a class="reference internal" href="creation/ivy.functional.ivy.creation.asarray.html">asarray</a></li>
+<li class="toctree-l2"><a class="reference internal" href="creation/ivy.functional.ivy.creation.asarray_handle_nestable.html">asarray_handle_nestable</a></li>
+<li class="toctree-l2"><a class="reference internal" href="creation/ivy.functional.ivy.creation.asarray_infer_device.html">asarray_infer_device</a></li>
+<li class="toctree-l2"><a class="reference internal" href="creation/ivy.functional.ivy.creation.asarray_to_native_arrays_and_back.html">asarray_to_native_arrays_and_back</a></li>
+<li class="toctree-l2"><a class="reference internal" href="creation/ivy.functional.ivy.creation.copy_array.html">copy_array</a></li>
+<li class="toctree-l2"><a class="reference internal" href="creation/ivy.functional.ivy.creation.empty.html">empty</a></li>
+<li class="toctree-l2"><a class="reference internal" href="creation/ivy.functional.ivy.creation.empty_like.html">empty_like</a></li>
+<li class="toctree-l2"><a class="reference internal" href="creation/ivy.functional.ivy.creation.eye.html">eye</a></li>
+<li class="toctree-l2"><a class="reference internal" href="creation/ivy.functional.ivy.creation.from_dlpack.html">from_dlpack</a></li>
+<li class="toctree-l2"><a class="reference internal" href="creation/ivy.functional.ivy.creation.full.html">full</a></li>
+<li class="toctree-l2"><a class="reference internal" href="creation/ivy.functional.ivy.creation.full_like.html">full_like</a></li>
+<li class="toctree-l2"><a class="reference internal" href="creation/ivy.functional.ivy.creation.linspace.html">linspace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="creation/ivy.functional.ivy.creation.logspace.html">logspace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="creation/ivy.functional.ivy.creation.meshgrid.html">meshgrid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="creation/ivy.functional.ivy.creation.native_array.html">native_array</a></li>
+<li class="toctree-l2"><a class="reference internal" href="creation/ivy.functional.ivy.creation.one_hot.html">one_hot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="creation/ivy.functional.ivy.creation.ones.html">ones</a></li>
+<li class="toctree-l2"><a class="reference internal" href="creation/ivy.functional.ivy.creation.ones_like.html">ones_like</a></li>
+<li class="toctree-l2"><a class="reference internal" href="creation/ivy.functional.ivy.creation.tril.html">tril</a></li>
+<li class="toctree-l2"><a class="reference internal" href="creation/ivy.functional.ivy.creation.triu.html">triu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="creation/ivy.functional.ivy.creation.zeros.html">zeros</a></li>
+<li class="toctree-l2"><a class="reference internal" href="creation/ivy.functional.ivy.creation.zeros_like.html">zeros_like</a></li>
 
 
 
@@ -492,9 +517,9 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section id="module-ivy.functional.ivy.creation">
-<span id="creation"></span><h1>Creation<a class="headerlink" href="#module-ivy.functional.ivy.creation" title="Permalink to this heading">#</a></h1>
-<dl class="py class">
+  <section id="creation">
+<h1>Creation<a class="headerlink" href="#creation" title="Permalink to this heading">#</a></h1>
+<span class="target" id="module-ivy.functional.ivy.creation"></span><dl class="py class">
 <dt class="sig sig-object py" id="ivy.functional.ivy.creation.NestedSequence">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ivy.</span></span><span class="sig-name descname"><span class="pre">NestedSequence</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/ivy/functional/ivy/creation.html#NestedSequence"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ivy.functional.ivy.creation.NestedSequence" title="Permalink to this definition">#</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Protocol</span></code>[<code class="xref py py-obj docutils literal notranslate"><span class="pre">_T_co</span></code>]</p>
@@ -1510,6 +1535,24 @@ lists of tuples, tuples, tuples of tuples, tuples of lists and ndarrays.</p></li
 <dd class="field-odd"><p><em>ret</em> – A native array interpretation of x.</p>
 </dd>
 </dl>
+<p class="rubric">Examples</p>
+<p>With <code class="xref py py-class docutils literal notranslate"><span class="pre">List[Number]</span></code> input:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x_native</span> <span class="o">=</span> <span class="n">native_array</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">x_native</span><span class="p">)</span>
+<span class="go">[1. 2. 3.]</span>
+</pre></div>
+</div>
+<p>With <code class="xref py py-class docutils literal notranslate"><span class="pre">np.ndarray</span></code> input:
+&gt;&gt;&gt; y = np.array([4, 5, 6])
+&gt;&gt;&gt; y_native = native_array(y)
+&gt;&gt;&gt; print(y_native)
+[4. 5. 6.]</p>
+<p>With <code class="xref py py-class docutils literal notranslate"><span class="pre">ivy.Array</span></code> input:
+&gt;&gt;&gt; z = ivy.array([7, 8, 9])
+&gt;&gt;&gt; z_native = native_array(z)
+&gt;&gt;&gt; print(z_native)
+[7. 8. 9.]</p>
 </dd></dl>
 
 <dl class="py function">
@@ -1972,20 +2015,20 @@ instances in place of any of the arguments.</p>
                   <!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="ivy.functional.ivy.control_flow_ops.html"
+       href="control_flow_ops/ivy.functional.ivy.control_flow_ops.while_loop.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Control flow ops</p>
+        <p class="prev-next-title">while_loop</p>
       </div>
     </a>
     <a class="right-next"
-       href="ivy.functional.ivy.data_type.html"
+       href="creation/ivy.functional.ivy.creation._ivy_to_native.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Data type</p>
+        <p class="prev-next-title">_ivy_to_native</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -1997,12 +2040,6 @@ instances in place of any of the arguments.</p>
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-  <div class="sidebar-secondary-item"><nav class="bd-docs-nav bd-links"
-     aria-label="Section Navigation">
-  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
-  <div class="bd-toc-item navbar-nav"></div>
-</nav></div>
 
   <div class="sidebar-secondary-item">
   <div class="page-toc tocsection onthispage">

@@ -851,17 +851,22 @@ that the inputs broadcast to.</p></li>
 </dd>
 </dl>
 <p class="rubric">Examples</p>
+<p>With <code class="xref py py-class docutils literal notranslate"><span class="pre">ivy.Array</span></code> inputs:</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">5</span><span class="p">,</span><span class="mi">4</span><span class="p">])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">einops_repeat</span><span class="p">(</span><span class="s1">&#39;a -&gt; a c&#39;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
-<span class="go">ivy.array([[5,5,5],[4,4,4]])</span>
+<span class="go">ivy.array([[5, 5, 5],</span>
+<span class="go">           [4, 4, 4]])</span>
 </pre></div>
 </div>
+<p>With <code class="xref py py-class docutils literal notranslate"><span class="pre">ivy.Array</span></code> inputs:</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">5</span><span class="p">,</span><span class="mi">4</span><span class="p">],</span>
 <span class="gp">... </span>               <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">einops_repeat</span><span class="p">(</span><span class="s1">&#39;a b -&gt;  a b c&#39;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
-<span class="go">ivy.array([[5,5,5],[4,4,4]])</span>
+<span class="go">ivy.array([[[5, 5, 5], [4, 4, 4]], [[2, 2, 2], [3, 3, 3]]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="go">(2, 2, 3)</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -1723,36 +1728,6 @@ method with minimal changes.</p>
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-  <div class="sidebar-secondary-item"><nav class="bd-docs-nav bd-links"
-     aria-label="Section Navigation">
-  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
-  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="ivy.data_classes.array.activations.html">Activations</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ivy.data_classes.array.conversions.html">Conversions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ivy.data_classes.array.creation.html">Creation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ivy.data_classes.array.data_type.html">Data type</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ivy.data_classes.array.device.html">Device</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ivy.data_classes.array.elementwise.html">Elementwise</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ivy.data_classes.array.experimental.html">Experimental</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">General</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ivy.data_classes.array.gradients.html">Gradients</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ivy.data_classes.array.image.html">Image</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ivy.data_classes.array.layers.html">Layers</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ivy.data_classes.array.linear_algebra.html">Linear algebra</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ivy.data_classes.array.losses.html">Losses</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ivy.data_classes.array.manipulation.html">Manipulation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ivy.data_classes.array.norms.html">Norms</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ivy.data_classes.array.random.html">Random</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ivy.data_classes.array.searching.html">Searching</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ivy.data_classes.array.set.html">Set</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ivy.data_classes.array.sorting.html">Sorting</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ivy.data_classes.array.statistical.html">Statistical</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ivy.data_classes.array.utility.html">Utility</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ivy.data_classes.array.wrapping.html">Wrapping</a></li>
-</ul>
-</div>
-</nav></div>
 
   <div class="sidebar-secondary-item">
   <div class="page-toc tocsection onthispage">

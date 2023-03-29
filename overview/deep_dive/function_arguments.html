@@ -317,6 +317,7 @@ document.write(`
 <li class="toctree-l3"><a class="reference internal" href="ivy_frontends_tests.html">Ivy Frontend Tests</a></li>
 <li class="toctree-l3"><a class="reference internal" href="exception_handling.html">Exception Handling</a></li>
 <li class="toctree-l3"><a class="reference internal" href="continuous_integration.html">Continuous Integration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gradients.html">Gradients</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../contributing/open_tasks.html">Open Tasks</a></li>
@@ -355,6 +356,7 @@ document.write(`
 <li class="toctree-l2"><a class="reference internal" href="ivy_frontends_tests.html">Ivy Frontend Tests</a></li>
 <li class="toctree-l2"><a class="reference internal" href="exception_handling.html">Exception Handling</a></li>
 <li class="toctree-l2"><a class="reference internal" href="continuous_integration.html">Continuous Integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gradients.html">Gradients</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
@@ -553,7 +555,7 @@ Likewise, all backend implementations at <code class="xref py py-mod docutils li
 <p>In order to understand the various requirements for function arguments, it’s useful to first look at some examples.</p>
 <section id="examples">
 <h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading">#</a></h2>
-<p>For the purposes of explanation, we will use four functions as examples: <code class="xref py py-func docutils literal notranslate"><span class="pre">ivy.tan()</span></code>, <code class="xref py py-func docutils literal notranslate"><span class="pre">ivy.roll()</span></code>, <code class="xref py py-func docutils literal notranslate"><span class="pre">ivy.add()</span></code> and <code class="xref py py-func docutils literal notranslate"><span class="pre">ivy.zeros()</span></code>.</p>
+<p>For the purposes of explanation, we will use four functions as examples: <a class="reference internal" href="../../docs/functional/ivy/elementwise/ivy.functional.ivy.elementwise.tan.html#ivy.tan" title="ivy.tan"><code class="xref py py-func docutils literal notranslate"><span class="pre">ivy.tan()</span></code></a>, <a class="reference internal" href="../../docs/functional/ivy/manipulation/ivy.functional.ivy.manipulation.roll.html#ivy.roll" title="ivy.roll"><code class="xref py py-func docutils literal notranslate"><span class="pre">ivy.roll()</span></code></a>, <a class="reference internal" href="../../docs/functional/ivy/elementwise/ivy.functional.ivy.elementwise.add.html#ivy.add" title="ivy.add"><code class="xref py py-func docutils literal notranslate"><span class="pre">ivy.add()</span></code></a> and <a class="reference internal" href="../../docs/functional/ivy/creation/ivy.functional.ivy.creation.zeros.html#ivy.zeros" title="ivy.zeros"><code class="xref py py-func docutils literal notranslate"><span class="pre">ivy.zeros()</span></code></a>.</p>
 <p>We present both the Ivy API signature and also a backend-specific signature for each function:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ivy</span>
 <span class="nd">@to_native_arrays_and_back</span>
@@ -680,7 +682,7 @@ This is further explained in the <a class="reference internal" href="data_types.
 <h2>Numbers in Operator Functions<a class="headerlink" href="#numbers-in-operator-functions" title="Permalink to this heading">#</a></h2>
 <p>All operator functions (which have a corresponding such as <code class="code docutils literal notranslate"><span class="pre">+</span></code>, <code class="code docutils literal notranslate"><span class="pre">-</span></code>, <code class="code docutils literal notranslate"><span class="pre">*</span></code>, <code class="code docutils literal notranslate"><span class="pre">/</span></code>) must also be fully compatible with numbers (float or <code class="code docutils literal notranslate"><span class="pre">int</span></code>) passed into any of the array inputs, even in the absence of any arrays.
 For example, <code class="code docutils literal notranslate"><span class="pre">ivy.add(1,</span> <span class="pre">2)</span></code>, <code class="code docutils literal notranslate"><span class="pre">ivy.add(1.5,</span> <span class="pre">2)</span></code> and <code class="code docutils literal notranslate"><span class="pre">ivy.add(1.5,</span> <span class="pre">ivy.array([2]))</span></code> should all run without error.
-Therefore, the type hints for <code class="xref py py-func docutils literal notranslate"><span class="pre">ivy.add()</span></code> include float as one of the types in the <code class="code docutils literal notranslate"><span class="pre">Union</span></code> for the array inputs, and also as one of the types in the <code class="code docutils literal notranslate"><span class="pre">Union</span></code> for the output.
+Therefore, the type hints for <a class="reference internal" href="../../docs/functional/ivy/elementwise/ivy.functional.ivy.elementwise.add.html#ivy.add" title="ivy.add"><code class="xref py py-func docutils literal notranslate"><span class="pre">ivy.add()</span></code></a> include float as one of the types in the <code class="code docutils literal notranslate"><span class="pre">Union</span></code> for the array inputs, and also as one of the types in the <code class="code docutils literal notranslate"><span class="pre">Union</span></code> for the output.
 <a class="reference external" href="https://peps.python.org/pep-0484/#the-numeric-tower">PEP 484 Type Hints</a> state that “when an argument is annotated as having type float, an argument of type int is acceptable”.
 Therefore, we only include float in the type hints.</p>
 </section>
@@ -690,7 +692,7 @@ Therefore, we only include float in the type hints.</p>
 However, in order to make Ivy code less brittle, we accept arbitrary integer sequences <code class="code docutils literal notranslate"><span class="pre">Sequence[int]</span></code> for such arguments (which includes <code class="code docutils literal notranslate"><span class="pre">list</span></code>, <code class="code docutils literal notranslate"><span class="pre">tuple</span></code> etc.).
 This does not break the standard, as the standard is only intended to define a subset of required behaviour.
 The standard can be freely extended, as we are doing here.
-Good examples of this are the <code class="code docutils literal notranslate"><span class="pre">axis</span></code> argument of <code class="xref py py-func docutils literal notranslate"><span class="pre">ivy.roll()</span></code> and the <code class="code docutils literal notranslate"><span class="pre">shape</span></code> argument of <code class="xref py py-func docutils literal notranslate"><span class="pre">ivy.zeros()</span></code>, as shown above.</p>
+Good examples of this are the <code class="code docutils literal notranslate"><span class="pre">axis</span></code> argument of <a class="reference internal" href="../../docs/functional/ivy/manipulation/ivy.functional.ivy.manipulation.roll.html#ivy.roll" title="ivy.roll"><code class="xref py py-func docutils literal notranslate"><span class="pre">ivy.roll()</span></code></a> and the <code class="code docutils literal notranslate"><span class="pre">shape</span></code> argument of <a class="reference internal" href="../../docs/functional/ivy/creation/ivy.functional.ivy.creation.zeros.html#ivy.zeros" title="ivy.zeros"><code class="xref py py-func docutils literal notranslate"><span class="pre">ivy.zeros()</span></code></a>, as shown above.</p>
 </section>
 <section id="nestable-functions">
 <h2>Nestable Functions<a class="headerlink" href="#nestable-functions" title="Permalink to this heading">#</a></h2>
@@ -743,44 +745,6 @@ src="https://www.youtube.com/embed/5cAbryXza18" class="video">
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-  <div class="sidebar-secondary-item"><nav class="bd-docs-nav bd-links"
-     aria-label="Section Navigation">
-  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
-  <div class="bd-toc-item navbar-nav"><p aria-level="2" class="caption" role="heading"><span class="caption-text">Contributing</span></p>
-<ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../contributing/setting_up.html">Setting Up</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../contributing/the_basics.html">The Basics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../contributing/building_the_docs.html">Building the Docs</a></li>
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="../deep_dive.html">Deep Dive</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="navigating_the_code.html">Navigating the Code</a></li>
-<li class="toctree-l2"><a class="reference internal" href="function_types.html">Function Types</a></li>
-<li class="toctree-l2"><a class="reference internal" href="superset_behaviour.html">Superset Behaviour</a></li>
-<li class="toctree-l2"><a class="reference internal" href="backend_setting.html">Backend Setting</a></li>
-<li class="toctree-l2"><a class="reference internal" href="arrays.html">Arrays</a></li>
-<li class="toctree-l2"><a class="reference internal" href="containers.html">Containers</a></li>
-<li class="toctree-l2"><a class="reference internal" href="data_types.html">Data Types</a></li>
-<li class="toctree-l2"><a class="reference internal" href="devices.html">Devices</a></li>
-<li class="toctree-l2"><a class="reference internal" href="inplace_updates.html">Inplace Updates</a></li>
-<li class="toctree-l2"><a class="reference internal" href="function_wrapping.html">Function Wrapping</a></li>
-<li class="toctree-l2"><a class="reference internal" href="formatting.html">Formatting</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Function Arguments</a></li>
-<li class="toctree-l2"><a class="reference internal" href="docstrings.html">Docstrings</a></li>
-<li class="toctree-l2"><a class="reference internal" href="docstring_examples.html">Docstring Examples</a></li>
-<li class="toctree-l2"><a class="reference internal" href="array_api_tests.html">Array API Tests</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ivy_tests.html">Ivy Tests</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ivy_frontends.html">Ivy Frontends</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ivy_frontends_tests.html">Ivy Frontend Tests</a></li>
-<li class="toctree-l2"><a class="reference internal" href="exception_handling.html">Exception Handling</a></li>
-<li class="toctree-l2"><a class="reference internal" href="continuous_integration.html">Continuous Integration</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../contributing/open_tasks.html">Open Tasks</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../contributing/applied_libraries.html">Applied Libraries</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../contributing/helpful_resources.html">Helpful Resources</a></li>
-</ul>
-</div>
-</nav></div>
 
   <div class="sidebar-secondary-item">
   <div class="page-toc tocsection onthispage">

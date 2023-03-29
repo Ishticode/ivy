@@ -201,10 +201,6 @@ document.write(`
   
 
   
-    <label class="sidebar-toggle secondary-toggle" for="__secondary">
-      <span class="fa-solid fa-outdent"></span>
-    </label>
-  
 </div>
 
     </nav>
@@ -307,6 +303,7 @@ document.write(`
 <li class="toctree-l3"><a class="reference internal" href="ivy_frontends_tests.html">Ivy Frontend Tests</a></li>
 <li class="toctree-l3"><a class="reference internal" href="exception_handling.html">Exception Handling</a></li>
 <li class="toctree-l3"><a class="reference internal" href="continuous_integration.html">Continuous Integration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gradients.html">Gradients</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../contributing/open_tasks.html">Open Tasks</a></li>
@@ -335,6 +332,7 @@ document.write(`
 <li class="toctree-l2"><a class="reference internal" href="ivy_frontends_tests.html">Ivy Frontend Tests</a></li>
 <li class="toctree-l2"><a class="reference internal" href="exception_handling.html">Exception Handling</a></li>
 <li class="toctree-l2"><a class="reference internal" href="continuous_integration.html">Continuous Integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gradients.html">Gradients</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
@@ -527,7 +525,7 @@ document.write(`
 <h1>Docstrings<a class="headerlink" href="#docstrings" title="Permalink to this heading">#</a></h1>
 <p>All functions in the Ivy API at <code class="xref py py-mod docutils literal notranslate"><span class="pre">ivy/functional/ivy/category_name.py</span></code> should have full and thorough docstrings.
 In contrast, all backend implementations at <code class="xref py py-mod docutils literal notranslate"><span class="pre">ivy/functional/backends/backend_name/category_name.py</span></code> should not have any docstrings, on account that these are effectively just different instantiations of the functions at <code class="xref py py-mod docutils literal notranslate"><span class="pre">ivy/functional/ivy/category_name.py</span></code>.</p>
-<p>In order to explain how docstrings should be written, we will use <code class="xref py py-func docutils literal notranslate"><span class="pre">ivy.tan()</span></code> as an example.</p>
+<p>In order to explain how docstrings should be written, we will use <a class="reference internal" href="../../docs/functional/ivy/elementwise/ivy.functional.ivy.elementwise.tan.html#ivy.tan" title="ivy.tan"><code class="xref py py-func docutils literal notranslate"><span class="pre">ivy.tan()</span></code></a> as an example.</p>
 <p>Firstly, if the function exists in the <a class="reference external" href="https://data-apis.org/array-api/latest/">Array API Standard</a>, the we start with the corresponding docstring as a template.
 These docstrings can be found under <a class="reference external" href="https://github.com/data-apis/array-api/tree/main/spec/API_specification/array_api">spec/API_specification/array_api</a>.</p>
 <p>Important: you should open the file in <strong>raw</strong> format.
@@ -567,7 +565,7 @@ Therefore, we simply remove all type info from the docstring like so:</p>
 </div>
 <p>The <a class="reference external" href="https://data-apis.org/array-api/latest/">Array API Standard</a> defines a subset of behaviour that each function must adhere to.
 Ivy extends many of these functions with additional behaviour and arguments.
-In the case of <code class="xref py py-func docutils literal notranslate"><span class="pre">ivy.tan()</span></code>, there is also the argument <code class="code docutils literal notranslate"><span class="pre">out</span></code> which needs to be added to the docstring, like so:</p>
+In the case of <a class="reference internal" href="../../docs/functional/ivy/elementwise/ivy.functional.ivy.elementwise.tan.html#ivy.tan" title="ivy.tan"><code class="xref py py-func docutils literal notranslate"><span class="pre">ivy.tan()</span></code></a>, there is also the argument <code class="code docutils literal notranslate"><span class="pre">out</span></code> which needs to be added to the docstring, like so:</p>
 <div class="highlight-diff notranslate"><div class="highlight"><pre><span></span><span class="gi">+out</span>
 <span class="gi">+    optional output array, for writing the result to. It must have a shape that the inputs</span>
 <span class="gi">+    broadcast to.</span>
@@ -667,7 +665,7 @@ Returns
 &lt;return value with its description&gt;
 </pre></div>
 </div>
-<p>Let’s take <code class="xref py py-func docutils literal notranslate"><span class="pre">ivy.add()</span></code> as an example.
+<p>Let’s take <a class="reference internal" href="../../docs/functional/ivy/elementwise/ivy.functional.ivy.elementwise.add.html#ivy.add" title="ivy.add"><code class="xref py py-func docutils literal notranslate"><span class="pre">ivy.add()</span></code></a> as an example.
 The docstring for <a class="reference external" href="https://github.com/unifyai/ivy/blob/04766790a518ecde380cb6eeb05aa89cf5acdbfd/ivy/functional/ivy/elementwise.py#L191">ivy.add</a> is thorough, as explained above.
 However, the docstrings for <a class="reference external" href="https://github.com/unifyai/ivy/blob/04766790a518ecde380cb6eeb05aa89cf5acdbfd/ivy/array/elementwise.py#L36">ivy.Array.add</a>, <a class="reference external" href="https://github.com/unifyai/ivy/blob/04766790a518ecde380cb6eeb05aa89cf5acdbfd/ivy/container/elementwise.py#L209">ivy.Container.add</a> and <a class="reference external" href="https://github.com/unifyai/ivy/blob/04766790a518ecde380cb6eeb05aa89cf5acdbfd/ivy/container/elementwise.py#L125">ivy.Container.static_add</a> all follow the succinct pattern outlined above.
 Likewise, the docstrings for the special methods <a class="reference external" href="https://github.com/unifyai/ivy/blob/04766790a518ecde380cb6eeb05aa89cf5acdbfd/ivy/array/array.py#L310">ivy.Array.__add__</a>, <a class="reference external" href="https://github.com/unifyai/ivy/blob/04766790a518ecde380cb6eeb05aa89cf5acdbfd/ivy/array/array.py#L359">ivy.Array.__radd__</a>, <a class="reference external" href="https://github.com/unifyai/ivy/blob/04766790a518ecde380cb6eeb05aa89cf5acdbfd/ivy/container/container.py#L106">ivy.Container.__add__</a>, and <a class="reference external" href="https://github.com/unifyai/ivy/blob/04766790a518ecde380cb6eeb05aa89cf5acdbfd/ivy/container/container.py#L171">ivy.Container.__radd__</a>, also follow the succinct pattern outlined above.
@@ -675,7 +673,7 @@ Note that these docstrings all <em>also</em> include examples, which we will cov
 <p>For all other classes, such as the various layers at <code class="code docutils literal notranslate"><span class="pre">ivy/ivy/stateful/layers</span></code>, then we should add full and thorough docstrings for both the <strong>contstructor</strong> and also <strong>all methods</strong>.</p>
 <p>This is the case even when the class directly wraps a function in the functional API.
 For example, the class <a class="reference external" href="https://github.com/unifyai/ivy/blob/51c23694c2f51e88caef0f382f200b195f8458b5/ivy/stateful/layers.py#L13">ivy.Linear</a> wraps the function <a class="reference external" href="https://github.com/unifyai/ivy/blob/51c23694c2f51e88caef0f382f200b195f8458b5/ivy/functional/ivy/layers.py#L22">ivy.linear</a>, but does so in a stateful manner with the variables stored internally in the instance of the class.
-Even though the <code class="xref py py-class docutils literal notranslate"><span class="pre">ivy.Linear</span></code> class wraps <code class="xref py py-func docutils literal notranslate"><span class="pre">ivy.linear()</span></code> in the forward pass defined in <a class="reference external" href="https://github.com/unifyai/ivy/blob/51c23694c2f51e88caef0f382f200b195f8458b5/ivy/stateful/layers.py#L84">ivy.Linear._forward</a>, the function signatures of <code class="xref py py-func docutils literal notranslate"><span class="pre">ivy.linear()</span></code> and <code class="xref py py-meth docutils literal notranslate"><span class="pre">ivy.Linear._forward()</span></code> are still quite distinct, with the former including all trainable variables explicitly, and the latter having these implicit as internal instance attributes of the class.</p>
+Even though the <code class="xref py py-class docutils literal notranslate"><span class="pre">ivy.Linear</span></code> class wraps <a class="reference internal" href="../../docs/functional/ivy/layers/ivy.functional.ivy.layers.linear.html#ivy.linear" title="ivy.linear"><code class="xref py py-func docutils literal notranslate"><span class="pre">ivy.linear()</span></code></a> in the forward pass defined in <a class="reference external" href="https://github.com/unifyai/ivy/blob/51c23694c2f51e88caef0f382f200b195f8458b5/ivy/stateful/layers.py#L84">ivy.Linear._forward</a>, the function signatures of <a class="reference internal" href="../../docs/functional/ivy/layers/ivy.functional.ivy.layers.linear.html#ivy.linear" title="ivy.linear"><code class="xref py py-func docutils literal notranslate"><span class="pre">ivy.linear()</span></code></a> and <code class="xref py py-meth docutils literal notranslate"><span class="pre">ivy.Linear._forward()</span></code> are still quite distinct, with the former including all trainable variables explicitly, and the latter having these implicit as internal instance attributes of the class.</p>
 <p>Therefore, with the exception of the <code class="xref py py-class docutils literal notranslate"><span class="pre">ivy.Array</span></code> and <code class="xref py py-class docutils literal notranslate"><span class="pre">ivy.Container</span></code> methods which directly wrap functions in the functional API, we should always add full and thorough docstrings to all methods of all other classes in Ivy, including cases where these also directly wrap functions in the functional API.</p>
 <p><strong>Round Up</strong></p>
 <p>These examples should hopefully give you a good understanding of what is required when adding docstings.</p>
@@ -717,48 +715,6 @@ src="https://www.youtube.com/embed/TnshJ8swuJM" class="video">
             </div>
             
             
-              
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-  <div class="sidebar-secondary-item"><nav class="bd-docs-nav bd-links"
-     aria-label="Section Navigation">
-  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
-  <div class="bd-toc-item navbar-nav"><p aria-level="2" class="caption" role="heading"><span class="caption-text">Contributing</span></p>
-<ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../contributing/setting_up.html">Setting Up</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../contributing/the_basics.html">The Basics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../contributing/building_the_docs.html">Building the Docs</a></li>
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="../deep_dive.html">Deep Dive</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="navigating_the_code.html">Navigating the Code</a></li>
-<li class="toctree-l2"><a class="reference internal" href="function_types.html">Function Types</a></li>
-<li class="toctree-l2"><a class="reference internal" href="superset_behaviour.html">Superset Behaviour</a></li>
-<li class="toctree-l2"><a class="reference internal" href="backend_setting.html">Backend Setting</a></li>
-<li class="toctree-l2"><a class="reference internal" href="arrays.html">Arrays</a></li>
-<li class="toctree-l2"><a class="reference internal" href="containers.html">Containers</a></li>
-<li class="toctree-l2"><a class="reference internal" href="data_types.html">Data Types</a></li>
-<li class="toctree-l2"><a class="reference internal" href="devices.html">Devices</a></li>
-<li class="toctree-l2"><a class="reference internal" href="inplace_updates.html">Inplace Updates</a></li>
-<li class="toctree-l2"><a class="reference internal" href="function_wrapping.html">Function Wrapping</a></li>
-<li class="toctree-l2"><a class="reference internal" href="formatting.html">Formatting</a></li>
-<li class="toctree-l2"><a class="reference internal" href="function_arguments.html">Function Arguments</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Docstrings</a></li>
-<li class="toctree-l2"><a class="reference internal" href="docstring_examples.html">Docstring Examples</a></li>
-<li class="toctree-l2"><a class="reference internal" href="array_api_tests.html">Array API Tests</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ivy_tests.html">Ivy Tests</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ivy_frontends.html">Ivy Frontends</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ivy_frontends_tests.html">Ivy Frontend Tests</a></li>
-<li class="toctree-l2"><a class="reference internal" href="exception_handling.html">Exception Handling</a></li>
-<li class="toctree-l2"><a class="reference internal" href="continuous_integration.html">Continuous Integration</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../contributing/open_tasks.html">Open Tasks</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../contributing/applied_libraries.html">Applied Libraries</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../contributing/helpful_resources.html">Helpful Resources</a></li>
-</ul>
-</div>
-</nav></div>
-
-</div></div>
               
             
           </div>

@@ -480,14 +480,14 @@ document.write(`
                   
   <section id="building-blocks">
 <h1>Building Blocks<a class="headerlink" href="#building-blocks" title="Permalink to this heading">#</a></h1>
-<p>Here we explain the components of Ivy which are fundamental to it’s usage either as a code converter or as a fully-fledged framework-agnostic ML framework.
+<p>Here we explain the components of Ivy which are fundamental to its usage either as a code converter or as a fully-fledged framework-agnostic ML framework.
 These are the 4 parts labelled as (a) in the image below:</p>
 <a class="reference internal image-reference" href="https://github.com/unifyai/unifyai.github.io/blob/master/img/externally_linked/design/submodule_dependency_graph.png?raw=true"><img alt="https://github.com/unifyai/unifyai.github.io/blob/master/img/externally_linked/design/submodule_dependency_graph.png?raw=true" class="align-center" src="https://github.com/unifyai/unifyai.github.io/blob/master/img/externally_linked/design/submodule_dependency_graph.png?raw=true" style="width: 100%;" /></a>
 <section id="backend-functional-apis">
 <h2>Backend Functional APIs ✅<a class="headerlink" href="#backend-functional-apis" title="Permalink to this heading">#</a></h2>
 <p>The first important point to make is that, Ivy does not implement it’s own C++ or CUDA backend.
 Instead, Ivy <strong>wraps</strong> the functional APIs of existing frameworks, bringing them into syntactic and semantic alignment.
-Let’s take the function <code class="xref py py-func docutils literal notranslate"><span class="pre">ivy.stack()</span></code> as an example.</p>
+Let’s take the function <a class="reference internal" href="../../docs/functional/ivy/manipulation/ivy.functional.ivy.manipulation.stack.html#ivy.stack" title="ivy.stack"><code class="xref py py-func docutils literal notranslate"><span class="pre">ivy.stack()</span></code></a> as an example.</p>
 <p>There are separate backend modules for JAX, TensorFlow, PyTorch and NumPy, and so we implement the <code class="code docutils literal notranslate"><span class="pre">stack</span></code> method once for each backend, each in separate backend files like so:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># ivy/functional/backends/jax/manipulation.py:</span>
  <span class="k">def</span> <span class="nf">stack</span><span class="p">(</span>
@@ -725,7 +725,7 @@ The following is a slightly simplified version of this code for illustration, wh
 <p>The functions implemented by the backend-specific backend such as <code class="code docutils literal notranslate"><span class="pre">ivy.functional.backends.torch</span></code> only constitute a subset of the full Ivy API.
 This is because many higher level functions are written as a composition of lower level Ivy functions.
 These functions therefore do not need to be written independently for each backend framework.
-A good example is <code class="xref py py-func docutils literal notranslate"><span class="pre">ivy.lstm_update()</span></code>, as shown:</p>
+A good example is <a class="reference internal" href="../../docs/functional/ivy/layers/ivy.functional.ivy.layers.lstm_update.html#ivy.lstm_update" title="ivy.lstm_update"><code class="xref py py-func docutils literal notranslate"><span class="pre">ivy.lstm_update()</span></code></a>, as shown:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># ivy/functional/ivy/layers.py</span>
 <span class="nd">@to_native_arrays_and_back</span>
 <span class="nd">@handle_nestable</span>
@@ -1093,23 +1093,6 @@ Compiling to lower level languages (C++, CUDA, TorchScript etc.) is supported fo
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-  <div class="sidebar-secondary-item"><nav class="bd-docs-nav bd-links"
-     aria-label="Section Navigation">
-  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
-  <div class="bd-toc-item navbar-nav"><p aria-level="2" class="caption" role="heading"><span class="caption-text">Design</span></p>
-<ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Building Blocks</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ivy_as_a_transpiler.html">Ivy as a Transpiler</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="ivy_as_a_framework.html">Ivy as a Framework</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="ivy_as_a_framework/ivy_container.html">Ivy Container</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ivy_as_a_framework/ivy_stateful_api.html">Ivy Stateful API</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ivy_as_a_framework/ivy_array.html">Ivy Array</a></li>
-</ul>
-</li>
-</ul>
-</div>
-</nav></div>
 
   <div class="sidebar-secondary-item">
   <div class="page-toc tocsection onthispage">

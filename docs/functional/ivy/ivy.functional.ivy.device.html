@@ -46,8 +46,8 @@
     <link rel="icon" href="https://github.com/unifyai/unifyai.github.io/blob/master/img/externally_linked/ivy_logo_only.png?raw=true"/>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="Elementwise" href="ivy.functional.ivy.elementwise.html" />
-    <link rel="prev" title="Data type" href="ivy.functional.ivy.data_type.html" />
+    <link rel="next" title="_get_devices" href="device/ivy.functional.ivy.device._get_devices.html" />
+    <link rel="prev" title="valid_dtype" href="data_type/ivy.functional.ivy.data_type.valid_dtype.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -295,6 +295,33 @@ document.write(`
 <li class="toctree-l1"><a class="reference internal" href="ivy.functional.ivy.creation.html">Creation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ivy.functional.ivy.data_type.html">Data type</a></li>
 <li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Device</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="device/ivy.functional.ivy.device._get_devices.html">_get_devices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="device/ivy.functional.ivy.device._get_nvml_gpu_handle.html">_get_nvml_gpu_handle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="device/ivy.functional.ivy.device._is_valid_devices_attributes.html">_is_valid_devices_attributes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="device/ivy.functional.ivy.device.as_ivy_dev.html">as_ivy_dev</a></li>
+<li class="toctree-l2"><a class="reference internal" href="device/ivy.functional.ivy.device.as_native_dev.html">as_native_dev</a></li>
+<li class="toctree-l2"><a class="reference internal" href="device/ivy.functional.ivy.device.clear_cached_mem_on_dev.html">clear_cached_mem_on_dev</a></li>
+<li class="toctree-l2"><a class="reference internal" href="device/ivy.functional.ivy.device.default_device.html">default_device</a></li>
+<li class="toctree-l2"><a class="reference internal" href="device/ivy.functional.ivy.device.dev.html">dev</a></li>
+<li class="toctree-l2"><a class="reference internal" href="device/ivy.functional.ivy.device.dev_util.html">dev_util</a></li>
+<li class="toctree-l2"><a class="reference internal" href="device/ivy.functional.ivy.device.function_supported_devices.html">function_supported_devices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="device/ivy.functional.ivy.device.function_unsupported_devices.html">function_unsupported_devices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="device/ivy.functional.ivy.device.get_all_ivy_arrays_on_dev.html">get_all_ivy_arrays_on_dev</a></li>
+<li class="toctree-l2"><a class="reference internal" href="device/ivy.functional.ivy.device.gpu_is_available.html">gpu_is_available</a></li>
+<li class="toctree-l2"><a class="reference internal" href="device/ivy.functional.ivy.device.num_cpu_cores.html">num_cpu_cores</a></li>
+<li class="toctree-l2"><a class="reference internal" href="device/ivy.functional.ivy.device.num_gpus.html">num_gpus</a></li>
+<li class="toctree-l2"><a class="reference internal" href="device/ivy.functional.ivy.device.num_ivy_arrays_on_dev.html">num_ivy_arrays_on_dev</a></li>
+<li class="toctree-l2"><a class="reference internal" href="device/ivy.functional.ivy.device.percent_used_mem_on_dev.html">percent_used_mem_on_dev</a></li>
+<li class="toctree-l2"><a class="reference internal" href="device/ivy.functional.ivy.device.print_all_ivy_arrays_on_dev.html">print_all_ivy_arrays_on_dev</a></li>
+<li class="toctree-l2"><a class="reference internal" href="device/ivy.functional.ivy.device.set_default_device.html">set_default_device</a></li>
+<li class="toctree-l2"><a class="reference internal" href="device/ivy.functional.ivy.device.set_split_factor.html">set_split_factor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="device/ivy.functional.ivy.device.split_factor.html">split_factor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="device/ivy.functional.ivy.device.split_func_call.html">split_func_call</a></li>
+<li class="toctree-l2"><a class="reference internal" href="device/ivy.functional.ivy.device.to_device.html">to_device</a></li>
+<li class="toctree-l2"><a class="reference internal" href="device/ivy.functional.ivy.device.total_mem_on_dev.html">total_mem_on_dev</a></li>
+<li class="toctree-l2"><a class="reference internal" href="device/ivy.functional.ivy.device.tpu_is_available.html">tpu_is_available</a></li>
+<li class="toctree-l2"><a class="reference internal" href="device/ivy.functional.ivy.device.unset_default_device.html">unset_default_device</a></li>
+<li class="toctree-l2"><a class="reference internal" href="device/ivy.functional.ivy.device.used_mem_on_dev.html">used_mem_on_dev</a></li>
 
 
 
@@ -492,9 +519,9 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section id="module-ivy.functional.ivy.device">
-<span id="device"></span><h1>Device<a class="headerlink" href="#module-ivy.functional.ivy.device" title="Permalink to this heading">#</a></h1>
-<p>Collection of device Ivy functions.</p>
+  <section id="device">
+<h1>Device<a class="headerlink" href="#device" title="Permalink to this heading">#</a></h1>
+<span class="target" id="module-ivy.functional.ivy.device"></span><p>Collection of device Ivy functions.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="ivy.functional.ivy.device.DefaultDevice">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ivy.</span></span><span class="sig-name descname"><span class="pre">DefaultDevice</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">device</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">/</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/ivy/functional/ivy/device.html#DefaultDevice"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ivy.functional.ivy.device.DefaultDevice" title="Permalink to this definition">#</a></dt>
@@ -1354,20 +1381,20 @@ False. Currently, it is only supported for cpu.</p></li>
                   <!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="ivy.functional.ivy.data_type.html"
+       href="data_type/ivy.functional.ivy.data_type.valid_dtype.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Data type</p>
+        <p class="prev-next-title">valid_dtype</p>
       </div>
     </a>
     <a class="right-next"
-       href="ivy.functional.ivy.elementwise.html"
+       href="device/ivy.functional.ivy.device._get_devices.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Elementwise</p>
+        <p class="prev-next-title">_get_devices</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -1379,12 +1406,6 @@ False. Currently, it is only supported for cpu.</p></li>
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-  <div class="sidebar-secondary-item"><nav class="bd-docs-nav bd-links"
-     aria-label="Section Navigation">
-  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
-  <div class="bd-toc-item navbar-nav"></div>
-</nav></div>
 
   <div class="sidebar-secondary-item">
   <div class="page-toc tocsection onthispage">

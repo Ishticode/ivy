@@ -198,10 +198,6 @@ document.write(`
   
 
   
-    <label class="sidebar-toggle secondary-toggle" for="__secondary">
-      <span class="fa-solid fa-outdent"></span>
-    </label>
-  
 </div>
 
     </nav>
@@ -491,9 +487,9 @@ document.write(`
 
 
 <div class="viewcode-block" id="flatten"><a class="viewcode-back" href="../../../../../docs/functional/ivy/ivy.functional.ivy.experimental.html#ivy.functional.ivy.experimental.flatten">[docs]</a><span class="nd">@handle_out_argument</span>
+<span class="nd">@handle_array_like_without_promotion</span>
 <span class="nd">@handle_nestable</span>
 <span class="nd">@handle_exceptions</span>
-<span class="nd">@handle_array_like_without_promotion</span>
 <span class="k">def</span> <span class="nf">flatten</span><span class="p">(</span>
     <span class="n">x</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">],</span>
     <span class="o">/</span><span class="p">,</span>
@@ -630,11 +626,11 @@ document.write(`
 <span class="n">flatten</span><span class="o">.</span><span class="n">mixed_function</span> <span class="o">=</span> <span class="kc">True</span>
 
 
-<div class="viewcode-block" id="moveaxis"><a class="viewcode-back" href="../../../../../docs/functional/ivy/ivy.functional.ivy.experimental.html#ivy.functional.ivy.experimental.moveaxis">[docs]</a><span class="nd">@handle_view</span>
-<span class="nd">@to_native_arrays_and_back</span>
+<div class="viewcode-block" id="moveaxis"><a class="viewcode-back" href="../../../../../docs/functional/ivy/ivy.functional.ivy.experimental.html#ivy.functional.ivy.experimental.moveaxis">[docs]</a><span class="nd">@to_native_arrays_and_back</span>
 <span class="nd">@handle_out_argument</span>
-<span class="nd">@handle_nestable</span>
+<span class="nd">@handle_view</span>
 <span class="nd">@handle_array_like_without_promotion</span>
+<span class="nd">@handle_nestable</span>
 <span class="k">def</span> <span class="nf">moveaxis</span><span class="p">(</span>
     <span class="n">a</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">],</span>
     <span class="n">source</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">int</span><span class="p">]],</span>
@@ -758,8 +754,8 @@ document.write(`
 
 <div class="viewcode-block" id="heaviside"><a class="viewcode-back" href="../../../../../docs/functional/ivy/ivy.functional.ivy.experimental.html#ivy.functional.ivy.experimental.heaviside">[docs]</a><span class="nd">@to_native_arrays_and_back</span>
 <span class="nd">@handle_out_argument</span>
-<span class="nd">@handle_nestable</span>
 <span class="nd">@handle_array_like_without_promotion</span>
+<span class="nd">@handle_nestable</span>
 <span class="k">def</span> <span class="nf">heaviside</span><span class="p">(</span>
     <span class="n">x1</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">],</span>
     <span class="n">x2</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">],</span>
@@ -801,11 +797,11 @@ document.write(`
     <span class="k">return</span> <span class="n">ivy</span><span class="o">.</span><span class="n">current_backend</span><span class="p">()</span><span class="o">.</span><span class="n">heaviside</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">out</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="flipud"><a class="viewcode-back" href="../../../../../docs/functional/ivy/ivy.functional.ivy.experimental.html#ivy.functional.ivy.experimental.flipud">[docs]</a><span class="nd">@handle_view</span>
-<span class="nd">@to_native_arrays_and_back</span>
+<div class="viewcode-block" id="flipud"><a class="viewcode-back" href="../../../../../docs/functional/ivy/ivy.functional.ivy.experimental.html#ivy.functional.ivy.experimental.flipud">[docs]</a><span class="nd">@to_native_arrays_and_back</span>
 <span class="nd">@handle_out_argument</span>
-<span class="nd">@handle_nestable</span>
+<span class="nd">@handle_view</span>
 <span class="nd">@handle_array_like_without_promotion</span>
+<span class="nd">@handle_nestable</span>
 <span class="k">def</span> <span class="nf">flipud</span><span class="p">(</span>
     <span class="n">m</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">],</span>
     <span class="o">/</span><span class="p">,</span>
@@ -922,12 +918,12 @@ document.write(`
     <span class="k">return</span> <span class="n">ivy</span><span class="o">.</span><span class="n">current_backend</span><span class="p">()</span><span class="o">.</span><span class="n">hstack</span><span class="p">(</span><span class="n">arrays</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">out</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="rot90"><a class="viewcode-back" href="../../../../../docs/functional/ivy/ivy.functional.ivy.experimental.html#ivy.functional.ivy.experimental.rot90">[docs]</a><span class="nd">@handle_view</span>
-<span class="nd">@to_native_arrays_and_back</span>
+<div class="viewcode-block" id="rot90"><a class="viewcode-back" href="../../../../../docs/functional/ivy/ivy.functional.ivy.experimental.html#ivy.functional.ivy.experimental.rot90">[docs]</a><span class="nd">@to_native_arrays_and_back</span>
 <span class="nd">@handle_out_argument</span>
+<span class="nd">@handle_view</span>
+<span class="nd">@handle_array_like_without_promotion</span>
 <span class="nd">@handle_nestable</span>
 <span class="nd">@handle_exceptions</span>
-<span class="nd">@handle_array_like_without_promotion</span>
 <span class="k">def</span> <span class="nf">rot90</span><span class="p">(</span>
     <span class="n">m</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">],</span>
     <span class="o">/</span><span class="p">,</span>
@@ -1004,9 +1000,9 @@ document.write(`
 
 <div class="viewcode-block" id="top_k"><a class="viewcode-back" href="../../../../../docs/functional/ivy/ivy.functional.ivy.experimental.html#ivy.functional.ivy.experimental.top_k">[docs]</a><span class="nd">@to_native_arrays_and_back</span>
 <span class="nd">@handle_out_argument</span>
+<span class="nd">@handle_array_like_without_promotion</span>
 <span class="nd">@handle_nestable</span>
 <span class="nd">@handle_exceptions</span>
-<span class="nd">@handle_array_like_without_promotion</span>
 <span class="k">def</span> <span class="nf">top_k</span><span class="p">(</span>
     <span class="n">x</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">],</span>
     <span class="n">k</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
@@ -1078,11 +1074,11 @@ document.write(`
     <span class="k">return</span> <span class="n">current_backend</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">.</span><span class="n">top_k</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">,</span> <span class="n">largest</span><span class="o">=</span><span class="n">largest</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">out</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="fliplr"><a class="viewcode-back" href="../../../../../docs/functional/ivy/ivy.functional.ivy.experimental.html#ivy.functional.ivy.experimental.fliplr">[docs]</a><span class="nd">@handle_view</span>
-<span class="nd">@to_native_arrays_and_back</span>
+<div class="viewcode-block" id="fliplr"><a class="viewcode-back" href="../../../../../docs/functional/ivy/ivy.functional.ivy.experimental.html#ivy.functional.ivy.experimental.fliplr">[docs]</a><span class="nd">@to_native_arrays_and_back</span>
 <span class="nd">@handle_out_argument</span>
-<span class="nd">@handle_nestable</span>
+<span class="nd">@handle_view</span>
 <span class="nd">@handle_array_like_without_promotion</span>
+<span class="nd">@handle_nestable</span>
 <span class="k">def</span> <span class="nf">fliplr</span><span class="p">(</span>
     <span class="n">m</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">],</span>
     <span class="o">/</span><span class="p">,</span>
@@ -1119,8 +1115,8 @@ document.write(`
 
 <div class="viewcode-block" id="i0"><a class="viewcode-back" href="../../../../../docs/functional/ivy/ivy.functional.ivy.experimental.html#ivy.functional.ivy.experimental.i0">[docs]</a><span class="nd">@to_native_arrays_and_back</span>
 <span class="nd">@handle_out_argument</span>
-<span class="nd">@handle_nestable</span>
 <span class="nd">@handle_array_like_without_promotion</span>
+<span class="nd">@handle_nestable</span>
 <span class="k">def</span> <span class="nf">i0</span><span class="p">(</span>
     <span class="n">x</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">],</span>
     <span class="o">/</span><span class="p">,</span>
@@ -1219,13 +1215,13 @@ document.write(`
     <span class="n">left_slice</span> <span class="o">=</span> <span class="n">_slice_at_axis</span><span class="p">(</span><span class="nb">slice</span><span class="p">(</span><span class="n">left_index</span><span class="p">,</span> <span class="n">left_index</span> <span class="o">+</span> <span class="n">left_length</span><span class="p">),</span> <span class="n">axis</span><span class="p">)</span>
     <span class="n">left_chunk</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">padded</span><span class="p">[</span><span class="n">left_slice</span><span class="p">])</span>
     <span class="n">left_stat</span> <span class="o">=</span> <span class="n">stat_func</span><span class="p">(</span><span class="n">left_chunk</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="n">left_stat</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">left_stat</span><span class="p">)</span> <span class="k">if</span> <span class="s1">&#39;int&#39;</span> <span class="ow">in</span> <span class="n">left_chunk</span><span class="o">.</span><span class="n">dtype</span> <span class="k">else</span> <span class="n">left_stat</span>
+    <span class="n">left_stat</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">left_stat</span><span class="p">)</span> <span class="k">if</span> <span class="s2">&quot;int&quot;</span> <span class="ow">in</span> <span class="n">left_chunk</span><span class="o">.</span><span class="n">dtype</span> <span class="k">else</span> <span class="n">left_stat</span>
     <span class="k">if</span> <span class="n">left_length</span> <span class="o">==</span> <span class="n">right_length</span> <span class="o">==</span> <span class="n">max_length</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">left_stat</span><span class="p">,</span> <span class="n">left_stat</span>
     <span class="n">right_slice</span> <span class="o">=</span> <span class="n">_slice_at_axis</span><span class="p">(</span><span class="nb">slice</span><span class="p">(</span><span class="n">right_index</span> <span class="o">-</span> <span class="n">right_length</span><span class="p">,</span> <span class="n">right_index</span><span class="p">),</span> <span class="n">axis</span><span class="p">)</span>
     <span class="n">right_chunk</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">padded</span><span class="p">[</span><span class="n">right_slice</span><span class="p">])</span>
     <span class="n">right_stat</span> <span class="o">=</span> <span class="n">stat_func</span><span class="p">(</span><span class="n">right_chunk</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="n">right_stat</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">right_stat</span><span class="p">)</span> <span class="k">if</span> <span class="s1">&#39;int&#39;</span> <span class="ow">in</span> <span class="n">right_chunk</span><span class="o">.</span><span class="n">dtype</span> <span class="k">else</span> <span class="n">right_stat</span>
+    <span class="n">right_stat</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">right_stat</span><span class="p">)</span> <span class="k">if</span> <span class="s2">&quot;int&quot;</span> <span class="ow">in</span> <span class="n">right_chunk</span><span class="o">.</span><span class="n">dtype</span> <span class="k">else</span> <span class="n">right_stat</span>
     <span class="k">return</span> <span class="n">left_stat</span><span class="p">,</span> <span class="n">right_stat</span>
 
 
@@ -1411,9 +1407,9 @@ document.write(`
 
 <div class="viewcode-block" id="pad"><a class="viewcode-back" href="../../../../../docs/functional/ivy/ivy.functional.ivy.experimental.html#ivy.functional.ivy.experimental.pad">[docs]</a><span class="nd">@to_native_arrays_and_back</span>
 <span class="nd">@handle_out_argument</span>
+<span class="nd">@handle_array_like_without_promotion</span>
 <span class="nd">@handle_nestable</span>
 <span class="nd">@handle_exceptions</span>
-<span class="nd">@handle_array_like_without_promotion</span>
 <span class="k">def</span> <span class="nf">pad</span><span class="p">(</span>
     <span class="nb">input</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">],</span>
     <span class="n">pad_width</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">Iterable</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">]],</span> <span class="nb">int</span><span class="p">],</span>
@@ -1657,11 +1653,11 @@ document.write(`
     <span class="k">return</span> <span class="n">padded</span></div>
 
 
-<div class="viewcode-block" id="vsplit"><a class="viewcode-back" href="../../../../../docs/functional/ivy/ivy.functional.ivy.experimental.html#ivy.functional.ivy.experimental.vsplit">[docs]</a><span class="nd">@handle_view</span>
-<span class="nd">@to_native_arrays_and_back</span>
+<div class="viewcode-block" id="vsplit"><a class="viewcode-back" href="../../../../../docs/functional/ivy/ivy.functional.ivy.experimental.html#ivy.functional.ivy.experimental.vsplit">[docs]</a><span class="nd">@to_native_arrays_and_back</span>
 <span class="nd">@handle_out_argument</span>
-<span class="nd">@handle_nestable</span>
+<span class="nd">@handle_view</span>
 <span class="nd">@handle_array_like_without_promotion</span>
+<span class="nd">@handle_nestable</span>
 <span class="k">def</span> <span class="nf">vsplit</span><span class="p">(</span>
     <span class="n">ary</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">],</span>
     <span class="n">indices_or_sections</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="o">...</span><span class="p">]],</span>
@@ -1698,10 +1694,10 @@ document.write(`
     <span class="k">return</span> <span class="n">ivy</span><span class="o">.</span><span class="n">current_backend</span><span class="p">(</span><span class="n">ary</span><span class="p">)</span><span class="o">.</span><span class="n">vsplit</span><span class="p">(</span><span class="n">ary</span><span class="p">,</span> <span class="n">indices_or_sections</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="dsplit"><a class="viewcode-back" href="../../../../../docs/functional/ivy/ivy.functional.ivy.experimental.html#ivy.functional.ivy.experimental.dsplit">[docs]</a><span class="nd">@handle_view</span>
-<span class="nd">@to_native_arrays_and_back</span>
-<span class="nd">@handle_nestable</span>
+<div class="viewcode-block" id="dsplit"><a class="viewcode-back" href="../../../../../docs/functional/ivy/ivy.functional.ivy.experimental.html#ivy.functional.ivy.experimental.dsplit">[docs]</a><span class="nd">@to_native_arrays_and_back</span>
+<span class="nd">@handle_view</span>
 <span class="nd">@handle_array_like_without_promotion</span>
+<span class="nd">@handle_nestable</span>
 <span class="k">def</span> <span class="nf">dsplit</span><span class="p">(</span>
     <span class="n">ary</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">],</span>
     <span class="n">indices_or_sections</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="o">...</span><span class="p">]],</span>
@@ -1742,11 +1738,11 @@ document.write(`
     <span class="k">return</span> <span class="n">ivy</span><span class="o">.</span><span class="n">current_backend</span><span class="p">(</span><span class="n">ary</span><span class="p">)</span><span class="o">.</span><span class="n">dsplit</span><span class="p">(</span><span class="n">ary</span><span class="p">,</span> <span class="n">indices_or_sections</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="atleast_1d"><a class="viewcode-back" href="../../../../../docs/functional/ivy/ivy.functional.ivy.experimental.html#ivy.functional.ivy.experimental.atleast_1d">[docs]</a><span class="nd">@handle_view</span>
-<span class="nd">@to_native_arrays_and_back</span>
+<div class="viewcode-block" id="atleast_1d"><a class="viewcode-back" href="../../../../../docs/functional/ivy/ivy.functional.ivy.experimental.html#ivy.functional.ivy.experimental.atleast_1d">[docs]</a><span class="nd">@to_native_arrays_and_back</span>
 <span class="nd">@handle_out_argument</span>
-<span class="nd">@handle_nestable</span>
+<span class="nd">@handle_view</span>
 <span class="nd">@handle_array_like_without_promotion</span>
+<span class="nd">@handle_nestable</span>
 <span class="k">def</span> <span class="nf">atleast_1d</span><span class="p">(</span>
     <span class="o">*</span><span class="n">arys</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">,</span> <span class="nb">bool</span><span class="p">,</span> <span class="n">Number</span><span class="p">],</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">]:</span>
@@ -1818,11 +1814,11 @@ document.write(`
     <span class="k">return</span> <span class="n">ivy</span><span class="o">.</span><span class="n">current_backend</span><span class="p">()</span><span class="o">.</span><span class="n">dstack</span><span class="p">(</span><span class="n">arrays</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="atleast_2d"><a class="viewcode-back" href="../../../../../docs/functional/ivy/ivy.functional.ivy.experimental.html#ivy.functional.ivy.experimental.atleast_2d">[docs]</a><span class="nd">@handle_view</span>
-<span class="nd">@to_native_arrays_and_back</span>
+<div class="viewcode-block" id="atleast_2d"><a class="viewcode-back" href="../../../../../docs/functional/ivy/ivy.functional.ivy.experimental.html#ivy.functional.ivy.experimental.atleast_2d">[docs]</a><span class="nd">@to_native_arrays_and_back</span>
 <span class="nd">@handle_out_argument</span>
-<span class="nd">@handle_nestable</span>
+<span class="nd">@handle_view</span>
 <span class="nd">@handle_array_like_without_promotion</span>
+<span class="nd">@handle_nestable</span>
 <span class="k">def</span> <span class="nf">atleast_2d</span><span class="p">(</span>
     <span class="o">*</span><span class="n">arys</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">],</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">]:</span>
@@ -1857,9 +1853,9 @@ document.write(`
     <span class="k">return</span> <span class="n">ivy</span><span class="o">.</span><span class="n">current_backend</span><span class="p">()</span><span class="o">.</span><span class="n">atleast_2d</span><span class="p">(</span><span class="o">*</span><span class="n">arys</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="atleast_3d"><a class="viewcode-back" href="../../../../../docs/functional/ivy/ivy.functional.ivy.experimental.html#ivy.functional.ivy.experimental.atleast_3d">[docs]</a><span class="nd">@handle_view</span>
-<span class="nd">@to_native_arrays_and_back</span>
+<div class="viewcode-block" id="atleast_3d"><a class="viewcode-back" href="../../../../../docs/functional/ivy/ivy.functional.ivy.experimental.html#ivy.functional.ivy.experimental.atleast_3d">[docs]</a><span class="nd">@to_native_arrays_and_back</span>
 <span class="nd">@handle_out_argument</span>
+<span class="nd">@handle_view</span>
 <span class="nd">@handle_nestable</span>
 <span class="k">def</span> <span class="nf">atleast_3d</span><span class="p">(</span>
     <span class="o">*</span><span class="n">arys</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">,</span> <span class="nb">bool</span><span class="p">,</span> <span class="n">Number</span><span class="p">],</span>
@@ -1906,9 +1902,9 @@ document.write(`
 
 <div class="viewcode-block" id="take_along_axis"><a class="viewcode-back" href="../../../../../docs/functional/ivy/ivy.functional.ivy.experimental.html#ivy.functional.ivy.experimental.take_along_axis">[docs]</a><span class="nd">@to_native_arrays_and_back</span>
 <span class="nd">@handle_out_argument</span>
+<span class="nd">@handle_array_like_without_promotion</span>
 <span class="nd">@handle_nestable</span>
 <span class="nd">@handle_exceptions</span>
-<span class="nd">@handle_array_like_without_promotion</span>
 <span class="k">def</span> <span class="nf">take_along_axis</span><span class="p">(</span>
     <span class="n">arr</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">],</span>
     <span class="n">indices</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">],</span>
@@ -1953,10 +1949,10 @@ document.write(`
     <span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="hsplit"><a class="viewcode-back" href="../../../../../docs/functional/ivy/ivy.functional.ivy.experimental.html#ivy.functional.ivy.experimental.hsplit">[docs]</a><span class="nd">@handle_view</span>
-<span class="nd">@to_native_arrays_and_back</span>
-<span class="nd">@handle_nestable</span>
+<div class="viewcode-block" id="hsplit"><a class="viewcode-back" href="../../../../../docs/functional/ivy/ivy.functional.ivy.experimental.html#ivy.functional.ivy.experimental.hsplit">[docs]</a><span class="nd">@to_native_arrays_and_back</span>
+<span class="nd">@handle_view</span>
 <span class="nd">@handle_array_like_without_promotion</span>
+<span class="nd">@handle_nestable</span>
 <span class="k">def</span> <span class="nf">hsplit</span><span class="p">(</span>
     <span class="n">ary</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">],</span>
     <span class="n">indices_or_sections</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="o">...</span><span class="p">]],</span>
@@ -2026,13 +2022,12 @@ document.write(`
     <span class="k">return</span> <span class="n">ivy</span><span class="o">.</span><span class="n">current_backend</span><span class="p">()</span><span class="o">.</span><span class="n">broadcast_shapes</span><span class="p">(</span><span class="o">*</span><span class="n">shapes</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="expand"><a class="viewcode-back" href="../../../../../docs/functional/ivy/ivy.functional.ivy.experimental.html#ivy.functional.ivy.experimental.expand">[docs]</a><span class="nd">@handle_view</span>
-<span class="nd">@to_native_arrays_and_back</span>
+<div class="viewcode-block" id="expand"><a class="viewcode-back" href="../../../../../docs/functional/ivy/ivy.functional.ivy.experimental.html#ivy.functional.ivy.experimental.expand">[docs]</a><span class="nd">@to_native_arrays_and_back</span>
 <span class="nd">@handle_out_argument</span>
+<span class="nd">@handle_view</span>
+<span class="nd">@handle_array_like_without_promotion</span>
 <span class="nd">@handle_nestable</span>
 <span class="nd">@handle_exceptions</span>
-<span class="nd">@handle_out_argument</span>
-<span class="nd">@handle_array_like_without_promotion</span>
 <span class="k">def</span> <span class="nf">expand</span><span class="p">(</span>
     <span class="n">x</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">],</span>
     <span class="n">shape</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Shape</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeShape</span><span class="p">],</span>
@@ -2075,16 +2070,6 @@ document.write(`
             </div>
             
             
-              
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-  <div class="sidebar-secondary-item"><nav class="bd-docs-nav bd-links"
-     aria-label="Section Navigation">
-  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
-  <div class="bd-toc-item navbar-nav"></div>
-</nav></div>
-
-</div></div>
               
             
           </div>
