@@ -280,6 +280,11 @@ document.write(`
 <li class="toctree-l1"><a class="reference internal" href="../../../../overview/faq.html">FAQ</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../overview/glossary.html">Glossary</a></li>
 </ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Compiling and Transpiling</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../../compiler/compiler.html">Graph Compiler</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../compiler/transpiler.html">Transpiler</a></li>
+</ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Functions</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../../../docs/functional/ivy/ivy.functional.ivy.activations.html">Activations</a></li>
@@ -3612,7 +3617,9 @@ document.write(`
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">return_dict</span> <span class="o">=</span> <span class="bp">self</span> <span class="k">if</span> <span class="n">inplace</span> <span class="k">else</span> <span class="nb">dict</span><span class="p">()</span>
         <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-            <span class="n">this_key_chain</span> <span class="o">=</span> <span class="n">key</span> <span class="k">if</span> <span class="n">key_chain</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span> <span class="k">else</span> <span class="p">(</span><span class="n">key_chain</span> <span class="o">+</span> <span class="s2">&quot;/&quot;</span> <span class="o">+</span> <span class="n">key</span><span class="p">)</span>
+            <span class="n">this_key_chain</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="n">key</span> <span class="k">if</span> <span class="n">key_chain</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span> <span class="k">else</span> <span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">key_chain</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">key</span><span class="p">))</span>
+            <span class="p">)</span>
             <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">):</span>
                 <span class="n">ret</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="n">cont_map</span><span class="p">(</span>
                     <span class="n">func</span><span class="p">,</span>
@@ -4141,7 +4148,7 @@ document.write(`
                 <span class="s2">&quot;jax&quot;</span><span class="p">:</span> <span class="s2">&quot;([&quot;</span><span class="p">,</span>
                 <span class="s2">&quot;numpy&quot;</span><span class="p">:</span> <span class="s2">&quot;([&quot;</span><span class="p">,</span>
                 <span class="s2">&quot;tensorflow&quot;</span><span class="p">:</span> <span class="s2">&quot;([&quot;</span><span class="p">,</span>
-                <span class="s2">&quot;pytorch&quot;</span><span class="p">:</span> <span class="s2">&quot;([&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;torch&quot;</span><span class="p">:</span> <span class="s2">&quot;([&quot;</span><span class="p">,</span>
                 <span class="s2">&quot;paddle&quot;</span><span class="p">:</span> <span class="s2">&quot;])&quot;</span><span class="p">,</span>
             <span class="p">}</span>
             <span class="n">split_phrase</span> <span class="o">=</span> <span class="n">split_phrase_dict</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_cont_ivy</span><span class="o">.</span><span class="n">current_backend_str</span><span class="p">()]</span>
@@ -4572,34 +4579,53 @@ document.write(`
 
     <span class="k">def</span> <span class="nf">__getstate__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">state_dict</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">)</span>
-        <span class="n">state_dict</span><span class="p">[</span><span class="s2">&quot;_local_ivy&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">try_else_none</span><span class="p">(</span>
-            <span class="k">lambda</span><span class="p">:</span> <span class="n">state_dict</span><span class="p">[</span><span class="s2">&quot;_local_ivy&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">current_backend_str</span><span class="p">()</span>
+        <span class="n">state_dict</span><span class="p">[</span><span class="s2">&quot;_local_ivy&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">state_dict</span><span class="p">[</span><span class="s2">&quot;_local_ivy&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">current_backend_str</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">state_dict</span><span class="p">[</span><span class="s2">&quot;_local_ivy&quot;</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+            <span class="k">else</span> <span class="kc">None</span>
         <span class="p">)</span>
         <span class="n">config_in</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">state_dict</span><span class="p">[</span><span class="s2">&quot;_config_in&quot;</span><span class="p">])</span>
-        <span class="n">config_in</span><span class="p">[</span><span class="s2">&quot;ivyh&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">try_else_none</span><span class="p">(</span>
-            <span class="k">lambda</span><span class="p">:</span> <span class="n">config_in</span><span class="p">[</span><span class="s2">&quot;ivyh&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">current_backend_str</span><span class="p">()</span>
+        <span class="n">config_in</span><span class="p">[</span><span class="s2">&quot;ivyh&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">config_in</span><span class="p">[</span><span class="s2">&quot;ivyh&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">current_backend_str</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">config_in</span><span class="p">[</span><span class="s2">&quot;ivyh&quot;</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+            <span class="k">else</span> <span class="kc">None</span>
         <span class="p">)</span>
         <span class="n">state_dict</span><span class="p">[</span><span class="s2">&quot;_config_in&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">config_in</span>
         <span class="n">config</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">state_dict</span><span class="p">[</span><span class="s2">&quot;_config&quot;</span><span class="p">])</span>
-        <span class="n">config</span><span class="p">[</span><span class="s2">&quot;ivyh&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">try_else_none</span><span class="p">(</span><span class="k">lambda</span><span class="p">:</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;ivyh&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">current_backend_str</span><span class="p">())</span>
+        <span class="n">config</span><span class="p">[</span><span class="s2">&quot;ivyh&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">config</span><span class="p">[</span><span class="s2">&quot;ivyh&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">current_backend_str</span><span class="p">()</span> <span class="k">if</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;ivyh&quot;</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="kc">None</span>
+        <span class="p">)</span>
         <span class="n">state_dict</span><span class="p">[</span><span class="s2">&quot;_config&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">config</span>
         <span class="k">return</span> <span class="n">state_dict</span>
 
     <span class="k">def</span> <span class="nf">__setstate__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state_dict</span><span class="p">):</span>
         <span class="k">if</span> <span class="s2">&quot;_local_ivy&quot;</span> <span class="ow">in</span> <span class="n">state_dict</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">ivy</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">state_dict</span><span class="p">[</span><span class="s2">&quot;_local_ivy&quot;</span><span class="p">]):</span>
-                <span class="n">state_dict</span><span class="p">[</span><span class="s2">&quot;_local_ivy&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">get_backend</span><span class="p">(</span><span class="n">state_dict</span><span class="p">[</span><span class="s2">&quot;_local_ivy&quot;</span><span class="p">])</span>
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">state_dict</span><span class="p">[</span><span class="s2">&quot;_local_ivy&quot;</span><span class="p">])</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="n">state_dict</span><span class="p">[</span><span class="s2">&quot;_local_ivy&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">with_backend</span><span class="p">(</span>
+                        <span class="n">state_dict</span><span class="p">[</span><span class="s2">&quot;_local_ivy&quot;</span><span class="p">],</span> <span class="n">cached</span><span class="o">=</span><span class="kc">True</span>
+                    <span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">state_dict</span><span class="p">[</span><span class="s2">&quot;_local_ivy&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ivy</span>
         <span class="k">if</span> <span class="s2">&quot;_config_in&quot;</span> <span class="ow">in</span> <span class="n">state_dict</span><span class="p">:</span>
             <span class="n">config_in</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">state_dict</span><span class="p">[</span><span class="s2">&quot;_config_in&quot;</span><span class="p">])</span>
             <span class="k">if</span> <span class="s2">&quot;ivyh&quot;</span> <span class="ow">in</span> <span class="n">config_in</span><span class="p">:</span>
                 <span class="k">if</span> <span class="n">ivy</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">config_in</span><span class="p">[</span><span class="s2">&quot;ivyh&quot;</span><span class="p">]):</span>
-                    <span class="n">config_in</span><span class="p">[</span><span class="s2">&quot;ivyh&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">get_backend</span><span class="p">(</span><span class="n">config_in</span><span class="p">[</span><span class="s2">&quot;ivyh&quot;</span><span class="p">])</span>
+                    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">config_in</span><span class="p">[</span><span class="s2">&quot;ivyh&quot;</span><span class="p">])</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                        <span class="n">config_in</span><span class="p">[</span><span class="s2">&quot;ivyh&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">with_backend</span><span class="p">(</span>
+                            <span class="n">config_in</span><span class="p">[</span><span class="s2">&quot;ivyh&quot;</span><span class="p">],</span> <span class="n">cached</span><span class="o">=</span><span class="kc">True</span>
+                        <span class="p">)</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">config_in</span><span class="p">[</span><span class="s2">&quot;ivyh&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ivy</span>
             <span class="n">state_dict</span><span class="p">[</span><span class="s2">&quot;_config_in&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">config_in</span>
         <span class="k">if</span> <span class="s2">&quot;_config&quot;</span> <span class="ow">in</span> <span class="n">state_dict</span><span class="p">:</span>
             <span class="n">config</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">state_dict</span><span class="p">[</span><span class="s2">&quot;_config&quot;</span><span class="p">])</span>
             <span class="k">if</span> <span class="s2">&quot;ivyh&quot;</span> <span class="ow">in</span> <span class="n">config</span><span class="p">:</span>
                 <span class="k">if</span> <span class="n">ivy</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;ivyh&quot;</span><span class="p">]):</span>
-                    <span class="n">config</span><span class="p">[</span><span class="s2">&quot;ivyh&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">get_backend</span><span class="p">(</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;ivyh&quot;</span><span class="p">])</span>
+                    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;ivyh&quot;</span><span class="p">])</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                        <span class="n">config</span><span class="p">[</span><span class="s2">&quot;ivyh&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">with_backend</span><span class="p">(</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;ivyh&quot;</span><span class="p">],</span> <span class="n">cached</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">config</span><span class="p">[</span><span class="s2">&quot;ivyh&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ivy</span>
             <span class="n">state_dict</span><span class="p">[</span><span class="s2">&quot;_config&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">config</span>
         <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">state_dict</span><span class="p">)</span>
 
