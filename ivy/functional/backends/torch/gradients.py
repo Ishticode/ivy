@@ -2,7 +2,7 @@
 
 # global
 import torch
-from typing import Optional, Callable, Sequence, Union
+from typing import Optional, Callable, Sequence, Union, Tuple
 
 # local
 import ivy
@@ -184,25 +184,35 @@ def jac(func: Callable):
     return callback_fn
 
 
-def grad(f):
+def grad(f: Callable,
+         arg_nums:Union[int, Tuple[int]] = 0):
     if grad.nth == 0:
         grad.f_original = f
+
     def _nth_derivative(n):
-        def _inner(x):
-            x.requires_grad_()
+        def _inner(*args, **kwargs):
+            if len(arg_nums) > 1:
+                wrt_inputs = [args[i] for i in arg_nums]
+                for wrt_input in wrt_inputs:
+                    wrt_input.requires_grad_()
+            else:
+                wrt_inputs = args[0]
+                wrt_inputs.requires_grad_()
+
             if n == 0:
-                ret = grad.f_original(x) if grad.f_original is not None else f(x)
+                ret_fn = grad.f_original if grad.f_original is not None else f
+                ret = list(map(ret_fn, wrt_inputs))
                 grad.nth = 0
                 return ret
             else:
-                y = _nth_derivative(n - 1)(x)
+                y = _nth_derivative(n - 1)(*args, kwargs)
 
                 # Avoid zero gradients setting requires_grads as False
                 if y.requires_grad is False:
                     y.requires_grad_()
 
                 dy_dx = torch.autograd.grad(y,
-                                            x,
+                                            wrt_inputs,
                                             create_graph=True,
                                             grad_outputs=torch.ones_like(y),
                                             allow_unused=True)[0]
