@@ -149,7 +149,7 @@ def jac(func: Callable):
     return callback_fn
 
 
-def grad(func: Callable):
+def grad(func: Callable, argnums):
     grad_fn = lambda x_in: ivy.to_native(func(x_in))
     callback_fn = lambda x_in: ivy.to_ivy(jax.grad(grad_fn)(ivy.to_native(x_in)))
     return callback_fn

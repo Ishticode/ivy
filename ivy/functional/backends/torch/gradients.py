@@ -185,18 +185,22 @@ def jac(func: Callable):
 
 
 def grad(f: Callable,
-         arg_nums:Union[int, Tuple[int]] = 0):
+         argnums:Union[int, Tuple[int]] = 0):
     if grad.nth == 0:
         grad.f_original = f
 
     def _nth_derivative(n):
         def _inner(*args, **kwargs):
-            if len(arg_nums) > 1:
-                wrt_inputs = [args[i] for i in arg_nums]
-                for wrt_input in wrt_inputs:
-                    wrt_input.requires_grad_()
-            else:
-                wrt_inputs = args[0]
+            if isinstance(argnums, (tuple, list)):
+                if len(argnums) > 1:
+                    wrt_inputs = [args[i] for i in argnums]
+                    for wrt_input in wrt_inputs:
+                        wrt_input.requires_grad_()
+                else:
+                    wrt_inputs = args[argnums[0]]
+                    wrt_inputs.requires_grad_()
+            elif isinstance(argnums, int):
+                wrt_inputs = args[argnums]
                 wrt_inputs.requires_grad_()
 
             if n == 0:

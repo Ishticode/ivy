@@ -168,7 +168,8 @@ def jac(func: Callable):
     return callback_fn
 
 from ivy import output_to_native_arrays, inputs_to_native_arrays
-def grad(f):
+
+def grad(f, argnums):
 
     if grad.nth == 0:
         grad.f_original = f
