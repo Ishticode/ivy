@@ -675,7 +675,7 @@ jac.computes_gradients = True
 
 
 @handle_exceptions
-def grad(func: Callable) -> Callable:
+def grad(func: Callable, argnums=0) -> Callable:
     """Call function func, and return func's gradients.
 
     Parameters
